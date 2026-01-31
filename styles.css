@@ -1278,6 +1278,22 @@ p { margin-bottom: var(--spacing-sm); }
         padding: 0 var(--spacing-sm);
     }
     
+    /* Reduce form section padding on mobile */
+    .cta-form-section .container {
+        padding: 0 var(--spacing-xs);
+    }
+    
+    .cta-form-content {
+        padding: 0;
+    }
+    
+    #form-placeholder,
+    #form-container,
+    #form-container iframe {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
     .logo img {
         height: 50px;
     }
