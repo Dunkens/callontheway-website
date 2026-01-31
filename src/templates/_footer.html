@@ -1,0 +1,88 @@
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Logo & About -->
+                <div class="footer-about">
+                    <img src="{{ROOT_PATH}}footer-logo.webp" alt="On The Way Heating & Air Logo" width="180" height="72" loading="lazy" class="footer-logo">
+                    <p>Serving North Tampa since day one with reliable HVAC solutions.</p>
+                    <p><strong>Licensed & Insured</strong></p>
+                </div>
+                
+                <!-- Services -->
+                <div class="footer-links-col">
+                    <h4>Services</h4>
+                    <a href="{{ROOT_PATH}}pages/services/ac/ac-repair.html">AC Repair</a>
+                    <a href="{{ROOT_PATH}}pages/services/ac/ac-installation.html">AC Installation</a>
+                    <a href="{{ROOT_PATH}}pages/services/heating/furnace-repair.html">Furnace Repair</a>
+                    <a href="{{ROOT_PATH}}pages/services/heating/heat-pump-installation.html">Heat Pump Installation</a>
+                    <a href="{{ROOT_PATH}}pages/services/air-quality/air-duct-cleaning.html">Air Duct Cleaning</a>
+                </div>
+                
+                <!-- Locations -->
+                <div class="footer-links-col">
+                    <h4>Service Areas</h4>
+                    <a href="{{ROOT_PATH}}pages/locations/lutz.html">Lutz</a>
+                    <a href="{{ROOT_PATH}}pages/locations/wesley-chapel.html">Wesley Chapel</a>
+                    <a href="{{ROOT_PATH}}pages/locations/carrollwood.html">Carrollwood</a>
+                    <a href="{{ROOT_PATH}}pages/locations/new-tampa.html">New Tampa</a>
+                    <a href="{{ROOT_PATH}}pages/locations/land-o-lakes.html">Land O' Lakes</a>
+                </div>
+                
+                <!-- Contact -->
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <p>
+                        <strong>On The Way Heating & Air</strong><br>
+                        5005 W Laurel St Suite 62<br>
+                        Tampa, FL 33607
+                    </p>
+                    <p><a href="tel:8139222209">(813) 922-2209</a></p>
+                    <p>Hours: Mon-Sat 7AM-8PM</p>
+                </div>
+            </div>
+            
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>© 2024 On The Way Heating & Air. All Rights Reserved.</p>
+                <div class="footer-legal">
+                    <a href="{{ROOT_PATH}}privacy-policy.html">Privacy Policy</a>
+                    <a href="{{ROOT_PATH}}terms-and-conditions.html">Terms & Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="{{ROOT_PATH}}main.js" defer></script>
+    
+    <!-- FAQ Toggle Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(function(item) {
+                const question = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+                if (question && answer) {
+                    question.addEventListener('click', function() {
+                        const isOpen = answer.style.display === 'block';
+                        answer.style.display = isOpen ? 'none' : 'block';
+                        question.setAttribute('aria-expanded', !isOpen);
+                        const toggle = question.querySelector('.faq-toggle');
+                        if (toggle) toggle.textContent = isOpen ? '+' : '−';
+                    });
+                }
+            });
+        });
+    </script>
+    
+    <!-- Chat Widget - Lazy loaded after 3 seconds for performance -->
+    <script>
+        setTimeout(function() {
+            var chatScript = document.createElement('script');
+            chatScript.src = 'https://widgets.leadconnectorhq.com/loader.js';
+            chatScript.setAttribute('data-resources-url', 'https://widgets.leadconnectorhq.com/chat-widget/loader.js');
+            chatScript.setAttribute('data-widget-id', '697d34a60079c39552ddfad9');
+            document.body.appendChild(chatScript);
+        }, 3000);
+    </script>
