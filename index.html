@@ -74,6 +74,7 @@
     .btn-lg{padding:1rem 2rem;font-size:1rem}
     .hero{position:relative;background-color:#2f0048;padding:var(--spacing-xxl) 0;height:450px;display:flex;align-items:center;overflow:hidden}
     .hero-bg-img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0}
+    @media(max-width:768px){.hero{height:auto;min-height:500px;padding:var(--spacing-xl) 0}.hero-bg-img{object-position:center bottom}}
     .hero-content{position:relative;z-index:2;max-width:700px;text-align:center;margin:0 auto;min-height:200px}
     .hero-title{font-size:clamp(2rem,5vw,3rem);font-weight:800;color:#fff;margin-bottom:var(--spacing-sm);line-height:1.15}
     .hero-subtitle{font-size:1.1rem;color:#fff;opacity:1;margin-bottom:var(--spacing-lg)}
@@ -188,7 +189,10 @@
     <main>
     <!-- Hero Section -->
     <section class="hero">
-        <img src="./hero-1920.webp" alt="Tampa HVAC Services Background" class="hero-bg-img" width="1920" height="450" fetchpriority="high">
+        <picture>
+            <source media="(max-width: 768px)" srcset="./hero-mobile-bg.webp" width="750" height="1000">
+            <img src="./hero-1920.webp" alt="Tampa HVAC Services Background" class="hero-bg-img" width="1920" height="450" fetchpriority="high">
+        </picture>
         <div class="container">
             <div class="hero-content">
                 <h1 class="hero-title">HVAC Experts in Tampa, Lutz, Wesley Chapel & Nearby</h1>
