@@ -77,7 +77,7 @@ html {
 
 body {
     font-family: var(--font-primary);
-    font-size: 1.15rem;
+    font-size: 1.25rem;
     line-height: 1.7;
     color: var(--off-white);
     background-color: #2f0048;
@@ -161,7 +161,7 @@ p { margin-bottom: var(--spacing-sm); }
 
 .section-subtitle {
     color: var(--light-gray);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     max-width: 600px;
     margin: 0 auto;
 }
@@ -493,7 +493,7 @@ p { margin-bottom: var(--spacing-sm); }
 }
 
 .mission-text {
-    font-size: 1.15rem;
+    font-size: 1.25rem;
     line-height: 1.8;
     color: var(--white);
     margin: 0;
@@ -544,7 +544,7 @@ p { margin-bottom: var(--spacing-sm); }
 .service-card > p {
     color: var(--medium-gray);
     margin-bottom: var(--spacing-md);
-    font-size: 0.95rem;
+    font-size: 1.1rem;
 }
 
 .service-list {
@@ -554,7 +554,7 @@ p { margin-bottom: var(--spacing-sm); }
 .service-list li {
     padding: var(--spacing-xs) 0;
     color: var(--dark-gray);
-    font-size: 0.9rem;
+    font-size: 1.05rem;
     border-bottom: 1px solid var(--light-gray);
 }
 
@@ -615,7 +615,7 @@ p { margin-bottom: var(--spacing-sm); }
 
 .step-card p {
     color: #ffffff;
-    font-size: 0.9rem;
+    font-size: 1.05rem;
     margin: 0;
 }
 
@@ -663,7 +663,7 @@ p { margin-bottom: var(--spacing-sm); }
 }
 
 .testimonial-author span {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     color: var(--medium-gray);
 }
 
@@ -713,7 +713,7 @@ p { margin-bottom: var(--spacing-sm); }
 
 .feature-card p {
     color: rgba(255, 255, 255, 0.9);
-    font-size: 0.9rem;
+    font-size: 1.05rem;
     margin: 0;
 }
 
@@ -754,7 +754,7 @@ p { margin-bottom: var(--spacing-sm); }
 
 .area-card p {
     color: #ffffff;
-    font-size: 0.85rem;
+    font-size: 1rem;
     margin: 0;
 }
 
@@ -783,7 +783,7 @@ p { margin-bottom: var(--spacing-sm); }
     border-radius: var(--radius-md);
     color: #FFEF76;
     font-weight: 500;
-    font-size: 0.9rem;
+    font-size: 1rem;
     transition: var(--transition-fast);
 }
 
@@ -794,7 +794,7 @@ p { margin-bottom: var(--spacing-sm); }
 
 .areas-cta {
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
 }
 
 .areas-cta a {
@@ -921,7 +921,7 @@ p { margin-bottom: var(--spacing-sm); }
     border: none;
     cursor: pointer;
     font-family: var(--font-primary);
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 600;
     color: #ffffff;
     text-align: left;
@@ -994,7 +994,7 @@ p { margin-bottom: var(--spacing-sm); }
     display: block;
     padding: var(--spacing-xs) 0;
     opacity: 1;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 .footer-links-col a:hover {
@@ -1005,7 +1005,7 @@ p { margin-bottom: var(--spacing-sm); }
 .footer-contact p {
     opacity: 1;
     margin-bottom: var(--spacing-sm);
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 .footer-contact a {
@@ -1025,7 +1025,7 @@ p { margin-bottom: var(--spacing-sm); }
 .footer-bottom p {
     margin: 0;
     opacity: 1;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
 }
 
 .footer-legal {
@@ -1035,7 +1035,7 @@ p { margin-bottom: var(--spacing-sm); }
 
 .footer-legal a {
     opacity: 1;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
 }
 
 .footer-legal a:hover {
