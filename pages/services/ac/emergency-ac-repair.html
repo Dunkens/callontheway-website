@@ -76,29 +76,121 @@
     
     <title>Emergency AC Repair Tampa, FL | On The Way</title>
     
-    <!-- Schema.org Structured Data -->
+    <!-- Schema.org Structured Data - Service -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "Service",
-        "serviceType": "Emergency AC Repair",
+        "@id": "https://callontheway.com/pages/services/ac/emergency-ac-repair.html#service",
+        "name": "Emergency AC Repair",
+        "serviceType": "Emergency Air Conditioning Repair",
+        "description": "Same-day emergency AC repair in Tampa, FL. When your AC breaks down, we get to you fast with our Same Day or Don't Pay guarantee. Expert technicians available 7 days a week.",
         "provider": {
             "@type": "HVACBusiness",
+            "@id": "https://callontheway.com/#business",
             "name": "On The Way Heating & Air",
-            "image": "https://callontheway.com/logo.jpg",
-            "url": "https://callontheway.com",
-            "telephone": "(813) 922-2209",
-            "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "5005 W Laurel St Suite 62",
-                "addressLocality": "Tampa",
-                "addressRegion": "FL",
-                "postalCode": "33607",
-                "addressCountry": "US"
-            }
+            "telephone": "+1-813-922-2209",
+            "url": "https://callontheway.com"
         },
-        "areaServed": ["Tampa", "Lutz", "Wesley Chapel", "Carrollwood", "New Tampa", "Land O' Lakes"],
-        "description": "Same-day emergency AC repair in Tampa. When your AC breaks down, we get to you fast with our Same Day or Don't Pay guarantee."
+        "areaServed": [
+            {"@type": "City", "name": "Tampa", "sameAs": "https://en.wikipedia.org/wiki/Tampa,_Florida"},
+            {"@type": "City", "name": "Lutz"},
+            {"@type": "City", "name": "Wesley Chapel"},
+            {"@type": "City", "name": "Carrollwood"},
+            {"@type": "City", "name": "New Tampa"},
+            {"@type": "City", "name": "Land O' Lakes"}
+        ],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Emergency AC Repair Services",
+            "itemListElement": [
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "AC Compressor Replacement"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Refrigerant Leak Repair"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Electrical Component Replacement"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Capacitor Replacement"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Contactor Replacement"}}
+            ]
+        },
+        "termsOfService": "Same Day or Don't Pay - If we can't fix the issue the same day we diagnose it, the service fee is FREE."
+    }
+    </script>
+    
+    <!-- Schema.org Structured Data - BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://callontheway.com/"},
+            {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://callontheway.com/pages/services/"},
+            {"@type": "ListItem", "position": 3, "name": "Air Conditioning", "item": "https://callontheway.com/pages/services/ac/"},
+            {"@type": "ListItem", "position": 4, "name": "Emergency AC Repair", "item": "https://callontheway.com/pages/services/ac/emergency-ac-repair.html"}
+        ]
+    }
+    </script>
+    
+    <!-- Schema.org Structured Data - FAQPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How fast can you get here for emergency AC repair?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Most of the time, we're at your door within a few hours. During peak summer season, it might stretch to same-day afternoon if you call in the morning. But we'll always be honest about timing when you call."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do you work on all AC brands?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Carrier, Trane, Lennox, Rheem, Goodman, American Standard—we've worked on them all. If it cools your house, we can fix it."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What if my AC needs to be replaced instead of repaired?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We'll be straight with you. If your system is old and the repair costs nearly as much as a new unit, we'll tell you that. We're not in the business of putting bandaids on dying systems just to make a quick buck."
+                }
+            }
+        ]
+    }
+    </script>
+    
+    <!-- Schema.org Structured Data - HowTo -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Our Emergency AC Repair Process",
+        "description": "How On The Way Heating & Air handles emergency AC repairs in Tampa, FL.",
+        "totalTime": "PT4H",
+        "step": [
+            {
+                "@type": "HowToStep",
+                "position": 1,
+                "name": "You Call, We Answer",
+                "text": "When you dial 813-922-2209, you're talking to a real person—not a robot. We'll ask a few quick questions and get a tech headed your way."
+            },
+            {
+                "@type": "HowToStep",
+                "position": 2,
+                "name": "Fast Diagnosis",
+                "text": "Our technician shows up with all the tools and parts needed for most repairs. We'll figure out what's wrong, explain it in plain English, and give you an honest quote before we do any work."
+            },
+            {
+                "@type": "HowToStep",
+                "position": 3,
+                "name": "Fix It Right",
+                "text": "We don't do quick patches that'll fail in a month. We repair it properly the first time so you're not calling us back next week."
+            }
+        ]
     }
     </script>
 </head>
