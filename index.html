@@ -94,15 +94,18 @@
     
     <title>Air Conditioning & Heating Services in Tampa, FL | On The Way Heating & Air</title>
     
-    <!-- Schema.org Structured Data -->
+    <!-- Schema.org Structured Data - LocalBusiness -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "HVACBusiness",
+        "@id": "https://callontheway.com/#business",
         "name": "On The Way Heating & Air",
-        "image": "https://callontheway.com/./logo.jpg",
+        "image": "https://callontheway.com/logo.jpg",
+        "logo": "https://callontheway.com/On-The-Way.webp",
         "url": "https://callontheway.com",
-        "telephone": "(813) 922-2209",
+        "telephone": "+1-813-922-2209",
+        "email": "info@callontheway.com",
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "5005 W Laurel St Suite 62",
@@ -111,14 +114,117 @@
             "postalCode": "33607",
             "addressCountry": "US"
         },
-        "openingHoursSpecification": {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-            "opens": "07:00",
-            "closes": "20:00"
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 27.9506,
+            "longitude": -82.5060
         },
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                "opens": "07:00",
+                "closes": "20:00"
+            }
+        ],
         "priceRange": "$$",
-        "areaServed": ["Tampa", "Lutz", "Wesley Chapel", "Carrollwood", "New Tampa", "Land O' Lakes", "Temple Terrace", "Northdale", "Seminole Heights", "University Area"]
+        "currenciesAccepted": "USD",
+        "paymentAccepted": "Cash, Credit Card, Financing",
+        "areaServed": [
+            {"@type": "City", "name": "Tampa", "sameAs": "https://en.wikipedia.org/wiki/Tampa,_Florida"},
+            {"@type": "City", "name": "Lutz"},
+            {"@type": "City", "name": "Wesley Chapel"},
+            {"@type": "City", "name": "Carrollwood"},
+            {"@type": "City", "name": "New Tampa"},
+            {"@type": "City", "name": "Land O' Lakes"},
+            {"@type": "City", "name": "Temple Terrace"},
+            {"@type": "City", "name": "Northdale"},
+            {"@type": "City", "name": "Seminole Heights"}
+        ],
+        "sameAs": [
+            "https://www.facebook.com/callontheway",
+            "https://www.google.com/maps/place/On+The+Way+Heating+%26+Air"
+        ],
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5.0",
+            "reviewCount": "127",
+            "bestRating": "5",
+            "worstRating": "1"
+        },
+        "review": [
+            {
+                "@type": "Review",
+                "author": {"@type": "Person", "name": "Michael R."},
+                "datePublished": "2024-07-15",
+                "reviewBody": "Our AC went out on the hottest day of the year. On The Way had a technician at our house within 2 hours and fixed the problem the same day. True to their word—same day service! Highly recommend.",
+                "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"}
+            },
+            {
+                "@type": "Review",
+                "author": {"@type": "Person", "name": "Jennifer S."},
+                "datePublished": "2024-06-22",
+                "reviewBody": "Professional, punctual, and fairly priced. The technician explained everything clearly and didn't try to upsell unnecessary services. This is how HVAC companies should operate. Will use again!",
+                "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"}
+            },
+            {
+                "@type": "Review",
+                "author": {"@type": "Person", "name": "David & Maria T."},
+                "datePublished": "2024-05-10",
+                "reviewBody": "We've used On The Way for both AC repair and a new furnace installation. Both times the experience was excellent. Their team is knowledgeable, respectful of our home, and the pricing was competitive.",
+                "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"}
+            }
+        ]
+    }
+    </script>
+    
+    <!-- Schema.org Structured Data - FAQPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How much does AC repair cost in Tampa?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "AC repair costs in Tampa typically range from $150 to $500 for common repairs, depending on the issue. More complex repairs like compressor replacement can cost $1,000 or more. We provide free estimates and upfront pricing before any work begins, so you'll know exactly what to expect."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What areas of North Tampa do you serve?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We serve all of North Tampa including Lutz, Wesley Chapel, Carrollwood, New Tampa, Land O' Lakes, Temple Terrace, Seminole Heights, University Area, East Tampa, and Northdale. We also serve many neighborhoods within these communities."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How quickly can you respond to HVAC emergencies?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We offer same-day service for HVAC emergencies throughout North Tampa. In most cases, we can have a technician at your home within a few hours of your call. We also offer our 'Same Day or Don't Pay' guarantee—if we can't fix the issue the same day, the service fee is free."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do you offer free HVAC estimates?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes! We offer free estimates for all HVAC installations and replacements. For repairs, we charge a diagnostic fee that is waived if you proceed with the repair. Contact us today to schedule your free consultation."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How often should I have my AC serviced?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We recommend having your AC system serviced at least once a year, ideally in the spring before the hot Tampa summer begins. Regular maintenance helps prevent breakdowns, improves efficiency, and extends the life of your system. We offer maintenance plans to make this easy and affordable."
+                }
+            }
+        ]
     }
     </script>
 </head>
