@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="On The Way Heating & Air">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../../favicon.ico">
+    <link rel="icon" type="image/png" sizes="512x512" href="../../../icon.png">
+    <link rel="apple-touch-icon" href="../../../icon.png">
+    
+    <!-- Preload Self-Hosted Fonts -->
+    <link rel="preload" href="../../../poppins-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../../../poppins-600.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../../../poppins-700.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../../../montserrat-800.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Critical CSS (inlined for fast LCP) -->
+    <style>
+    @font-face{font-family:'Poppins';src:url('../../../poppins-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+    @font-face{font-family:'Poppins';src:url('../../../poppins-600.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+    @font-face{font-family:'Poppins';src:url('../../../poppins-700.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+    @font-face{font-family:'Montserrat';src:url('../../../montserrat-800.woff2') format('woff2');font-weight:800;font-style:normal;font-display:swap}
+    :root{--primary-purple:#4a1a6b;--primary-magenta:#8b1a6b;--white:#ffffff;--off-white:#f8f9fa;--light-gray:#e9ecef;--font-primary:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--font-heading:'Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--spacing-xs:0.5rem;--spacing-sm:1rem;--spacing-md:1.5rem;--spacing-lg:2rem;--spacing-xl:3rem;--spacing-xxl:5rem;--radius-md:8px;--shadow-sm:0 2px 4px rgba(0,0,0,0.08);--transition-fast:0.2s ease;--transition-normal:0.3s ease;--container-max:1200px}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:var(--font-primary);font-size:1.25rem;line-height:1.7;color:var(--off-white);background-color:#2f0048;-webkit-font-smoothing:antialiased}
+    img{max-width:100%;height:auto;display:block}
+    a{text-decoration:none;color:inherit;transition:var(--transition-fast)}
+    ul,ol{list-style:none}
+    h1,h2,h3,h4,h5,h6{font-family:var(--font-heading);font-weight:700;line-height:1.2;margin-bottom:var(--spacing-sm)}
+    h1{font-size:clamp(2rem,5vw,3rem);color:#fff}
+    h2{font-size:clamp(1.75rem,4vw,2.5rem);color:#FFEF76}
+    h3{font-size:clamp(1.25rem,3vw,1.75rem);color:#71CEEB}
+    .container{width:100%;max-width:var(--container-max);margin:0 auto;padding:0 var(--spacing-md)}
+    .header{position:sticky;top:0;z-index:1000;background-color:#2f0048;box-shadow:var(--shadow-sm)}
+    .nav-bar{padding:var(--spacing-sm) 0}
+    .nav-inner{display:flex;justify-content:space-between;align-items:center;gap:var(--spacing-md)}
+    .logo-group{display:flex;align-items:center;gap:10px}
+    .logo img{height:80px;width:auto}
+    .navbar-mascot{display:none;height:50px;width:auto}
+    .nav-menu{display:flex;align-items:center;gap:var(--spacing-xs)}
+    .nav-item{position:relative}
+    .nav-link{display:block;padding:var(--spacing-sm) var(--spacing-md);font-weight:700;color:#71CEEB;font-size:1.1rem;border-radius:var(--radius-md);transition:var(--transition-fast)}
+    .nav-link:hover{color:#FFEF76;background-color:#3d0059}
+    .nav-dropdown{position:absolute;top:100%;left:0;min-width:200px;background-color:#2f0048;box-shadow:0 8px 24px rgba(0,0,0,0.16);border-radius:var(--radius-md);opacity:0;visibility:hidden;transform:translateY(10px);transition:var(--transition-normal);z-index:100;padding:var(--spacing-xs) 0}
+    .nav-item:hover .nav-dropdown{opacity:1;visibility:visible;transform:translateY(0)}
+    .nav-dropdown a{display:block;padding:var(--spacing-sm) var(--spacing-md);color:#fff;font-size:1.05rem}
+    .nav-dropdown a:hover{background-color:#3d0059;color:#FFEF76}
+    .header-cta{margin-left:var(--spacing-sm);background-color:#71CEEB!important;color:#2f0048!important;border-color:#71CEEB!important}
+    .nav-toggle{display:none;flex-direction:column;justify-content:center;align-items:center;width:44px;height:44px;background:none;border:none;cursor:pointer}
+    .nav-toggle span{display:block;width:24px;height:3px;background-color:#71CEEB;margin:4px 0;transition:var(--transition-normal);border-radius:2px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--spacing-xs);padding:0.75rem 1.5rem;font-family:var(--font-primary);font-size:1.05rem;font-weight:600;border:2px solid transparent;border-radius:var(--radius-md);cursor:pointer;transition:var(--transition-normal);text-align:center}
+    .btn-primary{background-color:var(--primary-purple);color:var(--white);border-color:var(--primary-purple)}
+    .btn-outline-light{background-color:transparent;border-color:var(--white);color:var(--white)}
+    .btn-lg{padding:1rem 2rem;font-size:1.1rem}
+    @media(max-width:992px){.nav-toggle{display:flex}.nav-menu{position:fixed;top:0;right:-100%;width:85%;max-width:350px;height:100vh;background-color:#2f0048;flex-direction:column;align-items:flex-start;padding:80px var(--spacing-lg) var(--spacing-xxl);transition:right 0.3s ease;box-shadow:-5px 0 20px rgba(0,0,0,0.3);overflow-y:auto;z-index:1001}.nav-menu.active{right:0}.header-cta{display:none}.navbar-mascot{display:block}}
+    </style>
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../../../styles.css?v=2.4">
+
+    <meta name="description" content="Furnace repair in Tampa for gas and electric furnaces. Same-day service from On The Way Heating & Air. Same day... or don't pay.* Call 813-922-2209 now.">
+    <meta name="keywords" content="furnace repair Tampa, gas furnace repair, electric furnace repair, furnace not heating, Tampa furnace service">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Furnace Repair Tampa, FL | On The Way">
+    <meta property="og:description" content="Furnace repair in Tampa for gas and electric furnaces. Same-day service from On The Way Heating & Air. Same day... or don't pay.*">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://callontheway.com/pages/services/heating/furnace-repair.html">
+    <meta property="og:image" content="https://callontheway.com/logo.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="On The Way Heating & Air">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Furnace Repair Tampa, FL | On The Way">
+    <meta name="twitter:description" content="Furnace repair in Tampa for gas and electric furnaces. Same day... or don't pay.*">
+    <meta name="twitter:image" content="https://callontheway.com/logo.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://callontheway.com/pages/services/heating/furnace-repair.html">
+    
+    <title>Furnace Repair Tampa, FL | On The Way</title>
+    
+    <!-- Schema.org Structured Data - Service -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "@id": "https://callontheway.com/pages/services/heating/furnace-repair.html#service",
+        "name": "Furnace Repair",
+        "serviceType": "Furnace Repair Service",
+        "description": "Same-day furnace repair in Tampa, FL for both gas and electric furnaces. Expert technicians with Same Day or Don't Pay guarantee. We stock furnace parts and have gas furnace expertise.",
+        "provider": {
+            "@type": "HVACBusiness",
+            "@id": "https://callontheway.com/#business",
+            "name": "On The Way Heating & Air",
+            "telephone": "+1-813-922-2209",
+            "url": "https://callontheway.com"
+        },
+        "areaServed": [
+            {"@type": "City", "name": "Tampa", "sameAs": "https://en.wikipedia.org/wiki/Tampa,_Florida"},
+            {"@type": "City", "name": "Carrollwood"},
+            {"@type": "City", "name": "Temple Terrace"},
+            {"@type": "City", "name": "New Tampa"},
+            {"@type": "City", "name": "Wesley Chapel"},
+            {"@type": "City", "name": "USF Area"}
+        ],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Furnace Repair Services",
+            "itemListElement": [
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Gas Furnace Ignitor Replacement"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Flame Sensor Cleaning"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Electric Furnace Element Replacement"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Gas Valve Replacement"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Blower Motor Replacement"}}
+            ]
+        },
+        "termsOfService": "Same Day or Don't Pay - If we can't fix the issue the same day we diagnose it, the service fee is FREE.",
+        "image": "https://callontheway.com/images/services/ac/tech-ac-fan-repair.webp",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "127",
+            "bestRating": "5",
+            "worstRating": "1"
+        }
+    }
+    </script>
+    
+    <!-- Schema.org Structured Data - BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://callontheway.com/"},
+            {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://callontheway.com/pages/services/"},
+            {"@type": "ListItem", "position": 3, "name": "Heating", "item": "https://callontheway.com/pages/services/heating/"},
+            {"@type": "ListItem", "position": 4, "name": "Furnace Repair", "item": "https://callontheway.com/pages/services/heating/furnace-repair.html"}
+        ]
+    }
+    </script>
+    
+    <!-- Schema.org Structured Data - FAQPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Should I repair or replace my furnace?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "General rule: if your furnace is under 12 years old, repair it. If it's 15+ years old AND needs a major repair (gas valve, heat exchanger, multiple heating elements), replacement usually makes more sense. We'll give you honest advice based on your specific situation."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I convert my furnace to a heat pump?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. If you've got a gas or electric furnace plus a separate AC, we can replace both with a single heat pump system. You'll get heating and cooling in one unit, better efficiency, and one less thing to maintain."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Why does my gas furnace smell like rotten eggs?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "That's the smell of natural gas. Shut off the gas valve to your furnace, evacuate your house, and call the gas company's emergency number. Then call us to fix the leak once the gas company gives the all-clear. Don't mess around with gas leaks—they're dangerous."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How long do furnaces last in Tampa?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Gas furnaces: 15-20 years with regular maintenance. Electric furnaces: 15-20 years. The limiting factor in Tampa isn't the furnace itself—it's that we use them so infrequently that homeowners forget to maintain them. Annual maintenance extends life significantly."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do I need carbon monoxide detectors with a gas furnace?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Absolutely. Florida building code requires CO detectors in homes with fuel-burning appliances. Install one on each floor of your house, especially near bedrooms. Test them monthly. Carbon monoxide is odorless and deadly—detectors save lives."
+                }
+            }
+        ]
+    }
+    </script>
+    
+    <!-- Schema.org Structured Data - HowTo -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Our Furnace Repair Process",
+        "description": "How On The Way Heating & Air handles furnace repairs in Tampa, FL.",
+        "totalTime": "PT4H",
+        "step": [
+            {
+                "@type": "HowToStep",
+                "position": 1,
+                "name": "You Call, We Answer",
+                "text": "When you dial 813-922-2209, you're talking to a real person—not a robot. We'll ask a few quick questions and get a tech headed your way."
+            },
+            {
+                "@type": "HowToStep",
+                "position": 2,
+                "name": "Fast Diagnosis",
+                "text": "Our technician shows up with furnace parts on the truck. We'll figure out what's wrong, explain it in plain English, and give you an honest quote before we do any work."
+            },
+            {
+                "@type": "HowToStep",
+                "position": 3,
+                "name": "Fix It Right",
+                "text": "We don't do quick patches that'll fail in a month. We repair it properly the first time so you're not calling us back next week."
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-bar">
+            <div class="container">
+                <div class="nav-inner">
+                    <div class="logo-group">
+                        <a href="../../../index.html" class="logo">
+                            <img src="../../../On-The-Way.webp" alt="On The Way Heating & Air Logo" width="180" height="138" loading="eager">
+                        </a>
+                        <img src="../../../mascot-navbar.webp" alt="On The Way Mascot" class="navbar-mascot" width="50" height="55" loading="eager">
+                    </div>
+                    
+                    <button class="nav-toggle" aria-label="Toggle Navigation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    
+                    <ul class="nav-menu">
+                        <li class="nav-item has-dropdown">
+                            <a href="#" class="nav-link">Services ▾</a>
+                            <div class="nav-dropdown nav-dropdown-mega">
+                                <div class="nav-dropdown-section">
+                                    <span class="nav-dropdown-heading">Air Conditioning</span>
+                                    <a href="../../../pages/services/ac/emergency-ac-repair.html">Emergency AC Repair</a>
+                                    <a href="../../../pages/services/ac/air-conditioning-repair.html">AC Repair</a>
+                                    <a href="../../../pages/services/ac/ac-installation.html">AC Installation</a>
+                                    <a href="../../../pages/services/ac/ac-replacement.html">AC Replacement</a>
+                                    <a href="../../../pages/services/ac/ac-tune-up.html">AC Tune-Up</a>
+                                    <a href="../../../pages/services/ac/ac-maintenance.html">AC Maintenance</a>
+                                    <a href="../../../pages/services/ac/central-ac-repair.html">Central AC Repair</a>
+                                    <a href="../../../pages/services/ac/ac-compressor-replacement.html">AC Compressor Replacement</a>
+                                    <a href="../../../pages/services/ac/ac-capacitor-replacement.html">AC Capacitor Replacement</a>
+                                    <a href="../../../pages/services/ac/condensate-drain-cleaning.html">Condensate Drain Cleaning</a>
+                                    <a href="../../../pages/services/ac/evaporator-coil-replacement.html">Evaporator Coil Replacement</a>
+                                    <a href="../../../pages/services/ac/ac-refrigerant-recharge.html">AC Refrigerant Recharge</a>
+                                    <a href="../../../pages/services/ac/ac-blower-motor-replacement.html">AC Blower Motor Replacement</a>
+                                    <a href="../../../pages/services/ac/ac-contactor-replacement.html">AC Contactor Replacement</a>
+                                    <a href="../../../pages/services/ac/condenser-fan-motor-repair.html">Condenser Fan Motor Repair</a>
+                                </div>
+                                <div class="nav-dropdown-section">
+                                    <span class="nav-dropdown-heading">Heating</span>
+                                    <a href="../../../pages/services/heating/emergency-heating-repair.html">Emergency Heating Repair</a>
+                                    <a href="../../../pages/services/heating/heat-pump-repair.html">Heat Pump Repair</a>
+                                    <a href="../../../pages/services/heating/heat-pump-installation.html">Heat Pump Installation</a>
+                                    <a href="../../../pages/services/heating/heat-pump-replacement.html">Heat Pump Replacement</a>
+                                    <a href="../../../pages/services/heating/furnace-repair.html">Furnace Repair</a>
+                                    <a href="../../../pages/services/heating/heating-installation.html">Heating Installation</a>
+                                    <a href="../../../pages/services/heating/heating-replacement.html">Heating Replacement</a>
+                                    <a href="../../../pages/services/heating/heating-tune-up.html">Heating Tune-Up</a>
+                                    <a href="../../../pages/services/heating/heat-pump-tune-up.html">Heat Pump Tune-Up</a>
+                                    <a href="../../../pages/services/heating/thermostat-repair.html">Thermostat Repair</a>
+                                    <a href="../../../pages/services/heating/defrost-board-repair.html">Defrost Board Repair</a>
+                                    <a href="../../../pages/services/heating/heat-pump-capacitor-replacement.html">Heat Pump Capacitor Replacement</a>
+                                    <a href="../../../pages/services/heating/gas-valve-repair.html">Gas Valve Repair</a>
+                                    <a href="../../../pages/services/heating/furnace-ignitor-replacement.html">Furnace Ignitor Replacement</a>
+                                    <a href="../../../pages/services/heating/reversing-valve-repair.html">Reversing Valve Repair</a>
+                                </div>
+                                <div class="nav-dropdown-section">
+                                    <span class="nav-dropdown-heading">Air Quality</span>
+                                    <a href="../../../pages/services/air-quality/air-duct-cleaning.html">Air Duct Cleaning</a>
+                                    <a href="../../../pages/services/air-quality/duct-repair.html">Duct Repair</a>
+                                    <a href="../../../pages/services/air-quality/duct-installation.html">Duct Installation</a>
+                                    <a href="../../../pages/services/air-quality/duct-sealing.html">Duct Sealing</a>
+                                    <a href="../../../pages/services/air-quality/air-purifier-installation.html">Air Purifier Installation</a>
+                                    <a href="../../../pages/services/air-quality/uv-light-installation.html">UV Light Installation</a>
+                                    <a href="../../../pages/services/air-quality/whole-home-dehumidifier-installation.html">Dehumidifier Installation</a>
+                                    <a href="../../../pages/services/air-quality/air-filter-replacement.html">Air Filter Replacement</a>
+                                    <a href="../../../pages/services/air-quality/hepa-filter-installation.html">HEPA Filter Installation</a>
+                                    <a href="../../../pages/services/air-quality/indoor-evaporator-coil-cleaning.html">Evaporator Coil Cleaning</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item has-dropdown">
+                            <a href="../../../pages/locations/index.html" class="nav-link">Locations ▾</a>
+                            <div class="nav-dropdown">
+                                <a href="../../../pages/locations/lutz.html">Lutz</a>
+                                <a href="../../../pages/locations/wesley-chapel.html">Wesley Chapel</a>
+                                <a href="../../../pages/locations/carrollwood.html">Carrollwood</a>
+                                <a href="../../../pages/locations/new-tampa.html">New Tampa</a>
+                                <a href="../../../pages/locations/land-o-lakes.html">Land O' Lakes</a>
+                                <a href="../../../pages/locations/temple-terrace.html">Temple Terrace</a>
+                                <a href="../../../pages/locations/northdale.html">Northdale</a>
+                                <a href="../../../pages/locations/seminole-heights.html">Seminole Heights</a>
+                                <a href="../../../pages/locations/university-area.html">University Area</a>
+                                <a href="../../../pages/locations/east-tampa.html">East Tampa</a>
+                                <a href="../../../pages/locations/index.html">View All →</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../../pricing.html" class="nav-link">Pricing</a>
+                        </li>
+                        <li class="nav-item has-dropdown">
+                            <a href="#" class="nav-link">Resources ▾</a>
+                            <div class="nav-dropdown">
+                                <a href="../../../faq.html">FAQ</a>
+                                <a href="../../../blog.html">Blog</a>
+                                <a href="../../../testimonials.html">Testimonials</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../../pages/contact.html" class="nav-link">Contact</a>
+                        </li>
+                    </ul>
+                    
+                    <a href="tel:8139222209" class="btn btn-primary header-cta">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        (813) 922-2209
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <picture>
+                <source media="(max-width: 768px)" srcset="../../../hero-mobile-bg.webp" width="750" height="1000">
+                <img src="../../../hero-1920.webp" alt="Furnace Repair Tampa" class="hero-bg-img" width="1920" height="450" loading="eager">
+            </picture>
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Furnace Repair in Tampa, Florida</h1>
+                    <p class="hero-subtitle">Fast Service for Gas & Electric Furnaces</p>
+                    <div class="hero-buttons">
+                        <a href="tel:8139222209" class="btn btn-primary btn-lg">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                            Call (813) 922-2209
+                        </a>
+                        <a href="#contact-form" class="btn btn-outline-light btn-lg">Get Free Quote</a>
+                    </div>
+                </div>
+            </div>
+            <img src="../../../mascot.webp" alt="On The Way Mascot" class="hero-mascot" width="300" height="328" loading="eager">
+        </section>
+
+        <!-- Main Content Section -->
+        <section style="background-color: #2f0048; padding: var(--spacing-xxl) 0;">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto;">
+                    
+                    <!-- Same Day Guarantee Image -->
+                    <div style="text-align: center; margin-bottom: var(--spacing-xl);">
+                        <img src="../../../images/services/ac/same-day-guarantee.webp" alt="Same Day Or Don't Pay Guarantee" width="300" height="300" loading="lazy" style="max-width: 300px; width: 100%; height: auto;">
+                    </div>
+
+                    <!-- Introduction -->
+                    <p style="font-size: 1.1rem; line-height: 1.8;">Looking for furnace repair in Tampa? Here's the truth: most homes in Tampa don't have furnaces—they've got heat pumps. But if you're in one of the older neighborhoods around <a href="../../../pages/locations/carrollwood.html" style="color: #71CEEB;">Carrollwood</a>, parts of <a href="../../../pages/locations/temple-terrace.html" style="color: #71CEEB;">Temple Terrace</a>, or some homes near USF, you might actually have a gas or electric furnace tucked away in the attic or garage. And when that furnace quits working on a 45-degree January morning, you need it fixed fast.</p>
+                    
+                    <p style="font-size: 1.1rem; line-height: 1.8;">At On The Way Heating & Air, we fix both gas and electric furnaces throughout North Tampa. Call us before 3 PM and we'll get it done today—or you don't pay. That's our Same Day… Or Don't Pay promise.</p>
+
+                    <!-- Why Furnaces Are Less Common -->
+                    <h2 style="margin-top: var(--spacing-xl); color: #d81471;">Why Furnaces Are Less Common in Tampa (But Still Around)</h2>
+                    
+                    <p>Most Florida homes built after 1990 have heat pumps, not furnaces. Heat pumps provide both heating and cooling in one system—makes sense in a place where you need AC nine months a year and heat for maybe two months.</p>
+                    
+                    <p>But furnaces still exist in Tampa, especially in:</p>
+                    
+                    <p><strong>Older homes built before 1985.</strong> Back then, builders installed separate AC and furnace systems (usually gas furnaces if the home had gas lines for water heaters or cooking).</p>
+                    
+                    <p><strong>Homes with natural gas service.</strong> If your street has natural gas, some homeowners prefer gas furnaces for heating because gas is cheaper per BTU than electricity. You'll pair it with a separate AC for cooling.</p>
+                    
+                    <p><strong>Additions or converted spaces.</strong> Sometimes folks add electric furnaces to converted garages, Florida rooms, or workshop spaces where running ductwork from the main system doesn't make sense.</p>
+                    
+                    <p><strong>Dual-fuel systems.</strong> Some newer installations pair a gas furnace with an electric heat pump for maximum efficiency—heat pump handles mild temps (50-70°F), furnace kicks in when it gets really cold.</p>
+                    
+                    <p>If you've got a furnace, you already know you're in the minority. That also means some HVAC companies in Tampa don't stock furnace parts or have much experience fixing them. We do. Our trucks carry common furnace components, and our techs work on furnaces regularly.</p>
+
+                    <!-- How You Know Your Furnace Needs Repair -->
+                    <h2 style="margin-top: var(--spacing-xl); color: #d81471;">How You Know Your Tampa Furnace Needs Repair</h2>
+                    
+                    <p>Furnaces fail differently than heat pumps. Here's what to watch for:</p>
+                    
+                    <p><strong>No heat at all.</strong> You turn the thermostat to "heat," bump it up, and… nothing. No warm air, no sound from the furnace. That's usually ignition failure (gas furnaces) or a blown heating element (electric furnaces).</p>
+                    
+                    <p><strong>Blowing cold air.</strong> The blower's running, air's coming out the vents, but it's room temperature or cold. Your furnace isn't actually heating—could be a failed ignitor, bad gas valve, or burned-out heating elements.</p>
+                    
+                    <p><strong>Furnace starts then shuts off immediately.</strong> Fires up for 30 seconds, shuts down, tries again, shuts down. That's short cycling, usually caused by a dirty flame sensor (gas furnaces), bad limit switch, or clogged filter restricting airflow.</p>
+                    
+                    <p><strong>Strange smells.</strong> A little dust smell when you first fire it up for the season is normal. Persistent burning smell, electrical smell, or (for gas furnaces) a rotten egg smell means shut it down and call us immediately.</p>
+                    
+                    <p><strong>Loud noises.</strong> Banging, popping, screeching, or grinding from the furnace cabinet. Could be a failing blower motor, cracked heat exchanger (dangerous), or loose components.</p>
+                    
+                    <p><strong>Pilot light won't stay lit (older gas furnaces).</strong> Newer gas furnaces use electronic ignition, but if yours has a standing pilot light and it keeps going out, that's a bad thermocouple or pilot assembly.</p>
+                    
+                    <p><strong>Yellow or flickering flame (gas furnaces).</strong> A gas furnace flame should be blue. If it's yellow, orange, or flickering, you've got incomplete combustion—could indicate a cracked heat exchanger or carbon monoxide risk. Shut it off and call us.</p>
+                    
+                    <blockquote style="border-left: 4px solid #FFEF76; padding-left: var(--spacing-md); margin: var(--spacing-lg) 0; font-style: italic; background: rgba(255,239,118,0.1); padding: var(--spacing-md);">
+                        <strong>Pro-Tip:</strong> Before calling for furnace repair, check your filter. Sounds basic, but a clogged filter is the #1 cause of furnace problems in Tampa. When the filter's gunked up with dust, dirt, and humidity-driven mold, airflow drops. Your furnace overheats and shuts down on a safety limit switch. Change the filter, wait 10 minutes, and try again. If that doesn't fix it, call us.
+                    </blockquote>
+
+                    <!-- Common Furnace Repairs -->
+                    <h2 style="margin-top: var(--spacing-xl); color: #d81471;">Common Furnace Repairs in Tampa</h2>
+                    
+                    <p>Here are the furnace repairs we see most often in North Tampa:</p>
+                    
+                    <h3 style="color: #d81471;">Gas Furnace Repairs</h3>
+                    
+                    <p><strong>Ignitor replacement.</strong> Modern gas furnaces use a hot surface ignitor (looks like a ceramic rod that glows orange) to light the gas. These crack from heat cycling and need replacement every 5-7 years. When they fail, the furnace won't light.</p>
+                    
+                    <p><strong>Flame sensor cleaning or replacement.</strong> The flame sensor is a thin metal rod that sits in the flame. It detects whether gas is actually burning. When it gets coated in soot or corrosion, the furnace thinks there's no flame and shuts off the gas valve. We clean or replace it.</p>
+                    
+                    <p><strong>Gas valve failure.</strong> The gas valve controls gas flow to the burners. When it fails (usually electrically), no gas flows, no heat. Replacement required.</p>
+                    
+                    <p><strong>Thermocouple replacement (older furnaces).</strong> If your gas furnace has a standing pilot light (rare in Tampa but some old systems still have them), the thermocouple is a safety device that shuts off gas if the pilot goes out. When thermocouples fail, the pilot won't stay lit.</p>
+                    
+                    <p><strong>Heat exchanger cracks.</strong> This is the big one. The heat exchanger is where combustion happens—hot gases flow through it, warming the air that blows into your house. If it cracks (from age, corrosion, or overheating), combustion gases can leak into your home's air. That's a carbon monoxide risk. Heat exchanger replacement costs almost as much as a new furnace, so if yours is cracked and the furnace is 15+ years old, replacement makes more sense.</p>
+                    
+                    <h3 style="color: #d81471;">Electric Furnace Repairs</h3>
+                    
+                    <p><strong>Heating element failure.</strong> Electric furnaces use coils (like a giant toaster) to heat air. These burn out from constant cycling. You'll get weak heat or no heat. We test each element and replace the bad ones.</p>
+                    
+                    <p><strong>Sequencer replacement.</strong> The sequencer staggers when each heating element turns on (so you don't overload the electrical panel). When it fails, elements don't energize, or they all turn on at once (trips breakers). Replacement fixes it.</p>
+                    
+                    <p><strong>Blower motor failure.</strong> Same as any HVAC system—the blower moves air across the heating elements and through your ducts. When it fails, you get no airflow. Motor replacement required.</p>
+                    
+                    <p><strong>Contactor or relay failure.</strong> These are electrical switches that control power to the heating elements. When they fail, elements don't get power, no heat.</p>
+                    
+                    <h3 style="color: #d81471;">Both Gas and Electric Furnaces</h3>
+                    
+                    <p><strong>Limit switch problems.</strong> The limit switch shuts the furnace down if it overheats (usually from restricted airflow). When the switch fails, the furnace short-cycles or won't run at all. We test and replace it.</p>
+                    
+                    <p><strong>Blower motor capacitor failure.</strong> Same issue as AC systems—capacitors fail from Tampa's heat and humidity. When the blower capacitor dies, the blower won't start. Cheap, easy fix.</p>
+                    
+                    <p><strong>Thermostat issues.</strong> Sometimes the problem's not the furnace at all—it's a bad thermostat that won't call for heat properly. We test thermostat wiring and replace if needed.</p>
+
+                    <!-- Deep Dive #1: Gas Furnace Ignition Failure -->
+                    <h2 style="margin-top: var(--spacing-xl); color: #d81471;">Deep Dive: Gas Furnace Ignition Failure</h2>
+                    
+                    <p>Modern gas furnaces (pretty much anything built after 1990) use electronic ignition instead of a standing pilot light. There are two types:</p>
+                    
+                    <p><strong>Hot surface ignitor (most common).</strong> A ceramic or silicon carbide element heats to 2500°F and ignites the gas when the thermostat calls for heat.</p>
+                    
+                    <p><strong>Spark ignitor (less common).</strong> Creates a spark to light the gas, like a stove lighter.</p>
+                    
+                    <p>When ignition fails, your furnace goes through its startup sequence—blower might run, you might hear gas flowing—but no flame, no heat. After a few attempts, it gives up and shuts down.</p>
+                    
+                    <h3 style="color: #d81471;">What Kills Ignitors in Tampa</h3>
+                    
+                    <p><strong>Heat stress.</strong> That hot surface ignitor glows orange-hot every time your furnace fires up. In Tampa, where we only use heat sporadically (a few weeks in Dec-Jan), ignitors experience huge temperature swings—sitting cold for months, then cycling dozens of times during a cold snap. Thermal stress cracks them.</p>
+                    
+                    <p><strong>Humidity and corrosion.</strong> Florida's 75% humidity causes corrosion on electrical connections to the ignitor. When connections corrode, the ignitor doesn't get full voltage and won't heat up enough to light the gas.</p>
+                    
+                    <p><strong>Vibration.</strong> Ignitors are brittle ceramic. Normal furnace vibration, plus any settling of the house, can crack them over time.</p>
+                    
+                    <p><strong>Age.</strong> Hot surface ignitors last 5-7 years on average. If your furnace is 10+ years old and has the original ignitor, replacement is due.</p>
+                    
+                    <h3 style="color: #d81471;">How We Fix Ignition Problems</h3>
+                    
+                    <p>We test the ignitor electrically (should draw 3-6 amps when energized) and visually inspect for cracks. If it's bad, we replace it—takes about 30 minutes. We also check:</p>
+                    
+                    <ul style="margin-left: var(--spacing-lg); margin-bottom: var(--spacing-md);">
+                        <li>Gas pressure at the manifold (should be 3.5" water column for natural gas)</li>
+                        <li>Flame sensor (might be shutting down good ignition)</li>
+                        <li>Gas valve operation (electrical and mechanical)</li>
+                        <li>Vent system (blocked vents prevent ignition for safety reasons)</li>
+                    </ul>
+                    
+                    <blockquote style="border-left: 4px solid #FFEF76; padding-left: var(--spacing-md); margin: var(--spacing-lg) 0; font-style: italic; background: rgba(255,239,118,0.1); padding: var(--spacing-md);">
+                        <strong>Pro-Tip:</strong> If your gas furnace is trying to light but failing (you hear clicking or see the ignitor glow but no flame), check outside for the furnace vent pipe. Modern high-efficiency furnaces vent through PVC pipes on the side of the house. If that pipe's blocked by a bird nest, wasp nest, or just debris, the furnace won't light (safety feature prevents backdrafting). Clear the blockage and try again. Still doesn't work? Call us.
+                    </blockquote>
+
+                    <!-- Deep Dive #2: Electric Furnace Heating Element Failure -->
+                    <h2 style="margin-top: var(--spacing-xl); color: #d81471;">Deep Dive: Electric Furnace Heating Element Failure</h2>
+                    
+                    <p>Electric furnaces work like a giant toaster. Inside the furnace cabinet are heating elements—coils of resistance wire that glow red-hot when electricity flows through them. Air blows across these hot coils and into your ducts.</p>
+                    
+                    <p>Most electric furnaces in Tampa have multiple elements (usually 3-5 elements, each 5kW-10kW). They stage on sequentially—first element heats, then if more heat's needed, second element kicks in, etc. This prevents overloading your electrical panel.</p>
+                    
+                    <p>When elements burn out (and they do), you get weak heating. The furnace runs, blows air, but can't keep up with the thermostat setting.</p>
+                    
+                    <h3 style="color: #d81471;">What Kills Heating Elements in Tampa</h3>
+                    
+                    <p><strong>Constant cycling.</strong> Every time an element energizes, it heats from room temp to 1000°F+ in seconds. When it shuts off, it cools. That thermal expansion/contraction stresses the wire. After thousands of cycles, the resistance wire breaks.</p>
+                    
+                    <p><strong>Corrosion.</strong> Tampa's humidity causes oxidation on the element connections. Poor connections create hot spots, and the element burns out faster.</p>
+                    
+                    <p><strong>Voltage fluctuations.</strong> Lightning strikes (Tampa's the lightning capital) and power surges stress heating elements. Even if your electronics are protected by surge suppressors, your furnace might not be.</p>
+                    
+                    <p><strong>Age.</strong> Heating elements last 10-15 years typically. If your electric furnace is 15+ years old and losing heat capacity, burned-out elements are likely.</p>
+                    
+                    <h3 style="color: #d81471;">How We Fix Heating Element Problems</h3>
+                    
+                    <p>We test each element electrically (checking resistance with a multimeter) to find which ones are bad. Then we replace the failed elements. This isn't a DIY job—electric furnaces run on 240V circuits, sometimes pulling 80-100 amps total. One mistake and you're dead or you burn your house down.</p>
+                    
+                    <p>We also check:</p>
+                    
+                    <ul style="margin-left: var(--spacing-lg); margin-bottom: var(--spacing-md);">
+                        <li>Sequencer operation (makes sure elements stage properly)</li>
+                        <li>Electrical connections (tighten, clean corrosion)</li>
+                        <li>Amp draw on each circuit (high amp draw indicates failing elements)</li>
+                        <li>Blower operation (if blower's weak, elements overheat)</li>
+                    </ul>
+
+                    <!-- Deep Dive #3: Flame Sensor Problems -->
+                    <h2 style="margin-top: var(--spacing-xl); color: #d81471;">Deep Dive: Flame Sensor Problems</h2>
+                    
+                    <p>This is the most common gas furnace repair we do in Tampa. The flame sensor is a safety device—a thin metal rod (about 1/4" diameter, 3-4" long) that sits right in the flame. It detects if gas is actually burning. If it doesn't detect a flame within a few seconds of the gas valve opening, it shuts everything down (prevents unburned gas from filling your house).</p>
+                    
+                    <p>When the flame sensor gets dirty or corroded, it can't detect the flame even though fire's right there. The furnace lights, runs for 10-30 seconds, then shuts off. Tries again. Same thing. Endless short cycling.</p>
+                    
+                    <h3 style="color: #d81471;">Why Flame Sensors Fail in Tampa</h3>
+                    
+                    <p><strong>Soot and carbon buildup.</strong> Over time, combustion deposits build up on the flame sensor rod. It's not "dirty" like dust—it's a thin layer of carbon from the flame itself. That layer insulates the rod so it can't sense flame.</p>
+                    
+                    <p><strong>Corrosion.</strong> Florida humidity causes oxidation on the metal rod and its electrical connection. Corroded sensors don't conduct properly.</p>
+                    
+                    <p><strong>Infrequent use.</strong> Furnaces that sit idle for 10 months (most Tampa furnaces) develop more corrosion and buildup than furnaces that run regularly.</p>
+                    
+                    <h3 style="color: #d81471;">How We Fix Flame Sensor Problems</h3>
+                    
+                    <p>Simple fix: we pull the flame sensor out of the burner assembly and clean it with fine sandpaper or steel wool. Takes 10 minutes. We also check:</p>
+                    
+                    <ul style="margin-left: var(--spacing-lg); margin-bottom: var(--spacing-md);">
+                        <li>Sensor position (has to be in the flame properly)</li>
+                        <li>Electrical connections (clean corrosion, ensure good contact)</li>
+                        <li>Microamp reading (sensor should produce 2-6 microamps when in flame)</li>
+                        <li>Burner condition (clean burners prevent sensor contamination)</li>
+                    </ul>
+                    
+                    <blockquote style="border-left: 4px solid #FFEF76; padding-left: var(--spacing-md); margin: var(--spacing-lg) 0; font-style: italic; background: rgba(255,239,118,0.1); padding: var(--spacing-md);">
+                        <strong>Pro-Tip:</strong> You can clean your own flame sensor if you're handy. Shut off power to the furnace at the breaker, shut off the gas valve, remove the burner access panel (usually a couple screws), and locate the flame sensor (thin metal rod sticking into the burner area). Unscrew it (usually one screw), gently rub the sensor rod with fine sandpaper or steel wool (don't use regular sandpaper—too coarse), wipe it clean, reinstall. Turn power and gas back on. Try the furnace. If that fixes it, you just saved a service call. If it doesn't, call us—there's something else wrong.
+                    </blockquote>
+
+                    <!-- What You Can Check Before Calling -->
+                    <h2 style="margin-top: var(--spacing-xl); color: #d81471;">What You Can Check Before Calling for Furnace Repair</h2>
+                    
+                    <p>Before you call us, try these things (might save you a service call):</p>
+                    
+                    <div style="background: rgba(113, 206, 235, 0.1); padding: var(--spacing-lg); border-radius: var(--radius-md); margin: var(--spacing-lg) 0;">
+                        <p style="margin-bottom: var(--spacing-sm);"><strong>1. Check your thermostat.</strong> Make sure it's set to "heat" mode and the temperature's set higher than current room temp. Sounds obvious, but we get calls where someone left it on "cool" or "off."</p>
+                        
+                        <p style="margin-bottom: var(--spacing-sm);"><strong>2. Replace your air filter.</strong> Pull the filter out (usually in a slot near the return duct or inside the furnace cabinet). If it's gray, brown, or you can't see light through it, replace it. A clogged filter causes 50% of furnace problems.</p>
+                        
+                        <p style="margin-bottom: var(--spacing-sm);"><strong>3. Check your circuit breaker.</strong> Furnaces have a dedicated breaker in your electrical panel. Make sure it's on. If it's tripped, flip it off then back on. If it trips again immediately, don't keep resetting it—call us.</p>
+                        
+                        <p style="margin-bottom: var(--spacing-sm);"><strong>4. Check the furnace power switch.</strong> Most furnaces have a regular light switch on or near the furnace cabinet. Make sure it's on. (Yes, we get calls where someone turned it off by accident.)</p>
+                        
+                        <p style="margin-bottom: var(--spacing-sm);"><strong>5. Look for a blinking light on the furnace.</strong> Modern furnaces have a diagnostic LED that blinks error codes. Count the blinks, check your furnace manual or Google the error code. Might tell you exactly what's wrong.</p>
+                        
+                        <p style="margin-bottom: var(--spacing-sm);"><strong>6. For gas furnaces: Check the gas valve.</strong> Follow the gas pipe to your furnace. There's a shut-off valve (usually a lever or dial). Make sure it's in the "on" position (lever parallel to the pipe).</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>7. Clear vents and intakes.</strong> Go outside and find your furnace vent pipe (PVC pipe sticking out of the house for newer furnaces, or metal flue pipe for older ones). Make sure nothing's blocking it—no bird nests, wasp nests, leaves, etc.</p>
+                    </div>
+                    
+                    <p>If none of that fixes it, you need professional help. That's where we come in.</p>
+
+                    <!-- Related Services -->
+                    <h2 style="margin-top: var(--spacing-xl); color: #d81471;">Related Heating Services</h2>
+                    <ul style="margin-left: var(--spacing-lg); margin-bottom: var(--spacing-lg);">
+                        <li><a href="../../../pages/services/heating/heat-pump-repair.html" style="color: #71CEEB;">Heat Pump Repair</a> – For heat pump systems</li>
+                        <li><a href="../../../pages/services/ac/ac-maintenance.html" style="color: #71CEEB;">AC Maintenance</a> – Keep your cooling system running</li>
+                        <li><a href="../../../pages/services/ac/air-conditioning-repair.html" style="color: #71CEEB;">AC Repair</a> – When your AC needs attention</li>
+                        <li><a href="../../../pages/services/ac/ac-installation.html" style="color: #71CEEB;">AC Installation</a> – New system installation</li>
+                    </ul>
+
+                    <!-- Guarantee Section -->
+                    <h2 style="margin-top: var(--spacing-lg); color: #d81471;">The On The Way Heating & Air Guarantee</h2>
+                    <p>We don't play games. Here's what you get when you call us:</p>
+                    
+                    <div style="display: grid; gap: var(--spacing-md); margin-top: var(--spacing-lg);">
+                        <div style="background: linear-gradient(135deg, #83009D 0%, #2f0048 100%); padding: var(--spacing-lg); border-radius: var(--radius-md);">
+                            <h3 style="color: #71CEEB; margin-top: 0;">Same Day… Or Don't Pay*</h3>
+                            <p style="margin-bottom: 0;">If we can't get to you the same day, you don't owe us a dime. We know Tampa's cold snaps don't wait, and neither should you.</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #83009D 0%, #2f0048 100%); padding: var(--spacing-lg); border-radius: var(--radius-md);">
+                            <h3 style="color: #71CEEB; margin-top: 0;">We Stock Furnace Parts</h3>
+                            <p style="margin-bottom: 0;">Ignitors, flame sensors, gas valves, heating elements—on the truck. We're not like other Tampa HVAC companies that mostly do heat pumps. We're ready for furnaces.</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #83009D 0%, #2f0048 100%); padding: var(--spacing-lg); border-radius: var(--radius-md);">
+                            <h3 style="color: #71CEEB; margin-top: 0;">Honest Pricing, No Hidden Fees</h3>
+                            <p style="margin-bottom: 0;">We tell you exactly what it costs before we start work. No surprise charges when we're done. If your 18-year-old furnace needs a major repair, we'll tell you straight that replacement makes more sense.</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #83009D 0%, #2f0048 100%); padding: var(--spacing-lg); border-radius: var(--radius-md);">
+                            <h3 style="color: #71CEEB; margin-top: 0;">Gas Furnace Expertise</h3>
+                            <p style="margin-bottom: 0;">We're licensed for gas work—not all HVAC companies are. Our techs know older Tampa homes and the mix of HVAC systems you'll find here.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section style="background-color: #3d0059; padding: var(--spacing-xxl) 0;">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <h2 style="text-align: center; color: #d81471;">Frequently Asked Questions</h2>
+                    
+                    <div class="faq-list" style="margin-top: var(--spacing-xl);">
+                        <div class="faq-item" style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); margin-bottom: var(--spacing-sm);">
+                            <button class="faq-question" aria-expanded="false" style="width: 100%; padding: var(--spacing-md); background: none; border: none; color: #fff; font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                                Should I repair or replace my furnace?
+                                <span class="faq-toggle">+</span>
+                            </button>
+                            <div class="faq-answer" style="padding: 0 var(--spacing-md) var(--spacing-md); display: none;">
+                                <p>General rule: if your furnace is under 12 years old, repair it. If it's 15+ years old AND needs a major repair (gas valve, heat exchanger, multiple heating elements), replacement usually makes more sense. New furnaces are more efficient, and you won't need repairs for years. We'll give you honest advice based on your specific situation—we don't push replacements you don't need.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item" style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); margin-bottom: var(--spacing-sm);">
+                            <button class="faq-question" aria-expanded="false" style="width: 100%; padding: var(--spacing-md); background: none; border: none; color: #fff; font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                                Can I convert my furnace to a heat pump?
+                                <span class="faq-toggle">+</span>
+                            </button>
+                            <div class="faq-answer" style="padding: 0 var(--spacing-md) var(--spacing-md); display: none;">
+                                <p>Yep. If you've got a gas or electric furnace plus a separate AC, we can replace both with a single heat pump system. You'll get heating and cooling in one unit, better efficiency (lower power bills), and one less thing to maintain. We do these conversions all the time in Tampa.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item" style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); margin-bottom: var(--spacing-sm);">
+                            <button class="faq-question" aria-expanded="false" style="width: 100%; padding: var(--spacing-md); background: none; border: none; color: #fff; font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                                Why does my gas furnace smell like rotten eggs?
+                                <span class="faq-toggle">+</span>
+                            </button>
+                            <div class="faq-answer" style="padding: 0 var(--spacing-md) var(--spacing-md); display: none;">
+                                <p>That's the smell of natural gas (gas companies add that smell so you can detect leaks). Shut off the gas valve to your furnace, evacuate your house, and call the gas company's emergency number (on your gas bill). Then call us to fix the leak once the gas company gives the all-clear. Don't mess around with gas leaks—they're dangerous.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item" style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); margin-bottom: var(--spacing-sm);">
+                            <button class="faq-question" aria-expanded="false" style="width: 100%; padding: var(--spacing-md); background: none; border: none; color: #fff; font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                                How long do furnaces last in Tampa?
+                                <span class="faq-toggle">+</span>
+                            </button>
+                            <div class="faq-answer" style="padding: 0 var(--spacing-md) var(--spacing-md); display: none;">
+                                <p>Gas furnaces: 15-20 years with regular maintenance. Electric furnaces: 15-20 years. The limiting factor in Tampa isn't the furnace itself—it's that we use them so infrequently that homeowners forget to maintain them. A furnace that sits idle 10 months a year develops corrosion faster than one that runs regularly. Annual maintenance extends life significantly.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item" style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); margin-bottom: var(--spacing-sm);">
+                            <button class="faq-question" aria-expanded="false" style="width: 100%; padding: var(--spacing-md); background: none; border: none; color: #fff; font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                                Do I need carbon monoxide detectors with a gas furnace?
+                                <span class="faq-toggle">+</span>
+                            </button>
+                            <div class="faq-answer" style="padding: 0 var(--spacing-md) var(--spacing-md); display: none;">
+                                <p>Yes. Absolutely. Florida building code requires CO detectors in homes with fuel-burning appliances (gas furnaces, gas water heaters, gas stoves). Install one on each floor of your house, especially near bedrooms. Test them monthly. Carbon monoxide is odorless and deadly—detectors save lives.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section with Form -->
+        <section id="contact-form" class="cta-form-section" style="background: linear-gradient(135deg, #83009D 0%, #2f0048 100%); padding: var(--spacing-xxl) 0;">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                    <h2 style="color: #FFEF76;">Get Your Furnace Running Again—Call Now</h2>
+                    <p style="font-size: 1.2rem; margin-bottom: var(--spacing-lg);">Don't spend another cold morning without heat. We're ready to help.</p>
+                    <p style="font-size: 1.3rem; margin-bottom: var(--spacing-lg);"><strong>Call <a href="tel:8139222209" style="color: #71CEEB;">813-922-2209</a></strong> or fill out the form below.</p>
+                    
+                    <!-- LeadConnector Form - Lazy loaded for performance -->
+                    <div id="form-container" style="margin-top: var(--spacing-lg); overflow: hidden;">
+                        <!-- Form placeholder while loading -->
+                        <div id="form-placeholder" style="width:100%;height:625px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.05);border-radius:3px;">
+                            <div style="text-align:center;color:#71CEEB;">
+                                <div style="font-size:2rem;margin-bottom:10px;">Loading form...</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <script>
+                    setTimeout(function() {
+                        var placeholder = document.getElementById('form-placeholder');
+                        var container = document.getElementById('form-container');
+                        var iframe = document.createElement('iframe');
+                        iframe.src = 'https://go.callontheway.com/widget/form/lyAbCf7HHTdJzkGQz4Iv';
+                        iframe.style.cssText = 'width:100%;min-height:625px;border:none;background:transparent;';
+                        iframe.scrolling = 'no';
+                        iframe.loading = 'lazy';
+                        iframe.title = 'Contact Form';
+                        if (placeholder && container) {
+                            placeholder.style.display = 'none';
+                            container.appendChild(iframe);
+                        }
+                    }, 5000);
+                    </script>
+                    
+                    <p style="margin-top: var(--spacing-lg); font-size: 1rem;">Serving <a href="../../../pages/locations/carrollwood.html" style="color: #71CEEB;">Carrollwood</a>, <a href="../../../pages/locations/new-tampa.html" style="color: #71CEEB;">New Tampa</a>, USF, <a href="../../../pages/locations/temple-terrace.html" style="color: #71CEEB;">Temple Terrace</a>, <a href="../../../pages/locations/wesley-chapel.html" style="color: #71CEEB;">Wesley Chapel</a>, and everywhere along Bruce B. Downs Boulevard.</p>
+                    
+                    <p style="margin-top: var(--spacing-lg); font-size: 0.9rem; opacity: 0.8;">*Same-day service guarantee: Calls received before 3 PM on regular business days—if we can't make it the same day, your diagnostic/service fee is waived.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Logo & About -->
+                <div class="footer-about">
+                    <img src="../../../footer-logo.webp" alt="On The Way Heating & Air Logo" width="180" height="72" loading="lazy" class="footer-logo">
+                    <p>Serving North Tampa since day one with reliable HVAC solutions.</p>
+                    <p><strong>Licensed & Insured</strong><br>License #CAC1820863</p>
+                </div>
+                
+                <!-- Services -->
+                <div class="footer-links-col">
+                    <div class="footer-title">Services</div>
+                    <a href="../../../pages/services/ac/ac-repair.html">AC Repair</a>
+                    <a href="../../../pages/services/ac/ac-installation.html">AC Installation</a>
+                    <a href="../../../pages/services/heating/furnace-repair.html">Furnace Repair</a>
+                    <a href="../../../pages/services/heating/heat-pump-installation.html">Heat Pump Installation</a>
+                    <a href="../../../pages/services/air-quality/air-duct-cleaning.html">Air Duct Cleaning</a>
+                </div>
+                
+                <!-- Locations -->
+                <div class="footer-links-col">
+                    <div class="footer-title">Service Areas</div>
+                    <a href="../../../pages/locations/lutz.html">Lutz</a>
+                    <a href="../../../pages/locations/wesley-chapel.html">Wesley Chapel</a>
+                    <a href="../../../pages/locations/carrollwood.html">Carrollwood</a>
+                    <a href="../../../pages/locations/new-tampa.html">New Tampa</a>
+                    <a href="../../../pages/locations/land-o-lakes.html">Land O' Lakes</a>
+                </div>
+                
+                <!-- Contact -->
+                <div class="footer-contact">
+                    <div class="footer-title">Contact</div>
+                    <p>
+                        <strong>On The Way Heating & Air</strong><br>
+                        18711 N Dale Mabry Hwy<br>Suite 7<br>
+                        Lutz, Florida 33548
+                    </p>
+                    <p><a href="tel:8139222209">(813) 922-2209</a></p>
+                    <p>Hours: Mon-Sat 7AM-8PM</p>
+                </div>
+            </div>
+            
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>© 2024 On The Way Heating & Air. All Rights Reserved.</p>
+                <div class="footer-legal">
+                    <a href="../../../privacy-policy.html">Privacy Policy</a>
+                    <a href="../../../terms-and-conditions.html">Terms & Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../../../main.js" defer></script>
+    
+    <!-- Chat Widget - Lazy loaded after 3 seconds for performance -->
+    <script>
+        setTimeout(function() {
+            var chatScript = document.createElement('script');
+            chatScript.src = 'https://widgets.leadconnectorhq.com/loader.js';
+            chatScript.setAttribute('data-resources-url', 'https://widgets.leadconnectorhq.com/chat-widget/loader.js');
+            chatScript.setAttribute('data-widget-id', '697d34a60079c39552ddfad9');
+            document.body.appendChild(chatScript);
+        }, 5000);
+    </script>
+
+
+    <!-- Quote Form Modal -->
+    <div id="quote-modal" class="quote-modal" style="display:none;">
+        <div class="quote-modal-overlay" onclick="closeQuoteModal()"></div>
+        <div class="quote-modal-content">
+            <button class="quote-modal-close" onclick="closeQuoteModal()" aria-label="Close modal">&times;</button>
+            <h2 style="color:#FFEF76;margin-bottom:1rem;text-align:center;">Request Service</h2>
+            <p style="color:#fff;margin-bottom:1.5rem;text-align:center;">Fill out the form and we'll contact you within 24 hours</p>
+            <div id="modal-form-placeholder" style="width:100%;height:625px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.05);border-radius:8px;">
+                <div style="text-align:center;color:#71CEEB;">
+                    <div style="font-size:2rem;margin-bottom:10px;">⏳</div>
+                    <div>Loading form...</div>
+                </div>
+            </div>
+            <div id="modal-form-container" style="display:none;"></div>
+        </div>
+    </div>
+    
+    <!-- Quote Modal Styles -->
+    <style>
+    .quote-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .quote-modal-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(4px);
+    }
+    .quote-modal-content {
+        position: relative;
+        background: linear-gradient(135deg, #2f0048 0%, #83009D 100%);
+        border-radius: 16px;
+        padding: 2rem;
+        max-width: 500px;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        animation: modalSlideIn 0.3s ease;
+    }
+    @keyframes modalSlideIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px) scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+    .quote-modal-close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 2rem;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: opacity 0.2s;
+        line-height: 1;
+    }
+    .quote-modal-close:hover {
+        opacity: 1;
+    }
+    @media (max-width: 768px) {
+        .quote-modal-content {
+            padding: 1.5rem;
+            max-height: 85vh;
+        }
+    }
+    </style>
+    
+    <!-- Quote Modal Script -->
+    <script>
+    var modalFormLoaded = false;
+    
+    function openQuoteModal() {
+        document.getElementById('quote-modal').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        
+        // Load form if not already loaded
+        if (!modalFormLoaded) {
+            loadModalForm();
+        }
+    }
+    
+    function closeQuoteModal() {
+        document.getElementById('quote-modal').style.display = 'none';
+        document.body.style.overflow = '';
+    }
+    
+    function loadModalForm() {
+        if (modalFormLoaded) return;
+        modalFormLoaded = true;
+        
+        var placeholder = document.getElementById('modal-form-placeholder');
+        var container = document.getElementById('modal-form-container');
+        
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://go.callontheway.com/widget/form/lyAbCf7HHTdJzkGQz4Iv';
+        iframe.style.cssText = 'width:100%;min-height:625px;border:none;border-radius:8px;background:transparent;';
+        iframe.id = 'modal-inline-lyAbCf7HHTdJzkGQz4Iv';
+        iframe.setAttribute('data-layout', "{'id':'INLINE'}");
+        iframe.setAttribute('data-trigger-type', 'alwaysShow');
+        iframe.setAttribute('data-trigger-value', '');
+        iframe.setAttribute('data-activation-type', 'alwaysActivated');
+        iframe.setAttribute('data-activation-value', '');
+        iframe.setAttribute('data-deactivation-type', 'neverDeactivate');
+        iframe.setAttribute('data-deactivation-value', '');
+        iframe.setAttribute('data-form-name', 'Form 5');
+        iframe.setAttribute('data-height', '625');
+        iframe.setAttribute('data-layout-iframe-id', 'modal-inline-lyAbCf7HHTdJzkGQz4Iv');
+        iframe.setAttribute('data-form-id', 'lyAbCf7HHTdJzkGQz4Iv');
+        iframe.title = 'Get Your Free HVAC Quote Form';
+        iframe.scrolling = 'no';
+        iframe.allow = 'geolocation';
+        
+        // Show container and hide placeholder when iframe loads
+        function showForm() {
+            placeholder.style.display = 'none';
+            container.style.display = 'block';
+        }
+        
+        iframe.onload = showForm;
+        
+        // Fallback: show form after 3 seconds even if onload doesn't fire
+        setTimeout(showForm, 3000);
+        
+        container.appendChild(iframe);
+        
+        // Load form embed script if not already loaded
+        if (!document.querySelector('script[src="https://go.callontheway.com/js/form_embed.js"]')) {
+            var script = document.createElement('script');
+            script.src = 'https://go.callontheway.com/js/form_embed.js';
+            document.body.appendChild(script);
+        }
+    }
+    
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeQuoteModal();
+        }
+    });
+    </script>
+</body>
+</html>

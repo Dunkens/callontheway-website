@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="On The Way Heating & Air">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../../favicon.ico">
+    <link rel="icon" type="image/png" sizes="512x512" href="../../../icon.png">
+    <link rel="apple-touch-icon" href="../../../icon.png">
+    
+    <!-- Preload Self-Hosted Fonts -->
+    <link rel="preload" href="../../../poppins-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../../../poppins-600.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../../../poppins-700.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../../../montserrat-800.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Critical CSS (inlined for fast LCP) -->
+    <style>
+    @font-face{font-family:'Poppins';src:url('../../../poppins-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+    @font-face{font-family:'Poppins';src:url('../../../poppins-600.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+    @font-face{font-family:'Poppins';src:url('../../../poppins-700.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+    @font-face{font-family:'Montserrat';src:url('../../../montserrat-800.woff2') format('woff2');font-weight:800;font-style:normal;font-display:swap}
+    :root{--primary-purple:#4a1a6b;--primary-magenta:#8b1a6b;--white:#ffffff;--off-white:#f8f9fa;--light-gray:#e9ecef;--font-primary:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--font-heading:'Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--spacing-xs:0.5rem;--spacing-sm:1rem;--spacing-md:1.5rem;--spacing-lg:2rem;--spacing-xl:3rem;--spacing-xxl:5rem;--radius-md:8px;--shadow-sm:0 2px 4px rgba(0,0,0,0.08);--transition-fast:0.2s ease;--transition-normal:0.3s ease;--container-max:1200px}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:var(--font-primary);font-size:1.25rem;line-height:1.7;color:var(--off-white);background-color:#2f0048;-webkit-font-smoothing:antialiased}
+    img{max-width:100%;height:auto;display:block}
+    a{text-decoration:none;color:inherit;transition:var(--transition-fast)}
+    ul,ol{list-style:none}
+    h1,h2,h3,h4,h5,h6{font-family:var(--font-heading);font-weight:700;line-height:1.2;margin-bottom:var(--spacing-sm)}
+    h1{font-size:clamp(2rem,5vw,3rem);color:#fff}
+    h2{font-size:clamp(1.75rem,4vw,2.5rem);color:#FFEF76}
+    h3{font-size:clamp(1.25rem,3vw,1.75rem);color:#71CEEB}
+    .container{width:100%;max-width:var(--container-max);margin:0 auto;padding:0 var(--spacing-md)}
+    .header{position:sticky;top:0;z-index:1000;background-color:#2f0048;box-shadow:var(--shadow-sm)}
+    .nav-bar{padding:var(--spacing-sm) 0}
+    .nav-inner{display:flex;justify-content:space-between;align-items:center;gap:var(--spacing-md)}
+    .logo-group{display:flex;align-items:center;gap:10px}
+    .logo img{height:80px;width:auto}
+    .navbar-mascot{display:none;height:50px;width:auto}
+    .nav-menu{display:flex;align-items:center;gap:var(--spacing-xs)}
+    .nav-item{position:relative}
+    .nav-link{display:block;padding:var(--spacing-sm) var(--spacing-md);font-weight:700;color:#71CEEB;font-size:1.1rem;border-radius:var(--radius-md);transition:var(--transition-fast)}
+    .nav-link:hover{color:#FFEF76;background-color:#3d0059}
+    .nav-dropdown{position:absolute;top:100%;left:0;min-width:200px;background-color:#2f0048;box-shadow:0 8px 24px rgba(0,0,0,0.16);border-radius:var(--radius-md);opacity:0;visibility:hidden;transform:translateY(10px);transition:var(--transition-normal);z-index:100;padding:var(--spacing-xs) 0}
+    .nav-item:hover .nav-dropdown{opacity:1;visibility:visible;transform:translateY(0)}
+    .nav-dropdown a{display:block;padding:var(--spacing-sm) var(--spacing-md);color:#fff;font-size:1.05rem}
+    .nav-dropdown a:hover{background-color:#3d0059;color:#FFEF76}
+    .header-cta{margin-left:var(--spacing-sm);background-color:#71CEEB!important;color:#2f0048!important;border-color:#71CEEB!important}
+    .nav-toggle{display:none;flex-direction:column;justify-content:center;align-items:center;width:44px;height:44px;background:none;border:none;cursor:pointer}
+    .nav-toggle span{display:block;width:24px;height:3px;background-color:#71CEEB;margin:4px 0;transition:var(--transition-normal);border-radius:2px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--spacing-xs);padding:0.75rem 1.5rem;font-family:var(--font-primary);font-size:1.05rem;font-weight:600;border:2px solid transparent;border-radius:var(--radius-md);cursor:pointer;transition:var(--transition-normal);text-align:center}
+    .btn-primary{background-color:var(--primary-purple);color:var(--white);border-color:var(--primary-purple)}
+    .btn-outline-light{background-color:transparent;border-color:var(--white);color:var(--white)}
+    .btn-lg{padding:1rem 2rem;font-size:1.1rem}
+    @media(max-width:992px){.nav-toggle{display:flex}.nav-menu{position:fixed;top:0;right:-100%;width:85%;max-width:350px;height:100vh;background-color:#2f0048;flex-direction:column;align-items:flex-start;padding:80px var(--spacing-lg) var(--spacing-xxl);transition:right 0.3s ease;box-shadow:-5px 0 20px rgba(0,0,0,0.3);overflow-y:auto;z-index:1001}.nav-menu.active{right:0}.header-cta{display:none}.navbar-mascot{display:block}}
+    </style>
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../../../styles.css?v=2.4">
+
+    <meta name="description" content="Heat pump replacement in Tampa, FL. Honest repair vs. replace advice, proper sizing with Manual J calculations, quality installation. Call 813-922-2209 for same-day assessment.">
+    <meta name="keywords" content="heat pump replacement Tampa, replace heat pump Tampa, new heat pump Tampa, heat pump upgrade, HVAC replacement Tampa">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Heat Pump Replacement Tampa, FL | On The Way">
+    <meta property="og:description" content="Heat pump replacement in Tampa. Honest repair vs. replace advice, Manual J sizing, quality installation. Call 813-922-2209.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://callontheway.com/pages/services/heating/heat-pump-replacement.html">
+    <meta property="og:image" content="https://callontheway.com/logo.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="On The Way Heating & Air">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Heat Pump Replacement Tampa, FL | On The Way">
+    <meta name="twitter:description" content="Heat pump replacement in Tampa. Honest repair vs. replace advice, Manual J sizing, quality installation.">
+    <meta name="twitter:image" content="https://callontheway.com/logo.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://callontheway.com/pages/services/heating/heat-pump-replacement.html">
+    
+    <title>Heat Pump Replacement Tampa, FL | On The Way</title>
+    
+    <!-- Schema.org Structured Data - Service -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "@id": "https://callontheway.com/pages/services/heating/heat-pump-replacement.html#service",
+        "name": "Heat Pump Replacement",
+        "serviceType": "Heat Pump Replacement Service",
+        "description": "Professional heat pump replacement in Tampa, FL. Honest repair vs. replace advice, Manual J load calculations for proper sizing, quality installation with permits and inspections.",
+        "provider": {
+            "@type": "HVACBusiness",
+            "@id": "https://callontheway.com/#business",
+            "name": "On The Way Heating & Air",
+            "telephone": "+1-813-922-2209",
+            "url": "https://callontheway.com"
+        },
+        "areaServed": [
+            {"@type": "City", "name": "Tampa", "sameAs": "https://en.wikipedia.org/wiki/Tampa,_Florida"},
+            {"@type": "City", "name": "Lutz"},
+            {"@type": "City", "name": "Wesley Chapel"},
+            {"@type": "City", "name": "Carrollwood"},
+            {"@type": "City", "name": "New Tampa"},
+            {"@type": "City", "name": "Land O' Lakes"}
+        ],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Heat Pump Replacement Services",
+            "itemListElement": [
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Standard Efficiency Heat Pump Replacement"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "High Efficiency Heat Pump Replacement"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Variable-Speed Heat Pump Upgrade"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "R-22 to R-410A System Conversion"}}
+            ]
+        },
+        "termsOfService": "Same Day Quote Visit - Call before 3 PM for same-day quote visit or you don't pay for the service call.",
+        "image": "https://callontheway.com/images/services/ac/tech-ac-fan-repair.webp",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "127",
+            "bestRating": "5",
+            "worstRating": "1"
+        }
+    }
+    </script>
+    
+    <!-- Schema.org Structured Data - BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://callontheway.com/"},
+            {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://callontheway.com/pages/services/"},
+            {"@type": "ListItem", "position": 3, "name": "Heating", "item": "https://callontheway.com/pages/services/heating/"},
+            {"@type": "ListItem", "position": 4, "name": "Heat Pump Replacement", "item": "https://callontheway.com/pages/services/heating/heat-pump-replacement.html"}
+        ]
+    }
+    </script>
+    
+    <!-- Schema.org Structured Data - FAQPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Should I replace my 10-year-old heat pump?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Depends. If it's running fine and you've maintained it, keep it. If it needs expensive repairs (+) or breaks down constantly, replace it. Use the  rule: repair cost × age. If over , replace."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I replace just the outdoor unit?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Rarely recommended. Outdoor and indoor units are matched systems—mixing old and new reduces efficiency and voids warranties. If your indoor coil is 10+ years old, replace both. You'll get better performance and full warranty."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Will a new heat pump lower my power bills?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, if you're replacing an old system. Upgrading from 13 SEER to 18 SEER cuts cooling costs 30-40%. That's significant savings in Tampa summers. Over 15 years, you can save thousands in electricity."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What size heat pump do I need?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Depends on your house. We do a Manual J load calculation (measures square footage, insulation, windows, air sealing). Typical Tampa homes: 1,500-2,000 sq ft needs 2.5-3 tons, 2,000-2,500 sq ft needs 3-3.5 tons."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do I need a permit for heat pump replacement?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Tampa and surrounding counties require HVAC permits for system replacement. We handle permitting and coordinate inspection. Don't work with contractors who skip permits—it's illegal and voids your warranty."
+                }
+            }
+        ]
+    }
+    </script>
+    
+    <!-- Schema.org Structured Data - HowTo -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Our Heat Pump Replacement Process",
+        "description": "How On The Way Heating & Air replaces heat pumps in Tampa, FL.",
+        "totalTime": "PT16H",
+        "step": [
+            {
+                "@type": "HowToStep",
+                "position": 1,
+                "name": "Assessment and Quote",
+                "text": "We inspect your current system, do Manual J load calculations, and provide honest repair vs. replace advice with upfront pricing."
+            },
+            {
+                "@type": "HowToStep",
+                "position": 2,
+                "name": "Equipment Selection",
+                "text": "We show you 2-3 options (good/better/best), explain efficiency ratings and features, and help you choose what fits your budget."
+            },
+            {
+                "@type": "HowToStep",
+                "position": 3,
+                "name": "Day 1: Removal and Prep",
+                "text": "Remove old equipment, recover refrigerant (EPA requirement), inspect and seal ductwork, prepare site for new installation."
+            },
+            {
+                "@type": "HowToStep",
+                "position": 4,
+                "name": "Day 2: Installation",
+                "text": "Install new outdoor unit and indoor air handler, run refrigerant lines, connect electrical, charge system, test all modes."
+            },
+            {
+                "@type": "HowToStep",
+                "position": 5,
+                "name": "Inspection and Walkthrough",
+                "text": "City inspector verifies installation. We program your thermostat and show you how to operate the new system."
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-bar">
+            <div class="container">
+                <div class="nav-inner">
+                    <div class="logo-group">
+                        <a href="../../../index.html" class="logo">
+                            <img src="../../../On-The-Way.webp" alt="On The Way Heating & Air Logo" width="180" height="138" loading="eager">
+                        </a>
+                        <img src="../../../mascot-navbar.webp" alt="On The Way Mascot" class="navbar-mascot" width="50" height="55" loading="eager">
+                    </div>
+                    
+                    <button class="nav-toggle" aria-label="Toggle Navigation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    
+                    <ul class="nav-menu">
+                        <li class="nav-item has-dropdown">
+                            <a href="#" class="nav-link">Services ▾</a>
+                            <div class="nav-dropdown nav-dropdown-mega">
+                                <div class="nav-dropdown-section">
+                                    <span class="nav-dropdown-heading">Air Conditioning</span>
+                                    <a href="../../../pages/services/ac/emergency-ac-repair.html">Emergency AC Repair</a>
+                                    <a href="../../../pages/services/ac/air-conditioning-repair.html">AC Repair</a>
+                                    <a href="../../../pages/services/ac/ac-installation.html">AC Installation</a>
+                                    <a href="../../../pages/services/ac/ac-replacement.html">AC Replacement</a>
+                                    <a href="../../../pages/services/ac/ac-tune-up.html">AC Tune-Up</a>
+                                    <a href="../../../pages/services/ac/ac-maintenance.html">AC Maintenance</a>
+                                    <a href="../../../pages/services/ac/central-ac-repair.html">Central AC Repair</a>
+                                    <a href="../../../pages/services/ac/ac-compressor-replacement.html">AC Compressor Replacement</a>
+                                    <a href="../../../pages/services/ac/ac-capacitor-replacement.html">AC Capacitor Replacement</a>
+                                    <a href="../../../pages/services/ac/condensate-drain-cleaning.html">Condensate Drain Cleaning</a>
+                                    <a href="../../../pages/services/ac/evaporator-coil-replacement.html">Evaporator Coil Replacement</a>
+                                    <a href="../../../pages/services/ac/ac-refrigerant-recharge.html">AC Refrigerant Recharge</a>
+                                    <a href="../../../pages/services/ac/ac-blower-motor-replacement.html">AC Blower Motor Replacement</a>
+                                    <a href="../../../pages/services/ac/ac-contactor-replacement.html">AC Contactor Replacement</a>
+                                    <a href="../../../pages/services/ac/condenser-fan-motor-repair.html">Condenser Fan Motor Repair</a>
+                                </div>
+                                <div class="nav-dropdown-section">
+                                    <span class="nav-dropdown-heading">Heating</span>
+                                    <a href="../../../pages/services/heating/emergency-heating-repair.html">Emergency Heating Repair</a>
+                                    <a href="../../../pages/services/heating/heat-pump-repair.html">Heat Pump Repair</a>
+                                    <a href="../../../pages/services/heating/heat-pump-installation.html">Heat Pump Installation</a>
+                                    <a href="../../../pages/services/heating/heat-pump-replacement.html">Heat Pump Replacement</a>
+                                    <a href="../../../pages/services/heating/furnace-repair.html">Furnace Repair</a>
+                                    <a href="../../../pages/services/heating/heating-installation.html">Heating Installation</a>
+                                    <a href="../../../pages/services/heating/heating-replacement.html">Heating Replacement</a>
+                                    <a href="../../../pages/services/heating/heating-tune-up.html">Heating Tune-Up</a>
+                                    <a href="../../../pages/services/heating/heat-pump-tune-up.html">Heat Pump Tune-Up</a>
+                                    <a href="../../../pages/services/heating/thermostat-repair.html">Thermostat Repair</a>
+                                    <a href="../../../pages/services/heating/defrost-board-repair.html">Defrost Board Repair</a>
+                                    <a href="../../../pages/services/heating/heat-pump-capacitor-replacement.html">Heat Pump Capacitor Replacement</a>
+                                    <a href="../../../pages/services/heating/gas-valve-repair.html">Gas Valve Repair</a>
+                                    <a href="../../../pages/services/heating/furnace-ignitor-replacement.html">Furnace Ignitor Replacement</a>
+                                    <a href="../../../pages/services/heating/reversing-valve-repair.html">Reversing Valve Repair</a>
+                                </div>
+                                <div class="nav-dropdown-section">
+                                    <span class="nav-dropdown-heading">Air Quality</span>
+                                    <a href="../../../pages/services/air-quality/air-duct-cleaning.html">Air Duct Cleaning</a>
+                                    <a href="../../../pages/services/air-quality/duct-repair.html">Duct Repair</a>
+                                    <a href="../../../pages/services/air-quality/duct-installation.html">Duct Installation</a>
+                                    <a href="../../../pages/services/air-quality/duct-sealing.html">Duct Sealing</a>
+                                    <a href="../../../pages/services/air-quality/air-purifier-installation.html">Air Purifier Installation</a>
+                                    <a href="../../../pages/services/air-quality/uv-light-installation.html">UV Light Installation</a>
+                                    <a href="../../../pages/services/air-quality/whole-home-dehumidifier-installation.html">Dehumidifier Installation</a>
+                                    <a href="../../../pages/services/air-quality/air-filter-replacement.html">Air Filter Replacement</a>
+                                    <a href="../../../pages/services/air-quality/hepa-filter-installation.html">HEPA Filter Installation</a>
+                                    <a href="../../../pages/services/air-quality/indoor-evaporator-coil-cleaning.html">Evaporator Coil Cleaning</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item has-dropdown">
+                            <a href="../../../pages/locations/index.html" class="nav-link">Locations ▾</a>
+                            <div class="nav-dropdown">
+                                <a href="../../../pages/locations/lutz.html">Lutz</a>
+                                <a href="../../../pages/locations/wesley-chapel.html">Wesley Chapel</a>
+                                <a href="../../../pages/locations/carrollwood.html">Carrollwood</a>
+                                <a href="../../../pages/locations/new-tampa.html">New Tampa</a>
+                                <a href="../../../pages/locations/land-o-lakes.html">Land O' Lakes</a>
+                                <a href="../../../pages/locations/temple-terrace.html">Temple Terrace</a>
+                                <a href="../../../pages/locations/northdale.html">Northdale</a>
+                                <a href="../../../pages/locations/seminole-heights.html">Seminole Heights</a>
+                                <a href="../../../pages/locations/university-area.html">University Area</a>
+                                <a href="../../../pages/locations/east-tampa.html">East Tampa</a>
+                                <a href="../../../pages/locations/index.html">View All →</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../../pricing.html" class="nav-link">Pricing</a>
+                        </li>
+                        <li class="nav-item has-dropdown">
+                            <a href="#" class="nav-link">Resources ▾</a>
+                            <div class="nav-dropdown">
+                                <a href="../../../faq.html">FAQ</a>
+                                <a href="../../../blog.html">Blog</a>
+                                <a href="../../../testimonials.html">Testimonials</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../../pages/contact.html" class="nav-link">Contact</a>
+                        </li>
+                    </ul>
+                    
+                    <a href="tel:8139222209" class="btn btn-primary header-cta">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        (813) 922-2209
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <picture>
+                <source media="(max-width: 768px)" srcset="../../../hero-mobile-bg.webp" width="750" height="1000">
+                <img src="../../../hero-1920.webp" alt="Heat Pump Replacement Tampa" class="hero-bg-img" width="1920" height="450" loading="eager">
+            </picture>
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Heat Pump Replacement in Tampa, Florida</h1>
+                    <p class="hero-subtitle">Honest Repair vs. Replace Advice</p>
+                    <div class="hero-buttons">
+                        <a href="tel:8139222209" class="btn btn-primary btn-lg">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                            Call (813) 922-2209
+                        </a>
+                        <a href="#contact-form" class="btn btn-outline-light btn-lg">Get Free Quote</a>
+                    </div>
+                </div>
+            </div>
+            <img src="../../../mascot.webp" alt="On The Way Mascot" class="hero-mascot" width="300" height="328" loading="eager">
+        </section>
+
+        <!-- Main Content -->
+        <section style="padding: var(--spacing-xxl) 0;">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto;">
+                    
+                    <!-- Intro -->
+                    <p>Is your heat pump on its last legs, leaving you to sweat through summer or shiver on cold nights? Don't wait for a complete breakdown. At On The Way Heating & Air, we provide honest, upfront advice on whether to repair or replace, and we'll help you find the right system for your home and budget. Call before 3 PM and we'll be there today, or you don't pay.</p>
+
+                    <!-- Same Day Guarantee Image -->
+                    <figure style="margin: var(--spacing-xl) 0; text-align: center; display: flex; justify-content: center;">
+                        <img src="../../../images/services/ac/same-day-guarantee.webp" alt="Same Day Or Don't Pay Guarantee - If we can't fix the issue the same day we go out to diagnose it, the service fee is FREE" width="600" height="439" loading="lazy" style="width: 100%; max-width: 500px; height: auto; border-radius: var(--radius-md);">
+                    </figure>
+
+                    <!-- When to Replace Section -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;">When to Replace vs. Repair Your Tampa Heat Pump</h2>
+                    <p>Use this decision framework:</p>
+                    
+                    <h3 style="color: #d81471;">Automatic Replace If:</h3>
+                    
+                    <p><strong>1. Age 12+ years AND major repair needed</strong></p>
+                    <p>Major repairs include compressor, reversing valve, outdoor coil, or indoor coil. At 12+ years, you're near end of life anyway. Spend that money on a new system with 10-year warranty, better efficiency, and modern technology.</p>
+                    
+                    <p><strong>2. R-22 refrigerant system with refrigerant leak</strong></p>
+                    <p>R-22 (Freon) was phased out in 2020. Refrigerant costs are extremely high now. A typical recharge needs 6-10 pounds—that's a significant expense just for refrigerant, plus leak repair. Replace the system and switch to modern R-410A.</p>
+                    
+                    <p><strong>3. Multiple repairs in past 2 years</strong></p>
+                    <p>If you've replaced the capacitor, the reversing valve, the contactor, the defrost board, and now the compressor's failing… you're throwing good money after bad. Replace it.</p>
+                    
+                    <p><strong>4. Power bills climbing 40%+ despite no usage changes</strong></p>
+                    <p>Your old heat pump's losing efficiency. Compressor's weak, refrigerant charge is off, components are worn. It's working twice as hard to cool your house. New high-efficiency system cuts bills 30-50%.</p>
+                    
+                    <h3 style="color: #d81471;">Probably Replace If:</h3>
+                    
+                    <p><strong>1. Age 10-12 years AND repair over </strong></p>
+                    <p>You're in the gray zone. System's old enough that other stuff'll fail soon, but young enough that repair might be worth it if it's been maintained. Use the  rule: repair cost × age. If over , replace.</p>
+                    
+                    <p><strong>2. Constant breakdowns (2-3 repairs per year)</strong></p>
+                    <p>Even if each repair is cheap, you're spending hundreds per year on service calls plus the hassle. Replace it and get 5+ years of zero repairs.</p>
+                    
+                    <p><strong>3. Can't keep up with Tampa heat anymore</strong></p>
+                    <p>Runs constantly, never quite hits thermostat setting, some rooms never cool down. System's lost capacity from worn compressor or refrigerant leak. Replacement fixes it.</p>
+                    
+                    <h3 style="color: #d81471;">Probably Repair If:</h3>
+                    
+                    <p><strong>1. Age under 8 years</strong></p>
+                    <p>Young system = worth fixing even for expensive repairs. You've got 4-7 years of life left after repair. Compressor's still under warranty (most brands warranty compressor 10 years).</p>
+                    
+                    <p><strong>2. Single failure, well-maintained system</strong></p>
+                    <p>Your 9-year-old heat pump's been maintained annually, runs great, and the reversing valve failed. That's one component. Fix it, run it another 3-5 years.</p>
+                    
+                    <p><strong>3. Cheap repair (under ) regardless of age</strong></p>
+                    <p>Capacitor, contactor, defrost sensor, thermostat—these are wear items. Replace them. Even on a 14-year-old system, a cheap capacitor replacement buys you another year or two.</p>
+
+                    <blockquote style="background: rgba(255, 239, 118, 0.1); border-left: 4px solid #FFEF76; padding: var(--spacing-md); margin: var(--spacing-lg) 0; border-radius: var(--radius-md); font-style: italic;">
+                        <strong>Pro-Tip:</strong> If you're on the fence, get quotes for both repair AND replacement. See the numbers side-by-side. Calculate monthly payment for replacement vs. repair cost. Factor in power bill savings from higher efficiency. Sometimes the decision becomes obvious when you see actual numbers.
+                    </blockquote>
+
+                    <!-- Signs Section -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;">Signs Your Tampa Heat Pump Needs Replacement</h2>
+                    
+                    <h3 style="color: #d81471;">Age 12-15 Years</h3>
+                    <p>Heat pumps in Tampa last 12-15 years with maintenance, 8-10 without. If yours is hitting 12+, start planning for replacement even if it works fine. You're on borrowed time.</p>
+                    
+                    <h3 style="color: #d81471;">Rising Power Bills</h3>
+                    <p>If your summer power bills have climbed significantly over the past 2-3 years (same usage, same rates), your heat pump's losing efficiency. Compressor's wearing out, refrigerant charge is drifting, components are failing. New system cuts bills back down.</p>
+                    
+                    <h3 style="color: #d81471;">Can't Remove Humidity</h3>
+                    <p>Tampa's 75% humidity is brutal. Your heat pump should remove moisture in cooling mode. If your house feels muggy even when it's cool (68-70° but feels like 75°), your heat pump's short-cycling or the system's too old to dehumidify properly. Replacement with variable-speed system fixes humidity problems completely.</p>
+                    
+                    <h3 style="color: #d81471;">Uneven Cooling</h3>
+                    <p>Some rooms comfortable, others hot? Could be ductwork issues, but if ducts are fine and some rooms never quite cool down, your heat pump's lost capacity. Worn compressor can't move enough heat. Replacement with properly-sized new system fixes it.</p>
+                    
+                    <h3 style="color: #d81471;">Loud Operation</h3>
+                    <p>Compressors get loud before they die. If yours hums, rattles, or groans, it's failing. If the system's 10+ years old, replace the whole system.</p>
+                    
+                    <h3 style="color: #d81471;">Frequent Cycling</h3>
+                    <p>Runs 3 minutes, shuts off, runs again. Short cycling wears everything out faster. Could be oversized system, failing components, or refrigerant issues. If system's old (10+), replacement makes more sense than chasing multiple repairs.</p>
+                    
+                    <h3 style="color: #d81471;">R-22 Refrigerant Leak</h3>
+                    <p>R-22 systems are obsolete. If you've got a leak, refrigerant costs are extremely high to recharge (plus leak repair). Don't dump thousands into a 15-year-old system. Replace it with modern R-410A system.</p>
+
+                    <!-- Deep Dive: Economics -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;">Deep Dive: The Economics of Heat Pump Replacement</h2>
+                    <p>Let's think through repair vs. replacement scenarios:</p>
+                    
+                    <div style="background: rgba(113, 206, 235, 0.1); border-left: 4px solid #71CEEB; padding: var(--spacing-md); margin: var(--spacing-lg) 0; border-radius: var(--radius-md);">
+                        <h4 style="color: #71CEEB; margin-top: 0;">Scenario 1: 13-Year-Old Heat Pump, Compressor Failed</h4>
+                        <p><strong>Repair option:</strong> Compressor replacement with 1-year warranty. Expected additional life: 2-3 years before next major failure. Efficiency stays the same (old system).</p>
+                        <p><strong>Replacement option:</strong> New high-efficiency heat pump with 10-year parts warranty, 10-year compressor warranty. Expected life: 12-15 years. Efficiency: 30% better than old system. Significant monthly savings.</p>
+                        <p style="margin-bottom: 0;"><strong>Decision:</strong> Replace. At 13 years old with a dead compressor, you're throwing money at a system that'll need more repairs soon.</p>
+                    </div>
+                    
+                    <div style="background: rgba(113, 206, 235, 0.1); border-left: 4px solid #71CEEB; padding: var(--spacing-md); margin: var(--spacing-lg) 0; border-radius: var(--radius-md);">
+                        <h4 style="color: #71CEEB; margin-top: 0;">Scenario 2: 7-Year-Old Heat Pump, Reversing Valve Failed</h4>
+                        <p><strong>Repair option:</strong> Reversing valve replacement. Original manufacturer warranty still applies (3 years left). Expected additional life: 5-8 years.</p>
+                        <p><strong>Replacement option:</strong> New heat pump with better efficiency, but payback is 22+ years.</p>
+                        <p style="margin-bottom: 0;"><strong>Decision:</strong> Repair. Young system, still under warranty, one component failure. Fix it.</p>
+                    </div>
+                    
+                    <div style="background: rgba(113, 206, 235, 0.1); border-left: 4px solid #71CEEB; padding: var(--spacing-md); margin: var(--spacing-lg) 0; border-radius: var(--radius-md);">
+                        <h4 style="color: #71CEEB; margin-top: 0;">Scenario 3: 11-Year-Old Heat Pump, Multiple Issues</h4>
+                        <p><strong>Repair option:</strong> Defrost board failed last year, reversing valve failing now, outdoor coil showing corrosion (probably leaks next year). Total projected repairs add up quickly. System's 11 years old—near end of life.</p>
+                        <p><strong>Replacement option:</strong> New variable-speed system solves all current and future problems. Better efficiency means monthly savings. Zero repairs for 5+ years.</p>
+                        <p style="margin-bottom: 0;"><strong>Decision:</strong> Replace. Multiple failures on an 11-year-old system = it's dying. Stop the bleeding.</p>
+                    </div>
+
+                    <blockquote style="background: rgba(255, 239, 118, 0.1); border-left: 4px solid #FFEF76; padding: var(--spacing-md); margin: var(--spacing-lg) 0; border-radius: var(--radius-md); font-style: italic;">
+                        <strong>Pro-Tip:</strong> Don't fall for the "sunk cost" trap. "I just spent money on repairs last year, I can't replace it now!" Actually, that money is GONE. It doesn't matter. What matters is: will this system cost you more in repairs over the next 2-3 years than a new system would cost? If yes, replace it. Don't throw good money after bad.
+                    </blockquote>
+
+                    <!-- What You Get Section -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;">What You Get With a New Heat Pump vs. Your Old One</h2>
+                    <p>Replacing a 12-15 year old heat pump with a new one in Tampa gives you:</p>
+                    
+                    <h3 style="color: #d81471;">Efficiency Gains</h3>
+                    <p><strong>Old heat pump (2010-2012 vintage):</strong> 13-14 SEER cooling, 7-8 HSPF heating, single-stage compressor (full blast or off), fixed-speed blower.</p>
+                    <p><strong>New heat pump (2025):</strong> 16-20 SEER cooling (20-40% more efficient), 9-12 HSPF heating (20-35% more efficient), two-stage or variable-speed compressor, variable-speed blower.</p>
+                    <p><strong>Savings:</strong> Significant monthly savings in summer, moderate savings in winter. Over 15 years: substantial electricity savings.</p>
+                    
+                    <h3 style="color: #d81471;">Comfort Improvements</h3>
+                    <p><strong>Humidity control:</strong> Old single-stage systems blast full power for 5-10 minutes, shut off. Poor humidity removal (short run time). New variable-speed systems run 15-30 minutes at lower speeds—way better dehumidification. Huge difference in Tampa's muggy climate.</p>
+                    <p><strong>Even temperatures:</strong> Old systems create 5-degree swings (cool to 68°, shut off, warm to 73°, cool again). New systems maintain steady 71-72° all day.</p>
+                    <p><strong>Quieter operation:</strong> Modern compressors and variable-speed blowers run quieter than old equipment. You'll notice how quiet it is.</p>
+                    
+                    <h3 style="color: #d81471;">Reliability</h3>
+                    <p><strong>New system:</strong> Zero repairs for first 3-5 years (just maintenance). After that, maybe one small repair every 2-3 years.</p>
+                    <p><strong>Old system (12+ years):</strong> Two to four repairs per year. Capacitors, contactors, reversing valves, defrost boards—stuff just keeps breaking. Even if repairs are cheap individually, you're spending hundreds per year on service calls. Plus the hassle and discomfort while waiting for repairs.</p>
+                    
+                    <h3 style="color: #d81471;">Technology Upgrades</h3>
+                    <p><strong>Smart thermostats:</strong> New systems pair with WiFi thermostats. Control from phone, learning schedules, vacation mode, energy reports.</p>
+                    <p><strong>Better diagnostics:</strong> New systems have error codes and diagnostic LEDs. When something fails, we know exactly what's wrong in 10 minutes instead of 45 minutes of troubleshooting.</p>
+                    <p><strong>Improved defrost cycles:</strong> Old heat pumps used basic time/temp defrost. New systems use demand defrost—only defrost when actually needed. More efficient, less wear on components.</p>
+                    
+                    <h3 style="color: #d81471;">Warranty Protection</h3>
+                    <p><strong>New system:</strong> 10-year parts warranty, 10-year compressor warranty, 1-year labor warranty (or longer with extended warranty).</p>
+                    <p><strong>Old system:</strong> Zero warranty. Everything's out of pocket.</p>
+
+                    <!-- Replacement Process -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;">The Heat Pump Replacement Process</h2>
+                    <p>Replacing a heat pump takes 1-2 days. Here's what happens:</p>
+                    
+                    <div style="background: rgba(113, 206, 235, 0.1); border-left: 4px solid #71CEEB; padding: var(--spacing-md); margin: var(--spacing-lg) 0; border-radius: var(--radius-md);">
+                        <h4 style="color: #71CEEB; margin-top: 0;">Day Before Replacement</h4>
+                        <p style="margin-bottom: 0;">Final confirmation of equipment size (Manual J load calculation), outdoor unit placement, indoor air handler location. Equipment delivery and inspection. You prepare by clearing area around outdoor unit and path to indoor air handler.</p>
+                    </div>
+                    
+                    <div style="background: rgba(113, 206, 235, 0.1); border-left: 4px solid #71CEEB; padding: var(--spacing-md); margin: var(--spacing-lg) 0; border-radius: var(--radius-md);">
+                        <h4 style="color: #71CEEB; margin-top: 0;">Day 1: Removal</h4>
+                        <p style="margin-bottom: 0;">Shut off power, recover refrigerant (EPA requirement), disconnect electrical and refrigerant lines, remove old equipment. Inspect ductwork, outdoor pad, indoor platform, electrical service, and condensate drain. By end of Day 1: old equipment's gone, site's prepped.</p>
+                    </div>
+                    
+                    <div style="background: rgba(113, 206, 235, 0.1); border-left: 4px solid #71CEEB; padding: var(--spacing-md); margin: var(--spacing-lg) 0; border-radius: var(--radius-md);">
+                        <h4 style="color: #71CEEB; margin-top: 0;">Day 2: Installation</h4>
+                        <p style="margin-bottom: 0;">Set new outdoor unit, install new indoor air handler, run refrigerant lines, connect to ductwork, run condensate drain, install filter rack. Wire both units, install thermostat, pressure test, pull vacuum, charge system, test all modes, program thermostat, clean up.</p>
+                    </div>
+                    
+                    <div style="background: rgba(113, 206, 235, 0.1); border-left: 4px solid #71CEEB; padding: var(--spacing-md); margin: var(--spacing-lg) 0; border-radius: var(--radius-md);">
+                        <h4 style="color: #71CEEB; margin-top: 0;">Post-Replacement</h4>
+                        <p style="margin-bottom: 0;">City inspector verifies installation within 1 week (we schedule, we're present). We follow up within 30 days to make sure everything's working perfectly.</p>
+                    </div>
+
+                    <!-- Financing Section -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;">Financing Your Heat Pump Replacement</h2>
+                    <p>Heat pump replacement is a significant investment. We offer financing options:</p>
+                    <ul style="margin-bottom: var(--spacing-md);">
+                        <li><strong>0% interest for 12-24 months</strong> (with approved credit). No interest if paid off within promo period.</li>
+                        <li><strong>Low-rate financing up to 10 years.</strong> Makes monthly payments affordable.</li>
+                        <li><strong>Manufacturer rebates:</strong> Sometimes available on high-efficiency equipment. We help you claim them.</li>
+                        <li><strong>Energy tax credits:</strong> Federal 25C tax credit for high-efficiency heat pumps (up to ). We provide documentation.</li>
+                    </ul>
+                    <p>Compare financing payments to your savings from better efficiency, and the new system can nearly pay for itself.</p>
+
+                    <!-- Related Services -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;">Related Heating Services</h2>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-md); margin-top: var(--spacing-md);">
+                        <a href="../../../pages/services/heating/emergency-heating-repair.html" style="display: block; padding: var(--spacing-md); background: rgba(255,255,255,0.05); border-radius: var(--radius-md); text-decoration: none; color: #fff; transition: background 0.3s;">
+                            <strong style="color: #d81471;">Emergency Heating Repair</strong><br>
+                            <span style="font-size: 0.9rem; opacity: 0.8;">Same-day service when heat fails</span>
+                        </a>
+                        <a href="../../../pages/services/heating/heat-pump-repair.html" style="display: block; padding: var(--spacing-md); background: rgba(255,255,255,0.05); border-radius: var(--radius-md); text-decoration: none; color: #fff; transition: background 0.3s;">
+                            <strong style="color: #d81471;">Heat Pump Repair</strong><br>
+                            <span style="font-size: 0.9rem; opacity: 0.8;">Fix your existing heat pump</span>
+                        </a>
+                        <a href="../../../pages/services/heating/heat-pump-installation.html" style="display: block; padding: var(--spacing-md); background: rgba(255,255,255,0.05); border-radius: var(--radius-md); text-decoration: none; color: #fff; transition: background 0.3s;">
+                            <strong style="color: #d81471;">Heat Pump Installation</strong><br>
+                            <span style="font-size: 0.9rem; opacity: 0.8;">New construction installation</span>
+                        </a>
+                        <a href="../../../pages/services/heating/furnace-repair.html" style="display: block; padding: var(--spacing-md); background: rgba(255,255,255,0.05); border-radius: var(--radius-md); text-decoration: none; color: #fff; transition: background 0.3s;">
+                            <strong style="color: #d81471;">Furnace Repair</strong><br>
+                            <span style="font-size: 0.9rem; opacity: 0.8;">Gas and electric furnace service</span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Guarantee Section -->
+        <section style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); padding: var(--spacing-xxl) 0;">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                    <h2 style="color: #71CEEB;">Why On The Way for Heat Pump Replacement?</h2>
+                    <p style="font-size: 1.1rem; margin-bottom: var(--spacing-xl);">When you're spending thousands on heat pump replacement, you want it done right.</p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-lg); text-align: left;">
+                        <div style="background: linear-gradient(135deg, rgba(113, 206, 235, 0.1) 0%, rgba(113, 206, 235, 0.05) 100%); padding: var(--spacing-lg); border-radius: var(--radius-md); border: 1px solid rgba(113, 206, 235, 0.2);">
+                            <h3 style="color: #71CEEB; font-size: 1.1rem;">Honest Advice</h3>
+                            <p style="font-size: 0.95rem; margin: 0;">We won't push replacement if repair makes sense. Real numbers, real options.</p>
+                        </div>
+                        <div style="background: linear-gradient(135deg, rgba(113, 206, 235, 0.1) 0%, rgba(113, 206, 235, 0.05) 100%); padding: var(--spacing-lg); border-radius: var(--radius-md); border: 1px solid rgba(113, 206, 235, 0.2);">
+                            <h3 style="color: #71CEEB; font-size: 1.1rem;">Manual J Sizing</h3>
+                            <p style="font-size: 0.95rem; margin: 0;">Proper load calculations—not guessing. Right-sized system for your home.</p>
+                        </div>
+                        <div style="background: linear-gradient(135deg, rgba(113, 206, 235, 0.1) 0%, rgba(113, 206, 235, 0.05) 100%); padding: var(--spacing-lg); border-radius: var(--radius-md); border: 1px solid rgba(113, 206, 235, 0.2);">
+                            <h3 style="color: #71CEEB; font-size: 1.1rem;">Quality Installation</h3>
+                            <p style="font-size: 0.95rem; margin: 0;">Manufacturer specs, code compliance, city-inspected. Done right.</p>
+                        </div>
+                        <div style="background: linear-gradient(135deg, rgba(113, 206, 235, 0.1) 0%, rgba(113, 206, 235, 0.05) 100%); padding: var(--spacing-lg); border-radius: var(--radius-md); border: 1px solid rgba(113, 206, 235, 0.2);">
+                            <h3 style="color: #71CEEB; font-size: 1.1rem;">Financing Available</h3>
+                            <p style="font-size: 0.95rem; margin: 0;">0% interest options and low monthly payments. Make it affordable.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section style="background: var(--dark-bg); padding: var(--spacing-xxl) 0;">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <h2 style="text-align: center; color: #d81471; margin-bottom: var(--spacing-xl);">Heat Pump Replacement FAQ</h2>
+                    
+                    <div class="faq-item" style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); margin-bottom: var(--spacing-sm);">
+                        <button class="faq-question" aria-expanded="false" style="width: 100%; padding: var(--spacing-md); background: none; border: none; color: #fff; font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                            Should I replace my 10-year-old heat pump?
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-answer" style="padding: 0 var(--spacing-md) var(--spacing-md); display: none;">
+                            <p>Depends. If it's running fine and you've maintained it, keep it. If it needs expensive repairs (+) or breaks down constantly, replace it. Use the  rule: repair cost × age. If over , replace.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); margin-bottom: var(--spacing-sm);">
+                        <button class="faq-question" aria-expanded="false" style="width: 100%; padding: var(--spacing-md); background: none; border: none; color: #fff; font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                            Can I replace just the outdoor unit?
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-answer" style="padding: 0 var(--spacing-md) var(--spacing-md); display: none;">
+                            <p>Rarely recommended. Outdoor and indoor units are matched systems—mixing old and new reduces efficiency and voids warranties. If your indoor coil is 10+ years old, replace both. You'll get better performance and full warranty.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); margin-bottom: var(--spacing-sm);">
+                        <button class="faq-question" aria-expanded="false" style="width: 100%; padding: var(--spacing-md); background: none; border: none; color: #fff; font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                            Will a new heat pump lower my power bills?
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-answer" style="padding: 0 var(--spacing-md) var(--spacing-md); display: none;">
+                            <p>Yes, if you're replacing an old system. Upgrading from 13 SEER to 18 SEER cuts cooling costs 30-40%. That's significant savings in Tampa summers. Over 15 years, you can save thousands in electricity.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); margin-bottom: var(--spacing-sm);">
+                        <button class="faq-question" aria-expanded="false" style="width: 100%; padding: var(--spacing-md); background: none; border: none; color: #fff; font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                            What size heat pump do I need?
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-answer" style="padding: 0 var(--spacing-md) var(--spacing-md); display: none;">
+                            <p>Depends on your house. We do a Manual J load calculation (measures square footage, insulation, windows, air sealing). Typical Tampa homes: 1,500-2,000 sq ft needs 2.5-3 tons, 2,000-2,500 sq ft needs 3-3.5 tons. But your specific house might differ based on insulation and windows.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); margin-bottom: var(--spacing-sm);">
+                        <button class="faq-question" aria-expanded="false" style="width: 100%; padding: var(--spacing-md); background: none; border: none; color: #fff; font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                            Do I need a permit for heat pump replacement?
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-answer" style="padding: 0 var(--spacing-md) var(--spacing-md); display: none;">
+                            <p>Yes. Tampa and surrounding counties require HVAC permits for system replacement. We handle permitting and coordinate inspection. Don't work with contractors who skip permits—it's illegal and voids your warranty.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section with Form -->
+        <section id="contact-form" class="cta-form-section" style="background: linear-gradient(135deg, #83009D 0%, #2f0048 100%); padding: var(--spacing-xxl) 0;">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                    <h2 style="color: #FFEF76;">Ready for Honest Replacement Advice?</h2>
+                    <p style="font-size: 1.2rem; margin-bottom: var(--spacing-lg);">Not sure if your heat pump needs replacement or just repair? Call us before 3 PM for a same-day assessment—or you don't pay.</p>
+                    <p style="font-size: 1.3rem; margin-bottom: var(--spacing-lg);"><strong>Call <a href="tel:8139222209" style="color: #71CEEB;">813-922-2209</a></strong> or fill out the form below.</p>
+                    
+                    <!-- LeadConnector Form - Lazy loaded for performance -->
+                    <div id="form-container" style="margin-top: var(--spacing-lg); overflow: hidden;">
+                        <!-- Form placeholder while loading -->
+                        <div id="form-placeholder" style="width:100%;height:625px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.05);border-radius:3px;">
+                            <div style="text-align:center;color:#71CEEB;">
+                                <div style="font-size:2rem;margin-bottom:10px;">Loading form...</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <script>
+                    setTimeout(function() {
+                        var placeholder = document.getElementById('form-placeholder');
+                        var container = document.getElementById('form-container');
+                        var iframe = document.createElement('iframe');
+                        iframe.src = 'https://go.callontheway.com/widget/form/lyAbCf7HHTdJzkGQz4Iv';
+                        iframe.style.cssText = 'width:100%;min-height:625px;border:none;background:transparent;';
+                        iframe.scrolling = 'no';
+                        iframe.loading = 'lazy';
+                        iframe.title = 'Contact Form';
+                        if (placeholder && container) {
+                            placeholder.style.display = 'none';
+                            container.appendChild(iframe);
+                        }
+                    }, 5000);
+                    </script>
+                    
+                    <p style="margin-top: var(--spacing-lg); font-size: 1rem;">Serving <a href="../../../pages/locations/carrollwood.html" style="color: #71CEEB;">Carrollwood</a>, <a href="../../../pages/locations/new-tampa.html" style="color: #71CEEB;">New Tampa</a>, USF, <a href="../../../pages/locations/temple-terrace.html" style="color: #71CEEB;">Temple Terrace</a>, <a href="../../../pages/locations/wesley-chapel.html" style="color: #71CEEB;">Wesley Chapel</a>, and everywhere along Bruce B. Downs Boulevard.</p>
+                    
+                    <p style="margin-top: var(--spacing-lg); font-size: 0.9rem; opacity: 0.8;">*Same-day quote visit guarantee: Calls received before 3 PM on regular business days.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Logo & About -->
+                <div class="footer-about">
+                    <img src="../../../footer-logo.webp" alt="On The Way Heating & Air Logo" width="180" height="72" loading="lazy" class="footer-logo">
+                    <p>Serving North Tampa since day one with reliable HVAC solutions.</p>
+                    <p><strong>Licensed & Insured</strong><br>License #CAC1820863</p>
+                </div>
+                
+                <!-- Services -->
+                <div class="footer-links-col">
+                    <div class="footer-title">Services</div>
+                    <a href="../../../pages/services/ac/ac-repair.html">AC Repair</a>
+                    <a href="../../../pages/services/ac/ac-installation.html">AC Installation</a>
+                    <a href="../../../pages/services/heating/furnace-repair.html">Furnace Repair</a>
+                    <a href="../../../pages/services/heating/heat-pump-installation.html">Heat Pump Installation</a>
+                    <a href="../../../pages/services/air-quality/air-duct-cleaning.html">Air Duct Cleaning</a>
+                </div>
+                
+                <!-- Locations -->
+                <div class="footer-links-col">
+                    <div class="footer-title">Service Areas</div>
+                    <a href="../../../pages/locations/lutz.html">Lutz</a>
+                    <a href="../../../pages/locations/wesley-chapel.html">Wesley Chapel</a>
+                    <a href="../../../pages/locations/carrollwood.html">Carrollwood</a>
+                    <a href="../../../pages/locations/new-tampa.html">New Tampa</a>
+                    <a href="../../../pages/locations/land-o-lakes.html">Land O' Lakes</a>
+                </div>
+                
+                <!-- Contact -->
+                <div class="footer-contact">
+                    <div class="footer-title">Contact</div>
+                    <p>
+                        <strong>On The Way Heating & Air</strong><br>
+                        18711 N Dale Mabry Hwy<br>Suite 7<br>
+                        Lutz, Florida 33548
+                    </p>
+                    <p><a href="tel:8139222209">(813) 922-2209</a></p>
+                    <p>Hours: Mon-Sat 7AM-8PM</p>
+                </div>
+            </div>
+            
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>© 2024 On The Way Heating & Air. All Rights Reserved.</p>
+                <div class="footer-legal">
+                    <a href="../../../privacy-policy.html">Privacy Policy</a>
+                    <a href="../../../terms-and-conditions.html">Terms & Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../../../main.js" defer></script>
+    
+    <!-- Chat Widget - Lazy loaded after 3 seconds for performance -->
+    <script>
+        setTimeout(function() {
+            var chatScript = document.createElement('script');
+            chatScript.src = 'https://widgets.leadconnectorhq.com/loader.js';
+            chatScript.setAttribute('data-resources-url', 'https://widgets.leadconnectorhq.com/chat-widget/loader.js');
+            chatScript.setAttribute('data-widget-id', '697d34a60079c39552ddfad9');
+            document.body.appendChild(chatScript);
+        }, 5000);
+    </script>
+
+
+    <!-- Quote Form Modal -->
+    <div id="quote-modal" class="quote-modal" style="display:none;">
+        <div class="quote-modal-overlay" onclick="closeQuoteModal()"></div>
+        <div class="quote-modal-content">
+            <button class="quote-modal-close" onclick="closeQuoteModal()" aria-label="Close modal">&times;</button>
+            <h2 style="color:#FFEF76;margin-bottom:1rem;text-align:center;">Request Service</h2>
+            <p style="color:#fff;margin-bottom:1.5rem;text-align:center;">Fill out the form and we'll contact you within 24 hours</p>
+            <div id="modal-form-placeholder" style="width:100%;height:625px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.05);border-radius:8px;">
+                <div style="text-align:center;color:#71CEEB;">
+                    <div style="font-size:2rem;margin-bottom:10px;">⏳</div>
+                    <div>Loading form...</div>
+                </div>
+            </div>
+            <div id="modal-form-container" style="display:none;"></div>
+        </div>
+    </div>
+    
+    <!-- Quote Modal Styles -->
+    <style>
+    .quote-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .quote-modal-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(4px);
+    }
+    .quote-modal-content {
+        position: relative;
+        background: linear-gradient(135deg, #2f0048 0%, #83009D 100%);
+        border-radius: 16px;
+        padding: 2rem;
+        max-width: 500px;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        animation: modalSlideIn 0.3s ease;
+    }
+    @keyframes modalSlideIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px) scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+    .quote-modal-close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 2rem;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: opacity 0.2s;
+        line-height: 1;
+    }
+    .quote-modal-close:hover {
+        opacity: 1;
+    }
+    @media (max-width: 768px) {
+        .quote-modal-content {
+            padding: 1.5rem;
+            max-height: 85vh;
+        }
+    }
+    </style>
+    
+    <!-- Quote Modal Script -->
+    <script>
+    var modalFormLoaded = false;
+    
+    function openQuoteModal() {
+        document.getElementById('quote-modal').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        
+        // Load form if not already loaded
+        if (!modalFormLoaded) {
+            loadModalForm();
+        }
+    }
+    
+    function closeQuoteModal() {
+        document.getElementById('quote-modal').style.display = 'none';
+        document.body.style.overflow = '';
+    }
+    
+    function loadModalForm() {
+        if (modalFormLoaded) return;
+        modalFormLoaded = true;
+        
+        var placeholder = document.getElementById('modal-form-placeholder');
+        var container = document.getElementById('modal-form-container');
+        
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://go.callontheway.com/widget/form/lyAbCf7HHTdJzkGQz4Iv';
+        iframe.style.cssText = 'width:100%;min-height:625px;border:none;border-radius:8px;background:transparent;';
+        iframe.id = 'modal-inline-lyAbCf7HHTdJzkGQz4Iv';
+        iframe.setAttribute('data-layout', "{'id':'INLINE'}");
+        iframe.setAttribute('data-trigger-type', 'alwaysShow');
+        iframe.setAttribute('data-trigger-value', '');
+        iframe.setAttribute('data-activation-type', 'alwaysActivated');
+        iframe.setAttribute('data-activation-value', '');
+        iframe.setAttribute('data-deactivation-type', 'neverDeactivate');
+        iframe.setAttribute('data-deactivation-value', '');
+        iframe.setAttribute('data-form-name', 'Form 5');
+        iframe.setAttribute('data-height', '625');
+        iframe.setAttribute('data-layout-iframe-id', 'modal-inline-lyAbCf7HHTdJzkGQz4Iv');
+        iframe.setAttribute('data-form-id', 'lyAbCf7HHTdJzkGQz4Iv');
+        iframe.title = 'Get Your Free HVAC Quote Form';
+        iframe.scrolling = 'no';
+        iframe.allow = 'geolocation';
+        
+        // Show container and hide placeholder when iframe loads
+        function showForm() {
+            placeholder.style.display = 'none';
+            container.style.display = 'block';
+        }
+        
+        iframe.onload = showForm;
+        
+        // Fallback: show form after 3 seconds even if onload doesn't fire
+        setTimeout(showForm, 3000);
+        
+        container.appendChild(iframe);
+        
+        // Load form embed script if not already loaded
+        if (!document.querySelector('script[src="https://go.callontheway.com/js/form_embed.js"]')) {
+            var script = document.createElement('script');
+            script.src = 'https://go.callontheway.com/js/form_embed.js';
+            document.body.appendChild(script);
+        }
+    }
+    
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeQuoteModal();
+        }
+    });
+    </script>
+</body>
+</html>

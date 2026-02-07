@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="On The Way Heating & Air">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../../favicon.ico">
+    <link rel="icon" type="image/png" sizes="512x512" href="../../../icon.png">
+    <link rel="apple-touch-icon" href="../../../icon.png">
+    
+    <!-- Preload Self-Hosted Fonts -->
+    <link rel="preload" href="../../../poppins-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../../../poppins-600.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../../../poppins-700.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../../../montserrat-800.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Critical CSS (inlined for fast LCP) -->
+    <style>
+    @font-face{font-family:'Poppins';src:url('../../../poppins-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+    @font-face{font-family:'Poppins';src:url('../../../poppins-600.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+    @font-face{font-family:'Poppins';src:url('../../../poppins-700.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+    @font-face{font-family:'Montserrat';src:url('../../../montserrat-800.woff2') format('woff2');font-weight:800;font-style:normal;font-display:swap}
+    :root{--primary-purple:#4a1a6b;--primary-magenta:#8b1a6b;--white:#ffffff;--off-white:#f8f9fa;--light-gray:#e9ecef;--font-primary:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--font-heading:'Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--spacing-xs:0.5rem;--spacing-sm:1rem;--spacing-md:1.5rem;--spacing-lg:2rem;--spacing-xl:3rem;--spacing-xxl:5rem;--radius-md:8px;--shadow-sm:0 2px 4px rgba(0,0,0,0.08);--transition-fast:0.2s ease;--transition-normal:0.3s ease;--container-max:1200px}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:var(--font-primary);font-size:1.25rem;line-height:1.7;color:var(--off-white);background-color:#2f0048;-webkit-font-smoothing:antialiased}
+    img{max-width:100%;height:auto;display:block}
+    a{text-decoration:none;color:inherit;transition:var(--transition-fast)}
+    ul,ol{list-style:none}
+    h1,h2,h3,h4,h5,h6{font-family:var(--font-heading);font-weight:700;line-height:1.2;margin-bottom:var(--spacing-sm)}
+    h1{font-size:clamp(2rem,5vw,3rem);color:#fff}
+    h2{font-size:clamp(1.75rem,4vw,2.5rem);color:#FFEF76}
+    h3{font-size:clamp(1.25rem,3vw,1.75rem);color:#71CEEB}
+    .container{width:100%;max-width:var(--container-max);margin:0 auto;padding:0 var(--spacing-md)}
+    .header{position:sticky;top:0;z-index:1000;background-color:#2f0048;box-shadow:var(--shadow-sm)}
+    .nav-bar{padding:var(--spacing-sm) 0}
+    .nav-inner{display:flex;justify-content:space-between;align-items:center;gap:var(--spacing-md)}
+    .logo-group{display:flex;align-items:center;gap:10px}
+    .logo img{height:80px;width:auto}
+    .navbar-mascot{display:none;height:50px;width:auto}
+    .nav-menu{display:flex;align-items:center;gap:var(--spacing-xs)}
+    .nav-item{position:relative}
+    .nav-link{display:block;padding:var(--spacing-sm) var(--spacing-md);font-weight:700;color:#71CEEB;font-size:1.1rem;border-radius:var(--radius-md);transition:var(--transition-fast)}
+    .nav-link:hover{color:#FFEF76;background-color:#3d0059}
+    .nav-dropdown{position:absolute;top:100%;left:0;min-width:200px;background-color:#2f0048;box-shadow:0 8px 24px rgba(0,0,0,0.16);border-radius:var(--radius-md);opacity:0;visibility:hidden;transform:translateY(10px);transition:var(--transition-normal);z-index:100;padding:var(--spacing-xs) 0}
+    .nav-item:hover .nav-dropdown{opacity:1;visibility:visible;transform:translateY(0)}
+    .nav-dropdown a{display:block;padding:var(--spacing-sm) var(--spacing-md);color:#fff;font-size:1.05rem}
+    .nav-dropdown a:hover{background-color:#3d0059;color:#FFEF76}
+    .header-cta{margin-left:var(--spacing-sm);background-color:#71CEEB!important;color:#2f0048!important;border-color:#71CEEB!important}
+    .nav-toggle{display:none;flex-direction:column;justify-content:center;align-items:center;width:44px;height:44px;background:none;border:none;cursor:pointer}
+    .nav-toggle span{display:block;width:24px;height:3px;background-color:#71CEEB;margin:4px 0;transition:var(--transition-normal);border-radius:2px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--spacing-xs);padding:0.75rem 1.5rem;font-family:var(--font-primary);font-size:1.05rem;font-weight:600;border:2px solid transparent;border-radius:var(--radius-md);cursor:pointer;transition:var(--transition-normal);text-align:center}
+    .btn-primary{background-color:var(--primary-purple);color:var(--white);border-color:var(--primary-purple)}
+    .btn-outline-light{background-color:transparent;border-color:var(--white);color:var(--white)}
+    .btn-lg{padding:1rem 2rem;font-size:1.1rem}
+    @media(max-width:992px){.nav-toggle{display:flex}.nav-menu{position:fixed;top:0;right:-100%;width:85%;max-width:350px;height:100vh;background-color:#2f0048;flex-direction:column;align-items:flex-start;padding:80px var(--spacing-lg) var(--spacing-xxl);transition:right 0.3s ease;box-shadow:-5px 0 20px rgba(0,0,0,0.3);overflow-y:auto;z-index:1001}.nav-menu.active{right:0}.header-cta{display:none}.navbar-mascot{display:block}}
+    </style>
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../../../styles.css?v=2.4">
+
+    <meta name="description" content="Expert air conditioning repair in Tampa from On The Way Heating & Air. Fast diagnosis, honest pricing, same-day service. Call 813-922-2209 today.">
+    <meta name="keywords" content="air conditioning repair Tampa, AC repair Tampa, AC repair near me, air conditioner repair, Tampa AC service, HVAC repair Tampa">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Air Conditioning Repair Tampa, FL | On The Way">
+    <meta property="og:description" content="Expert air conditioning repair in Tampa from On The Way Heating & Air. Fast diagnosis, honest pricing, same-day service.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://callontheway.com/pages/services/ac/air-conditioning-repair.html">
+    <meta property="og:image" content="https://callontheway.com/logo.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="On The Way Heating & Air">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Air Conditioning Repair Tampa, FL | On The Way">
+    <meta name="twitter:description" content="Expert air conditioning repair in Tampa. Fast diagnosis, honest pricing, same-day service.">
+    <meta name="twitter:image" content="https://callontheway.com/logo.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://callontheway.com/pages/services/ac/air-conditioning-repair.html">
+    
+    <title>Air Conditioning Repair Tampa, FL | On The Way</title>
+    
+    <!-- Schema.org Structured Data - Service -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "@id": "https://callontheway.com/pages/services/ac/air-conditioning-repair.html#service",
+        "name": "Air Conditioning Repair",
+        "serviceType": "Air Conditioning Repair Service",
+        "description": "Expert air conditioning repair in Tampa, FL. Fast diagnosis, honest pricing, and same-day service with our Same Day or Don't Pay guarantee.",
+        "provider": {
+            "@type": "HVACBusiness",
+            "@id": "https://callontheway.com/#business",
+            "name": "On The Way Heating & Air",
+            "telephone": "+1-813-922-2209",
+            "url": "https://callontheway.com"
+        },
+        "areaServed": [
+            {"@type": "City", "name": "Tampa", "sameAs": "https://en.wikipedia.org/wiki/Tampa,_Florida"},
+            {"@type": "City", "name": "Lutz"},
+            {"@type": "City", "name": "Wesley Chapel"},
+            {"@type": "City", "name": "Carrollwood"},
+            {"@type": "City", "name": "New Tampa"},
+            {"@type": "City", "name": "Land O' Lakes"}
+        ],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Air Conditioning Repair Services",
+            "itemListElement": [
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Blower Motor Repair"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Refrigerant Recharge and Leak Repair"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Thermostat Repair and Replacement"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Electrical Component Repair"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Evaporator Coil Repair"}}
+            ]
+        },
+        "termsOfService": "Same Day or Don't Pay - If we can't fix the issue the same day we diagnose it, the service fee is FREE.",
+        "image": "https://callontheway.com/images/services/ac/tech-ac-fan-repair.webp",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "127",
+            "bestRating": "5",
+            "worstRating": "1"
+        }
+    }
+    </script>
+    
+    <!-- Schema.org Structured Data - BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://callontheway.com/"},
+            {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://callontheway.com/pages/services/"},
+            {"@type": "ListItem", "position": 3, "name": "Air Conditioning", "item": "https://callontheway.com/pages/services/ac/"},
+            {"@type": "ListItem", "position": 4, "name": "Air Conditioning Repair", "item": "https://callontheway.com/pages/services/ac/air-conditioning-repair.html"}
+        ]
+    }
+    </script>
+    
+    <!-- Schema.org Structured Data - FAQPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How much does AC repair typically cost?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Depends on what's broken. Simple fixes like a capacitor or contactor run . More involved repairs like a blower motor or coil replacement can hit . We'll give you an exact quote before we do any work."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I repair my AC myself?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Changing filters and cleaning around your outdoor unit? Absolutely. But anything involving refrigerant, electrical components, or internal parts should be left to professionals. AC systems use high voltage and pressurized refrigerant—both dangerous if you don't know what you're doing."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How long does a typical AC repair take?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Most repairs are done in 1-3 hours. Bigger jobs like replacing a blower motor or evaporator coil might take half a day. We'll let you know the timeframe when we diagnose the problem."
+                }
+            }
+        ]
+    }
+    </script>
+    
+    <!-- Schema.org Structured Data - HowTo -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Our Air Conditioning Repair Process",
+        "description": "How On The Way Heating & Air handles air conditioning repairs in Tampa, FL.",
+        "totalTime": "PT3H",
+        "step": [
+            {
+                "@type": "HowToStep",
+                "position": 1,
+                "name": "Quick Response",
+                "text": "When you call 813-922-2209, we get the details and schedule you fast. Most times we're at your door same-day."
+            },
+            {
+                "@type": "HowToStep",
+                "position": 2,
+                "name": "Complete Diagnosis",
+                "text": "Our techs don't guess. We test everything—refrigerant levels, electrical components, airflow, drain lines. We find the real problem, not just the symptoms."
+            },
+            {
+                "@type": "HowToStep",
+                "position": 3,
+                "name": "Honest Quote",
+                "text": "Before we touch anything, we explain what's wrong in plain English and give you an upfront price. No surprise charges when we're done."
+            },
+            {
+                "@type": "HowToStep",
+                "position": 4,
+                "name": "Professional Repair",
+                "text": "We fix it right the first time with quality parts. You're not gonna be calling us back next month with the same problem."
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-bar">
+            <div class="container">
+                <div class="nav-inner">
+                    <div class="logo-group">
+                        <a href="../../../index.html" class="logo">
+                            <img src="../../../On-The-Way.webp" alt="On The Way Heating & Air Logo" width="180" height="138" loading="eager">
+                        </a>
+                        <img src="../../../mascot-navbar.webp" alt="On The Way Mascot" class="navbar-mascot" width="50" height="55" loading="eager">
+                    </div>
+                    
+                    <button class="nav-toggle" aria-label="Toggle Navigation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    
+                    <ul class="nav-menu">
+                        <li class="nav-item has-dropdown">
+                            <a href="#" class="nav-link">Services ▾</a>
+                            <div class="nav-dropdown nav-dropdown-mega">
+                                <div class="nav-dropdown-section">
+                                    <span class="nav-dropdown-heading">Air Conditioning</span>
+                                    <a href="../../../pages/services/ac/emergency-ac-repair.html">Emergency AC Repair</a>
+                                    <a href="../../../pages/services/ac/air-conditioning-repair.html">AC Repair</a>
+                                    <a href="../../../pages/services/ac/ac-installation.html">AC Installation</a>
+                                    <a href="../../../pages/services/ac/ac-replacement.html">AC Replacement</a>
+                                    <a href="../../../pages/services/ac/ac-tune-up.html">AC Tune-Up</a>
+                                    <a href="../../../pages/services/ac/ac-maintenance.html">AC Maintenance</a>
+                                    <a href="../../../pages/services/ac/central-ac-repair.html">Central AC Repair</a>
+                                    <a href="../../../pages/services/ac/ac-compressor-replacement.html">AC Compressor Replacement</a>
+                                    <a href="../../../pages/services/ac/ac-capacitor-replacement.html">AC Capacitor Replacement</a>
+                                    <a href="../../../pages/services/ac/condensate-drain-cleaning.html">Condensate Drain Cleaning</a>
+                                    <a href="../../../pages/services/ac/evaporator-coil-replacement.html">Evaporator Coil Replacement</a>
+                                    <a href="../../../pages/services/ac/ac-refrigerant-recharge.html">AC Refrigerant Recharge</a>
+                                    <a href="../../../pages/services/ac/ac-blower-motor-replacement.html">AC Blower Motor Replacement</a>
+                                    <a href="../../../pages/services/ac/ac-contactor-replacement.html">AC Contactor Replacement</a>
+                                    <a href="../../../pages/services/ac/condenser-fan-motor-repair.html">Condenser Fan Motor Repair</a>
+                                </div>
+                                <div class="nav-dropdown-section">
+                                    <span class="nav-dropdown-heading">Heating</span>
+                                    <a href="../../../pages/services/heating/emergency-heating-repair.html">Emergency Heating Repair</a>
+                                    <a href="../../../pages/services/heating/heat-pump-repair.html">Heat Pump Repair</a>
+                                    <a href="../../../pages/services/heating/heat-pump-installation.html">Heat Pump Installation</a>
+                                    <a href="../../../pages/services/heating/heat-pump-replacement.html">Heat Pump Replacement</a>
+                                    <a href="../../../pages/services/heating/furnace-repair.html">Furnace Repair</a>
+                                    <a href="../../../pages/services/heating/heating-installation.html">Heating Installation</a>
+                                    <a href="../../../pages/services/heating/heating-replacement.html">Heating Replacement</a>
+                                    <a href="../../../pages/services/heating/heating-tune-up.html">Heating Tune-Up</a>
+                                    <a href="../../../pages/services/heating/heat-pump-tune-up.html">Heat Pump Tune-Up</a>
+                                    <a href="../../../pages/services/heating/thermostat-repair.html">Thermostat Repair</a>
+                                    <a href="../../../pages/services/heating/defrost-board-repair.html">Defrost Board Repair</a>
+                                    <a href="../../../pages/services/heating/heat-pump-capacitor-replacement.html">Heat Pump Capacitor Replacement</a>
+                                    <a href="../../../pages/services/heating/gas-valve-repair.html">Gas Valve Repair</a>
+                                    <a href="../../../pages/services/heating/furnace-ignitor-replacement.html">Furnace Ignitor Replacement</a>
+                                    <a href="../../../pages/services/heating/reversing-valve-repair.html">Reversing Valve Repair</a>
+                                </div>
+                                <div class="nav-dropdown-section">
+                                    <span class="nav-dropdown-heading">Air Quality</span>
+                                    <a href="../../../pages/services/air-quality/air-duct-cleaning.html">Air Duct Cleaning</a>
+                                    <a href="../../../pages/services/air-quality/duct-repair.html">Duct Repair</a>
+                                    <a href="../../../pages/services/air-quality/duct-installation.html">Duct Installation</a>
+                                    <a href="../../../pages/services/air-quality/duct-sealing.html">Duct Sealing</a>
+                                    <a href="../../../pages/services/air-quality/air-purifier-installation.html">Air Purifier Installation</a>
+                                    <a href="../../../pages/services/air-quality/uv-light-installation.html">UV Light Installation</a>
+                                    <a href="../../../pages/services/air-quality/whole-home-dehumidifier-installation.html">Dehumidifier Installation</a>
+                                    <a href="../../../pages/services/air-quality/air-filter-replacement.html">Air Filter Replacement</a>
+                                    <a href="../../../pages/services/air-quality/hepa-filter-installation.html">HEPA Filter Installation</a>
+                                    <a href="../../../pages/services/air-quality/indoor-evaporator-coil-cleaning.html">Evaporator Coil Cleaning</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item has-dropdown">
+                            <a href="../../../pages/locations/index.html" class="nav-link">Locations ▾</a>
+                            <div class="nav-dropdown">
+                                <a href="../../../pages/locations/lutz.html">Lutz</a>
+                                <a href="../../../pages/locations/wesley-chapel.html">Wesley Chapel</a>
+                                <a href="../../../pages/locations/carrollwood.html">Carrollwood</a>
+                                <a href="../../../pages/locations/new-tampa.html">New Tampa</a>
+                                <a href="../../../pages/locations/land-o-lakes.html">Land O' Lakes</a>
+                                <a href="../../../pages/locations/temple-terrace.html">Temple Terrace</a>
+                                <a href="../../../pages/locations/northdale.html">Northdale</a>
+                                <a href="../../../pages/locations/seminole-heights.html">Seminole Heights</a>
+                                <a href="../../../pages/locations/university-area.html">University Area</a>
+                                <a href="../../../pages/locations/east-tampa.html">East Tampa</a>
+                                <a href="../../../pages/locations/index.html">View All →</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../../pricing.html" class="nav-link">Pricing</a>
+                        </li>
+                        <li class="nav-item has-dropdown">
+                            <a href="#" class="nav-link">Resources ▾</a>
+                            <div class="nav-dropdown">
+                                <a href="../../../faq.html">FAQ</a>
+                                <a href="../../../blog.html">Blog</a>
+                                <a href="../../../testimonials.html">Testimonials</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../../pages/contact.html" class="nav-link">Contact</a>
+                        </li>
+                    </ul>
+                    
+                    <a href="tel:8139222209" class="btn btn-primary header-cta">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        (813) 922-2209
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <picture>
+                <source media="(max-width: 768px)" srcset="../../../hero-mobile-bg.webp" width="750" height="1000">
+                <img src="../../../hero-1920.webp" alt="Air Conditioning Repair Tampa" class="hero-bg-img" width="1920" height="450" loading="eager">
+            </picture>
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Air Conditioning Repair in Tampa, Florida</h1>
+                    <p class="hero-subtitle">Tampa Heat Doesn't Wait—And Neither Should You</p>
+                    <div class="hero-buttons">
+                        <a href="tel:8139222209" class="btn btn-primary btn-lg">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                            Call (813) 922-2209
+                        </a>
+                        <a href="#" class="btn btn-outline-light btn-lg" onclick="openQuoteModal(); return false;">Request Service</a>
+                    </div>
+                </div>
+            </div>
+            <img src="../../../mascot.webp" alt="On The Way Mascot" class="hero-mascot" width="300" height="328" loading="eager">
+        </section>
+
+        <!-- Main Content -->
+        <section style="padding: var(--spacing-xxl) 0;">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto;">
+                    
+                    <!-- Intro -->
+                    <p>Your AC is blowing warm air, making strange noises, or driving up your electric bill—and in Tampa's heat, that's an emergency. At On The Way Heating & Air, we fix AC problems all day, every day. The good news? We can have a tech at your door today. Call before 3 PM and we'll be there today, or you don't pay.</p>
+
+                    <!-- Same Day Guarantee Image -->
+                    <figure style="margin: var(--spacing-xl) 0; text-align: center; display: flex; justify-content: center;">
+                        <img src="../../../images/services/ac/same-day-guarantee.webp" alt="Same Day Or Don't Pay Guarantee - If we can't fix the issue the same day we go out to diagnose it, the service fee is FREE" width="600" height="439" loading="lazy" style="width: 100%; max-width: 500px; height: auto; border-radius: var(--radius-md);">
+                    </figure>
+
+                    <!-- Signs Section -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;">Signs Your Air Conditioner Needs Repair</h2>
+                    <p>Not every AC problem shuts your system down completely. Sometimes it's the small stuff that tells you trouble's brewing. Here's what to watch for:</p>
+                    
+                    <h3 style="color: #d81471;">Weak Airflow From Your Vents</h3>
+                    <p>If you put your hand over a vent and barely feel anything, that's a red flag. Could be a clogged filter choking your system, or it might be your blower motor wearing out. Either way, weak airflow makes your AC work twice as hard to cool half as well.</p>
+                    
+                    <h3 style="color: #d81471;">Bills Climbing for No Reason</h3>
+                    <p>Your cooling habits haven't changed, but your electric bill just shot up? That's your AC telling you it's struggling. Dirty coils, low refrigerant, or worn-out parts force the system to run longer and burn more electricity.</p>
+                    
+                    <h3 style="color: #d81471;">Short Cycling—Constant On and Off</h3>
+                    <p>A properly working AC should run for about 15 minutes at a time, maybe 2-3 cycles per hour. If yours is turning on and off every few minutes, you've got a problem. Usually it's a thermostat issue, dirty filter, or low refrigerant.</p>
+                    
+                    <h3 style="color: #d81471;">Strange Smells Coming From the Vents</h3>
+                    <p>Musty odors mean mold growing in your ductwork or around the evaporator coil. A burning smell points to electrical problems or an overheating motor. Sweet chemical smells? That's refrigerant leaking, and you need to shut the system down and call us.</p>
+
+                    <!-- Process Section -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;">Our Air Conditioning Repair Process</h2>
+                    <p>We keep things simple and straightforward. No games, no runaround.</p>
+                    
+                    <div style="background: rgba(113, 206, 235, 0.1); border-left: 4px solid #71CEEB; padding: var(--spacing-md); margin: var(--spacing-lg) 0; border-radius: var(--radius-md);">
+                        <h3 style="margin-top: 0;">Step 1: Quick Response</h3>
+                        <p style="margin-bottom: 0;">When you call 813-922-2209, we get the details and schedule you fast. Most times we're at your door same-day.</p>
+                    </div>
+                    
+                    <div style="background: rgba(113, 206, 235, 0.1); border-left: 4px solid #71CEEB; padding: var(--spacing-md); margin: var(--spacing-lg) 0; border-radius: var(--radius-md);">
+                        <h3 style="margin-top: 0;">Step 2: Complete Diagnosis</h3>
+                        <p style="margin-bottom: 0;">Our techs don't guess. We test everything—refrigerant levels, electrical components, airflow, drain lines. We find the real problem, not just the symptoms.</p>
+                    </div>
+                    
+                    <div style="background: rgba(113, 206, 235, 0.1); border-left: 4px solid #71CEEB; padding: var(--spacing-md); margin: var(--spacing-lg) 0; border-radius: var(--radius-md);">
+                        <h3 style="margin-top: 0;">Step 3: Honest Quote</h3>
+                        <p style="margin-bottom: 0;">Before we touch anything, we explain what's wrong in plain English and give you an upfront price. No surprise charges when we're done.</p>
+                    </div>
+                    
+                    <div style="background: rgba(113, 206, 235, 0.1); border-left: 4px solid #71CEEB; padding: var(--spacing-md); margin: var(--spacing-lg) 0; border-radius: var(--radius-md);">
+                        <h3 style="margin-top: 0;">Step 4: Professional Repair</h3>
+                        <p style="margin-bottom: 0;">We fix it right the first time with quality parts. You're not gonna be calling us back next month with the same problem.</p>
+                    </div>
+
+                    <!-- Tech Image 1 -->
+                    <figure style="margin: var(--spacing-xl) 0; text-align: center;">
+                        <img src="../../../images/services/ac/tech-ac-fan-repair.webp" alt="HVAC technician inspecting AC components" width="600" height="337" loading="lazy" style="width: 100%; height: auto; border-radius: var(--radius-md);">
+                        <figcaption style="font-size: 0.9rem; color: rgba(255,255,255,0.7); margin-top: var(--spacing-xs);">Expert diagnosis and repair of all AC components</figcaption>
+                    </figure>
+
+                    <!-- Deep Dive: Blower Motor -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;">Deep Dive: Blower Motor Repair</h2>
+                    <p>Your blower motor pushes cooled air through your ducts and into your house. When it starts failing, you'll notice weak airflow or weird noises—grinding, squealing, or thumping.</p>
+                    <p>Blower motors wear out from constant use, especially in Tampa where AC systems run nearly year-round. Dirt buildup on the motor or in the housing makes it work harder. Eventually, bearings wear down and the motor overheats.</p>
+                    <p>A bad blower motor won't cool your house no matter how cold the air coming off your evaporator coil is. The cool air just sits there instead of moving through your home.</p>
+                    
+                    <blockquote style="background: rgba(255, 239, 118, 0.1); border-left: 4px solid #FFEF76; padding: var(--spacing-md); margin: var(--spacing-lg) 0; border-radius: var(--radius-md); font-style: italic;">
+                        <strong>Pro-Tip:</strong> Change your air filter every month during summer. A dirty filter restricts airflow and makes your blower motor work overtime, shortening its life by years.
+                    </blockquote>
+
+                    <!-- Deep Dive: Refrigerant -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;">Deep Dive: Refrigerant Recharge and Leak Repair</h2>
+                    <p>Refrigerant is the lifeblood of your AC system. It cycles through the coils, absorbing heat from inside your house and dumping it outside. When refrigerant runs low, your AC can't transfer heat properly.</p>
+                    <p>Low refrigerant doesn't just happen—it means you've got a leak somewhere. Could be in the coils, the line set, or at a connection point. We find the leak, fix it properly, then recharge your system to factory specifications.</p>
+                    <p>Signs you're low on refrigerant: ice forming on your indoor coils, the outdoor unit running constantly but the house staying warm, or hissing sounds near the refrigerant lines.</p>
+                    
+                    <blockquote style="background: rgba(255, 239, 118, 0.1); border-left: 4px solid #FFEF76; padding: var(--spacing-md); margin: var(--spacing-lg) 0; border-radius: var(--radius-md); font-style: italic;">
+                        <strong>Pro-Tip:</strong> Never let someone just "top off" your refrigerant without finding and fixing the leak first. That's throwing money away and hurting the environment.
+                    </blockquote>
+
+                    <!-- Deep Dive: Thermostat -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;">Deep Dive: Thermostat Repair and Replacement</h2>
+                    <p>Your thermostat is mission control for your AC. When it goes bad, your whole system acts confused—running when it shouldn't, not running when it should, or missing your temperature settings completely.</p>
+                    <p>Thermostat problems show up as: blank screens, temperature readings way off from reality, the AC not responding when you adjust settings, or the system running nonstop without ever shutting off.</p>
+                    <p>Sometimes it's simple—dead batteries or dust buildup inside. Other times the wiring's corroded or the thermostat itself has failed and needs replacing.</p>
+                    
+                    <blockquote style="background: rgba(255, 239, 118, 0.1); border-left: 4px solid #FFEF76; padding: var(--spacing-md); margin: var(--spacing-lg) 0; border-radius: var(--radius-md); font-style: italic;">
+                        <strong>Pro-Tip:</strong> Keep your thermostat away from direct sunlight, lamps, and heat-generating appliances. They throw off the temperature reading and make your AC work harder than necessary.
+                    </blockquote>
+
+                    <!-- Tech Image 2 -->
+                    <figure style="margin: var(--spacing-xl) 0; text-align: center;">
+                        <img src="../../../images/services/ac/tech-hvac-system-repair.webp" alt="On The Way technician servicing HVAC system" width="600" height="426" loading="lazy" style="width: 100%; height: auto; border-radius: var(--radius-md);">
+                        <figcaption style="font-size: 0.9rem; color: rgba(255,255,255,0.7); margin-top: var(--spacing-xs);">Complete HVAC system service and repairs</figcaption>
+                    </figure>
+
+                    <!-- Tampa Climate Section -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;">Why Tampa's Climate Is Hard on AC Systems</h2>
+                    <p>Tampa ain't like other places. Your AC deals with conditions that systems up north never see.</p>
+                    
+                    <h3 style="color: #d81471;">Non-Stop Summer Operation</h3>
+                    <p>From May through October, your AC runs almost constantly. That's six months of brutal heat and humidity with barely any break. All that runtime wears out parts faster than normal—capacitors, contactors, fan motors, compressors.</p>
+                    
+                    <h3 style="color: #d81471;">Moisture and Mold</h3>
+                    <p>Our 75% humidity creates the perfect environment for mold growth in ductwork and around evaporator coils. Mold clogs up your system, reduces airflow, and makes your house smell musty.</p>
+                    
+                    <h3 style="color: #d81471;">Afternoon Thunderstorms and Lightning</h3>
+                    <p>Tampa gets hammered with lightning strikes more than almost anywhere in North America. Power surges from nearby strikes fry electrical components—circuit boards, capacitors, transformers—even when the lightning doesn't hit your house directly.</p>
+
+                    <!-- DIY Check Section -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;">Check This Before You Call</h2>
+                    <p>Save yourself a service call if it's something simple. Try these quick fixes first:</p>
+                    
+                    <h3 style="color: #d81471;">Replace Your Air Filter</h3>
+                    <p>A clogged filter is the #1 cause of airflow problems. If yours looks gray and gunked up, swap it out. Should cost you less than ten bucks.</p>
+                    
+                    <h3 style="color: #d81471;">Check the Circuit Breaker</h3>
+                    <p>Head to your electrical panel and make sure the AC breaker hasn't tripped. Flip it all the way off, then back on.</p>
+                    
+                    <h3 style="color: #d81471;">Clear Debris From Your Outdoor Unit</h3>
+                    <p>Leaves, grass clippings, and dirt can clog up your condenser. Turn off the power and spray it down with a garden hose from the inside out.</p>
+                    
+                    <h3 style="color: #d81471;">Make Sure Your Thermostat Isn't in Direct Sunlight</h3>
+                    <p>If sun's hitting your thermostat, it thinks your house is warmer than it really is. Move furniture or add a shade to block the light.</p>
+                    
+                    <p>If you've tried all that and your AC still ain't cooling right, then it's time to call us.</p>
+
+                    <!-- Related Services -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;">Related AC Services</h2>
+                    <p>We offer a full range of air conditioning services to keep your Tampa home comfortable:</p>
+                    <ul style="margin-bottom: var(--spacing-md);">
+                        <li><a href="../../../pages/services/ac/emergency-ac-repair.html" style="color: #71CEEB;">Emergency AC Repair</a> – Same-day service when your AC breaks down unexpectedly.</li>
+                        <li><a href="../../../pages/services/ac/ac-tune-up.html" style="color: #71CEEB;">AC Tune-Up</a> – Preventive maintenance to keep your system running efficiently.</li>
+                        <li><a href="../../../pages/services/ac/ac-installation.html" style="color: #71CEEB;">AC Installation</a> – Professional installation of new high-efficiency systems.</li>
+                        <li><a href="../../../pages/services/ac/ac-replacement.html" style="color: #71CEEB;">AC Replacement</a> – When it's time for a new system, we help you choose the right one.</li>
+                    </ul>
+
+                    <!-- Guarantee Section -->
+                    <h2 style="margin-top: var(--spacing-lg); color: #d81471;">The On The Way Heating & Air Difference</h2>
+                    <p>We're not the biggest HVAC company in Tampa, and that's by choice. We'd rather do things right for our neighbors than chase volume.</p>
+                    
+                    <div style="display: grid; gap: var(--spacing-md); margin-top: var(--spacing-lg);">
+                        <div style="background: linear-gradient(135deg, #83009D 0%, #2f0048 100%); padding: var(--spacing-lg); border-radius: var(--radius-md);">
+                            <h3 style="color: #71CEEB; margin-top: 0;">Same Day… Or Don't Pay*</h3>
+                            <p style="margin-bottom: 0;">Call before 3 PM and we'll get to you same-day. If we can't make it, your diagnostic fee is waived.</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #83009D 0%, #2f0048 100%); padding: var(--spacing-lg); border-radius: var(--radius-md);">
+                            <h3 style="color: #71CEEB; margin-top: 0;">No Surprise Pricing</h3>
+                            <p style="margin-bottom: 0;">We tell you exactly what it costs before we start. The price we quote is the price you pay.</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #83009D 0%, #2f0048 100%); padding: var(--spacing-lg); border-radius: var(--radius-md);">
+                            <h3 style="color: #71CEEB; margin-top: 0;">Local Technicians Who Know Tampa</h3>
+                            <p style="margin-bottom: 0;">Our guys live here. They understand how Tampa's heat, humidity, and lightning affect AC systems. They're not reading from a script—they actually know this stuff.</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #83009D 0%, #2f0048 100%); padding: var(--spacing-lg); border-radius: var(--radius-md);">
+                            <h3 style="color: #71CEEB; margin-top: 0;">We Fix It Right</h3>
+                            <p style="margin-bottom: 0;">We don't slap bandaids on dying systems. If a repair makes sense, we do it properly with quality parts. If replacement makes more sense, we'll tell you that too.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section style="background-color: #3d0059; padding: var(--spacing-xxl) 0;">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <h2 style="text-align: center; color: #d81471;">Frequently Asked Questions</h2>
+                    
+                    <div class="faq-list" style="margin-top: var(--spacing-xl);">
+                        <details style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); margin-bottom: var(--spacing-sm);">
+                            <summary style="padding: var(--spacing-md); color: #fff; font-size: 1.1rem; font-weight: 600; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">How do I know if my AC needs repair or replacement? <span style="color: #FFEF76; font-size: 1.5rem;">+</span></summary>
+                            <p style="padding: 0 var(--spacing-md) var(--spacing-md); color: #e0e0e0; margin: 0;">It depends on the age of your system and what's wrong with it. If your AC is under 10 years old and the repair is straightforward, fixing it usually makes sense. If it's older and you're looking at a major component failure, replacement might be the smarter investment. We'll diagnose the problem and give you honest advice on which option makes the most sense for your situation.</p>
+                        </details>
+                        
+                        <details style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); margin-bottom: var(--spacing-sm);">
+                            <summary style="padding: var(--spacing-md); color: #fff; font-size: 1.1rem; font-weight: 600; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">Can I repair my AC myself? <span style="color: #FFEF76; font-size: 1.5rem;">+</span></summary>
+                            <p style="padding: 0 var(--spacing-md) var(--spacing-md); color: #e0e0e0; margin: 0;">Changing filters and cleaning around your outdoor unit? Absolutely. But anything involving refrigerant, electrical components, or internal parts should be left to professionals. AC systems use high voltage and pressurized refrigerant—both dangerous if you don't know what you're doing.</p>
+                        </details>
+                        
+                        <details style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); margin-bottom: var(--spacing-sm);">
+                            <summary style="padding: var(--spacing-md); color: #fff; font-size: 1.1rem; font-weight: 600; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">How long does a typical AC repair take? <span style="color: #FFEF76; font-size: 1.5rem;">+</span></summary>
+                            <p style="padding: 0 var(--spacing-md) var(--spacing-md); color: #e0e0e0; margin: 0;">Most repairs are done in 1-3 hours. Bigger jobs like replacing a blower motor or evaporator coil might take half a day. We'll let you know the timeframe when we diagnose the problem.</p>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section with Form -->
+        <section id="contact-form" class="cta-form-section" style="background: linear-gradient(135deg, #83009D 0%, #2f0048 100%); padding: var(--spacing-xxl) 0;">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                    <h2 style="color: #FFEF76;">Get Your AC Fixed Today</h2>
+                    <p style="font-size: 1.2rem; margin-bottom: var(--spacing-lg);">Don't let a small problem turn into a complete breakdown. The longer you wait, the worse it gets and the more it costs.</p>
+                    <p style="font-size: 1.3rem; margin-bottom: var(--spacing-lg);"><strong>Call <a href="tel:8139222209" style="color: #71CEEB;">813-922-2209</a></strong> or fill out the form below.</p>
+                    
+                    <!-- LeadConnector Form - Lazy loaded for performance -->
+                    <div id="form-container" style="margin-top: var(--spacing-lg); overflow: hidden;">
+                        <!-- Form placeholder while loading -->
+                        <div id="form-placeholder" style="width:100%;height:625px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.05);border-radius:3px;">
+                            <div style="text-align:center;color:#71CEEB;">
+                                <div style="font-size:2rem;margin-bottom:10px;">Loading form...</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <script>
+                    setTimeout(function() {
+                        var placeholder = document.getElementById('form-placeholder');
+                        var container = document.getElementById('form-container');
+                        var iframe = document.createElement('iframe');
+                        iframe.src = 'https://go.callontheway.com/widget/form/lyAbCf7HHTdJzkGQz4Iv';
+                        iframe.style.cssText = 'width:100%;min-height:625px;border:none;background:transparent;';
+                        iframe.scrolling = 'no';
+                        iframe.loading = 'lazy';
+                        iframe.title = 'Contact Form';
+                        if (placeholder && container) {
+                            placeholder.style.display = 'none';
+                            container.appendChild(iframe);
+                        }
+                    }, 5000);
+                    </script>
+                    
+                    <p style="margin-top: var(--spacing-lg); font-size: 1rem;">Serving all of North Tampa—from USF and <a href="../../../pages/locations/temple-terrace.html" style="color: #71CEEB;">Temple Terrace</a> to <a href="../../../pages/locations/carrollwood.html" style="color: #71CEEB;">Carrollwood</a>, <a href="../../../pages/locations/new-tampa.html" style="color: #71CEEB;">New Tampa</a>, and <a href="../../../pages/locations/wesley-chapel.html" style="color: #71CEEB;">Wesley Chapel</a>.</p>
+                    
+                    <p style="margin-top: var(--spacing-lg); font-size: 0.9rem; opacity: 0.8;">*Same-day service guarantee: Calls received before 3 PM on regular business days—if we can't make it the same day, your diagnostic/service fee is waived.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Logo & About -->
+                <div class="footer-about">
+                    <img src="../../../footer-logo.webp" alt="On The Way Heating & Air Logo" width="180" height="72" loading="lazy" class="footer-logo">
+                    <p>Serving North Tampa since day one with reliable HVAC solutions.</p>
+                    <p><strong>Licensed & Insured</strong><br>License #CAC1820863</p>
+                </div>
+                
+                <!-- Services -->
+                <div class="footer-links-col">
+                    <div class="footer-title">Services</div>
+                    <a href="../../../pages/services/ac/ac-repair.html">AC Repair</a>
+                    <a href="../../../pages/services/ac/ac-installation.html">AC Installation</a>
+                    <a href="../../../pages/services/heating/furnace-repair.html">Furnace Repair</a>
+                    <a href="../../../pages/services/heating/heat-pump-installation.html">Heat Pump Installation</a>
+                    <a href="../../../pages/services/air-quality/air-duct-cleaning.html">Air Duct Cleaning</a>
+                </div>
+                
+                <!-- Locations -->
+                <div class="footer-links-col">
+                    <div class="footer-title">Service Areas</div>
+                    <a href="../../../pages/locations/lutz.html">Lutz</a>
+                    <a href="../../../pages/locations/wesley-chapel.html">Wesley Chapel</a>
+                    <a href="../../../pages/locations/carrollwood.html">Carrollwood</a>
+                    <a href="../../../pages/locations/new-tampa.html">New Tampa</a>
+                    <a href="../../../pages/locations/land-o-lakes.html">Land O' Lakes</a>
+                </div>
+                
+                <!-- Contact -->
+                <div class="footer-contact">
+                    <div class="footer-title">Contact</div>
+                    <p>
+                        <strong>On The Way Heating & Air</strong><br>
+                        18711 N Dale Mabry Hwy<br>Suite 7<br>
+                        Lutz, Florida 33548
+                    </p>
+                    <p><a href="tel:8139222209">(813) 922-2209</a></p>
+                    <p>Hours: Mon-Sat 7AM-8PM</p>
+                </div>
+            </div>
+            
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>© 2024 On The Way Heating & Air. All Rights Reserved.</p>
+                <div class="footer-legal">
+                    <a href="../../../privacy-policy.html">Privacy Policy</a>
+                    <a href="../../../terms-and-conditions.html">Terms & Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../../../main.js" defer></script>
+    
+    <!-- Chat Widget - Lazy loaded after 3 seconds for performance -->
+    <script>
+        setTimeout(function() {
+            var chatScript = document.createElement('script');
+            chatScript.src = 'https://widgets.leadconnectorhq.com/loader.js';
+            chatScript.setAttribute('data-resources-url', 'https://widgets.leadconnectorhq.com/chat-widget/loader.js');
+            chatScript.setAttribute('data-widget-id', '697d34a60079c39552ddfad9');
+            document.body.appendChild(chatScript);
+        }, 5000);
+    </script>
+
+
+    <!-- Quote Form Modal -->
+    <div id="quote-modal" class="quote-modal" style="display:none;">
+        <div class="quote-modal-overlay" onclick="closeQuoteModal()"></div>
+        <div class="quote-modal-content">
+            <button class="quote-modal-close" onclick="closeQuoteModal()" aria-label="Close modal">&times;</button>
+            <h2 style="color:#FFEF76;margin-bottom:1rem;text-align:center;">Request Service</h2>
+            <p style="color:#fff;margin-bottom:1.5rem;text-align:center;">Fill out the form and we'll contact you within 24 hours</p>
+            <div id="modal-form-placeholder" style="width:100%;height:625px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.05);border-radius:8px;">
+                <div style="text-align:center;color:#71CEEB;">
+                    <div style="font-size:2rem;margin-bottom:10px;">⏳</div>
+                    <div>Loading form...</div>
+                </div>
+            </div>
+            <div id="modal-form-container" style="display:none;"></div>
+        </div>
+    </div>
+    
+    <!-- Quote Modal Styles -->
+    <style>
+    .quote-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .quote-modal-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(4px);
+    }
+    .quote-modal-content {
+        position: relative;
+        background: linear-gradient(135deg, #2f0048 0%, #83009D 100%);
+        border-radius: 16px;
+        padding: 2rem;
+        max-width: 500px;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        animation: modalSlideIn 0.3s ease;
+    }
+    @keyframes modalSlideIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px) scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+    .quote-modal-close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 2rem;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: opacity 0.2s;
+        line-height: 1;
+    }
+    .quote-modal-close:hover {
+        opacity: 1;
+    }
+    @media (max-width: 768px) {
+        .quote-modal-content {
+            padding: 1.5rem;
+            max-height: 85vh;
+        }
+    }
+    </style>
+    
+    <!-- Quote Modal Script -->
+    <script>
+    var modalFormLoaded = false;
+    
+    function openQuoteModal() {
+        document.getElementById('quote-modal').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        
+        // Load form if not already loaded
+        if (!modalFormLoaded) {
+            loadModalForm();
+        }
+    }
+    
+    function closeQuoteModal() {
+        document.getElementById('quote-modal').style.display = 'none';
+        document.body.style.overflow = '';
+    }
+    
+    function loadModalForm() {
+        if (modalFormLoaded) return;
+        modalFormLoaded = true;
+        
+        var placeholder = document.getElementById('modal-form-placeholder');
+        var container = document.getElementById('modal-form-container');
+        
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://go.callontheway.com/widget/form/lyAbCf7HHTdJzkGQz4Iv';
+        iframe.style.cssText = 'width:100%;min-height:625px;border:none;border-radius:8px;background:transparent;';
+        iframe.id = 'modal-inline-lyAbCf7HHTdJzkGQz4Iv';
+        iframe.setAttribute('data-layout', "{'id':'INLINE'}");
+        iframe.setAttribute('data-trigger-type', 'alwaysShow');
+        iframe.setAttribute('data-trigger-value', '');
+        iframe.setAttribute('data-activation-type', 'alwaysActivated');
+        iframe.setAttribute('data-activation-value', '');
+        iframe.setAttribute('data-deactivation-type', 'neverDeactivate');
+        iframe.setAttribute('data-deactivation-value', '');
+        iframe.setAttribute('data-form-name', 'Form 5');
+        iframe.setAttribute('data-height', '625');
+        iframe.setAttribute('data-layout-iframe-id', 'modal-inline-lyAbCf7HHTdJzkGQz4Iv');
+        iframe.setAttribute('data-form-id', 'lyAbCf7HHTdJzkGQz4Iv');
+        iframe.title = 'Get Your Free HVAC Quote Form';
+        iframe.scrolling = 'no';
+        iframe.allow = 'geolocation';
+        
+        // Show container and hide placeholder when iframe loads
+        function showForm() {
+            placeholder.style.display = 'none';
+            container.style.display = 'block';
+        }
+        
+        iframe.onload = showForm;
+        
+        // Fallback: show form after 3 seconds even if onload doesn't fire
+        setTimeout(showForm, 3000);
+        
+        container.appendChild(iframe);
+        
+        // Load form embed script if not already loaded
+        if (!document.querySelector('script[src="https://go.callontheway.com/js/form_embed.js"]')) {
+            var script = document.createElement('script');
+            script.src = 'https://go.callontheway.com/js/form_embed.js';
+            document.body.appendChild(script);
+        }
+    }
+    
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeQuoteModal();
+        }
+    });
+    </script>
+</body>
+</html>

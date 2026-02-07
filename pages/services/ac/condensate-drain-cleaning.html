@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="On The Way Heating & Air">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../../favicon.ico">
+    <link rel="icon" type="image/png" sizes="512x512" href="../../../icon.png">
+    <link rel="apple-touch-icon" href="../../../icon.png">
+    
+    <!-- Preload Self-Hosted Fonts -->
+    <link rel="preload" href="../../../poppins-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../../../poppins-600.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../../../poppins-700.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../../../montserrat-800.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Critical CSS (inlined for fast LCP) -->
+    <style>
+    @font-face{font-family:'Poppins';src:url('../../../poppins-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+    @font-face{font-family:'Poppins';src:url('../../../poppins-600.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+    @font-face{font-family:'Poppins';src:url('../../../poppins-700.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+    @font-face{font-family:'Montserrat';src:url('../../../montserrat-800.woff2') format('woff2');font-weight:800;font-style:normal;font-display:swap}
+    :root{--primary-purple:#4a1a6b;--primary-magenta:#8b1a6b;--white:#ffffff;--off-white:#f8f9fa;--light-gray:#e9ecef;--font-primary:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--font-heading:'Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--spacing-xs:0.5rem;--spacing-sm:1rem;--spacing-md:1.5rem;--spacing-lg:2rem;--spacing-xl:3rem;--spacing-xxl:5rem;--radius-md:8px;--shadow-sm:0 2px 4px rgba(0,0,0,0.08);--transition-fast:0.2s ease;--transition-normal:0.3s ease;--container-max:1200px}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:var(--font-primary);font-size:1.25rem;line-height:1.7;color:var(--off-white);background-color:#2f0048;-webkit-font-smoothing:antialiased}
+    img{max-width:100%;height:auto;display:block}
+    a{text-decoration:none;color:inherit;transition:var(--transition-fast)}
+    ul,ol{list-style:none}
+    h1,h2,h3,h4,h5,h6{font-family:var(--font-heading);font-weight:700;line-height:1.2;margin-bottom:var(--spacing-sm)}
+    h1{font-size:clamp(2rem,5vw,3rem);color:#fff}
+    h2{font-size:clamp(1.75rem,4vw,2.5rem);color:#FFEF76}
+    h3{font-size:clamp(1.25rem,3vw,1.75rem);color:#71CEEB}
+    .container{width:100%;max-width:var(--container-max);margin:0 auto;padding:0 var(--spacing-md)}
+    .header{position:sticky;top:0;z-index:1000;background-color:#2f0048;box-shadow:var(--shadow-sm)}
+    .nav-bar{padding:var(--spacing-sm) 0}
+    .nav-inner{display:flex;justify-content:space-between;align-items:center;gap:var(--spacing-md)}
+    .logo-group{display:flex;align-items:center;gap:10px}
+    .logo img{height:80px;width:auto}
+    .navbar-mascot{display:none;height:50px;width:auto}
+    .nav-menu{display:flex;align-items:center;gap:var(--spacing-xs)}
+    .nav-item{position:relative}
+    .nav-link{display:block;padding:var(--spacing-sm) var(--spacing-md);font-weight:700;color:#71CEEB;font-size:1.1rem;border-radius:var(--radius-md);transition:var(--transition-fast)}
+    .nav-link:hover{color:#FFEF76;background-color:#3d0059}
+    .nav-dropdown{position:absolute;top:100%;left:0;min-width:200px;background-color:#2f0048;box-shadow:0 8px 24px rgba(0,0,0,0.16);border-radius:var(--radius-md);opacity:0;visibility:hidden;transform:translateY(10px);transition:var(--transition-normal);z-index:100;padding:var(--spacing-xs) 0}
+    .nav-item:hover .nav-dropdown{opacity:1;visibility:visible;transform:translateY(0)}
+    .nav-dropdown a{display:block;padding:var(--spacing-sm) var(--spacing-md);color:#fff;font-size:1.05rem}
+    .nav-dropdown a:hover{background-color:#3d0059;color:#FFEF76}
+    .header-cta{margin-left:var(--spacing-sm);background-color:#71CEEB!important;color:#2f0048!important;border-color:#71CEEB!important}
+    .nav-toggle{display:none;flex-direction:column;justify-content:center;align-items:center;width:44px;height:44px;background:none;border:none;cursor:pointer}
+    .nav-toggle span{display:block;width:24px;height:3px;background-color:#71CEEB;margin:4px 0;transition:var(--transition-normal);border-radius:2px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--spacing-xs);padding:0.75rem 1.5rem;font-family:var(--font-primary);font-size:1.05rem;font-weight:600;border:2px solid transparent;border-radius:var(--radius-md);cursor:pointer;transition:var(--transition-normal);text-align:center}
+    .btn-primary{background-color:var(--primary-purple);color:var(--white);border-color:var(--primary-purple)}
+    .btn-outline-light{background-color:transparent;border-color:var(--white);color:var(--white)}
+    .btn-lg{padding:1rem 2rem;font-size:1.1rem}
+    @media(max-width:992px){.nav-toggle{display:flex}.nav-menu{position:fixed;top:0;right:-100%;width:85%;max-width:350px;height:100vh;background-color:#2f0048;flex-direction:column;align-items:flex-start;padding:80px var(--spacing-lg) var(--spacing-xxl);transition:right 0.3s ease;box-shadow:-5px 0 20px rgba(0,0,0,0.3);overflow-y:auto;z-index:1001}.nav-menu.active{right:0}.header-cta{display:none}.navbar-mascot{display:block}}
+    </style>
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../../../styles.css?v=2.4">
+
+    <meta name="description" content="Professional condensate drain cleaning in Tampa from On The Way Heating & Air. Prevent clogs and water damage. Call 813-922-2209.">
+    <meta name="keywords" content="condensate drain cleaning Tampa, AC drain line clog Tampa, AC leaking water Tampa, drain line cleaning Tampa">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="AC Condensate Drain Cleaning Tampa, FL | On The Way">
+    <meta property="og:description" content="Professional condensate drain cleaning in Tampa. Prevent clogs and water damage.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://callontheway.com/pages/services/ac/condensate-drain-cleaning.html">
+    <meta property="og:image" content="https://callontheway.com/logo.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="On The Way Heating & Air">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AC Condensate Drain Cleaning Tampa, FL | On The Way">
+    <meta name="twitter:description" content="Professional condensate drain cleaning in Tampa. Prevent clogs and water damage.">
+    <meta name="twitter:image" content="https://callontheway.com/logo.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://callontheway.com/pages/services/ac/condensate-drain-cleaning.html">
+    
+    <title>AC Condensate Drain Cleaning Tampa, FL | On The Way</title>
+    
+    <!-- Schema.org Structured Data - Service -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "@id": "https://callontheway.com/pages/services/ac/condensate-drain-cleaning.html#service",
+        "name": "Condensate Drain Cleaning",
+        "serviceType": "Air Conditioning Maintenance Service",
+        "description": "Professional condensate drain cleaning service in Tampa, FL. Prevent clogs and water damage.",
+        "provider": {
+            "@type": "HVACBusiness",
+            "@id": "https://callontheway.com/#business",
+            "name": "On The Way Heating & Air",
+            "telephone": "+1-813-922-2209",
+            "url": "https://callontheway.com"
+        },
+        "areaServed": [
+            {"@type": "City", "name": "Tampa", "sameAs": "https://en.wikipedia.org/wiki/Tampa,_Florida"},
+            {"@type": "City", "name": "Lutz"},
+            {"@type": "City", "name": "Wesley Chapel"},
+            {"@type": "City", "name": "Carrollwood"},
+            {"@type": "City", "name": "New Tampa"},
+            {"@type": "City", "name": "Land O' Lakes"}
+        ],
+        "image": "https://callontheway.com/images/services/ac/tech-hvac-system-repair.webp",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "127",
+            "bestRating": "5",
+            "worstRating": "1"
+        }
+    }
+    </script>
+    
+    <!-- Schema.org Structured Data - BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://callontheway.com/"},
+            {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://callontheway.com/pages/services/"},
+            {"@type": "ListItem", "position": 3, "name": "Air Conditioning", "item": "https://callontheway.com/pages/services/ac/"},
+            {"@type": "ListItem", "position": 4, "name": "Condensate Drain Cleaning", "item": "https://callontheway.com/pages/services/ac/condensate-drain-cleaning.html"}
+        ]
+    }
+    </script>
+    
+    <!-- Schema.org Structured Data - FAQPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How often should condensate drain lines be cleaned?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Professionally, once a year during annual maintenance. You should also do monthly vinegar treatments yourself during cooling season."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Why does my drain line keep clogging?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Usually algae growth from Tampa's humidity. Could also be poor slope, excessive condensation, dirty filters letting debris into the system, or damaged pipes."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I use bleach to clean the drain line?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Some people do, but we don't recommend it. Bleach can damage certain AC components and corrode pipes. Vinegar or hydrogen peroxide is safer."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What's that second pipe dripping water?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "That's the secondary overflow line. It only drains when the primary line is clogged. If it's dripping, your main drain line needs cleaning."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Will clearing the drain line fix my frozen coil?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Maybe. If the drain clog caused the freezing, clearing it helps. But low refrigerant or airflow problems also cause freezing. We'll diagnose the actual cause."
+                }
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-bar">
+            <div class="container">
+                <div class="nav-inner">
+                    <div class="logo-group">
+                        <a href="../../../index.html" class="logo">
+                            <img src="../../../On-The-Way.webp" alt="On The Way Heating & Air Logo" width="180" height="138" loading="eager">
+                        </a>
+                        <img src="../../../mascot-navbar.webp" alt="On The Way Mascot" class="navbar-mascot" width="50" height="55" loading="eager">
+                    </div>
+                    
+                    <button class="nav-toggle" aria-label="Toggle Navigation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    
+                    <ul class="nav-menu">
+                        <li class="nav-item has-dropdown">
+                            <a href="#" class="nav-link">Services ▾</a>
+                            <div class="nav-dropdown nav-dropdown-mega">
+                                <div class="nav-dropdown-section">
+                                    <span class="nav-dropdown-heading">Air Conditioning</span>
+                                    <a href="../../../pages/services/ac/emergency-ac-repair.html">Emergency AC Repair</a>
+                                    <a href="../../../pages/services/ac/air-conditioning-repair.html">AC Repair</a>
+                                    <a href="../../../pages/services/ac/ac-installation.html">AC Installation</a>
+                                    <a href="../../../pages/services/ac/ac-replacement.html">AC Replacement</a>
+                                    <a href="../../../pages/services/ac/ac-tune-up.html">AC Tune-Up</a>
+                                    <a href="../../../pages/services/ac/ac-maintenance.html">AC Maintenance</a>
+                                    <a href="../../../pages/services/ac/central-ac-repair.html">Central AC Repair</a>
+                                    <a href="../../../pages/services/ac/ac-compressor-replacement.html">AC Compressor Replacement</a>
+                                    <a href="../../../pages/services/ac/ac-capacitor-replacement.html">AC Capacitor Replacement</a>
+                                    <a href="../../../pages/services/ac/condensate-drain-cleaning.html">Condensate Drain Cleaning</a>
+                                    <a href="../../../pages/services/ac/evaporator-coil-replacement.html">Evaporator Coil Replacement</a>
+                                    <a href="../../../pages/services/ac/ac-refrigerant-recharge.html">AC Refrigerant Recharge</a>
+                                    <a href="../../../pages/services/ac/ac-blower-motor-replacement.html">AC Blower Motor Replacement</a>
+                                    <a href="../../../pages/services/ac/ac-contactor-replacement.html">AC Contactor Replacement</a>
+                                    <a href="../../../pages/services/ac/condenser-fan-motor-repair.html">Condenser Fan Motor Repair</a>
+                                </div>
+                                <div class="nav-dropdown-section">
+                                    <span class="nav-dropdown-heading">Heating</span>
+                                    <a href="../../../pages/services/heating/emergency-heating-repair.html">Emergency Heating Repair</a>
+                                    <a href="../../../pages/services/heating/heat-pump-repair.html">Heat Pump Repair</a>
+                                    <a href="../../../pages/services/heating/heat-pump-installation.html">Heat Pump Installation</a>
+                                    <a href="../../../pages/services/heating/heat-pump-replacement.html">Heat Pump Replacement</a>
+                                    <a href="../../../pages/services/heating/furnace-repair.html">Furnace Repair</a>
+                                    <a href="../../../pages/services/heating/heating-installation.html">Heating Installation</a>
+                                    <a href="../../../pages/services/heating/heating-replacement.html">Heating Replacement</a>
+                                    <a href="../../../pages/services/heating/heating-tune-up.html">Heating Tune-Up</a>
+                                    <a href="../../../pages/services/heating/heat-pump-tune-up.html">Heat Pump Tune-Up</a>
+                                    <a href="../../../pages/services/heating/thermostat-repair.html">Thermostat Repair</a>
+                                    <a href="../../../pages/services/heating/defrost-board-repair.html">Defrost Board Repair</a>
+                                    <a href="../../../pages/services/heating/heat-pump-capacitor-replacement.html">Heat Pump Capacitor Replacement</a>
+                                    <a href="../../../pages/services/heating/gas-valve-repair.html">Gas Valve Repair</a>
+                                    <a href="../../../pages/services/heating/furnace-ignitor-replacement.html">Furnace Ignitor Replacement</a>
+                                    <a href="../../../pages/services/heating/reversing-valve-repair.html">Reversing Valve Repair</a>
+                                </div>
+                                <div class="nav-dropdown-section">
+                                    <span class="nav-dropdown-heading">Air Quality</span>
+                                    <a href="../../../pages/services/air-quality/air-duct-cleaning.html">Air Duct Cleaning</a>
+                                    <a href="../../../pages/services/air-quality/duct-repair.html">Duct Repair</a>
+                                    <a href="../../../pages/services/air-quality/duct-installation.html">Duct Installation</a>
+                                    <a href="../../../pages/services/air-quality/duct-sealing.html">Duct Sealing</a>
+                                    <a href="../../../pages/services/air-quality/air-purifier-installation.html">Air Purifier Installation</a>
+                                    <a href="../../../pages/services/air-quality/uv-light-installation.html">UV Light Installation</a>
+                                    <a href="../../../pages/services/air-quality/whole-home-dehumidifier-installation.html">Dehumidifier Installation</a>
+                                    <a href="../../../pages/services/air-quality/air-filter-replacement.html">Air Filter Replacement</a>
+                                    <a href="../../../pages/services/air-quality/hepa-filter-installation.html">HEPA Filter Installation</a>
+                                    <a href="../../../pages/services/air-quality/indoor-evaporator-coil-cleaning.html">Evaporator Coil Cleaning</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item has-dropdown">
+                            <a href="../../../pages/locations/index.html" class="nav-link">Locations ▾</a>
+                            <div class="nav-dropdown">
+                                <a href="../../../pages/locations/lutz.html">Lutz</a>
+                                <a href="../../../pages/locations/wesley-chapel.html">Wesley Chapel</a>
+                                <a href="../../../pages/locations/carrollwood.html">Carrollwood</a>
+                                <a href="../../../pages/locations/new-tampa.html">New Tampa</a>
+                                <a href="../../../pages/locations/land-o-lakes.html">Land O' Lakes</a>
+                                <a href="../../../pages/locations/temple-terrace.html">Temple Terrace</a>
+                                <a href="../../../pages/locations/northdale.html">Northdale</a>
+                                <a href="../../../pages/locations/seminole-heights.html">Seminole Heights</a>
+                                <a href="../../../pages/locations/university-area.html">University Area</a>
+                                <a href="../../../pages/locations/east-tampa.html">East Tampa</a>
+                                <a href="../../../pages/locations/index.html">View All →</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../../pricing.html" class="nav-link">Pricing</a>
+                        </li>
+                        <li class="nav-item has-dropdown">
+                            <a href="#" class="nav-link">Resources ▾</a>
+                            <div class="nav-dropdown">
+                                <a href="../../../faq.html">FAQ</a>
+                                <a href="../../../blog.html">Blog</a>
+                                <a href="../../../testimonials.html">Testimonials</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../../pages/contact.html" class="nav-link">Contact</a>
+                        </li>
+                    </ul>
+                    
+                    <a href="tel:8139222209" class="btn btn-primary header-cta">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        (813) 922-2209
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <picture>
+                <source media="(max-width: 768px)" srcset="../../../hero-mobile-bg.webp" width="750" height="1000">
+                <img src="../../../hero-1920.webp" alt="Condensate Drain Cleaning Tampa" class="hero-bg-img" width="1920" height="450" loading="eager">
+            </picture>
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Condensate Drain Cleaning in Tampa, Florida</h1>
+                    <p class="hero-subtitle">When Your AC Starts Leaking Water</p>
+                    <div class="hero-buttons">
+                        <a href="tel:8139222209" class="btn btn-primary btn-lg">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                            Call (813) 922-2209
+                        </a>
+                        <a href="#contact-form" class="btn btn-outline-light btn-lg">Get Fast Service</a>
+                    </div>
+                </div>
+            </div>
+            <img src="../../../mascot.webp" alt="On The Way Mascot" class="hero-mascot" width="300" height="328" loading="eager">
+        </section>
+
+        <!-- Main Content -->
+        <section style="padding: var(--spacing-xxl) 0;">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto;">
+                    
+                    <!-- Intro -->
+                    <p>Water dripping from your ceiling or pooling around your AC unit? That's a clogged condensate drain line—a problem that can cause serious water damage if ignored. The good news is it's a quick fix for our team. At On The Way Heating & Air, we clear these clogs fast to protect your home. Call before 3 PM and we'll be there today, or you don't pay.</p>
+
+                    <!-- Same Day Guarantee Image -->
+                    <figure style="margin: var(--spacing-xl) 0; text-align: center; display: flex; justify-content: center;">
+                        <img src="../../../images/services/ac/same-day-guarantee.webp" alt="Same Day Or Don't Pay Guarantee - If we can't fix the issue the same day we go out to diagnose it, the service fee is FREE" width="600" height="439" loading="lazy" style="width: 100%; max-width: 500px; height: auto; border-radius: var(--radius-md);">
+                    </figure>
+
+                    <p>At On The Way Heating & Air, we clear clogged condensate drains all across North Tampa—<a href="../../../pages/locations/carrollwood.html" style="color: #71CEEB;">Carrollwood</a>, <a href="../../../pages/locations/new-tampa.html" style="color: #71CEEB;">New Tampa</a>, USF, <a href="../../../pages/locations/temple-terrace.html" style="color: #71CEEB;">Temple Terrace</a>, <a href="../../../pages/locations/wesley-chapel.html" style="color: #71CEEB;">Wesley Chapel</a>. Quick fix when caught early, expensive mess if ignored.</p>
+                    
+                    <p>Let's talk about condensate drains, why they clog so fast in Tampa, and how to keep yours flowing.</p>
+
+                    <!-- What Is a Condensate Drain -->
+                    <h2 style="color: #d81471;">What Is a Condensate Drain?</h2>
+                    
+                    <p>Your AC doesn't just cool air—it removes moisture from it. All that moisture has to go somewhere.</p>
+                    
+                    <p><strong>How it works:</strong> Warm, humid Tampa air passes over your cold evaporator coil. Moisture in the air condenses on the coil, just like a cold glass sweats on a hot day. Water drips off the coil into a drain pan below it. From the drain pan, water flows through a PVC drain line that runs outside your house or to a floor drain.</p>
+                    
+                    <p><strong>How much water?</strong> Your AC can pull 5-20 gallons of water per day out of Tampa's humid air. That's a lot of water flowing through a relatively small drain line.</p>
+                    
+                    <p><strong>Where the drain line is:</strong> The drain line usually exits near your outdoor unit, or sometimes into a floor drain in your garage or utility room. Inside, there's usually a T-shaped access point near your air handler for maintenance.</p>
+                    
+                    <p>When this drain line clogs, water backs up in the drain pan, overflows, and causes damage. Your AC might have a safety switch that shuts the system down when water backs up—prevents flooding, but leaves you without cooling.</p>
+
+                    <!-- Signs Your Condensate Drain Is Clogged -->
+                    <h2 style="color: #d81471;">Signs Your Condensate Drain Is Clogged</h2>
+                    
+                    <p><strong>Water in the Drain Pan</strong><br>
+                    If you can access your drain pan (usually requires opening a panel on your air handler), standing water means the drain ain't draining. Pan should be damp but not full.</p>
+                    
+                    <p><strong>Water Leaking from the Air Handler</strong><br>
+                    Water dripping from the unit itself, or stains on the ceiling around your air handler. Overflow from a clogged drain.</p>
+                    
+                    <p><strong>AC Won't Turn On</strong><br>
+                    Many newer systems have float switches in the drain pan. When water level gets too high, the switch shuts the AC down to prevent flooding. System won't restart until you clear the clog and drain the pan.</p>
+                    
+                    <p><strong>Musty Smell</strong><br>
+                    Standing water in the drain pan creates mold and mildew. You'll smell it—musty, damp odor near your air handler or coming from your vents.</p>
+                    
+                    <p><strong>Water Coming from the Overflow Line</strong><br>
+                    See water dripping from a pipe near your air handler that's higher up than the main drain line? That's the secondary overflow—it only drains when the primary line is clogged.</p>
+                    
+                    <p><strong>High Humidity Indoors</strong><br>
+                    Clogged drain line can cause the evaporator coil to ice up, which reduces your AC's ability to remove humidity. House feels muggy even though the AC's running.</p>
+
+                    <!-- Tech Image -->
+                    <figure style="margin: var(--spacing-xl) 0; text-align: center;">
+                        <img src="../../../images/services/ac/tech-hvac-system-repair.webp" alt="On The Way technician inspecting AC system" width="600" height="400" loading="lazy" style="width: 100%; max-width: 600px; height: auto; border-radius: var(--radius-md);">
+                        <figcaption style="font-size: 0.9rem; color: var(--text-muted); margin-top: var(--spacing-sm);">Our technicians can quickly clear clogged drain lines and prevent water damage.</figcaption>
+                    </figure>
+
+                    <!-- Why Condensate Drains Clog So Fast in Tampa -->
+                    <h2 style="color: #d81471;">Why Condensate Drains Clog So Fast in Tampa</h2>
+                    
+                    <p><strong>Algae Growth</strong><br>
+                    The #1 cause of drain line clogs. Algae loves warm, wet, dark environments—your condensate drain line is all three. In Tampa's humid climate, algae grows fast and forms thick mats that block the pipe.</p>
+                    
+                    <p><strong>Mold and Biofilm</strong><br>
+                    Along with algae, mold and bacteria form slimy biofilm inside the drain line. This buildup accumulates gradually until it clogs the pipe completely.</p>
+                    
+                    <p><strong>Dirt and Debris</strong><br>
+                    Dust that gets past your filter can end up in the condensation, creating sludge in the drain line. If you don't change filters regularly, this happens faster.</p>
+                    
+                    <p><strong>Drain Line Design</strong><br>
+                    Some drain lines have sharp bends or run uphill before going down—these spots collect debris and clog first. Poor installation makes clogs more frequent.</p>
+                    
+                    <p><strong>Humidity Levels</strong><br>
+                    Tampa's humidity means constant condensation, which means the drain line is always wet. No dry periods to kill algae growth.</p>
+
+                    <!-- Deep Dive: How We Clear Condensate Drain Clogs -->
+                    <h2 style="color: #d81471;">Deep Dive: How We Clear Condensate Drain Clogs</h2>
+                    
+                    <p>We've got several methods depending on how bad the clog is.</p>
+                    
+                    <p><strong>Wet/Dry Vacuum Method</strong><br>
+                    We attach a shop vac to the outdoor end of the drain line and create a seal with tape or our hand. Run the vacuum for a few minutes to suction the clog out. This works great for most clogs—you'll see algae, sludge, and dirty water get sucked into the vacuum.</p>
+                    
+                    <p><strong>Compressed Air Method</strong><br>
+                    For stubborn clogs, we use compressed air or CO2 to blast the blockage loose. Quick bursts of pressure from the indoor access point force the clog through the line and out.</p>
+                    
+                    <p><strong>Drain Line Flush</strong><br>
+                    We pour cleaning solution (vinegar, peroxide, or commercial cleaner designed for PVC) down the access point, let it sit to break down algae and biofilm, then flush with water to clear debris.</p>
+                    
+                    <p><strong>Mechanical Clearing</strong><br>
+                    For really stubborn clogs, we use a drain snake or brush to physically break up the blockage. Thread it down through the access point, work it back and forth to clear the pipe.</p>
+                    
+                    <p><strong>Testing</strong><br>
+                    After clearing, we pour water down the access point and watch the outdoor exit to verify water flows freely. No flow means we didn't fully clear the clog.</p>
+                    
+                    <p>Most clogs we clear in 15-30 minutes. Bad ones might take an hour.</p>
+                    
+                    <blockquote style="border-left: 4px solid #d81471; padding-left: var(--spacing-md); margin: var(--spacing-lg) 0; font-style: italic; color: var(--text-muted);">
+                        <strong>Pro-Tip:</strong> If you're DIYing drain line cleaning, never use Drano or harsh chemical drain cleaners. They can damage PVC pipes and your AC components. Stick to vinegar or products specifically made for AC drain lines.
+                    </blockquote>
+
+                    <!-- Deep Dive: Preventing Future Drain Line Clogs -->
+                    <h2 style="color: #d81471;">Deep Dive: Preventing Future Drain Line Clogs</h2>
+                    
+                    <p>Best fix is preventing clogs in the first place.</p>
+                    
+                    <p><strong>Monthly Vinegar Treatment</strong><br>
+                    Pour 1/4 to 1/2 cup of white vinegar down the drain line access point once a month. Vinegar kills algae and prevents buildup. Takes 30 seconds, prevents major clogs.</p>
+                    
+                    <p><strong>Drain Line Tablets</strong><br>
+                    Special tablets you drop in the drain pan that slowly dissolve and release algaecide. One tablet lasts a month or more. We can install these during maintenance.</p>
+                    
+                    <p><strong>UV Lights</strong><br>
+                    Some folks install UV lights near the evaporator coil. UV kills algae and mold before they get into the drain line. Works, but adds cost.</p>
+                    
+                    <p><strong>Regular Maintenance</strong><br>
+                    Annual AC maintenance includes drain line cleaning and inspection. We clear any buildup before it becomes a clog.</p>
+                    
+                    <p><strong>Air Filter Changes</strong><br>
+                    Clean filters monthly. Dirty filters let dust get into the system, which ends up in the condensation and drain line.</p>
+                    
+                    <blockquote style="border-left: 4px solid #d81471; padding-left: var(--spacing-md); margin: var(--spacing-lg) 0; font-style: italic; color: var(--text-muted);">
+                        <strong>Pro-Tip:</strong> Set a phone reminder for monthly vinegar treatment. It's the easiest, cheapest way to prevent drain line clogs.
+                    </blockquote>
+
+                    <!-- Tech Image 2 -->
+                    <figure style="margin: var(--spacing-xl) 0; text-align: center;">
+                        <img src="../../../images/services/ac/tech-ac-fan-repair.webp" alt="On The Way technician performing AC maintenance" width="600" height="400" loading="lazy" style="width: 100%; max-width: 600px; height: auto; border-radius: var(--radius-md);">
+                        <figcaption style="font-size: 0.9rem; color: var(--text-muted); margin-top: var(--spacing-sm);">Regular maintenance prevents most drain line problems.</figcaption>
+                    </figure>
+
+                    <!-- Deep Dive: When Drain Line Clogs Cause Bigger Problems -->
+                    <h2 style="color: #d81471;">Deep Dive: When Drain Line Clogs Cause Bigger Problems</h2>
+                    
+                    <p>A clogged drain is annoying. But sometimes it causes serious damage.</p>
+                    
+                    <p><strong>Water Damage to Ceilings and Walls</strong><br>
+                    Overflowing drain pans leak water into your ceiling drywall, insulation, and sometimes down into walls. Water damage gets expensive fast—staining, mold growth, structural damage.</p>
+                    
+                    <p><strong>Electrical Damage</strong><br>
+                    Water and electricity don't mix. Flooding air handlers can damage control boards, motors, and other electrical components. We've seen drain pan overflows kill entire air handlers.</p>
+                    
+                    <p><strong>Mold Growth</strong><br>
+                    Standing water and constant moisture create ideal mold conditions. Mold in your air handler gets blown throughout your house.</p>
+                    
+                    <p><strong>Frozen Evaporator Coil</strong><br>
+                    Severe clogs can cause water to back up onto the evaporator coil, which freezes the coil. Frozen coils mean no cooling and potential damage to the coil itself.</p>
+                    
+                    <p><strong>Drain Pan Rust and Failure</strong><br>
+                    Constant standing water rusts metal drain pans. Eventually the pan rusts through and water pours into your house.</p>
+                    
+                    <p><strong>AC System Shutdown</strong><br>
+                    Float switches shut your AC down when water backs up, leaving you without cooling until the drain's cleared.</p>
+                    
+                    <p>All of this is preventable with regular drain line maintenance.</p>
+
+                    <!-- DIY vs Professional Drain Line Cleaning -->
+                    <h2 style="color: #d81471;">DIY vs Professional Drain Line Cleaning</h2>
+                    
+                    <p>You can clear many condensate drain clogs yourself, but sometimes you need a pro.</p>
+                    
+                    <p><strong>DIY Works When:</strong></p>
+                    <ul>
+                        <li>Clog is minor</li>
+                        <li>You have a wet/dry vacuum</li>
+                        <li>You can access both ends of the drain line</li>
+                        <li>You're comfortable working around your AC</li>
+                        <li>The clog clears quickly with vacuuming or vinegar</li>
+                    </ul>
+                    
+                    <p><strong>Call a Pro When:</strong></p>
+                    <ul>
+                        <li>DIY methods don't work</li>
+                        <li>You can't access the drain line</li>
+                        <li>There's extensive water damage</li>
+                        <li>The drain pan itself is cracked or rusted</li>
+                        <li>AC won't restart after clearing the clog</li>
+                        <li>You're seeing repeated clogs</li>
+                        <li>There's mold growth in the air handler</li>
+                    </ul>
+                    
+                    <p>We've got better tools, more experience, and we can diagnose why you're getting repeated clogs rather than just clearing the immediate problem.</p>
+
+                    <!-- Related Services -->
+                    <h2 style="color: #d81471;">Related AC Services</h2>
+                    <p>Need other AC services? We've got you covered:</p>
+                    <ul style="margin-bottom: var(--spacing-md);">
+                        <li><a href="../../../pages/services/ac/air-conditioning-repair.html" style="color: #71CEEB;">AC Repair</a> – Fast diagnosis and repair of all AC problems.</li>
+                        <li><a href="../../../pages/services/ac/ac-maintenance.html" style="color: #71CEEB;">AC Maintenance</a> – Preventive maintenance to catch problems early.</li>
+                        <li><a href="../../../pages/services/ac/evaporator-coil-replacement.html" style="color: #71CEEB;">Evaporator Coil Replacement</a> – When the coil itself needs replacing.</li>
+                        <li><a href="../../../pages/services/ac/ac-tune-up.html" style="color: #71CEEB;">AC Tune-Up</a> – Annual tune-ups include drain line cleaning.</li>
+                    </ul>
+
+                    <!-- Guarantee Section -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;">Why Choose On The Way for Condensate Drain Cleaning</h2>
+                    
+                    <div style="display: grid; gap: var(--spacing-md); margin-top: var(--spacing-lg);">
+                        <div style="background: linear-gradient(135deg, #83009D 0%, #2f0048 100%); padding: var(--spacing-lg); border-radius: var(--radius-md);">
+                            <h3 style="color: #71CEEB; margin-top: 0;">Fast Service</h3>
+                            <p style="margin-bottom: 0;">Most drain clogs we clear same visit. Get you back up and running quickly.</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #83009D 0%, #2f0048 100%); padding: var(--spacing-lg); border-radius: var(--radius-md);">
+                            <h3 style="color: #71CEEB; margin-top: 0;">Thorough Diagnosis</h3>
+                            <p style="margin-bottom: 0;">We don't just clear the clog—we figure out why it clogged and how to prevent it.</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #83009D 0%, #2f0048 100%); padding: var(--spacing-lg); border-radius: var(--radius-md);">
+                            <h3 style="color: #71CEEB; margin-top: 0;">Prevention Plans</h3>
+                            <p style="margin-bottom: 0;">We can set you up with drain line tablets or other prevention methods so you're not calling us every month.</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #83009D 0%, #2f0048 100%); padding: var(--spacing-lg); border-radius: var(--radius-md);">
+                            <h3 style="color: #71CEEB; margin-top: 0;">Water Damage Assessment</h3>
+                            <p style="margin-bottom: 0;">If flooding occurred, we'll assess the damage and recommend repairs.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section style="background-color: #3d0059; padding: var(--spacing-xxl) 0;">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <h2 style="text-align: center; color: #d81471;">Frequently Asked Questions</h2>
+                    
+                    <div class="faq-list" style="margin-top: var(--spacing-xl);">
+                        <details style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); margin-bottom: var(--spacing-sm);">
+                            <summary style="padding: var(--spacing-md); color: #fff; font-size: 1.1rem; font-weight: 600; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">How often should condensate drain lines be cleaned? <span style="color: #FFEF76; font-size: 1.5rem;">+</span></summary>
+                            <p style="padding: 0 var(--spacing-md) var(--spacing-md); color: #e0e0e0; margin: 0;">Professionally, once a year during annual maintenance. You should also do monthly vinegar treatments yourself during cooling season.</p>
+                        </details>
+                        
+                        <details style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); margin-bottom: var(--spacing-sm);">
+                            <summary style="padding: var(--spacing-md); color: #fff; font-size: 1.1rem; font-weight: 600; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">Why does my drain line keep clogging? <span style="color: #FFEF76; font-size: 1.5rem;">+</span></summary>
+                            <p style="padding: 0 var(--spacing-md) var(--spacing-md); color: #e0e0e0; margin: 0;">Usually algae growth from Tampa's humidity. Could also be poor slope, excessive condensation, dirty filters letting debris into the system, or damaged pipes.</p>
+                        </details>
+                        
+                        <details style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); margin-bottom: var(--spacing-sm);">
+                            <summary style="padding: var(--spacing-md); color: #fff; font-size: 1.1rem; font-weight: 600; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">Can I use bleach to clean the drain line? <span style="color: #FFEF76; font-size: 1.5rem;">+</span></summary>
+                            <p style="padding: 0 var(--spacing-md) var(--spacing-md); color: #e0e0e0; margin: 0;">Some people do, but we don't recommend it. Bleach can damage certain AC components and corrode pipes. Vinegar or hydrogen peroxide is safer.</p>
+                        </details>
+                        
+                        <details style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); margin-bottom: var(--spacing-sm);">
+                            <summary style="padding: var(--spacing-md); color: #fff; font-size: 1.1rem; font-weight: 600; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">What's that second pipe dripping water? <span style="color: #FFEF76; font-size: 1.5rem;">+</span></summary>
+                            <p style="padding: 0 var(--spacing-md) var(--spacing-md); color: #e0e0e0; margin: 0;">That's the secondary overflow line. It only drains when the primary line is clogged. If it's dripping, your main drain line needs cleaning.</p>
+                        </details>
+                        
+                        <details style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); margin-bottom: var(--spacing-sm);">
+                            <summary style="padding: var(--spacing-md); color: #fff; font-size: 1.1rem; font-weight: 600; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">Will clearing the drain line fix my frozen coil? <span style="color: #FFEF76; font-size: 1.5rem;">+</span></summary>
+                            <p style="padding: 0 var(--spacing-md) var(--spacing-md); color: #e0e0e0; margin: 0;">Maybe. If the drain clog caused the freezing, clearing it helps. But low refrigerant or airflow problems also cause freezing. We'll diagnose the actual cause.</p>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section with Form -->
+        <section id="contact-form" class="cta-form-section" style="background: linear-gradient(135deg, #83009D 0%, #2f0048 100%); padding: var(--spacing-xxl) 0;">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                    <h2 style="color: #FFEF76;">Ready to Get Your Condensate Drain Flowing?</h2>
+                    <p style="font-size: 1.2rem; margin-bottom: var(--spacing-lg);">Clogged drain line means no cooling and potential water damage. Let's clear it before it gets worse.</p>
+                    <p style="font-size: 1.3rem; margin-bottom: var(--spacing-lg);"><strong>Call <a href="tel:8139222209" style="color: #71CEEB;">813-922-2209</a></strong> to schedule condensate drain cleaning or fill out the form below.</p>
+                    
+                    <!-- LeadConnector Form - Lazy loaded for performance -->
+                    <div id="form-container" style="margin-top: var(--spacing-lg); overflow: hidden;">
+                        <!-- Form placeholder while loading -->
+                        <div id="form-placeholder" style="width:100%;height:625px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.05);border-radius:3px;">
+                            <div style="text-align:center;color:#71CEEB;">
+                                <div style="font-size:2rem;margin-bottom:10px;">Loading form...</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <script>
+                    setTimeout(function() {
+                        var placeholder = document.getElementById('form-placeholder');
+                        var container = document.getElementById('form-container');
+                        var iframe = document.createElement('iframe');
+                        iframe.src = 'https://go.callontheway.com/widget/form/lyAbCf7HHTdJzkGQz4Iv';
+                        iframe.style.cssText = 'width:100%;min-height:625px;border:none;background:transparent;';
+                        iframe.scrolling = 'no';
+                        iframe.loading = 'lazy';
+                        iframe.title = 'Contact Form';
+                        if (placeholder && container) {
+                            placeholder.style.display = 'none';
+                            container.appendChild(iframe);
+                        }
+                    }, 5000);
+                    </script>
+                    
+                    <p style="margin-top: var(--spacing-lg); font-size: 1rem;">Serving all of North Tampa—<a href="../../../pages/locations/carrollwood.html" style="color: #71CEEB;">Carrollwood</a>, <a href="../../../pages/locations/new-tampa.html" style="color: #71CEEB;">New Tampa</a>, USF, <a href="../../../pages/locations/temple-terrace.html" style="color: #71CEEB;">Temple Terrace</a>, <a href="../../../pages/locations/wesley-chapel.html" style="color: #71CEEB;">Wesley Chapel</a>, and along Bruce B. Downs Boulevard.</p>
+                    
+                    <p style="margin-top: var(--spacing-lg); font-size: 0.9rem; opacity: 0.8;">*Same-day service guarantee: Calls received before 3 PM on regular business days—if we can't make it the same day, your diagnostic/service fee is waived.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Logo & About -->
+                <div class="footer-about">
+                    <img src="../../../footer-logo.webp" alt="On The Way Heating & Air Logo" width="180" height="72" loading="lazy" class="footer-logo">
+                    <p>Serving North Tampa since day one with reliable HVAC solutions.</p>
+                    <p><strong>Licensed & Insured</strong><br>License #CAC1820863</p>
+                </div>
+                
+                <!-- Services -->
+                <div class="footer-links-col">
+                    <div class="footer-title">Services</div>
+                    <a href="../../../pages/services/ac/ac-repair.html">AC Repair</a>
+                    <a href="../../../pages/services/ac/ac-installation.html">AC Installation</a>
+                    <a href="../../../pages/services/heating/furnace-repair.html">Furnace Repair</a>
+                    <a href="../../../pages/services/heating/heat-pump-installation.html">Heat Pump Installation</a>
+                    <a href="../../../pages/services/air-quality/air-duct-cleaning.html">Air Duct Cleaning</a>
+                </div>
+                
+                <!-- Locations -->
+                <div class="footer-links-col">
+                    <div class="footer-title">Service Areas</div>
+                    <a href="../../../pages/locations/lutz.html">Lutz</a>
+                    <a href="../../../pages/locations/wesley-chapel.html">Wesley Chapel</a>
+                    <a href="../../../pages/locations/carrollwood.html">Carrollwood</a>
+                    <a href="../../../pages/locations/new-tampa.html">New Tampa</a>
+                    <a href="../../../pages/locations/land-o-lakes.html">Land O' Lakes</a>
+                </div>
+                
+                <!-- Contact -->
+                <div class="footer-contact">
+                    <div class="footer-title">Contact</div>
+                    <p>
+                        <strong>On The Way Heating & Air</strong><br>
+                        18711 N Dale Mabry Hwy<br>Suite 7<br>
+                        Lutz, Florida 33548
+                    </p>
+                    <p><a href="tel:8139222209">(813) 922-2209</a></p>
+                    <p>Hours: Mon-Sat 7AM-8PM</p>
+                </div>
+            </div>
+            
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>© 2024 On The Way Heating & Air. All Rights Reserved.</p>
+                <div class="footer-legal">
+                    <a href="../../../privacy-policy.html">Privacy Policy</a>
+                    <a href="../../../terms-and-conditions.html">Terms & Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../../../main.js" defer></script>
+    
+    <!-- Chat Widget - Lazy loaded after 3 seconds for performance -->
+    <script>
+        setTimeout(function() {
+            var chatScript = document.createElement('script');
+            chatScript.src = 'https://widgets.leadconnectorhq.com/loader.js';
+            chatScript.setAttribute('data-resources-url', 'https://widgets.leadconnectorhq.com/chat-widget/loader.js');
+            chatScript.setAttribute('data-widget-id', '697d34a60079c39552ddfad9');
+            document.body.appendChild(chatScript);
+        }, 5000);
+    </script>
+
+
+    <!-- Quote Form Modal -->
+    <div id="quote-modal" class="quote-modal" style="display:none;">
+        <div class="quote-modal-overlay" onclick="closeQuoteModal()"></div>
+        <div class="quote-modal-content">
+            <button class="quote-modal-close" onclick="closeQuoteModal()" aria-label="Close modal">&times;</button>
+            <h2 style="color:#FFEF76;margin-bottom:1rem;text-align:center;">Request Service</h2>
+            <p style="color:#fff;margin-bottom:1.5rem;text-align:center;">Fill out the form and we'll contact you within 24 hours</p>
+            <div id="modal-form-placeholder" style="width:100%;height:625px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.05);border-radius:8px;">
+                <div style="text-align:center;color:#71CEEB;">
+                    <div style="font-size:2rem;margin-bottom:10px;">⏳</div>
+                    <div>Loading form...</div>
+                </div>
+            </div>
+            <div id="modal-form-container" style="display:none;"></div>
+        </div>
+    </div>
+    
+    <!-- Quote Modal Styles -->
+    <style>
+    .quote-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .quote-modal-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(4px);
+    }
+    .quote-modal-content {
+        position: relative;
+        background: linear-gradient(135deg, #2f0048 0%, #83009D 100%);
+        border-radius: 16px;
+        padding: 2rem;
+        max-width: 500px;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        animation: modalSlideIn 0.3s ease;
+    }
+    @keyframes modalSlideIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px) scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+    .quote-modal-close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 2rem;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: opacity 0.2s;
+        line-height: 1;
+    }
+    .quote-modal-close:hover {
+        opacity: 1;
+    }
+    @media (max-width: 768px) {
+        .quote-modal-content {
+            padding: 1.5rem;
+            max-height: 85vh;
+        }
+    }
+    </style>
+    
+    <!-- Quote Modal Script -->
+    <script>
+    var modalFormLoaded = false;
+    
+    function openQuoteModal() {
+        document.getElementById('quote-modal').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        
+        // Load form if not already loaded
+        if (!modalFormLoaded) {
+            loadModalForm();
+        }
+    }
+    
+    function closeQuoteModal() {
+        document.getElementById('quote-modal').style.display = 'none';
+        document.body.style.overflow = '';
+    }
+    
+    function loadModalForm() {
+        if (modalFormLoaded) return;
+        modalFormLoaded = true;
+        
+        var placeholder = document.getElementById('modal-form-placeholder');
+        var container = document.getElementById('modal-form-container');
+        
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://go.callontheway.com/widget/form/lyAbCf7HHTdJzkGQz4Iv';
+        iframe.style.cssText = 'width:100%;min-height:625px;border:none;border-radius:8px;background:transparent;';
+        iframe.id = 'modal-inline-lyAbCf7HHTdJzkGQz4Iv';
+        iframe.setAttribute('data-layout', "{'id':'INLINE'}");
+        iframe.setAttribute('data-trigger-type', 'alwaysShow');
+        iframe.setAttribute('data-trigger-value', '');
+        iframe.setAttribute('data-activation-type', 'alwaysActivated');
+        iframe.setAttribute('data-activation-value', '');
+        iframe.setAttribute('data-deactivation-type', 'neverDeactivate');
+        iframe.setAttribute('data-deactivation-value', '');
+        iframe.setAttribute('data-form-name', 'Form 5');
+        iframe.setAttribute('data-height', '625');
+        iframe.setAttribute('data-layout-iframe-id', 'modal-inline-lyAbCf7HHTdJzkGQz4Iv');
+        iframe.setAttribute('data-form-id', 'lyAbCf7HHTdJzkGQz4Iv');
+        iframe.title = 'Get Your Free HVAC Quote Form';
+        iframe.scrolling = 'no';
+        iframe.allow = 'geolocation';
+        
+        // Show container and hide placeholder when iframe loads
+        function showForm() {
+            placeholder.style.display = 'none';
+            container.style.display = 'block';
+        }
+        
+        iframe.onload = showForm;
+        
+        // Fallback: show form after 3 seconds even if onload doesn't fire
+        setTimeout(showForm, 3000);
+        
+        container.appendChild(iframe);
+        
+        // Load form embed script if not already loaded
+        if (!document.querySelector('script[src="https://go.callontheway.com/js/form_embed.js"]')) {
+            var script = document.createElement('script');
+            script.src = 'https://go.callontheway.com/js/form_embed.js';
+            document.body.appendChild(script);
+        }
+    }
+    
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeQuoteModal();
+        }
+    });
+    </script>
+</body>
+</html>

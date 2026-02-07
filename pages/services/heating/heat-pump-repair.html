@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="On The Way Heating & Air">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../../favicon.ico">
+    <link rel="icon" type="image/png" sizes="512x512" href="../../../icon.png">
+    <link rel="apple-touch-icon" href="../../../icon.png">
+    
+    <!-- Preload Self-Hosted Fonts -->
+    <link rel="preload" href="../../../poppins-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../../../poppins-600.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../../../poppins-700.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../../../montserrat-800.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Critical CSS (inlined for fast LCP) -->
+    <style>
+    @font-face{font-family:'Poppins';src:url('../../../poppins-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+    @font-face{font-family:'Poppins';src:url('../../../poppins-600.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+    @font-face{font-family:'Poppins';src:url('../../../poppins-700.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+    @font-face{font-family:'Montserrat';src:url('../../../montserrat-800.woff2') format('woff2');font-weight:800;font-style:normal;font-display:swap}
+    :root{--primary-purple:#4a1a6b;--primary-magenta:#8b1a6b;--white:#ffffff;--off-white:#f8f9fa;--light-gray:#e9ecef;--font-primary:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--font-heading:'Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--spacing-xs:0.5rem;--spacing-sm:1rem;--spacing-md:1.5rem;--spacing-lg:2rem;--spacing-xl:3rem;--spacing-xxl:5rem;--radius-md:8px;--shadow-sm:0 2px 4px rgba(0,0,0,0.08);--transition-fast:0.2s ease;--transition-normal:0.3s ease;--container-max:1200px}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:var(--font-primary);font-size:1.25rem;line-height:1.7;color:var(--off-white);background-color:#2f0048;-webkit-font-smoothing:antialiased}
+    img{max-width:100%;height:auto;display:block}
+    a{text-decoration:none;color:inherit;transition:var(--transition-fast)}
+    ul,ol{list-style:none}
+    h1,h2,h3,h4,h5,h6{font-family:var(--font-heading);font-weight:700;line-height:1.2;margin-bottom:var(--spacing-sm)}
+    h1{font-size:clamp(2rem,5vw,3rem);color:#fff}
+    h2{font-size:clamp(1.75rem,4vw,2.5rem);color:#FFEF76}
+    h3{font-size:clamp(1.25rem,3vw,1.75rem);color:#71CEEB}
+    .container{width:100%;max-width:var(--container-max);margin:0 auto;padding:0 var(--spacing-md)}
+    .header{position:sticky;top:0;z-index:1000;background-color:#2f0048;box-shadow:var(--shadow-sm)}
+    .nav-bar{padding:var(--spacing-sm) 0}
+    .nav-inner{display:flex;justify-content:space-between;align-items:center;gap:var(--spacing-md)}
+    .logo-group{display:flex;align-items:center;gap:10px}
+    .logo img{height:80px;width:auto}
+    .navbar-mascot{display:none;height:50px;width:auto}
+    .nav-menu{display:flex;align-items:center;gap:var(--spacing-xs)}
+    .nav-item{position:relative}
+    .nav-link{display:block;padding:var(--spacing-sm) var(--spacing-md);font-weight:700;color:#71CEEB;font-size:1.1rem;border-radius:var(--radius-md);transition:var(--transition-fast)}
+    .nav-link:hover{color:#FFEF76;background-color:#3d0059}
+    .nav-dropdown{position:absolute;top:100%;left:0;min-width:200px;background-color:#2f0048;box-shadow:0 8px 24px rgba(0,0,0,0.16);border-radius:var(--radius-md);opacity:0;visibility:hidden;transform:translateY(10px);transition:var(--transition-normal);z-index:100;padding:var(--spacing-xs) 0}
+    .nav-item:hover .nav-dropdown{opacity:1;visibility:visible;transform:translateY(0)}
+    .nav-dropdown a{display:block;padding:var(--spacing-sm) var(--spacing-md);color:#fff;font-size:1.05rem}
+    .nav-dropdown a:hover{background-color:#3d0059;color:#FFEF76}
+    .header-cta{margin-left:var(--spacing-sm);background-color:#71CEEB!important;color:#2f0048!important;border-color:#71CEEB!important}
+    .nav-toggle{display:none;flex-direction:column;justify-content:center;align-items:center;width:44px;height:44px;background:none;border:none;cursor:pointer}
+    .nav-toggle span{display:block;width:24px;height:3px;background-color:#71CEEB;margin:4px 0;transition:var(--transition-normal);border-radius:2px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--spacing-xs);padding:0.75rem 1.5rem;font-family:var(--font-primary);font-size:1.05rem;font-weight:600;border:2px solid transparent;border-radius:var(--radius-md);cursor:pointer;transition:var(--transition-normal);text-align:center}
+    .btn-primary{background-color:var(--primary-purple);color:var(--white);border-color:var(--primary-purple)}
+    .btn-outline-light{background-color:transparent;border-color:var(--white);color:var(--white)}
+    .btn-lg{padding:1rem 2rem;font-size:1.1rem}
+    @media(max-width:992px){.nav-toggle{display:flex}.nav-menu{position:fixed;top:0;right:-100%;width:85%;max-width:350px;height:100vh;background-color:#2f0048;flex-direction:column;align-items:flex-start;padding:80px var(--spacing-lg) var(--spacing-xxl);transition:right 0.3s ease;box-shadow:-5px 0 20px rgba(0,0,0,0.3);overflow-y:auto;z-index:1001}.nav-menu.active{right:0}.header-cta{display:none}.navbar-mascot{display:block}}
+    </style>
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../../../styles.css?v=2.4">
+
+    <meta name="description" content="Heat pump not heating? Get same-day heat pump repair in Tampa from On The Way Heating & Air. Same day... or don't pay.* Call 813-922-2209 now.">
+    <meta name="keywords" content="heat pump repair Tampa, same day heat pump repair, heat pump not heating, reversing valve repair, Tampa heat pump service">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Heat Pump Repair Tampa, FL | On The Way">
+    <meta property="og:description" content="Heat pump not heating? Get same-day heat pump repair in Tampa from On The Way Heating & Air. Same day... or don't pay.*">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://callontheway.com/pages/services/heating/heat-pump-repair.html">
+    <meta property="og:image" content="https://callontheway.com/logo.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="On The Way Heating & Air">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Heat Pump Repair Tampa, FL | On The Way">
+    <meta name="twitter:description" content="Heat pump not heating? Get same-day heat pump repair in Tampa. Same day... or don't pay.*">
+    <meta name="twitter:image" content="https://callontheway.com/logo.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://callontheway.com/pages/services/heating/heat-pump-repair.html">
+    
+    <title>Heat Pump Repair Tampa, FL | On The Way</title>
+    
+    <!-- Schema.org Structured Data - Service -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "@id": "https://callontheway.com/pages/services/heating/heat-pump-repair.html#service",
+        "name": "Heat Pump Repair",
+        "serviceType": "Heat Pump Repair Service",
+        "description": "Same-day heat pump repair in Tampa, FL. When your heat pump stops heating or won't switch modes, we get to you fast with our Same Day or Don't Pay guarantee. Expert technicians available 7 days a week.",
+        "provider": {
+            "@type": "HVACBusiness",
+            "@id": "https://callontheway.com/#business",
+            "name": "On The Way Heating & Air",
+            "telephone": "+1-813-922-2209",
+            "url": "https://callontheway.com"
+        },
+        "areaServed": [
+            {"@type": "City", "name": "Tampa", "sameAs": "https://en.wikipedia.org/wiki/Tampa,_Florida"},
+            {"@type": "City", "name": "Lutz"},
+            {"@type": "City", "name": "Wesley Chapel"},
+            {"@type": "City", "name": "Carrollwood"},
+            {"@type": "City", "name": "New Tampa"},
+            {"@type": "City", "name": "Land O' Lakes"}
+        ],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Heat Pump Repair Services",
+            "itemListElement": [
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Reversing Valve Replacement"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Refrigerant Leak Repair"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Defrost Board Replacement"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Capacitor Replacement"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Compressor Replacement"}}
+            ]
+        },
+        "termsOfService": "Same Day or Don't Pay - If we can't fix the issue the same day we diagnose it, the service fee is FREE.",
+        "image": "https://callontheway.com/images/services/ac/tech-ac-fan-repair.webp",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "127",
+            "bestRating": "5",
+            "worstRating": "1"
+        }
+    }
+    </script>
+    
+    <!-- Schema.org Structured Data - BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://callontheway.com/"},
+            {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://callontheway.com/pages/services/"},
+            {"@type": "ListItem", "position": 3, "name": "Heating", "item": "https://callontheway.com/pages/services/heating/"},
+            {"@type": "ListItem", "position": 4, "name": "Heat Pump Repair", "item": "https://callontheway.com/pages/services/heating/heat-pump-repair.html"}
+        ]
+    }
+    </script>
+    
+    <!-- Schema.org Structured Data - FAQPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How fast can you get here for heat pump repair?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Most of the time, we're at your door within a few hours. During peak season, it might stretch to same-day afternoon if you call in the morning. But we'll always be honest about timing when you call."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I run my heat pump with a refrigerant leak?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "You can, but you're doing damage. Low refrigerant makes the compressor work harder and run hotter. It'll fail sooner. If you suspect a leak (weak heating/cooling, ice on the outdoor coil, system running constantly), get it fixed now."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How long do heat pumps last in Tampa?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "With proper maintenance, 12-15 years. Without maintenance, 8-10 years. Tampa's year-round operation and humidity shorten lifespan compared to up north. If your heat pump's 12+ years old and needs major repairs, replacement might make more sense than repair."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Why is my heat pump blowing cold air in heat mode?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Four common causes: (1) Reversing valve stuck in cooling mode, (2) Low refrigerant, (3) Defrost cycle running temporarily, or (4) Backup heat strips failed. We can diagnose it same-day."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do heat pumps work when it's really cold in Tampa?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Heat pumps lose efficiency as outdoor temps drop. At 50 degrees outside, they work great. At 35-40 degrees, they struggle. That's why most Tampa heat pumps have electric backup heat strips that kick in when it's too cold."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Should I replace or repair my heat pump?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "General rule: if your heat pump's over 10 years old and needs a major repair, replacement often makes more sense. New heat pumps are 30-40% more efficient and covered under warranty. We'll give you honest advice based on your specific situation."
+                }
+            }
+        ]
+    }
+    </script>
+    
+    <!-- Schema.org Structured Data - HowTo -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Our Heat Pump Repair Process",
+        "description": "How On The Way Heating & Air handles heat pump repairs in Tampa, FL.",
+        "totalTime": "PT4H",
+        "step": [
+            {
+                "@type": "HowToStep",
+                "position": 1,
+                "name": "You Call, We Answer",
+                "text": "When you dial 813-922-2209, you're talking to a real person—not a robot. We'll ask a few quick questions and get a tech headed your way."
+            },
+            {
+                "@type": "HowToStep",
+                "position": 2,
+                "name": "Fast Diagnosis",
+                "text": "Our technician shows up with all the tools and parts needed for most repairs. We'll figure out what's wrong, explain it in plain English, and give you an honest quote before we do any work."
+            },
+            {
+                "@type": "HowToStep",
+                "position": 3,
+                "name": "Fix It Right",
+                "text": "We don't do quick patches that'll fail in a month. We repair it properly the first time so you're not calling us back next week."
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-bar">
+            <div class="container">
+                <div class="nav-inner">
+                    <div class="logo-group">
+                        <a href="../../../index.html" class="logo">
+                            <img src="../../../On-The-Way.webp" alt="On The Way Heating & Air Logo" width="180" height="138" loading="eager">
+                        </a>
+                        <img src="../../../mascot-navbar.webp" alt="On The Way Mascot" class="navbar-mascot" width="50" height="55" loading="eager">
+                    </div>
+                    
+                    <button class="nav-toggle" aria-label="Toggle Navigation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    
+                    <ul class="nav-menu">
+                        <li class="nav-item has-dropdown">
+                            <a href="#" class="nav-link">Services ▾</a>
+                            <div class="nav-dropdown nav-dropdown-mega">
+                                <div class="nav-dropdown-section">
+                                    <span class="nav-dropdown-heading">Air Conditioning</span>
+                                    <a href="../../../pages/services/ac/emergency-ac-repair.html">Emergency AC Repair</a>
+                                    <a href="../../../pages/services/ac/air-conditioning-repair.html">AC Repair</a>
+                                    <a href="../../../pages/services/ac/ac-installation.html">AC Installation</a>
+                                    <a href="../../../pages/services/ac/ac-replacement.html">AC Replacement</a>
+                                    <a href="../../../pages/services/ac/ac-tune-up.html">AC Tune-Up</a>
+                                    <a href="../../../pages/services/ac/ac-maintenance.html">AC Maintenance</a>
+                                    <a href="../../../pages/services/ac/central-ac-repair.html">Central AC Repair</a>
+                                    <a href="../../../pages/services/ac/ac-compressor-replacement.html">AC Compressor Replacement</a>
+                                    <a href="../../../pages/services/ac/ac-capacitor-replacement.html">AC Capacitor Replacement</a>
+                                    <a href="../../../pages/services/ac/condensate-drain-cleaning.html">Condensate Drain Cleaning</a>
+                                    <a href="../../../pages/services/ac/evaporator-coil-replacement.html">Evaporator Coil Replacement</a>
+                                    <a href="../../../pages/services/ac/ac-refrigerant-recharge.html">AC Refrigerant Recharge</a>
+                                    <a href="../../../pages/services/ac/ac-blower-motor-replacement.html">AC Blower Motor Replacement</a>
+                                    <a href="../../../pages/services/ac/ac-contactor-replacement.html">AC Contactor Replacement</a>
+                                    <a href="../../../pages/services/ac/condenser-fan-motor-repair.html">Condenser Fan Motor Repair</a>
+                                </div>
+                                <div class="nav-dropdown-section">
+                                    <span class="nav-dropdown-heading">Heating</span>
+                                    <a href="../../../pages/services/heating/emergency-heating-repair.html">Emergency Heating Repair</a>
+                                    <a href="../../../pages/services/heating/heat-pump-repair.html">Heat Pump Repair</a>
+                                    <a href="../../../pages/services/heating/heat-pump-installation.html">Heat Pump Installation</a>
+                                    <a href="../../../pages/services/heating/heat-pump-replacement.html">Heat Pump Replacement</a>
+                                    <a href="../../../pages/services/heating/furnace-repair.html">Furnace Repair</a>
+                                    <a href="../../../pages/services/heating/heating-installation.html">Heating Installation</a>
+                                    <a href="../../../pages/services/heating/heating-replacement.html">Heating Replacement</a>
+                                    <a href="../../../pages/services/heating/heating-tune-up.html">Heating Tune-Up</a>
+                                    <a href="../../../pages/services/heating/heat-pump-tune-up.html">Heat Pump Tune-Up</a>
+                                    <a href="../../../pages/services/heating/thermostat-repair.html">Thermostat Repair</a>
+                                    <a href="../../../pages/services/heating/defrost-board-repair.html">Defrost Board Repair</a>
+                                    <a href="../../../pages/services/heating/heat-pump-capacitor-replacement.html">Heat Pump Capacitor Replacement</a>
+                                    <a href="../../../pages/services/heating/gas-valve-repair.html">Gas Valve Repair</a>
+                                    <a href="../../../pages/services/heating/furnace-ignitor-replacement.html">Furnace Ignitor Replacement</a>
+                                    <a href="../../../pages/services/heating/reversing-valve-repair.html">Reversing Valve Repair</a>
+                                </div>
+                                <div class="nav-dropdown-section">
+                                    <span class="nav-dropdown-heading">Air Quality</span>
+                                    <a href="../../../pages/services/air-quality/air-duct-cleaning.html">Air Duct Cleaning</a>
+                                    <a href="../../../pages/services/air-quality/duct-repair.html">Duct Repair</a>
+                                    <a href="../../../pages/services/air-quality/duct-installation.html">Duct Installation</a>
+                                    <a href="../../../pages/services/air-quality/duct-sealing.html">Duct Sealing</a>
+                                    <a href="../../../pages/services/air-quality/air-purifier-installation.html">Air Purifier Installation</a>
+                                    <a href="../../../pages/services/air-quality/uv-light-installation.html">UV Light Installation</a>
+                                    <a href="../../../pages/services/air-quality/whole-home-dehumidifier-installation.html">Dehumidifier Installation</a>
+                                    <a href="../../../pages/services/air-quality/air-filter-replacement.html">Air Filter Replacement</a>
+                                    <a href="../../../pages/services/air-quality/hepa-filter-installation.html">HEPA Filter Installation</a>
+                                    <a href="../../../pages/services/air-quality/indoor-evaporator-coil-cleaning.html">Evaporator Coil Cleaning</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item has-dropdown">
+                            <a href="../../../pages/locations/index.html" class="nav-link">Locations ▾</a>
+                            <div class="nav-dropdown">
+                                <a href="../../../pages/locations/lutz.html">Lutz</a>
+                                <a href="../../../pages/locations/wesley-chapel.html">Wesley Chapel</a>
+                                <a href="../../../pages/locations/carrollwood.html">Carrollwood</a>
+                                <a href="../../../pages/locations/new-tampa.html">New Tampa</a>
+                                <a href="../../../pages/locations/land-o-lakes.html">Land O' Lakes</a>
+                                <a href="../../../pages/locations/temple-terrace.html">Temple Terrace</a>
+                                <a href="../../../pages/locations/northdale.html">Northdale</a>
+                                <a href="../../../pages/locations/seminole-heights.html">Seminole Heights</a>
+                                <a href="../../../pages/locations/university-area.html">University Area</a>
+                                <a href="../../../pages/locations/east-tampa.html">East Tampa</a>
+                                <a href="../../../pages/locations/index.html">View All →</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../../pricing.html" class="nav-link">Pricing</a>
+                        </li>
+                        <li class="nav-item has-dropdown">
+                            <a href="#" class="nav-link">Resources ▾</a>
+                            <div class="nav-dropdown">
+                                <a href="../../../faq.html">FAQ</a>
+                                <a href="../../../blog.html">Blog</a>
+                                <a href="../../../testimonials.html">Testimonials</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../../pages/contact.html" class="nav-link">Contact</a>
+                        </li>
+                    </ul>
+                    
+                    <a href="tel:8139222209" class="btn btn-primary header-cta">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        (813) 922-2209
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <picture>
+                <source media="(max-width: 768px)" srcset="../../../hero-mobile-bg.webp" width="750" height="1000">
+                <img src="../../../hero-1920.webp" alt="Heat Pump Repair Tampa" class="hero-bg-img" width="1920" height="450" loading="eager">
+            </picture>
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Heat Pump Repair in Tampa, Florida</h1>
+                    <p class="hero-subtitle">Same-Day Service When Your Heat Stops Working</p>
+                    <div class="hero-buttons">
+                        <a href="tel:8139222209" class="btn btn-primary btn-lg">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                            Call (813) 922-2209
+                        </a>
+                        <a href="#contact-form" class="btn btn-outline-light btn-lg">Get Free Quote</a>
+                    </div>
+                </div>
+            </div>
+            <img src="../../../mascot.webp" alt="On The Way Mascot" class="hero-mascot" width="300" height="328" loading="eager">
+        </section>
+
+        <!-- Main Content -->
+        <section style="padding: var(--spacing-xxl) 0;">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto;">
+                    
+                    <!-- Intro -->
+                    <p>Your Tampa home is feeling more like a walk-in cooler than a cozy retreat—your heat pump is blowing cold air or won't run at all. Don't shiver through another morning. At On The Way Heating & Air, we specialize in same-day heat pump repair. Call before 3 PM and we'll be there today, or you don't pay.</p>
+
+                    <!-- Same Day Guarantee Image -->
+                    <figure style="margin: var(--spacing-xl) 0; text-align: center; display: flex; justify-content: center;">
+                        <img src="../../../images/services/ac/same-day-guarantee.webp" alt="Same Day Or Don't Pay Guarantee - If we can't fix the issue the same day we go out to diagnose it, the service fee is FREE" width="600" height="439" loading="lazy" style="width: 100%; max-width: 500px; height: auto; border-radius: var(--radius-md);">
+                    </figure>
+
+                    <!-- Signs Section -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;">How You Know Your Tampa Heat Pump Needs Repair</h2>
+                    <p>Heat pumps fail differently than furnaces (which are pretty rare in Tampa anyway). Here's what to watch for:</p>
+                    
+                    <h3 style="color: #d81471;">Blowing Cold Air in Heat Mode</h3>
+                    <p>Your thermostat says 72°, it's set to "heat," but cold air's coming out the vents. That's either a reversing valve stuck in cooling mode, low refrigerant, or a bad defrost cycle.</p>
+                    
+                    <h3 style="color: #d81471;">Won't Switch Between Heating and Cooling</h3>
+                    <p>You try to flip it to heat and… nothing. Or it heats fine but won't cool when summer rolls around. That reversing valve's probably shot.</p>
+                    
+                    <h3 style="color: #d81471;">Outdoor Unit Covered in Frost or Ice</h3>
+                    <p>A little frost is normal on cold mornings (yeah, even in Tampa). A solid block of ice? That ain't normal. Your defrost cycle's not working, or you've got a refrigerant leak.</p>
+                    
+                    <h3 style="color: #d81471;">Running Constantly But Not Heating</h3>
+                    <p>The system never shuts off, your power bill's through the roof, but the house is still 64 degrees inside. Either your heat pump's undersized (common in older Tampa homes), or something's wrong with the refrigerant charge.</p>
+                    
+                    <h3 style="color: #d81471;">Strange Noises When Switching Modes</h3>
+                    <p>Grinding, screeching, or loud clicking when the system changes from heat to cool means the reversing valve's struggling. It'll quit completely soon.</p>
+                    
+                    <h3 style="color: #d81471;">Short Cycling in Heating Mode</h3>
+                    <p>Turns on for two minutes, shuts off, turns back on, shuts off. That's a failing component—could be the defrost board, could be a bad capacitor, could be low refrigerant.</p>
+
+                    <blockquote style="background: rgba(255, 239, 118, 0.1); border-left: 4px solid #FFEF76; padding: var(--spacing-md); margin: var(--spacing-lg) 0; border-radius: var(--radius-md); font-style: italic;">
+                        <strong>Pro-Tip:</strong> Test your heat pump's heating mode in October or early November—before you actually need it. Switch the thermostat to heat, bump it up five degrees, and let it run 15 minutes. You'll smell some dust burning off (that's normal), but you should feel warm air within 5-10 minutes. If you don't, call us now while it's still 80 degrees outside and get it fixed before the first cold snap.
+                    </blockquote>
+
+                    <!-- Why Heat Pumps Fail Section -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;">Why Heat Pumps Fail More Often in Tampa Than Up North</h2>
+                    <p>Heat pumps have a rough life in Tampa. Up north, they run heating mode all winter (December through March, maybe four months). Down here? Your heat pump runs year-round:</p>
+                    
+                    <ul style="margin-bottom: var(--spacing-md);">
+                        <li><strong>Cooling mode:</strong> March through November (9 months)</li>
+                        <li><strong>Heating mode:</strong> December through February (3 months)</li>
+                        <li><strong>That's 12 months of operation with no break</strong></li>
+                    </ul>
+                    
+                    <p>That reversing valve switches modes 20-30 times per year minimum. Add in our humidity (75% year-round), salt air if you're near the coast, and Tampa's reputation as the lightning capital of the world, and you've got a recipe for wear and tear.</p>
+                    
+                    <h3 style="color: #d81471;">The Most Common Heat Pump Repairs We See in Tampa</h3>
+                    <ol style="margin-bottom: var(--spacing-md);">
+                        <li><strong>Reversing valve failure</strong> (won't switch modes or stuck in one mode)</li>
+                        <li><strong>Refrigerant leaks</strong> (especially in the outdoor coil from corrosion)</li>
+                        <li><strong>Defrost control board problems</strong> (ice buildup on outdoor unit)</li>
+                        <li><strong>Capacitor failure</strong> (same as AC—heat and lightning kill capacitors)</li>
+                        <li><strong>Blower motor issues</strong> (runs year-round, wears out faster)</li>
+                    </ol>
+
+                    <!-- Deep Dive: Reversing Valve -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;">Deep Dive: Reversing Valve Failure—Why Your Heat Pump Won't Switch Modes</h2>
+                    <p>The reversing valve is what makes a heat pump different from a regular air conditioner. It's a valve inside the outdoor unit that changes the direction refrigerant flows through the system:</p>
+                    
+                    <ul style="margin-bottom: var(--spacing-md);">
+                        <li><strong>In cooling mode:</strong> Refrigerant flows one direction (just like an AC)</li>
+                        <li><strong>In heating mode:</strong> Refrigerant flows backward (extracting heat from outside air)</li>
+                    </ul>
+                    
+                    <p>When that reversing valve fails, you get stuck. Either the system only cools, only heats, or blows room-temperature air in both modes.</p>
+                    
+                    <h3 style="color: #d81471;">What Kills Reversing Valves in Tampa</h3>
+                    <p><strong>Constant mode switching.</strong> Every time you switch from heat to cool (or vice versa), a solenoid coil energizes and physically moves the valve inside. In Tampa, that happens constantly—October's 85 degrees, November's 55 degrees in the morning and 78 in the afternoon, December's bouncing between 50 and 75. Your heat pump's switching modes weekly, sometimes daily.</p>
+                    
+                    <p><strong>Wear on the slide mechanism.</strong> Inside that valve is a slide that moves back and forth. After 10-12 years of switching, it starts sticking. You'll hear a loud "CLUNK" or grinding noise when the thermostat calls for a mode change—that's the slide struggling to move.</p>
+                    
+                    <p><strong>Loss of refrigerant pressure.</strong> Reversing valves need sufficient refrigerant pressure to fully seat the slide in position. If you've got a slow leak (common in Tampa from coil corrosion), the valve won't shift completely. You get lukewarm air instead of hot or cold.</p>
+                    
+                    <h3 style="color: #d81471;">How We Fix Reversing Valve Problems</h3>
+                    <p>First, we verify it's actually the reversing valve and not something simpler like a bad thermostat wire or failed defrost board. We check:</p>
+                    <ul style="margin-bottom: var(--spacing-md);">
+                        <li>Solenoid coil voltage (should get 24 volts when mode changes)</li>
+                        <li>Refrigerant pressures on both sides of the valve</li>
+                        <li>Temperature difference across the valve (should flip when modes change)</li>
+                        <li>Physical inspection for valve movement</li>
+                    </ul>
+                    
+                    <p>If the reversing valve's bad, we replace it. This is a 3-4 hour job. It's technical work—if the brazing's done wrong, you'll have leaks. If the vacuum's incomplete, you'll have moisture in the system that'll freeze and cause compressor failure.</p>
+                    
+                    <blockquote style="background: rgba(255, 239, 118, 0.1); border-left: 4px solid #FFEF76; padding: var(--spacing-md); margin: var(--spacing-lg) 0; border-radius: var(--radius-md); font-style: italic;">
+                        <strong>Pro-Tip:</strong> If your heat pump's 12+ years old and needs a reversing valve replacement, get a second quote on full system replacement. Major repairs on older systems can be risky—if your compressor or coils fail within the next two years (which is common on aging units), you'll wish you'd just replaced the whole system. We'll give you honest advice on repair vs. replace—we don't make money pushing new systems you don't need.
+                    </blockquote>
+
+                    <!-- Tech Image -->
+                    <figure style="margin: var(--spacing-xl) 0; text-align: center;">
+                        <img src="../../../images/services/ac/tech-ac-fan-repair.webp" alt="HVAC technician inspecting heat pump" width="600" height="337" loading="lazy" style="width: 100%; height: auto; border-radius: var(--radius-md);">
+                        <figcaption style="font-size: 0.9rem; color: rgba(255,255,255,0.7); margin-top: var(--spacing-xs);">Expert diagnosis of reversing valves, compressors, and all heat pump components</figcaption>
+                    </figure>
+
+                    <!-- Deep Dive: Defrost Cycle -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;">Deep Dive: Heat Pump Defrost Cycle Problems—Ice in Tampa? Yep.</h2>
+                    <p>Here's something that surprises Tampa homeowners: heat pumps can ice up during heating mode, even in Florida. When outdoor temps drop below 40 degrees and humidity's high (which happens on those clear January mornings), frost forms on the outdoor coil.</p>
+                    
+                    <p>That's normal. What ain't normal is when that frost turns into a solid block of ice because the defrost cycle isn't working.</p>
+                    
+                    <h3 style="color: #d81471;">How the Defrost Cycle Works</h3>
+                    <div style="background: rgba(113, 206, 235, 0.1); border-left: 4px solid #71CEEB; padding: var(--spacing-md); margin: var(--spacing-lg) 0; border-radius: var(--radius-md);">
+                        <ol style="margin: 0; padding-left: var(--spacing-lg);">
+                            <li><strong>Defrost board detects frost</strong> (usually based on time/temperature)</li>
+                            <li><strong>Reversing valve switches to cooling mode temporarily</strong> (outdoor coil gets HOT)</li>
+                            <li><strong>Outdoor fan shuts off</strong> (so hot refrigerant melts the ice faster)</li>
+                            <li><strong>Backup heat strips turn on inside</strong> (so you don't freeze while outdoor unit defrosts)</li>
+                            <li><strong>After 5-10 minutes, system switches back to heating</strong></li>
+                        </ol>
+                    </div>
+                    
+                    <h3 style="color: #d81471;">What Goes Wrong With Defrost Cycles in Tampa</h3>
+                    <p><strong>Failed defrost control board.</strong> This board monitors outdoor coil temperature and decides when to start a defrost cycle. When it fails, the system never defrosts—or it defrosts too often, which is just as bad.</p>
+                    
+                    <p><strong>Stuck reversing valve.</strong> If the reversing valve won't switch to cooling mode temporarily, the outdoor coil can't get hot enough to melt ice.</p>
+                    
+                    <p><strong>Bad defrost thermostat or sensor.</strong> Some heat pumps use a physical thermostat clipped to the outdoor coil that triggers defrost. If that sensor fails or falls off, the board never knows there's ice.</p>
+                    
+                    <p><strong>Low refrigerant charge.</strong> When refrigerant's low, the outdoor coil runs colder than normal. More frost forms, and the defrost cycle can't keep up even when it's working right.</p>
+                    
+                    <blockquote style="background: rgba(255, 239, 118, 0.1); border-left: 4px solid #FFEF76; padding: var(--spacing-md); margin: var(--spacing-lg) 0; border-radius: var(--radius-md); font-style: italic;">
+                        <strong>Pro-Tip:</strong> On those rare Tampa mornings when it dips into the 30s, go outside and look at your outdoor unit around 8-9 AM. A little frost is fine. A block of ice ain't. If you see ice, shut the system off, switch your thermostat to "emergency heat" (if you have it), and call us. Don't let it keep running—you'll burn out the compressor.
+                    </blockquote>
+
+                    <!-- Deep Dive: Refrigerant Leaks -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;">Deep Dive: Heat Pump Refrigerant Leaks—Why You're Not Getting Heat</h2>
+                    <p>Heat pumps use refrigerant the same way air conditioners do, but in reverse. In cooling mode, refrigerant absorbs heat from inside your house. In heating mode, it absorbs heat from outside air (yes, even 50-degree air contains heat energy).</p>
+                    
+                    <p>When you've got a refrigerant leak:</p>
+                    <ul style="margin-bottom: var(--spacing-md);">
+                        <li><strong>In cooling mode:</strong> Not enough cooling capacity (just like a regular AC)</li>
+                        <li><strong>In heating mode:</strong> Can't absorb enough heat from outside, so you get weak heating or no heating at all</li>
+                    </ul>
+                    
+                    <h3 style="color: #d81471;">Why "Just Top It Off" Doesn't Work</h3>
+                    <p>Some techs will tell you "You're just low on refrigerant, I'll top it off." That's garbage. Heat pumps are sealed systems—if refrigerant's low, there's a leak. Period.</p>
+                    
+                    <p>Adding refrigerant without fixing the leak means:</p>
+                    <ol style="margin-bottom: var(--spacing-md);">
+                        <li>You'll be low again in 6-12 months (and you'll pay again to top it off)</li>
+                        <li>Your compressor's running with the wrong charge (causes premature failure)</li>
+                        <li>The leak's getting worse (refrigerant leaks don't heal themselves)</li>
+                        <li>You're wasting money (refrigerant ain't cheap, especially R-22)</li>
+                    </ol>
+                    
+                    <blockquote style="background: rgba(255, 239, 118, 0.1); border-left: 4px solid #FFEF76; padding: var(--spacing-md); margin: var(--spacing-lg) 0; border-radius: var(--radius-md); font-style: italic;">
+                        <strong>Pro-Tip:</strong> If a tech tells you "You need two pounds of refrigerant," ask them where the leak is and how they're fixing it. If they say "Oh, these systems lose a little refrigerant over time," walk away. That's either ignorance or a scam. Refrigerant doesn't evaporate or "go bad"—if it's low, there's a leak, and you deserve to have it fixed right.
+                    </blockquote>
+
+                    <!-- Tech Image 2 -->
+                    <figure style="margin: var(--spacing-xl) 0; text-align: center;">
+                        <img src="../../../images/services/ac/tech-hvac-system-repair.webp" alt="On The Way technician servicing heat pump system" width="600" height="426" loading="lazy" style="width: 100%; height: auto; border-radius: var(--radius-md);">
+                        <figcaption style="font-size: 0.9rem; color: rgba(255,255,255,0.7); margin-top: var(--spacing-xs);">Complete heat pump system repairs and refrigerant leak detection</figcaption>
+                    </figure>
+
+                    <!-- DIY Check Section -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;">What You Can Check Before Calling for Heat Pump Repair</h2>
+                    <p>Before you call us, here's what you can check yourself (might save you a service call):</p>
+                    
+                    <h3 style="color: #d81471;">Check Your Thermostat Settings</h3>
+                    <p>Make sure the thermostat's set to "heat" and "auto" fan. Sounds dumb, but we get calls where someone accidentally switched it to "cool" or left the fan on "on" (which blows room-temperature air constantly).</p>
+                    
+                    <h3 style="color: #d81471;">Check Your Air Filter</h3>
+                    <p>A clogged filter restricts airflow, and your heat pump might shut down on a safety limit. Change the filter and see if that fixes it.</p>
+                    
+                    <h3 style="color: #d81471;">Look at Your Outdoor Unit</h3>
+                    <p>Is it caked in leaves, grass clippings, or dirt? Heat pumps need airflow. Clear at least two feet around the unit. Also check if it's frozen solid—if it is, you've got a defrost problem.</p>
+                    
+                    <h3 style="color: #d81471;">Check Your Circuit Breakers</h3>
+                    <p>Heat pumps have two breakers—one for the outdoor unit, one for the indoor air handler. Make sure both are on. If one tripped, flip it back on. If it trips again immediately, don't keep resetting it—that's a short circuit or failed component. Call us.</p>
+                    
+                    <h3 style="color: #d81471;">Try Emergency Heat Mode</h3>
+                    <p>Most Tampa heat pumps have electric backup heat strips. Switch your thermostat to "emergency heat" and see if you get warm air. If you do, the heat pump itself is the problem. If you don't, it's probably the air handler or thermostat.</p>
+                    
+                    <p>If none of that fixes it, you need professional help. That's where we come in.</p>
+
+                    <!-- Related Services -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;">Related Services</h2>
+                    <p>Beyond heat pump repair, we offer a full range of HVAC services:</p>
+                    <ul style="margin-bottom: var(--spacing-md);">
+                        <li><a href="../../../pages/services/ac/air-conditioning-repair.html" style="color: #71CEEB;">AC Repair</a> – When your cooling system needs fixing.</li>
+                        <li><a href="../../../pages/services/ac/ac-tune-up.html" style="color: #71CEEB;">AC Tune-Up</a> – Preventive maintenance to avoid future emergencies.</li>
+                        <li><a href="../../../pages/services/ac/ac-installation.html" style="color: #71CEEB;">AC Installation</a> – Professional installation of new high-efficiency systems.</li>
+                        <li><a href="../../../pages/services/ac/ac-replacement.html" style="color: #71CEEB;">AC Replacement</a> – When repair isn't worth it, we help you choose the right new system.</li>
+                    </ul>
+
+                    <!-- Guarantee Section -->
+                    <h2 style="margin-top: var(--spacing-lg); color: #d81471;">The On The Way Heating & Air Guarantee</h2>
+                    <p>We don't play games. Here's what you get when you call us:</p>
+                    
+                    <div style="display: grid; gap: var(--spacing-md); margin-top: var(--spacing-lg);">
+                        <div style="background: linear-gradient(135deg, #83009D 0%, #2f0048 100%); padding: var(--spacing-lg); border-radius: var(--radius-md);">
+                            <h3 style="color: #71CEEB; margin-top: 0;">Same Day… Or Don't Pay*</h3>
+                            <p style="margin-bottom: 0;">If we can't get to you the same day, you don't owe us a dime. We know Tampa's cold snaps don't wait, and neither should you.</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #83009D 0%, #2f0048 100%); padding: var(--spacing-lg); border-radius: var(--radius-md);">
+                            <h3 style="color: #71CEEB; margin-top: 0;">Honest Pricing, No Hidden Fees</h3>
+                            <p style="margin-bottom: 0;">We tell you exactly what it costs before we start work. No surprise charges when we're done.</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #83009D 0%, #2f0048 100%); padding: var(--spacing-lg); border-radius: var(--radius-md);">
+                            <h3 style="color: #71CEEB; margin-top: 0;">Experienced Technicians</h3>
+                            <p style="margin-bottom: 0;">Our guys have been fixing heat pumps in Tampa for years. They know the local climate, they know the common problems, and they know how to fix them right.</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #83009D 0%, #2f0048 100%); padding: var(--spacing-lg); border-radius: var(--radius-md);">
+                            <h3 style="color: #71CEEB; margin-top: 0;">We're Your Neighbors</h3>
+                            <p style="margin-bottom: 0;">We live here too. We're not some national chain flying in techs from out of state. We're local folks serving local folks, whether you're near the USF campus or out in the <a href="../../../pages/locations/new-tampa.html" style="color: #71CEEB;">New Tampa</a> neighborhoods off Bruce B. Downs.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section style="background-color: #3d0059; padding: var(--spacing-xxl) 0;">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <h2 style="text-align: center; color: #d81471;">Frequently Asked Questions</h2>
+                    
+                    <div class="faq-list" style="margin-top: var(--spacing-xl);">
+                        <div class="faq-item" style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); margin-bottom: var(--spacing-sm);">
+                            <button class="faq-question" aria-expanded="false" style="width: 100%; padding: var(--spacing-md); background: none; border: none; color: #fff; font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                                How fast can you get here for heat pump repair?
+                                <span class="faq-toggle">+</span>
+                            </button>
+                            <div class="faq-answer" style="padding: 0 var(--spacing-md) var(--spacing-md); display: none;">
+                                <p>Most of the time, we're at your door within a few hours. During peak season, it might stretch to same-day afternoon if you call in the morning. But we'll always be honest about timing when you call.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item" style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); margin-bottom: var(--spacing-sm);">
+                            <button class="faq-question" aria-expanded="false" style="width: 100%; padding: var(--spacing-md); background: none; border: none; color: #fff; font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                                Can I run my heat pump with a refrigerant leak?
+                                <span class="faq-toggle">+</span>
+                            </button>
+                            <div class="faq-answer" style="padding: 0 var(--spacing-md) var(--spacing-md); display: none;">
+                                <p>You can, but you're doing damage. Low refrigerant makes the compressor work harder and run hotter. It'll fail sooner. If you suspect a leak (weak heating/cooling, ice on the outdoor coil, system running constantly), get it fixed now before it causes bigger problems.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item" style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); margin-bottom: var(--spacing-sm);">
+                            <button class="faq-question" aria-expanded="false" style="width: 100%; padding: var(--spacing-md); background: none; border: none; color: #fff; font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                                How long do heat pumps last in Tampa?
+                                <span class="faq-toggle">+</span>
+                            </button>
+                            <div class="faq-answer" style="padding: 0 var(--spacing-md) var(--spacing-md); display: none;">
+                                <p>With proper maintenance, 12-15 years. Without maintenance, 8-10 years. Tampa's year-round operation and humidity shorten lifespan compared to up north. If your heat pump's 12+ years old and needs major repairs (reversing valve, compressor, coil), replacement might make more sense than repair.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item" style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); margin-bottom: var(--spacing-sm);">
+                            <button class="faq-question" aria-expanded="false" style="width: 100%; padding: var(--spacing-md); background: none; border: none; color: #fff; font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                                Why is my heat pump blowing cold air in heat mode?
+                                <span class="faq-toggle">+</span>
+                            </button>
+                            <div class="faq-answer" style="padding: 0 var(--spacing-md) var(--spacing-md); display: none;">
+                                <p>Four common causes: (1) Reversing valve stuck in cooling mode, (2) Low refrigerant (can't extract enough heat from outside air), (3) Defrost cycle running (temporary—should switch back to heat in 10 minutes), or (4) Backup heat strips failed (so you're only getting heat from the heat pump, which is weak when it's cold outside). We can diagnose it same-day.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item" style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); margin-bottom: var(--spacing-sm);">
+                            <button class="faq-question" aria-expanded="false" style="width: 100%; padding: var(--spacing-md); background: none; border: none; color: #fff; font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                                Do heat pumps work when it's really cold in Tampa?
+                                <span class="faq-toggle">+</span>
+                            </button>
+                            <div class="faq-answer" style="padding: 0 var(--spacing-md) var(--spacing-md); display: none;">
+                                <p>Heat pumps lose efficiency as outdoor temps drop. At 50 degrees outside, they work great. At 35-40 degrees, they struggle. That's why most Tampa heat pumps have electric backup heat strips that kick in when it's too cold. If those heat strips fail, you'll notice weak heating on cold mornings. Most heat pumps stop working effectively below 25-30 degrees—but Tampa rarely hits that temperature.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item" style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); margin-bottom: var(--spacing-sm);">
+                            <button class="faq-question" aria-expanded="false" style="width: 100%; padding: var(--spacing-md); background: none; border: none; color: #fff; font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                                Should I replace or repair my heat pump?
+                                <span class="faq-toggle">+</span>
+                            </button>
+                            <div class="faq-answer" style="padding: 0 var(--spacing-md) var(--spacing-md); display: none;">
+                                <p>General rule: if your heat pump's over 10 years old and needs a major repair, replacement often makes more sense. New heat pumps are 30-40% more efficient (lower power bills), covered under warranty, and won't need repairs for years. We'll give you honest advice on repair vs. replace based on your specific situation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section with Form -->
+        <section id="contact-form" class="cta-form-section" style="background: linear-gradient(135deg, #83009D 0%, #2f0048 100%); padding: var(--spacing-xxl) 0;">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                    <h2 style="color: #FFEF76;">Get Your Heat Pump Running Again—Call Now</h2>
+                    <p style="font-size: 1.2rem; margin-bottom: var(--spacing-lg);">Don't spend another cold morning without heat. We're ready to help.</p>
+                    <p style="font-size: 1.3rem; margin-bottom: var(--spacing-lg);"><strong>Call <a href="tel:8139222209" style="color: #71CEEB;">813-922-2209</a></strong> or fill out the form below.</p>
+                    
+                    <!-- LeadConnector Form - Lazy loaded for performance -->
+                    <div id="form-container" style="margin-top: var(--spacing-lg); overflow: hidden;">
+                        <!-- Form placeholder while loading -->
+                        <div id="form-placeholder" style="width:100%;height:625px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.05);border-radius:3px;">
+                            <div style="text-align:center;color:#71CEEB;">
+                                <div style="font-size:2rem;margin-bottom:10px;">Loading form...</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <script>
+                    setTimeout(function() {
+                        var placeholder = document.getElementById('form-placeholder');
+                        var container = document.getElementById('form-container');
+                        var iframe = document.createElement('iframe');
+                        iframe.src = 'https://go.callontheway.com/widget/form/lyAbCf7HHTdJzkGQz4Iv';
+                        iframe.style.cssText = 'width:100%;min-height:625px;border:none;background:transparent;';
+                        iframe.scrolling = 'no';
+                        iframe.loading = 'lazy';
+                        iframe.title = 'Contact Form';
+                        if (placeholder && container) {
+                            placeholder.style.display = 'none';
+                            container.appendChild(iframe);
+                        }
+                    }, 5000);
+                    </script>
+                    
+                    <p style="margin-top: var(--spacing-lg); font-size: 1rem;">Serving all of North Tampa, from <a href="../../../pages/locations/carrollwood.html" style="color: #71CEEB;">Carrollwood</a> to <a href="../../../pages/locations/wesley-chapel.html" style="color: #71CEEB;">Wesley Chapel</a> and everywhere in between.</p>
+                    
+                    <p style="margin-top: var(--spacing-lg); font-size: 0.9rem; opacity: 0.8;">*Same-day service guarantee: Calls received before 3 PM on regular business days—if we can't make it the same day, your diagnostic/service fee is waived.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Logo & About -->
+                <div class="footer-about">
+                    <img src="../../../footer-logo.webp" alt="On The Way Heating & Air Logo" width="180" height="72" loading="lazy" class="footer-logo">
+                    <p>Serving North Tampa since day one with reliable HVAC solutions.</p>
+                    <p><strong>Licensed & Insured</strong><br>License #CAC1820863</p>
+                </div>
+                
+                <!-- Services -->
+                <div class="footer-links-col">
+                    <div class="footer-title">Services</div>
+                    <a href="../../../pages/services/ac/ac-repair.html">AC Repair</a>
+                    <a href="../../../pages/services/ac/ac-installation.html">AC Installation</a>
+                    <a href="../../../pages/services/heating/furnace-repair.html">Furnace Repair</a>
+                    <a href="../../../pages/services/heating/heat-pump-installation.html">Heat Pump Installation</a>
+                    <a href="../../../pages/services/air-quality/air-duct-cleaning.html">Air Duct Cleaning</a>
+                </div>
+                
+                <!-- Locations -->
+                <div class="footer-links-col">
+                    <div class="footer-title">Service Areas</div>
+                    <a href="../../../pages/locations/lutz.html">Lutz</a>
+                    <a href="../../../pages/locations/wesley-chapel.html">Wesley Chapel</a>
+                    <a href="../../../pages/locations/carrollwood.html">Carrollwood</a>
+                    <a href="../../../pages/locations/new-tampa.html">New Tampa</a>
+                    <a href="../../../pages/locations/land-o-lakes.html">Land O' Lakes</a>
+                </div>
+                
+                <!-- Contact -->
+                <div class="footer-contact">
+                    <div class="footer-title">Contact</div>
+                    <p>
+                        <strong>On The Way Heating & Air</strong><br>
+                        18711 N Dale Mabry Hwy<br>Suite 7<br>
+                        Lutz, Florida 33548
+                    </p>
+                    <p><a href="tel:8139222209">(813) 922-2209</a></p>
+                    <p>Hours: Mon-Sat 7AM-8PM</p>
+                </div>
+            </div>
+            
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>© 2024 On The Way Heating & Air. All Rights Reserved.</p>
+                <div class="footer-legal">
+                    <a href="../../../privacy-policy.html">Privacy Policy</a>
+                    <a href="../../../terms-and-conditions.html">Terms & Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../../../main.js" defer></script>
+    
+    <!-- Chat Widget - Lazy loaded after 3 seconds for performance -->
+    <script>
+        setTimeout(function() {
+            var chatScript = document.createElement('script');
+            chatScript.src = 'https://widgets.leadconnectorhq.com/loader.js';
+            chatScript.setAttribute('data-resources-url', 'https://widgets.leadconnectorhq.com/chat-widget/loader.js');
+            chatScript.setAttribute('data-widget-id', '697d34a60079c39552ddfad9');
+            document.body.appendChild(chatScript);
+        }, 5000);
+    </script>
+
+
+    <!-- Quote Form Modal -->
+    <div id="quote-modal" class="quote-modal" style="display:none;">
+        <div class="quote-modal-overlay" onclick="closeQuoteModal()"></div>
+        <div class="quote-modal-content">
+            <button class="quote-modal-close" onclick="closeQuoteModal()" aria-label="Close modal">&times;</button>
+            <h2 style="color:#FFEF76;margin-bottom:1rem;text-align:center;">Request Service</h2>
+            <p style="color:#fff;margin-bottom:1.5rem;text-align:center;">Fill out the form and we'll contact you within 24 hours</p>
+            <div id="modal-form-placeholder" style="width:100%;height:625px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.05);border-radius:8px;">
+                <div style="text-align:center;color:#71CEEB;">
+                    <div style="font-size:2rem;margin-bottom:10px;">⏳</div>
+                    <div>Loading form...</div>
+                </div>
+            </div>
+            <div id="modal-form-container" style="display:none;"></div>
+        </div>
+    </div>
+    
+    <!-- Quote Modal Styles -->
+    <style>
+    .quote-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .quote-modal-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(4px);
+    }
+    .quote-modal-content {
+        position: relative;
+        background: linear-gradient(135deg, #2f0048 0%, #83009D 100%);
+        border-radius: 16px;
+        padding: 2rem;
+        max-width: 500px;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        animation: modalSlideIn 0.3s ease;
+    }
+    @keyframes modalSlideIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px) scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+    .quote-modal-close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 2rem;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: opacity 0.2s;
+        line-height: 1;
+    }
+    .quote-modal-close:hover {
+        opacity: 1;
+    }
+    @media (max-width: 768px) {
+        .quote-modal-content {
+            padding: 1.5rem;
+            max-height: 85vh;
+        }
+    }
+    </style>
+    
+    <!-- Quote Modal Script -->
+    <script>
+    var modalFormLoaded = false;
+    
+    function openQuoteModal() {
+        document.getElementById('quote-modal').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        
+        // Load form if not already loaded
+        if (!modalFormLoaded) {
+            loadModalForm();
+        }
+    }
+    
+    function closeQuoteModal() {
+        document.getElementById('quote-modal').style.display = 'none';
+        document.body.style.overflow = '';
+    }
+    
+    function loadModalForm() {
+        if (modalFormLoaded) return;
+        modalFormLoaded = true;
+        
+        var placeholder = document.getElementById('modal-form-placeholder');
+        var container = document.getElementById('modal-form-container');
+        
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://go.callontheway.com/widget/form/lyAbCf7HHTdJzkGQz4Iv';
+        iframe.style.cssText = 'width:100%;min-height:625px;border:none;border-radius:8px;background:transparent;';
+        iframe.id = 'modal-inline-lyAbCf7HHTdJzkGQz4Iv';
+        iframe.setAttribute('data-layout', "{'id':'INLINE'}");
+        iframe.setAttribute('data-trigger-type', 'alwaysShow');
+        iframe.setAttribute('data-trigger-value', '');
+        iframe.setAttribute('data-activation-type', 'alwaysActivated');
+        iframe.setAttribute('data-activation-value', '');
+        iframe.setAttribute('data-deactivation-type', 'neverDeactivate');
+        iframe.setAttribute('data-deactivation-value', '');
+        iframe.setAttribute('data-form-name', 'Form 5');
+        iframe.setAttribute('data-height', '625');
+        iframe.setAttribute('data-layout-iframe-id', 'modal-inline-lyAbCf7HHTdJzkGQz4Iv');
+        iframe.setAttribute('data-form-id', 'lyAbCf7HHTdJzkGQz4Iv');
+        iframe.title = 'Get Your Free HVAC Quote Form';
+        iframe.scrolling = 'no';
+        iframe.allow = 'geolocation';
+        
+        // Show container and hide placeholder when iframe loads
+        function showForm() {
+            placeholder.style.display = 'none';
+            container.style.display = 'block';
+        }
+        
+        iframe.onload = showForm;
+        
+        // Fallback: show form after 3 seconds even if onload doesn't fire
+        setTimeout(showForm, 3000);
+        
+        container.appendChild(iframe);
+        
+        // Load form embed script if not already loaded
+        if (!document.querySelector('script[src="https://go.callontheway.com/js/form_embed.js"]')) {
+            var script = document.createElement('script');
+            script.src = 'https://go.callontheway.com/js/form_embed.js';
+            document.body.appendChild(script);
+        }
+    }
+    
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeQuoteModal();
+        }
+    });
+    </script>
+</body>
+</html>

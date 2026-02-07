@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="On The Way Heating & Air">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="icon" type="image/png" sizes="512x512" href="../icon.png">
+    <link rel="apple-touch-icon" href="../icon.png">
+    
+    <!-- Preload Self-Hosted Fonts -->
+    <link rel="preload" href="../poppins-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../poppins-600.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../poppins-700.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../montserrat-800.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Critical CSS (inlined for fast LCP) -->
+    <style>
+    @font-face{font-family:'Poppins';src:url('../poppins-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+    @font-face{font-family:'Poppins';src:url('../poppins-600.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+    @font-face{font-family:'Poppins';src:url('../poppins-700.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+    @font-face{font-family:'Montserrat';src:url('../montserrat-800.woff2') format('woff2');font-weight:800;font-style:normal;font-display:swap}
+    :root{--primary-purple:#4a1a6b;--primary-magenta:#8b1a6b;--white:#ffffff;--off-white:#f8f9fa;--light-gray:#e9ecef;--font-primary:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--font-heading:'Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--spacing-xs:0.5rem;--spacing-sm:1rem;--spacing-md:1.5rem;--spacing-lg:2rem;--spacing-xl:3rem;--spacing-xxl:5rem;--radius-md:8px;--shadow-sm:0 2px 4px rgba(0,0,0,0.08);--transition-fast:0.2s ease;--transition-normal:0.3s ease;--container-max:1200px}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:var(--font-primary);font-size:1.25rem;line-height:1.7;color:var(--off-white);background-color:#2f0048;-webkit-font-smoothing:antialiased}
+    img{max-width:100%;height:auto;display:block}
+    a{text-decoration:none;color:inherit;transition:var(--transition-fast)}
+    ul,ol{list-style:none}
+    h1,h2,h3,h4,h5,h6{font-family:var(--font-heading);font-weight:700;line-height:1.2;margin-bottom:var(--spacing-sm)}
+    h1{font-size:clamp(2rem,5vw,3rem);color:#fff}
+    h2{font-size:clamp(1.75rem,4vw,2.5rem);color:#FFEF76}
+    h3{font-size:clamp(1.25rem,3vw,1.75rem);color:#71CEEB}
+    .container{width:100%;max-width:var(--container-max);margin:0 auto;padding:0 var(--spacing-md)}
+    .header{position:sticky;top:0;z-index:1000;background-color:#2f0048;box-shadow:var(--shadow-sm)}
+    .nav-bar{padding:var(--spacing-sm) 0}
+    .nav-inner{display:flex;justify-content:space-between;align-items:center;gap:var(--spacing-md)}
+    .logo-group{display:flex;align-items:center;gap:10px}
+    .logo img{height:80px;width:auto}
+    .navbar-mascot{display:none;height:50px;width:auto}
+    .nav-menu{display:flex;align-items:center;gap:var(--spacing-xs)}
+    .nav-item{position:relative}
+    .nav-link{display:block;padding:var(--spacing-sm) var(--spacing-md);font-weight:700;color:#71CEEB;font-size:1.1rem;border-radius:var(--radius-md);transition:var(--transition-fast)}
+    .nav-link:hover{color:#FFEF76;background-color:#3d0059}
+    .nav-dropdown{position:absolute;top:100%;left:0;min-width:200px;background-color:#2f0048;box-shadow:0 8px 24px rgba(0,0,0,0.16);border-radius:var(--radius-md);opacity:0;visibility:hidden;transform:translateY(10px);transition:var(--transition-normal);z-index:100;padding:var(--spacing-xs) 0}
+    .nav-item:hover .nav-dropdown{opacity:1;visibility:visible;transform:translateY(0)}
+    .nav-dropdown a{display:block;padding:var(--spacing-sm) var(--spacing-md);color:#fff;font-size:1.05rem}
+    .nav-dropdown a:hover{background-color:#3d0059;color:#FFEF76}
+    .header-cta{margin-left:var(--spacing-sm);background-color:#71CEEB!important;color:#2f0048!important;border-color:#71CEEB!important}
+    .nav-toggle{display:none;flex-direction:column;justify-content:center;align-items:center;width:44px;height:44px;background:none;border:none;cursor:pointer}
+    .nav-toggle span{display:block;width:24px;height:3px;background-color:#71CEEB;margin:4px 0;transition:var(--transition-normal);border-radius:2px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--spacing-xs);padding:0.75rem 1.5rem;font-family:var(--font-primary);font-size:1.05rem;font-weight:600;border:2px solid transparent;border-radius:var(--radius-md);cursor:pointer;transition:var(--transition-normal);text-align:center}
+    .btn-primary{background-color:var(--primary-purple);color:var(--white);border-color:var(--primary-purple)}
+    .btn-outline-light{background-color:transparent;border-color:var(--white);color:var(--white)}
+    .btn-lg{padding:1rem 2rem;font-size:1.1rem}
+    @media(max-width:992px){.nav-toggle{display:flex}.nav-menu{position:fixed;top:0;right:-100%;width:85%;max-width:350px;height:100vh;background-color:#2f0048;flex-direction:column;align-items:flex-start;padding:80px var(--spacing-lg) var(--spacing-xxl);transition:right 0.3s ease;box-shadow:-5px 0 20px rgba(0,0,0,0.3);overflow-y:auto;z-index:1001}.nav-menu.active{right:0}.header-cta{display:none}.navbar-mascot{display:block}}
+    </style>
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../styles.css?v=2.4">
+
+    <meta name="description" content="Contact On The Way Heating & Air for AC repair, heating service, and air quality solutions in Tampa. Call 813-922-2209 for same-day service.">
+    <meta name="keywords" content="contact HVAC Tampa, AC repair phone number, heating service contact, Tampa HVAC company">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Contact Us | On The Way Heating & Air">
+    <meta property="og:description" content="Contact On The Way Heating & Air for AC repair, heating service, and air quality solutions in Tampa. Same day... or don't pay.*">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://callontheway.com/pages/contact.html">
+    <meta property="og:image" content="https://callontheway.com/logo.jpg">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="On The Way Heating & Air">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contact Us | On The Way Heating & Air">
+    <meta name="twitter:description" content="Contact On The Way Heating & Air for AC repair, heating service, and air quality solutions in Tampa.">
+    <meta name="twitter:image" content="https://callontheway.com/logo.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://callontheway.com/pages/contact.html">
+    
+    <title>Contact Us | On The Way Heating & Air</title>
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Contact On The Way Heating & Air",
+        "description": "Contact page for On The Way Heating & Air - Tampa's trusted HVAC service provider.",
+        "url": "https://callontheway.com/pages/contact.html",
+        "mainEntity": {
+            "@type": "HVACBusiness",
+            "name": "On The Way Heating & Air",
+            "telephone": "+1-813-922-2209",
+            "url": "https://callontheway.com",
+            "areaServed": ["Tampa", "Lutz", "Wesley Chapel", "Carrollwood", "New Tampa", "Land O' Lakes", "Seminole Heights", "Temple Terrace", "East Tampa", "University Area", "Northdale"]
+        }
+    }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-bar">
+            <div class="container">
+                <div class="nav-inner">
+                    <div class="logo-group">
+                        <a href="../index.html" class="logo">
+                            <img src="../On-The-Way.webp" alt="On The Way Heating & Air Logo" width="180" height="138" loading="eager">
+                        </a>
+                        <img src="../mascot-navbar.webp" alt="On The Way Mascot" class="navbar-mascot" width="50" height="55" loading="eager">
+                    </div>
+                    
+                    <button class="nav-toggle" aria-label="Toggle Navigation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    
+                    <ul class="nav-menu">
+                        <li class="nav-item has-dropdown">
+                            <a href="#" class="nav-link">Services ▾</a>
+                            <div class="nav-dropdown nav-dropdown-mega">
+                                <div class="nav-dropdown-section">
+                                    <span class="nav-dropdown-heading">Air Conditioning</span>
+                                    <a href="../pages/services/ac/emergency-ac-repair.html">Emergency AC Repair</a>
+                                    <a href="../pages/services/ac/air-conditioning-repair.html">AC Repair</a>
+                                    <a href="../pages/services/ac/ac-installation.html">AC Installation</a>
+                                    <a href="../pages/services/ac/ac-replacement.html">AC Replacement</a>
+                                    <a href="../pages/services/ac/ac-tune-up.html">AC Tune-Up</a>
+                                    <a href="../pages/services/ac/ac-maintenance.html">AC Maintenance</a>
+                                    <a href="../pages/services/ac/central-ac-repair.html">Central AC Repair</a>
+                                    <a href="../pages/services/ac/ac-compressor-replacement.html">AC Compressor Replacement</a>
+                                    <a href="../pages/services/ac/ac-capacitor-replacement.html">AC Capacitor Replacement</a>
+                                    <a href="../pages/services/ac/condensate-drain-cleaning.html">Condensate Drain Cleaning</a>
+                                    <a href="../pages/services/ac/evaporator-coil-replacement.html">Evaporator Coil Replacement</a>
+                                    <a href="../pages/services/ac/ac-refrigerant-recharge.html">AC Refrigerant Recharge</a>
+                                    <a href="../pages/services/ac/ac-blower-motor-replacement.html">AC Blower Motor Replacement</a>
+                                    <a href="../pages/services/ac/ac-contactor-replacement.html">AC Contactor Replacement</a>
+                                    <a href="../pages/services/ac/condenser-fan-motor-repair.html">Condenser Fan Motor Repair</a>
+                                </div>
+                                <div class="nav-dropdown-section">
+                                    <span class="nav-dropdown-heading">Heating</span>
+                                    <a href="../pages/services/heating/emergency-heating-repair.html">Emergency Heating Repair</a>
+                                    <a href="../pages/services/heating/heat-pump-repair.html">Heat Pump Repair</a>
+                                    <a href="../pages/services/heating/heat-pump-installation.html">Heat Pump Installation</a>
+                                    <a href="../pages/services/heating/heat-pump-replacement.html">Heat Pump Replacement</a>
+                                    <a href="../pages/services/heating/furnace-repair.html">Furnace Repair</a>
+                                    <a href="../pages/services/heating/heating-installation.html">Heating Installation</a>
+                                    <a href="../pages/services/heating/heating-replacement.html">Heating Replacement</a>
+                                    <a href="../pages/services/heating/heating-tune-up.html">Heating Tune-Up</a>
+                                    <a href="../pages/services/heating/heat-pump-tune-up.html">Heat Pump Tune-Up</a>
+                                    <a href="../pages/services/heating/thermostat-repair.html">Thermostat Repair</a>
+                                    <a href="../pages/services/heating/defrost-board-repair.html">Defrost Board Repair</a>
+                                    <a href="../pages/services/heating/heat-pump-capacitor-replacement.html">Heat Pump Capacitor Replacement</a>
+                                    <a href="../pages/services/heating/gas-valve-repair.html">Gas Valve Repair</a>
+                                    <a href="../pages/services/heating/furnace-ignitor-replacement.html">Furnace Ignitor Replacement</a>
+                                    <a href="../pages/services/heating/reversing-valve-repair.html">Reversing Valve Repair</a>
+                                </div>
+                                <div class="nav-dropdown-section">
+                                    <span class="nav-dropdown-heading">Air Quality</span>
+                                    <a href="../pages/services/air-quality/air-duct-cleaning.html">Air Duct Cleaning</a>
+                                    <a href="../pages/services/air-quality/duct-repair.html">Duct Repair</a>
+                                    <a href="../pages/services/air-quality/duct-installation.html">Duct Installation</a>
+                                    <a href="../pages/services/air-quality/duct-sealing.html">Duct Sealing</a>
+                                    <a href="../pages/services/air-quality/air-purifier-installation.html">Air Purifier Installation</a>
+                                    <a href="../pages/services/air-quality/uv-light-installation.html">UV Light Installation</a>
+                                    <a href="../pages/services/air-quality/whole-home-dehumidifier-installation.html">Dehumidifier Installation</a>
+                                    <a href="../pages/services/air-quality/air-filter-replacement.html">Air Filter Replacement</a>
+                                    <a href="../pages/services/air-quality/hepa-filter-installation.html">HEPA Filter Installation</a>
+                                    <a href="../pages/services/air-quality/indoor-evaporator-coil-cleaning.html">Evaporator Coil Cleaning</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item has-dropdown">
+                            <a href="../pages/locations/index.html" class="nav-link">Locations ▾</a>
+                            <div class="nav-dropdown">
+                                <a href="../pages/locations/lutz.html">Lutz</a>
+                                <a href="../pages/locations/wesley-chapel.html">Wesley Chapel</a>
+                                <a href="../pages/locations/carrollwood.html">Carrollwood</a>
+                                <a href="../pages/locations/new-tampa.html">New Tampa</a>
+                                <a href="../pages/locations/land-o-lakes.html">Land O' Lakes</a>
+                                <a href="../pages/locations/temple-terrace.html">Temple Terrace</a>
+                                <a href="../pages/locations/northdale.html">Northdale</a>
+                                <a href="../pages/locations/seminole-heights.html">Seminole Heights</a>
+                                <a href="../pages/locations/university-area.html">University Area</a>
+                                <a href="../pages/locations/east-tampa.html">East Tampa</a>
+                                <a href="../pages/locations/index.html">View All →</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../pricing.html" class="nav-link">Pricing</a>
+                        </li>
+                        <li class="nav-item has-dropdown">
+                            <a href="#" class="nav-link">Resources ▾</a>
+                            <div class="nav-dropdown">
+                                <a href="../faq.html">FAQ</a>
+                                <a href="../blog.html">Blog</a>
+                                <a href="../testimonials.html">Testimonials</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../pages/contact.html" class="nav-link">Contact</a>
+                        </li>
+                    </ul>
+                    
+                    <a href="tel:8139222209" class="btn btn-primary header-cta">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        (813) 922-2209
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" style="background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple-medium) 100%); padding: var(--spacing-xxl) var(--spacing-lg); text-align: center;">
+            <div class="container" style="max-width: 900px; margin: 0 auto;">
+                <h1 style="font-size: clamp(2rem, 5vw, 3rem); margin-bottom: var(--spacing-md);">Contact Us</h1>
+                <p style="font-size: 1.25rem; color: rgba(255,255,255,0.9); margin-bottom: var(--spacing-lg);">We're here to help with all your heating and cooling needs. Reach out today!</p>
+                
+                <!-- Phone Number Display -->
+                <div style="margin-bottom: var(--spacing-md);">
+                    <p style="color: #71CEEB; font-size: 1rem; margin-bottom: var(--spacing-xs);">Give us a call</p>
+                    <a href="tel:813-922-2209" style="color: #FFEF76; font-size: 2rem; font-weight: 700; text-decoration: none;">
+                        (813) 922-2209
+                    </a>
+                </div>
+                <p style="color: rgba(255,255,255,0.8); font-size: 0.95rem;">Available 7 days a week</p>
+            </div>
+        </section>
+
+        <!-- Service Area Map Section -->
+        <section style="background: var(--purple-medium); padding: var(--spacing-xl) var(--spacing-lg);">
+            <div class="container" style="max-width: 1100px; margin: 0 auto;">
+                <h2 style="color: #d81471; text-align: center; margin-bottom: var(--spacing-lg);">Our Service Area in North Tampa</h2>
+                <div style="border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d225270.0!2d-82.55!3d28.1!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88c2b782b3b9d1e1%3A0xa75f1389af96b463!2sNorth%20Tampa%2C%20FL!5e0!3m2!1sen!2sus!4v1706900000000!5m2!1sen!2sus"
+                        width="100%" 
+                        height="450" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="On The Way Heating & Air Service Area - North Tampa">
+                    </iframe>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: var(--spacing-md); margin-top: var(--spacing-lg);">
+                    <a href="../pages/locations/lutz.html" style="color: #71CEEB; text-decoration: none; padding: var(--spacing-xs) var(--spacing-sm); background: rgba(113, 206, 235, 0.1); border-radius: var(--radius-sm);">📍 Lutz</a>
+                    <a href="../pages/locations/wesley-chapel.html" style="color: #71CEEB; text-decoration: none; padding: var(--spacing-xs) var(--spacing-sm); background: rgba(113, 206, 235, 0.1); border-radius: var(--radius-sm);">📍 Wesley Chapel</a>
+                    <a href="../pages/locations/carrollwood.html" style="color: #71CEEB; text-decoration: none; padding: var(--spacing-xs) var(--spacing-sm); background: rgba(113, 206, 235, 0.1); border-radius: var(--radius-sm);">📍 Carrollwood</a>
+                    <a href="../pages/locations/new-tampa.html" style="color: #71CEEB; text-decoration: none; padding: var(--spacing-xs) var(--spacing-sm); background: rgba(113, 206, 235, 0.1); border-radius: var(--radius-sm);">📍 New Tampa</a>
+                    <a href="../pages/locations/land-o-lakes.html" style="color: #71CEEB; text-decoration: none; padding: var(--spacing-xs) var(--spacing-sm); background: rgba(113, 206, 235, 0.1); border-radius: var(--radius-sm);">📍 Land O' Lakes</a>
+                    <a href="../pages/locations/seminole-heights.html" style="color: #71CEEB; text-decoration: none; padding: var(--spacing-xs) var(--spacing-sm); background: rgba(113, 206, 235, 0.1); border-radius: var(--radius-sm);">📍 Seminole Heights</a>
+                    <a href="../pages/locations/temple-terrace.html" style="color: #71CEEB; text-decoration: none; padding: var(--spacing-xs) var(--spacing-sm); background: rgba(113, 206, 235, 0.1); border-radius: var(--radius-sm);">📍 Temple Terrace</a>
+                    <a href="../pages/locations/east-tampa.html" style="color: #71CEEB; text-decoration: none; padding: var(--spacing-xs) var(--spacing-sm); background: rgba(113, 206, 235, 0.1); border-radius: var(--radius-sm);">📍 East Tampa</a>
+                    <a href="../pages/locations/university-area.html" style="color: #71CEEB; text-decoration: none; padding: var(--spacing-xs) var(--spacing-sm); background: rgba(113, 206, 235, 0.1); border-radius: var(--radius-sm);">📍 University Area</a>
+                    <a href="../pages/locations/northdale.html" style="color: #71CEEB; text-decoration: none; padding: var(--spacing-xs) var(--spacing-sm); background: rgba(113, 206, 235, 0.1); border-radius: var(--radius-sm);">📍 Northdale</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <section style="background: var(--purple-dark); padding: var(--spacing-xxl) var(--spacing-sm);">
+            <div class="container" style="max-width: 1100px; margin: 0 auto; padding: 0 var(--spacing-sm);">
+                
+                <style>
+                    @media (min-width: 768px) {
+                        .contact-grid { grid-template-columns: 1fr 1fr !important; }
+                        .form-container-inner { max-width: none !important; }
+                    }
+                </style>
+                <div class="contact-grid" style="display: grid; grid-template-columns: 1fr; gap: var(--spacing-xl);">
+                    
+                    <!-- Contact Form -->
+                    <div style="width: 100%;">
+                        <h2 style="color: #d81471; margin-bottom: var(--spacing-lg); text-align: center;">Send Us a Message</h2>
+                        <p style="margin-bottom: var(--spacing-lg); text-align: center;">Fill out the form below and we'll get back to you as soon as possible. For immediate assistance, please call us directly.</p>
+                        
+                        <div id="form-container" class="form-container-inner" style="min-height: 1300px; width: 100%; max-width: 600px; margin: 0 auto;">
+                            <div id="form-placeholder" style="text-align: center; padding: var(--spacing-xl);">
+                                <p style="color: rgba(255,255,255,0.7);">Loading contact form...</p>
+                            </div>
+                        </div>
+                        
+                        <script>
+                        setTimeout(function() {
+                            var placeholder = document.getElementById('form-placeholder');
+                            var container = document.getElementById('form-container');
+                            var iframe = document.createElement('iframe');
+                            iframe.src = 'https://go.callontheway.com/widget/form/lyAbCf7HHTdJzkGQz4Iv';
+                            iframe.style.cssText = 'width:100%;min-height:1300px;border:none;background:transparent;';
+                            iframe.scrolling = 'no';
+                            iframe.loading = 'lazy';
+                            iframe.title = 'Contact Form';
+                            if (placeholder && container) {
+                                placeholder.style.display = 'none';
+                                container.appendChild(iframe);
+                            }
+                        }, 1000);
+                        </script>
+                    </div>
+                    
+                    <!-- Contact Info -->
+                    <div>
+                        <h2 style="color: #d81471; margin-bottom: var(--spacing-lg);">Get In Touch</h2>
+                        
+                        <!-- Phone -->
+                        <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(88, 28, 135, 0.3)); border-radius: var(--radius-lg); padding: var(--spacing-lg); margin-bottom: var(--spacing-lg); border: 1px solid rgba(139, 92, 246, 0.3);">
+                            <h3 style="color: #71CEEB; margin-bottom: var(--spacing-sm);">Phone</h3>
+                            <a href="tel:813-922-2209" style="color: white; font-size: 1.25rem; text-decoration: none;">(813) 922-2209</a>
+                            <p style="color: rgba(255,255,255,0.7); margin-top: var(--spacing-xs); font-size: 0.9rem;">Same Day... Or Don't Pay*</p>
+                        </div>
+                        
+                        <!-- Hours -->
+                        <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(88, 28, 135, 0.3)); border-radius: var(--radius-lg); padding: var(--spacing-lg); margin-bottom: var(--spacing-lg); border: 1px solid rgba(139, 92, 246, 0.3);">
+                            <h3 style="color: #71CEEB; margin-bottom: var(--spacing-sm);">Hours</h3>
+                            <p style="margin-bottom: var(--spacing-xs);"><strong>Monday - Friday:</strong> 7:00 AM - 8:00 PM</p>
+                            <p style="margin-bottom: var(--spacing-xs);"><strong>Saturday:</strong> 8:00 AM - 6:00 PM</p>
+                            <p><strong>Sunday:</strong> 9:00 AM - 5:00 PM</p>
+                        </div>
+                        
+                        <!-- Service Areas -->
+                        <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(88, 28, 135, 0.3)); border-radius: var(--radius-lg); padding: var(--spacing-lg); border: 1px solid rgba(139, 92, 246, 0.3);">
+                            <h3 style="color: #71CEEB; margin-bottom: var(--spacing-md);">Areas We Serve</h3>
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--spacing-sm);">
+                                <a href="../pages/locations/lutz.html" style="color: white; text-decoration: none; padding: var(--spacing-xs) 0; border-bottom: 1px solid rgba(255,255,255,0.1);">Lutz</a>
+                                <a href="../pages/locations/wesley-chapel.html" style="color: white; text-decoration: none; padding: var(--spacing-xs) 0; border-bottom: 1px solid rgba(255,255,255,0.1);">Wesley Chapel</a>
+                                <a href="../pages/locations/carrollwood.html" style="color: white; text-decoration: none; padding: var(--spacing-xs) 0; border-bottom: 1px solid rgba(255,255,255,0.1);">Carrollwood</a>
+                                <a href="../pages/locations/new-tampa.html" style="color: white; text-decoration: none; padding: var(--spacing-xs) 0; border-bottom: 1px solid rgba(255,255,255,0.1);">New Tampa</a>
+                                <a href="../pages/locations/land-o-lakes.html" style="color: white; text-decoration: none; padding: var(--spacing-xs) 0; border-bottom: 1px solid rgba(255,255,255,0.1);">Land O' Lakes</a>
+                                <a href="../pages/locations/seminole-heights.html" style="color: white; text-decoration: none; padding: var(--spacing-xs) 0; border-bottom: 1px solid rgba(255,255,255,0.1);">Seminole Heights</a>
+                                <a href="../pages/locations/temple-terrace.html" style="color: white; text-decoration: none; padding: var(--spacing-xs) 0; border-bottom: 1px solid rgba(255,255,255,0.1);">Temple Terrace</a>
+                                <a href="../pages/locations/east-tampa.html" style="color: white; text-decoration: none; padding: var(--spacing-xs) 0; border-bottom: 1px solid rgba(255,255,255,0.1);">East Tampa</a>
+                                <a href="../pages/locations/university-area.html" style="color: white; text-decoration: none; padding: var(--spacing-xs) 0; border-bottom: 1px solid rgba(255,255,255,0.1);">University Area</a>
+                                <a href="../pages/locations/northdale.html" style="color: white; text-decoration: none; padding: var(--spacing-xs) 0; border-bottom: 1px solid rgba(255,255,255,0.1);">Northdale</a>
+                            </div>
+                            <p style="color: rgba(255,255,255,0.7); margin-top: var(--spacing-md); font-size: 0.9rem;">And all surrounding North Tampa communities</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Why Choose Us Section -->
+                <div style="margin-top: var(--spacing-xxl);">
+                    <h2 style="color: #d81471; text-align: center; margin-bottom: var(--spacing-xl);">Why Choose On The Way?</h2>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-lg);">
+                        <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(88, 28, 135, 0.3)); border-radius: var(--radius-lg); padding: var(--spacing-lg); text-align: center; border: 1px solid rgba(139, 92, 246, 0.3);">
+                            <h3 style="color: #71CEEB; margin-bottom: var(--spacing-sm);">Same Day Service</h3>
+                            <p style="color: rgba(255,255,255,0.8);">We guarantee same-day service or your diagnostic fee is FREE.</p>
+                        </div>
+                        <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(88, 28, 135, 0.3)); border-radius: var(--radius-lg); padding: var(--spacing-lg); text-align: center; border: 1px solid rgba(139, 92, 246, 0.3);">
+                            <h3 style="color: #71CEEB; margin-bottom: var(--spacing-sm);">Honest Pricing</h3>
+                            <p style="color: rgba(255,255,255,0.8);">Upfront quotes with no hidden fees or surprise charges.</p>
+                        </div>
+                        <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(88, 28, 135, 0.3)); border-radius: var(--radius-lg); padding: var(--spacing-lg); text-align: center; border: 1px solid rgba(139, 92, 246, 0.3);">
+                            <h3 style="color: #71CEEB; margin-bottom: var(--spacing-sm);">Local Experts</h3>
+                            <p style="color: rgba(255,255,255,0.8);">We're your Tampa neighbors who understand local HVAC challenges.</p>
+                        </div>
+                        <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(88, 28, 135, 0.3)); border-radius: var(--radius-lg); padding: var(--spacing-lg); text-align: center; border: 1px solid rgba(139, 92, 246, 0.3);">
+                            <h3 style="color: #71CEEB; margin-bottom: var(--spacing-sm);">Satisfaction Guaranteed</h3>
+                            <p style="color: rgba(255,255,255,0.8);">If you're not happy, we'll come back and make it right.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Disclaimer -->
+                <p style="text-align: center; color: rgba(255,255,255,0.5); font-size: 0.8rem; margin-top: var(--spacing-xxl);">*Same Day or Don't Pay applies to diagnostic and service fees when we cannot arrive the same day you call. Some restrictions apply.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Logo & About -->
+                <div class="footer-about">
+                    <img src="../footer-logo.webp" alt="On The Way Heating & Air Logo" width="180" height="72" loading="lazy" class="footer-logo">
+                    <p>Serving North Tampa since day one with reliable HVAC solutions.</p>
+                    <p><strong>Licensed & Insured</strong><br>License #CAC1820863</p>
+                </div>
+                
+                <!-- Services -->
+                <div class="footer-links-col">
+                    <div class="footer-title">Services</div>
+                    <a href="../pages/services/ac/ac-repair.html">AC Repair</a>
+                    <a href="../pages/services/ac/ac-installation.html">AC Installation</a>
+                    <a href="../pages/services/heating/furnace-repair.html">Furnace Repair</a>
+                    <a href="../pages/services/heating/heat-pump-installation.html">Heat Pump Installation</a>
+                    <a href="../pages/services/air-quality/air-duct-cleaning.html">Air Duct Cleaning</a>
+                </div>
+                
+                <!-- Locations -->
+                <div class="footer-links-col">
+                    <div class="footer-title">Service Areas</div>
+                    <a href="../pages/locations/lutz.html">Lutz</a>
+                    <a href="../pages/locations/wesley-chapel.html">Wesley Chapel</a>
+                    <a href="../pages/locations/carrollwood.html">Carrollwood</a>
+                    <a href="../pages/locations/new-tampa.html">New Tampa</a>
+                    <a href="../pages/locations/land-o-lakes.html">Land O' Lakes</a>
+                </div>
+                
+                <!-- Contact -->
+                <div class="footer-contact">
+                    <div class="footer-title">Contact</div>
+                    <p>
+                        <strong>On The Way Heating & Air</strong><br>
+                        18711 N Dale Mabry Hwy<br>Suite 7<br>
+                        Lutz, Florida 33548
+                    </p>
+                    <p><a href="tel:8139222209">(813) 922-2209</a></p>
+                    <p>Hours: Mon-Sat 7AM-8PM</p>
+                </div>
+            </div>
+            
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>© 2024 On The Way Heating & Air. All Rights Reserved.</p>
+                <div class="footer-legal">
+                    <a href="../privacy-policy.html">Privacy Policy</a>
+                    <a href="../terms-and-conditions.html">Terms & Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../main.js" defer></script>
+    
+    <!-- Chat Widget - Lazy loaded after 3 seconds for performance -->
+    <script>
+        setTimeout(function() {
+            var chatScript = document.createElement('script');
+            chatScript.src = 'https://widgets.leadconnectorhq.com/loader.js';
+            chatScript.setAttribute('data-resources-url', 'https://widgets.leadconnectorhq.com/chat-widget/loader.js');
+            chatScript.setAttribute('data-widget-id', '697d34a60079c39552ddfad9');
+            document.body.appendChild(chatScript);
+        }, 5000);
+    </script>
+
+</body>
+</html>

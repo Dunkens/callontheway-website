@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="On The Way Heating & Air">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+    <link rel="icon" type="image/png" sizes="512x512" href="../../icon.png">
+    <link rel="apple-touch-icon" href="../../icon.png">
+    
+    <!-- Preload Self-Hosted Fonts -->
+    <link rel="preload" href="../../poppins-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../../poppins-600.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../../poppins-700.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../../montserrat-800.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Critical CSS (inlined for fast LCP) -->
+    <style>
+    @font-face{font-family:'Poppins';src:url('../../poppins-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+    @font-face{font-family:'Poppins';src:url('../../poppins-600.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+    @font-face{font-family:'Poppins';src:url('../../poppins-700.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+    @font-face{font-family:'Montserrat';src:url('../../montserrat-800.woff2') format('woff2');font-weight:800;font-style:normal;font-display:swap}
+    :root{--primary-purple:#4a1a6b;--primary-magenta:#8b1a6b;--white:#ffffff;--off-white:#f8f9fa;--light-gray:#e9ecef;--font-primary:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--font-heading:'Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--spacing-xs:0.5rem;--spacing-sm:1rem;--spacing-md:1.5rem;--spacing-lg:2rem;--spacing-xl:3rem;--spacing-xxl:5rem;--radius-md:8px;--shadow-sm:0 2px 4px rgba(0,0,0,0.08);--transition-fast:0.2s ease;--transition-normal:0.3s ease;--container-max:1200px}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:var(--font-primary);font-size:1.25rem;line-height:1.7;color:var(--off-white);background-color:#2f0048;-webkit-font-smoothing:antialiased}
+    img{max-width:100%;height:auto;display:block}
+    a{text-decoration:none;color:inherit;transition:var(--transition-fast)}
+    ul,ol{list-style:none}
+    h1,h2,h3,h4,h5,h6{font-family:var(--font-heading);font-weight:700;line-height:1.2;margin-bottom:var(--spacing-sm)}
+    h1{font-size:clamp(2rem,5vw,3rem);color:#fff}
+    h2{font-size:clamp(1.75rem,4vw,2.5rem);color:#FFEF76}
+    h3{font-size:clamp(1.25rem,3vw,1.75rem);color:#71CEEB}
+    .container{width:100%;max-width:var(--container-max);margin:0 auto;padding:0 var(--spacing-md)}
+    .header{position:sticky;top:0;z-index:1000;background-color:#2f0048;box-shadow:var(--shadow-sm)}
+    .nav-bar{padding:var(--spacing-sm) 0}
+    .nav-inner{display:flex;justify-content:space-between;align-items:center;gap:var(--spacing-md)}
+    .logo-group{display:flex;align-items:center;gap:10px}
+    .logo img{height:80px;width:auto}
+    .navbar-mascot{display:none;height:50px;width:auto}
+    .nav-menu{display:flex;align-items:center;gap:var(--spacing-xs)}
+    .nav-item{position:relative}
+    .nav-link{display:block;padding:var(--spacing-sm) var(--spacing-md);font-weight:700;color:#71CEEB;font-size:1.1rem;border-radius:var(--radius-md);transition:var(--transition-fast)}
+    .nav-link:hover{color:#FFEF76;background-color:#3d0059}
+    .nav-dropdown{position:absolute;top:100%;left:0;min-width:200px;background-color:#2f0048;box-shadow:0 8px 24px rgba(0,0,0,0.16);border-radius:var(--radius-md);opacity:0;visibility:hidden;transform:translateY(10px);transition:var(--transition-normal);z-index:100;padding:var(--spacing-xs) 0}
+    .nav-item:hover .nav-dropdown{opacity:1;visibility:visible;transform:translateY(0)}
+    .nav-dropdown a{display:block;padding:var(--spacing-sm) var(--spacing-md);color:#fff;font-size:1.05rem}
+    .nav-dropdown a:hover{background-color:#3d0059;color:#FFEF76}
+    .header-cta{margin-left:var(--spacing-sm);background-color:#71CEEB!important;color:#2f0048!important;border-color:#71CEEB!important}
+    .nav-toggle{display:none;flex-direction:column;justify-content:center;align-items:center;width:44px;height:44px;background:none;border:none;cursor:pointer}
+    .nav-toggle span{display:block;width:24px;height:3px;background-color:#71CEEB;margin:4px 0;transition:var(--transition-normal);border-radius:2px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--spacing-xs);padding:0.75rem 1.5rem;font-family:var(--font-primary);font-size:1.05rem;font-weight:600;border:2px solid transparent;border-radius:var(--radius-md);cursor:pointer;transition:var(--transition-normal);text-align:center}
+    .btn-primary{background-color:var(--primary-purple);color:var(--white);border-color:var(--primary-purple)}
+    .btn-outline-light{background-color:transparent;border-color:var(--white);color:var(--white)}
+    .btn-lg{padding:1rem 2rem;font-size:1.1rem}
+    @media(max-width:992px){.nav-toggle{display:flex}.nav-menu{position:fixed;top:0;right:-100%;width:85%;max-width:350px;height:100vh;background-color:#2f0048;flex-direction:column;align-items:flex-start;padding:80px var(--spacing-lg) var(--spacing-xxl);transition:right 0.3s ease;box-shadow:-5px 0 20px rgba(0,0,0,0.3);overflow-y:auto;z-index:1001}.nav-menu.active{right:0}.header-cta{display:none}.navbar-mascot{display:block}}
+    </style>
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../../styles.css?v=2.4">
+
+    <meta name="description" content="On The Way Heating & Air is your local HVAC contractor in Northdale, Florida, providing straightforward air conditioning and heating repair. We proudly serve our neighbors in Carrollwood, Lutz, and the University Area with our Same Day… Or Don't Pay* guarantee. Call us right away at 813-922-2209.">
+    <meta name="keywords" content="HVAC contractor Northdale, AC repair Northdale FL, heating repair Northdale, air conditioning Northdale Florida, HVAC service Northdale">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="HVAC Contractor in Northdale, FL | On The Way Heating & Air">
+    <meta property="og:description" content="On The Way Heating & Air is your local HVAC contractor in Northdale, Florida, providing straightforward air conditioning and heating repair.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://callontheway.com/pages/locations/northdale.html">
+    <meta property="og:image" content="https://callontheway.com/logo.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="On The Way Heating & Air">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="HVAC Contractor in Northdale, FL | On The Way Heating & Air">
+    <meta name="twitter:description" content="On The Way Heating & Air is your local HVAC contractor in Northdale, Florida, providing straightforward air conditioning and heating repair.">
+    <meta name="twitter:image" content="https://callontheway.com/logo.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://callontheway.com/pages/locations/northdale.html">
+    
+    <title>HVAC Contractor in Northdale, FL | On The Way Heating & Air</title>
+    
+    <!-- Schema.org Structured Data - LocalBusiness -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HVACBusiness",
+        "@id": "https://callontheway.com/pages/locations/northdale.html#business",
+        "name": "On The Way Heating & Air - Northdale",
+        "description": "Local HVAC contractor in Northdale, Florida providing air conditioning repair, heating services, and indoor air quality solutions.",
+        "url": "https://callontheway.com/pages/locations/northdale.html",
+        "telephone": "+1-813-922-2209",
+        "image": "https://callontheway.com/logo.jpg",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Northdale",
+            "addressRegion": "FL",
+            "addressCountry": "US"
+        },
+        "areaServed": [
+            {"@type": "City", "name": "Northdale"},
+            {"@type": "City", "name": "Carrollwood"},
+            {"@type": "City", "name": "Lutz"},
+            {"@type": "City", "name": "University Area"}
+        ],
+        "priceRange": "$$",
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                "opens": "07:00",
+                "closes": "20:00"
+            }
+        ]
+    }
+    </script>
+    
+    <!-- Schema.org Structured Data - BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://callontheway.com/"},
+            {"@type": "ListItem", "position": 2, "name": "Locations", "item": "https://callontheway.com/pages/locations/"},
+            {"@type": "ListItem", "position": 3, "name": "Northdale", "item": "https://callontheway.com/pages/locations/northdale.html"}
+        ]
+    }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-bar">
+            <div class="container">
+                <div class="nav-inner">
+                    <div class="logo-group">
+                        <a href="../../index.html" class="logo">
+                            <img src="../../On-The-Way.webp" alt="On The Way Heating & Air Logo" width="180" height="138" loading="eager">
+                        </a>
+                        <img src="../../mascot-navbar.webp" alt="On The Way Mascot" class="navbar-mascot" width="50" height="55" loading="eager">
+                    </div>
+                    
+                    <button class="nav-toggle" aria-label="Toggle Navigation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    
+                    <ul class="nav-menu">
+                        <li class="nav-item has-dropdown">
+                            <a href="#" class="nav-link">Services ▾</a>
+                            <div class="nav-dropdown nav-dropdown-mega">
+                                <div class="nav-dropdown-section">
+                                    <span class="nav-dropdown-heading">Air Conditioning</span>
+                                    <a href="../../pages/services/ac/emergency-ac-repair.html">Emergency AC Repair</a>
+                                    <a href="../../pages/services/ac/air-conditioning-repair.html">AC Repair</a>
+                                    <a href="../../pages/services/ac/ac-installation.html">AC Installation</a>
+                                    <a href="../../pages/services/ac/ac-replacement.html">AC Replacement</a>
+                                    <a href="../../pages/services/ac/ac-tune-up.html">AC Tune-Up</a>
+                                    <a href="../../pages/services/ac/ac-maintenance.html">AC Maintenance</a>
+                                    <a href="../../pages/services/ac/central-ac-repair.html">Central AC Repair</a>
+                                    <a href="../../pages/services/ac/ac-compressor-replacement.html">AC Compressor Replacement</a>
+                                    <a href="../../pages/services/ac/ac-capacitor-replacement.html">AC Capacitor Replacement</a>
+                                    <a href="../../pages/services/ac/condensate-drain-cleaning.html">Condensate Drain Cleaning</a>
+                                    <a href="../../pages/services/ac/evaporator-coil-replacement.html">Evaporator Coil Replacement</a>
+                                    <a href="../../pages/services/ac/ac-refrigerant-recharge.html">AC Refrigerant Recharge</a>
+                                    <a href="../../pages/services/ac/ac-blower-motor-replacement.html">AC Blower Motor Replacement</a>
+                                    <a href="../../pages/services/ac/ac-contactor-replacement.html">AC Contactor Replacement</a>
+                                    <a href="../../pages/services/ac/condenser-fan-motor-repair.html">Condenser Fan Motor Repair</a>
+                                </div>
+                                <div class="nav-dropdown-section">
+                                    <span class="nav-dropdown-heading">Heating</span>
+                                    <a href="../../pages/services/heating/emergency-heating-repair.html">Emergency Heating Repair</a>
+                                    <a href="../../pages/services/heating/heat-pump-repair.html">Heat Pump Repair</a>
+                                    <a href="../../pages/services/heating/heat-pump-installation.html">Heat Pump Installation</a>
+                                    <a href="../../pages/services/heating/heat-pump-replacement.html">Heat Pump Replacement</a>
+                                    <a href="../../pages/services/heating/furnace-repair.html">Furnace Repair</a>
+                                    <a href="../../pages/services/heating/heating-installation.html">Heating Installation</a>
+                                    <a href="../../pages/services/heating/heating-replacement.html">Heating Replacement</a>
+                                    <a href="../../pages/services/heating/heating-tune-up.html">Heating Tune-Up</a>
+                                    <a href="../../pages/services/heating/heat-pump-tune-up.html">Heat Pump Tune-Up</a>
+                                    <a href="../../pages/services/heating/thermostat-repair.html">Thermostat Repair</a>
+                                    <a href="../../pages/services/heating/defrost-board-repair.html">Defrost Board Repair</a>
+                                    <a href="../../pages/services/heating/heat-pump-capacitor-replacement.html">Heat Pump Capacitor Replacement</a>
+                                    <a href="../../pages/services/heating/gas-valve-repair.html">Gas Valve Repair</a>
+                                    <a href="../../pages/services/heating/furnace-ignitor-replacement.html">Furnace Ignitor Replacement</a>
+                                    <a href="../../pages/services/heating/reversing-valve-repair.html">Reversing Valve Repair</a>
+                                </div>
+                                <div class="nav-dropdown-section">
+                                    <span class="nav-dropdown-heading">Air Quality</span>
+                                    <a href="../../pages/services/air-quality/air-duct-cleaning.html">Air Duct Cleaning</a>
+                                    <a href="../../pages/services/air-quality/duct-repair.html">Duct Repair</a>
+                                    <a href="../../pages/services/air-quality/duct-installation.html">Duct Installation</a>
+                                    <a href="../../pages/services/air-quality/duct-sealing.html">Duct Sealing</a>
+                                    <a href="../../pages/services/air-quality/air-purifier-installation.html">Air Purifier Installation</a>
+                                    <a href="../../pages/services/air-quality/uv-light-installation.html">UV Light Installation</a>
+                                    <a href="../../pages/services/air-quality/whole-home-dehumidifier-installation.html">Dehumidifier Installation</a>
+                                    <a href="../../pages/services/air-quality/air-filter-replacement.html">Air Filter Replacement</a>
+                                    <a href="../../pages/services/air-quality/hepa-filter-installation.html">HEPA Filter Installation</a>
+                                    <a href="../../pages/services/air-quality/indoor-evaporator-coil-cleaning.html">Evaporator Coil Cleaning</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item has-dropdown">
+                            <a href="../../pages/locations/index.html" class="nav-link">Locations ▾</a>
+                            <div class="nav-dropdown">
+                                <a href="../../pages/locations/lutz.html">Lutz</a>
+                                <a href="../../pages/locations/wesley-chapel.html">Wesley Chapel</a>
+                                <a href="../../pages/locations/carrollwood.html">Carrollwood</a>
+                                <a href="../../pages/locations/new-tampa.html">New Tampa</a>
+                                <a href="../../pages/locations/land-o-lakes.html">Land O' Lakes</a>
+                                <a href="../../pages/locations/temple-terrace.html">Temple Terrace</a>
+                                <a href="../../pages/locations/northdale.html">Northdale</a>
+                                <a href="../../pages/locations/seminole-heights.html">Seminole Heights</a>
+                                <a href="../../pages/locations/university-area.html">University Area</a>
+                                <a href="../../pages/locations/east-tampa.html">East Tampa</a>
+                                <a href="../../pages/locations/index.html">View All →</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../pricing.html" class="nav-link">Pricing</a>
+                        </li>
+                        <li class="nav-item has-dropdown">
+                            <a href="#" class="nav-link">Resources ▾</a>
+                            <div class="nav-dropdown">
+                                <a href="../../faq.html">FAQ</a>
+                                <a href="../../blog.html">Blog</a>
+                                <a href="../../testimonials.html">Testimonials</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../pages/contact.html" class="nav-link">Contact</a>
+                        </li>
+                    </ul>
+                    
+                    <a href="tel:8139222209" class="btn btn-primary header-cta">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        (813) 922-2209
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <picture>
+                <source media="(max-width: 768px)" srcset="../../hero-mobile-bg.webp" width="750" height="1000">
+                <img src="../../hero-1920.webp" alt="HVAC Contractor in Northdale, Florida" class="hero-bg-img" width="1920" height="450" loading="eager">
+            </picture>
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">HVAC Contractor in Northdale, Florida</h1>
+                    <p class="hero-subtitle">Your Local Neighbors for Straightforward AC & Heating Service.</p>
+                    <div class="hero-buttons">
+                        <a href="tel:8139222209" class="btn btn-primary btn-lg">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                            Call (813) 922-2209
+                        </a>
+                        <a href="#" class="btn btn-outline-light btn-lg" onclick="openQuoteModal(); return false;">Request Service</a>
+                    </div>
+                </div>
+            </div>
+            <img src="../../mascot.webp" alt="On The Way Mascot" class="hero-mascot" width="300" height="328" loading="eager">
+        </section>
+
+        <!-- Main Content -->
+        <section style="padding: var(--spacing-xxl) 0;">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto;">
+                    
+                    <!-- Intro -->
+                    <p>On The Way Heating & Air is your local HVAC contractor in Northdale, Florida, providing straightforward air conditioning and heating repair. We proudly serve our neighbors in Carrollwood, Lutz, and the University Area with our Same Day… Or Don't Pay* guarantee. Call us right away at <a href="tel:8139222209" style="color: #71CEEB;">813-922-2209</a>.</p>
+
+                    <!-- Same Day Guarantee Image -->
+                    <figure style="margin: var(--spacing-xl) 0; text-align: center; display: flex; justify-content: center;">
+                        <img src="../../images/services/air-quality/same-day-guarantee.webp" alt="Same Day Or Don't Pay Guarantee - If we can't fix the issue the same day we go out to diagnose it, the service fee is FREE" width="600" height="439" loading="lazy" style="width: 100%; max-width: 500px; height: auto; border-radius: var(--radius-md);">
+                    </figure>
+
+                    <!-- Common AC Repair Issues Section -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;">Common AC Repair Issues We Fix in Northdale</h2>
+                    <p>Northdale is a great, established community, and we've been helping folks here keep their homes comfortable for years. A lot of the homes in Northdale were built in the 70s and 80s, and while they're solid, their AC systems can start to show their age. A really common call we get from our neighbors just off Northdale Boulevard is for a system that's making a loud humming or buzzing noise. This almost always points to a failing capacitor, a simple part that gets worn out by our Florida heat and power surges.</p>
+                    
+                    <p>Another issue we see a lot in Northdale is a failing blower motor. After decades of service, these motors can start to struggle, leading to weak airflow and a house that just won't cool down. The constant humidity in our area can also cause rust and corrosion on the motor's parts, leading to an early failure. It's a repair we're very familiar with, and we can usually get it done on the same visit.</p>
+
+                    <!-- Tech Image -->
+                    <figure style="margin: var(--spacing-xl) 0; text-align: center;">
+                        <img src="../../images/services/air-quality/tech-hvac-system-repair.webp" alt="HVAC technician servicing AC unit in Northdale" width="600" height="426" loading="lazy" style="width: 100%; height: auto; border-radius: var(--radius-md);">
+                        <figcaption style="font-size: 0.9rem; color: rgba(255,255,255,0.7); margin-top: var(--spacing-xs);">Professional HVAC service for Northdale homeowners</figcaption>
+                    </figure>
+
+                    <!-- AC Capacitor Replacement Section -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;"><a href="../../pages/services/ac/ac-capacitor-replacement.html" style="color: #d81471; text-decoration: none;">AC Capacitor Replacement</a></h2>
+                    <p>The capacitor is like a battery that gives your AC the jolt it needs to start up. When it fails, your system might hum or buzz but won't actually kick on. Here in Northdale, the brutal summer heat and constant power surges from our afternoon thunderstorms wear these parts out faster than in other parts of the country. It's one of the most common repairs we do.</p>
+                    
+                    <p>A failing capacitor can also cause your system to start slowly or shut off randomly. If you notice your AC struggling to get going, or if it's cycling on and off more than usual, the capacitor is often the culprit. The good news is it's a straightforward fix. We carry common capacitors on our trucks and can usually get you back up and running on the same visit.</p>
+                    
+                    <blockquote style="background: rgba(255, 239, 118, 0.1); border-left: 4px solid #FFEF76; padding: var(--spacing-md); margin: var(--spacing-lg) 0; border-radius: var(--radius-md); font-style: italic;">
+                        <strong>Pro-Tip:</strong> If your outdoor unit is humming but the fan isn't spinning, try giving it a gentle push with a stick (carefully, from a distance). If it starts, that's a sure sign your capacitor is worn out and needs replacing.
+                    </blockquote>
+
+                    <!-- AC Contactor Replacement Section -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;"><a href="../../pages/services/ac/ac-contactor-replacement.html" style="color: #d81471; text-decoration: none;">AC Contactor Replacement</a></h2>
+                    <p>The contactor is essentially a heavy-duty switch that controls the flow of electricity to your compressor and condenser fan. Every time your AC cycles on, this switch closes and an electrical arc is created. Over thousands of cycles, those arcs cause the contact points to get pitted and worn out, until they can't make a clean connection anymore.</p>
+                    
+                    <p>When a contactor fails, your outdoor unit might not turn on at all, or you might hear a chattering or buzzing sound coming from it. Here in Northdale, we also see a lot of contactors that get gunked up with ants or even small geckos—they're attracted to the electrical current and can cause the switch to fail. It's a mess, but it's a repair we handle all the time.</p>
+                    
+                    <blockquote style="background: rgba(255, 239, 118, 0.1); border-left: 4px solid #FFEF76; padding: var(--spacing-md); margin: var(--spacing-lg) 0; border-radius: var(--radius-md); font-style: italic;">
+                        <strong>Pro-Tip:</strong> If you hear a loud buzzing from your outdoor unit but nothing's running, don't keep trying to turn it on. You could damage other components. Give us a call right away.
+                    </blockquote>
+
+                    <!-- Blower Motor Replacement Section -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;"><a href="../../pages/services/ac/ac-blower-motor-replacement.html" style="color: #d81471; text-decoration: none;">Blower Motor Replacement</a></h2>
+                    <p>The blower motor is the heart of your indoor unit. It's the powerful fan that pushes all that cool air through your ducts and into your rooms. When it fails, you'll notice weak or no airflow from your vents, even though you can hear the system trying to run. Sometimes you'll hear a loud humming, rattling, or screeching sound—that's the motor struggling.</p>
+                    
+                    <p>Tampa's thick, humid air does a number on blower motors. The constant moisture can lead to rust and corrosion on the motor's internal parts, and because our AC systems run nearly year-round, the heavy use simply wears them out over time. A worn out blower motor also has to work harder, which drives up your energy bills.</p>
+                    
+                    <blockquote style="background: rgba(255, 239, 118, 0.1); border-left: 4px solid #FFEF76; padding: var(--spacing-md); margin: var(--spacing-lg) 0; border-radius: var(--radius-md); font-style: italic;">
+                        <strong>Pro-Tip:</strong> Once a year, have a technician clean your blower assembly. Removing the dust and grime that builds up on the fan blades helps the motor run more efficiently and can extend its life significantly.
+                    </blockquote>
+
+                    <!-- Tech Image 2 -->
+                    <figure style="margin: var(--spacing-xl) 0; text-align: center;">
+                        <img src="../../images/services/air-quality/tech-ac-fan-repair.webp" alt="On The Way technician servicing HVAC system" width="600" height="337" loading="lazy" style="width: 100%; height: auto; border-radius: var(--radius-md);">
+                        <figcaption style="font-size: 0.9rem; color: rgba(255,255,255,0.7); margin-top: var(--spacing-xs);">Expert HVAC service from your local Northdale neighbors</figcaption>
+                    </figure>
+
+                    <!-- Condenser Fan Motor Repair Section -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;"><a href="../../pages/services/ac/condenser-fan-motor-repair.html" style="color: #d81471; text-decoration: none;">Condenser Fan Motor Repair</a></h2>
+                    <p>The condenser fan sits on top of your outdoor unit. Its job is to pull air through the condenser coils to release the heat that was removed from your home. If this fan stops spinning, your compressor will quickly overheat and shut down to protect itself. You might notice your AC cycles off after just a few minutes, or that the outdoor unit is hot to the touch.</p>
+                    
+                    <p>Tampa's climate is a triple threat to condenser fan motors. The intense, direct sun bakes the motor's bearings. The high humidity causes corrosion. And our frequent power surges can fry the motor's electronics. If your outdoor fan isn't spinning, don't run the system—you could cause serious damage to your compressor.</p>
+                    
+                    <blockquote style="background: rgba(255, 239, 118, 0.1); border-left: 4px solid #FFEF76; padding: var(--spacing-md); margin: var(--spacing-lg) 0; border-radius: var(--radius-md); font-style: italic;">
+                        <strong>Pro-Tip:</strong> Keep the area around your outdoor unit clear. Trim back bushes and remove any leaves or debris from the top and sides. Good airflow helps the fan motor run cooler and last longer.
+                    </blockquote>
+
+                    <!-- Refrigerant Leak Repair Section -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;"><a href="../../pages/services/ac/ac-refrigerant-recharge.html" style="color: #d81471; text-decoration: none;">Refrigerant Leak Repair</a></h2>
+                    <p>Refrigerant is the lifeblood of your AC system. It's the substance that actually absorbs the heat from inside your home and releases it outside. If you have a leak, your system can't do its job. You'll notice the air coming from your vents isn't as cold as it used to be, or you might see ice forming on the indoor coils.</p>
+                    
+                    <p>Leaks usually happen at connection points or from corrosion eating through the copper lines—something that's accelerated by Tampa's humid, salty air. Running your AC with low refrigerant is a bad idea; it puts a huge strain on the compressor and can lead to a much more expensive failure. If you suspect a leak, it's best to call us right away.</p>
+                    
+                    <blockquote style="background: rgba(255, 239, 118, 0.1); border-left: 4px solid #FFEF76; padding: var(--spacing-md); margin: var(--spacing-lg) 0; border-radius: var(--radius-md); font-style: italic;">
+                        <strong>Pro-Tip:</strong> If you see ice on your indoor unit, turn the AC off immediately. Let it thaw completely before turning it back on. Running it while frozen can destroy your compressor.
+                    </blockquote>
+
+                    <!-- Compressor Replacement Section -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;"><a href="../../pages/services/ac/ac-compressor-replacement.html" style="color: #d81471; text-decoration: none;">Compressor Replacement</a></h2>
+                    <p>The compressor is the most important—and most expensive—part of your AC system. It's the pump that circulates refrigerant through the coils, making the whole cooling process possible. When it fails, your AC is dead in the water. You might hear a loud banging or clanking noise from the outdoor unit, or it might just refuse to turn on at all.</p>
+                    
+                    <p>Compressors fail for a few reasons: worn-out parts from age, electrical problems, or running the system with low refrigerant for too long. In our climate, the near-constant operation puts a lot of stress on this critical component. If your compressor has failed, we'll give you an honest assessment of whether it makes sense to replace it or if it's time to consider a new system.</p>
+                    
+                    <blockquote style="background: rgba(255, 239, 118, 0.1); border-left: 4px solid #FFEF76; padding: var(--spacing-md); margin: var(--spacing-lg) 0; border-radius: var(--radius-md); font-style: italic;">
+                        <strong>Pro-Tip:</strong> Don't ignore weird noises from your outdoor unit. Catching compressor issues early can sometimes save you from a full replacement, which costs a lot more than a smaller repair.
+                    </blockquote>
+
+                    <!-- Drain Line Cleaning Section -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;"><a href="../../pages/services/ac/condensate-drain-cleaning.html" style="color: #d81471; text-decoration: none;">Drain Line Cleaning</a></h2>
+                    <p>Your AC doesn't just cool the air; it also pulls moisture out of it. That water has to go somewhere, and it drains out through a small PVC pipe called the condensate drain line. Over time, this line gets clogged with algae, mold, and sludge—especially in our humid Tampa climate. When it clogs, water backs up and can overflow, causing leaks and water damage inside your home.</p>
+                    
+                    <p>A clogged drain line is one of the most common service calls we get in Northdale, and it's completely preventable with a little maintenance. If you notice water pooling around your indoor unit or a musty smell when the AC runs, a clogged drain is likely the problem. We'll clear the line and get everything draining properly again.</p>
+                    
+                    <blockquote style="background: rgba(255, 239, 118, 0.1); border-left: 4px solid #FFEF76; padding: var(--spacing-md); margin: var(--spacing-lg) 0; border-radius: var(--radius-md); font-style: italic;">
+                        <strong>Pro-Tip:</strong> Pour a cup of plain white vinegar down your drain line once a month. It helps kill the algae and mold that cause clogs. It's a simple thing that can save you a service call.
+                    </blockquote>
+
+                    <!-- Same Day Or Don't Pay Section -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;">Same Day… Or Don't Pay*</h2>
+                    <p>We know that when your AC goes out in Tampa, you can't wait around. That's why we guarantee same-day service. If we can't get to you the same day you call, your diagnostic and service fee is waived. It's that simple.</p>
+                    
+                    <p>We understand the unique challenges of maintaining an HVAC system in Northdale, from the humid air to the strain of near-constant operation. We're committed to providing solutions that last. We stand behind our work, and if you're not happy, we'll come back and make it right.</p>
+
+                    <!-- Why Choose Us Section -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;">Why Choose On The Way Heating & Air</h2>
+                    
+                    <div style="display: grid; gap: var(--spacing-md); margin-top: var(--spacing-lg);">
+                        <div style="background: linear-gradient(135deg, #83009D 0%, #2f0048 100%); padding: var(--spacing-lg); border-radius: var(--radius-md);">
+                            <h3 style="color: #71CEEB; margin-top: 0;">We're Local</h3>
+                            <p style="margin-bottom: 0;">We're not a national chain; we're part of the Northdale community.</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #83009D 0%, #2f0048 100%); padding: var(--spacing-lg); border-radius: var(--radius-md);">
+                            <h3 style="color: #71CEEB; margin-top: 0;">Straightforward Pricing</h3>
+                            <p style="margin-bottom: 0;">We provide clear, upfront quotes with no hidden fees.</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #83009D 0%, #2f0048 100%); padding: var(--spacing-lg); border-radius: var(--radius-md);">
+                            <h3 style="color: #71CEEB; margin-top: 0;">Honest Advice</h3>
+                            <p style="margin-bottom: 0;">We'll never try to sell you something you don't need.</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #83009D 0%, #2f0048 100%); padding: var(--spacing-lg); border-radius: var(--radius-md);">
+                            <h3 style="color: #71CEEB; margin-top: 0;">Same-Day Service</h3>
+                            <p style="margin-bottom: 0;">We know you need relief right away, and we're equipped to handle most repairs on the first visit.</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #83009D 0%, #2f0048 100%); padding: var(--spacing-lg); border-radius: var(--radius-md);">
+                            <h3 style="color: #71CEEB; margin-top: 0;">Same Day… Or Don't Pay*</h3>
+                            <p style="margin-bottom: 0;">If we can't make it the same day, your diagnostic and service fee is waived.</p>
+                        </div>
+                    </div>
+
+                    <!-- Related Services -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;">Our Services in Northdale</h2>
+                    <p>We offer a full range of HVAC services for Northdale homeowners:</p>
+                    <ul style="margin-bottom: var(--spacing-md);">
+                        <li><a href="../../pages/services/ac/emergency-ac-repair.html" style="color: #71CEEB;">Emergency AC Repair</a> – Fast response when your AC fails.</li>
+                        <li><a href="../../pages/services/ac/ac-capacitor-replacement.html" style="color: #71CEEB;">AC Capacitor Replacement</a> – Get your system starting again.</li>
+                        <li><a href="../../pages/services/ac/ac-contactor-replacement.html" style="color: #71CEEB;">AC Contactor Replacement</a> – Fix electrical switching issues.</li>
+                        <li><a href="../../pages/services/ac/ac-blower-motor-replacement.html" style="color: #71CEEB;">Blower Motor Replacement</a> – Restore airflow to your home.</li>
+                        <li><a href="../../pages/services/ac/condenser-fan-motor-repair.html" style="color: #71CEEB;">Condenser Fan Motor Repair</a> – Keep your outdoor unit running.</li>
+                        <li><a href="../../pages/services/ac/ac-refrigerant-recharge.html" style="color: #71CEEB;">Refrigerant Leak Repair</a> – Find and fix leaks.</li>
+                        <li><a href="../../pages/services/ac/ac-compressor-replacement.html" style="color: #71CEEB;">Compressor Replacement</a> – Major repairs done right.</li>
+                        <li><a href="../../pages/services/ac/condensate-drain-cleaning.html" style="color: #71CEEB;">Drain Line Cleaning</a> – Prevent water damage.</li>
+                    </ul>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section with Form -->
+        <section id="contact-form" class="cta-form-section" style="background: linear-gradient(135deg, #83009D 0%, #2f0048 100%); padding: var(--spacing-xxl) 0;">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                    <h2 style="color: #FFEF76;">Ready for Straightforward, Honest HVAC Service?</h2>
+                    <p style="font-size: 1.2rem; margin-bottom: var(--spacing-lg);">Give your neighbors at On The Way Heating & Air a call. We're ready to help.</p>
+                    <p style="font-size: 1.3rem; margin-bottom: var(--spacing-lg);"><strong>Call <a href="tel:8139222209" style="color: #71CEEB;">813-922-2209</a></strong> or fill out the form below.</p>
+                    
+                    <!-- LeadConnector Form - Lazy loaded for performance -->
+                    <div id="form-container" style="margin-top: var(--spacing-lg); overflow: hidden;">
+                        <!-- Form placeholder while loading -->
+                        <div id="form-placeholder" style="width:100%;height:625px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.05);border-radius:3px;">
+                            <div style="text-align:center;color:#71CEEB;">
+                                <div style="font-size:2rem;margin-bottom:10px;">Loading form...</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <script>
+                    setTimeout(function() {
+                        var placeholder = document.getElementById('form-placeholder');
+                        var container = document.getElementById('form-container');
+                        var iframe = document.createElement('iframe');
+                        iframe.src = 'https://go.callontheway.com/widget/form/lyAbCf7HHTdJzkGQz4Iv';
+                        iframe.style.cssText = 'width:100%;min-height:625px;border:none;background:transparent;';
+                        iframe.scrolling = 'no';
+                        iframe.loading = 'lazy';
+                        iframe.title = 'Contact Form';
+                        if (placeholder && container) {
+                            placeholder.style.display = 'none';
+                            container.appendChild(iframe);
+                        }
+                    }, 5000);
+                    </script>
+                    
+                    <p style="margin-top: var(--spacing-lg); font-size: 1rem;">Serving Northdale, Carrollwood, Lutz, University Area, and surrounding communities.</p>
+                    
+                    <p style="margin-top: var(--spacing-lg); font-size: 0.9rem; opacity: 0.8;">*Same-day service guarantee: Calls received before 3 PM on regular business days—if we can't make it the same day, your diagnostic/service fee is waived.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Logo & About -->
+                <div class="footer-about">
+                    <img src="../../footer-logo.webp" alt="On The Way Heating & Air Logo" width="180" height="72" loading="lazy" class="footer-logo">
+                    <p>Serving North Tampa since day one with reliable HVAC solutions.</p>
+                    <p><strong>Licensed & Insured</strong><br>License #CAC1820863</p>
+                </div>
+                
+                <!-- Services -->
+                <div class="footer-links-col">
+                    <div class="footer-title">Services</div>
+                    <a href="../../pages/services/ac/ac-repair.html">AC Repair</a>
+                    <a href="../../pages/services/ac/ac-installation.html">AC Installation</a>
+                    <a href="../../pages/services/heating/furnace-repair.html">Furnace Repair</a>
+                    <a href="../../pages/services/heating/heat-pump-installation.html">Heat Pump Installation</a>
+                    <a href="../../pages/services/air-quality/air-duct-cleaning.html">Air Duct Cleaning</a>
+                </div>
+                
+                <!-- Locations -->
+                <div class="footer-links-col">
+                    <div class="footer-title">Service Areas</div>
+                    <a href="../../pages/locations/lutz.html">Lutz</a>
+                    <a href="../../pages/locations/wesley-chapel.html">Wesley Chapel</a>
+                    <a href="../../pages/locations/carrollwood.html">Carrollwood</a>
+                    <a href="../../pages/locations/new-tampa.html">New Tampa</a>
+                    <a href="../../pages/locations/land-o-lakes.html">Land O' Lakes</a>
+                </div>
+                
+                <!-- Contact -->
+                <div class="footer-contact">
+                    <div class="footer-title">Contact</div>
+                    <p>
+                        <strong>On The Way Heating & Air</strong><br>
+                        18711 N Dale Mabry Hwy<br>Suite 7<br>
+                        Lutz, Florida 33548
+                    </p>
+                    <p><a href="tel:8139222209">(813) 922-2209</a></p>
+                    <p>Hours: Mon-Sat 7AM-8PM</p>
+                </div>
+            </div>
+            
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>© 2024 On The Way Heating & Air. All Rights Reserved.</p>
+                <div class="footer-legal">
+                    <a href="../../privacy-policy.html">Privacy Policy</a>
+                    <a href="../../terms-and-conditions.html">Terms & Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../../main.js" defer></script>
+    
+    <!-- Chat Widget - Lazy loaded after 3 seconds for performance -->
+    <script>
+        setTimeout(function() {
+            var chatScript = document.createElement('script');
+            chatScript.src = 'https://widgets.leadconnectorhq.com/loader.js';
+            chatScript.setAttribute('data-resources-url', 'https://widgets.leadconnectorhq.com/chat-widget/loader.js');
+            chatScript.setAttribute('data-widget-id', '697d34a60079c39552ddfad9');
+            document.body.appendChild(chatScript);
+        }, 5000);
+    </script>
+
+
+    <!-- Quote Form Modal -->
+    <div id="quote-modal" class="quote-modal" style="display:none;">
+        <div class="quote-modal-overlay" onclick="closeQuoteModal()"></div>
+        <div class="quote-modal-content">
+            <button class="quote-modal-close" onclick="closeQuoteModal()" aria-label="Close modal">&times;</button>
+            <h2 style="color:#FFEF76;margin-bottom:1rem;text-align:center;">Request Service</h2>
+            <p style="color:#fff;margin-bottom:1.5rem;text-align:center;">Fill out the form and we'll contact you within 24 hours</p>
+            <div id="modal-form-placeholder" style="width:100%;height:625px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.05);border-radius:8px;">
+                <div style="text-align:center;color:#71CEEB;">
+                    <div style="font-size:2rem;margin-bottom:10px;">⏳</div>
+                    <div>Loading form...</div>
+                </div>
+            </div>
+            <div id="modal-form-container" style="display:none;"></div>
+        </div>
+    </div>
+    
+    <!-- Quote Modal Styles -->
+    <style>
+    .quote-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .quote-modal-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(4px);
+    }
+    .quote-modal-content {
+        position: relative;
+        background: linear-gradient(135deg, #2f0048 0%, #83009D 100%);
+        border-radius: 16px;
+        padding: 2rem;
+        max-width: 500px;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        animation: modalSlideIn 0.3s ease;
+    }
+    @keyframes modalSlideIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px) scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+    .quote-modal-close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 2rem;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: opacity 0.2s;
+        line-height: 1;
+    }
+    .quote-modal-close:hover {
+        opacity: 1;
+    }
+    @media (max-width: 768px) {
+        .quote-modal-content {
+            padding: 1.5rem;
+            max-height: 85vh;
+        }
+    }
+    </style>
+    
+    <!-- Quote Modal Script -->
+    <script>
+    var modalFormLoaded = false;
+    
+    function openQuoteModal() {
+        document.getElementById('quote-modal').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        
+        // Load form if not already loaded
+        if (!modalFormLoaded) {
+            loadModalForm();
+        }
+    }
+    
+    function closeQuoteModal() {
+        document.getElementById('quote-modal').style.display = 'none';
+        document.body.style.overflow = '';
+    }
+    
+    function loadModalForm() {
+        if (modalFormLoaded) return;
+        modalFormLoaded = true;
+        
+        var placeholder = document.getElementById('modal-form-placeholder');
+        var container = document.getElementById('modal-form-container');
+        
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://go.callontheway.com/widget/form/lyAbCf7HHTdJzkGQz4Iv';
+        iframe.style.cssText = 'width:100%;min-height:625px;border:none;border-radius:8px;background:transparent;';
+        iframe.id = 'modal-inline-lyAbCf7HHTdJzkGQz4Iv';
+        iframe.setAttribute('data-layout', "{'id':'INLINE'}");
+        iframe.setAttribute('data-trigger-type', 'alwaysShow');
+        iframe.setAttribute('data-trigger-value', '');
+        iframe.setAttribute('data-activation-type', 'alwaysActivated');
+        iframe.setAttribute('data-activation-value', '');
+        iframe.setAttribute('data-deactivation-type', 'neverDeactivate');
+        iframe.setAttribute('data-deactivation-value', '');
+        iframe.setAttribute('data-form-name', 'Form 5');
+        iframe.setAttribute('data-height', '625');
+        iframe.setAttribute('data-layout-iframe-id', 'modal-inline-lyAbCf7HHTdJzkGQz4Iv');
+        iframe.setAttribute('data-form-id', 'lyAbCf7HHTdJzkGQz4Iv');
+        iframe.title = 'Get Your Free HVAC Quote Form';
+        iframe.scrolling = 'no';
+        iframe.allow = 'geolocation';
+        
+        // Show container and hide placeholder when iframe loads
+        function showForm() {
+            placeholder.style.display = 'none';
+            container.style.display = 'block';
+        }
+        
+        iframe.onload = showForm;
+        
+        // Fallback: show form after 3 seconds even if onload doesn't fire
+        setTimeout(showForm, 3000);
+        
+        container.appendChild(iframe);
+        
+        // Load form embed script if not already loaded
+        if (!document.querySelector('script[src="https://go.callontheway.com/js/form_embed.js"]')) {
+            var script = document.createElement('script');
+            script.src = 'https://go.callontheway.com/js/form_embed.js';
+            document.body.appendChild(script);
+        }
+    }
+    
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeQuoteModal();
+        }
+    });
+    </script>
+</body>
+</html>

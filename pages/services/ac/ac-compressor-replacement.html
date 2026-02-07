@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="On The Way Heating & Air">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../../favicon.ico">
+    <link rel="icon" type="image/png" sizes="512x512" href="../../../icon.png">
+    <link rel="apple-touch-icon" href="../../../icon.png">
+    
+    <!-- Preload Self-Hosted Fonts -->
+    <link rel="preload" href="../../../poppins-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../../../poppins-600.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../../../poppins-700.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../../../montserrat-800.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Critical CSS (inlined for fast LCP) -->
+    <style>
+    @font-face{font-family:'Poppins';src:url('../../../poppins-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+    @font-face{font-family:'Poppins';src:url('../../../poppins-600.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+    @font-face{font-family:'Poppins';src:url('../../../poppins-700.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+    @font-face{font-family:'Montserrat';src:url('../../../montserrat-800.woff2') format('woff2');font-weight:800;font-style:normal;font-display:swap}
+    :root{--primary-purple:#4a1a6b;--primary-magenta:#8b1a6b;--white:#ffffff;--off-white:#f8f9fa;--light-gray:#e9ecef;--font-primary:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--font-heading:'Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--spacing-xs:0.5rem;--spacing-sm:1rem;--spacing-md:1.5rem;--spacing-lg:2rem;--spacing-xl:3rem;--spacing-xxl:5rem;--radius-md:8px;--shadow-sm:0 2px 4px rgba(0,0,0,0.08);--transition-fast:0.2s ease;--transition-normal:0.3s ease;--container-max:1200px}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:var(--font-primary);font-size:1.25rem;line-height:1.7;color:var(--off-white);background-color:#2f0048;-webkit-font-smoothing:antialiased}
+    img{max-width:100%;height:auto;display:block}
+    a{text-decoration:none;color:inherit;transition:var(--transition-fast)}
+    ul,ol{list-style:none}
+    h1,h2,h3,h4,h5,h6{font-family:var(--font-heading);font-weight:700;line-height:1.2;margin-bottom:var(--spacing-sm)}
+    h1{font-size:clamp(2rem,5vw,3rem);color:#fff}
+    h2{font-size:clamp(1.75rem,4vw,2.5rem);color:#FFEF76}
+    h3{font-size:clamp(1.25rem,3vw,1.75rem);color:#71CEEB}
+    .container{width:100%;max-width:var(--container-max);margin:0 auto;padding:0 var(--spacing-md)}
+    .header{position:sticky;top:0;z-index:1000;background-color:#2f0048;box-shadow:var(--shadow-sm)}
+    .nav-bar{padding:var(--spacing-sm) 0}
+    .nav-inner{display:flex;justify-content:space-between;align-items:center;gap:var(--spacing-md)}
+    .logo-group{display:flex;align-items:center;gap:10px}
+    .logo img{height:80px;width:auto}
+    .navbar-mascot{display:none;height:50px;width:auto}
+    .nav-menu{display:flex;align-items:center;gap:var(--spacing-xs)}
+    .nav-item{position:relative}
+    .nav-link{display:block;padding:var(--spacing-sm) var(--spacing-md);font-weight:700;color:#71CEEB;font-size:1.1rem;border-radius:var(--radius-md);transition:var(--transition-fast)}
+    .nav-link:hover{color:#FFEF76;background-color:#3d0059}
+    .nav-dropdown{position:absolute;top:100%;left:0;min-width:200px;background-color:#2f0048;box-shadow:0 8px 24px rgba(0,0,0,0.16);border-radius:var(--radius-md);opacity:0;visibility:hidden;transform:translateY(10px);transition:var(--transition-normal);z-index:100;padding:var(--spacing-xs) 0}
+    .nav-item:hover .nav-dropdown{opacity:1;visibility:visible;transform:translateY(0)}
+    .nav-dropdown a{display:block;padding:var(--spacing-sm) var(--spacing-md);color:#fff;font-size:1.05rem}
+    .nav-dropdown a:hover{background-color:#3d0059;color:#FFEF76}
+    .header-cta{margin-left:var(--spacing-sm);background-color:#71CEEB!important;color:#2f0048!important;border-color:#71CEEB!important}
+    .nav-toggle{display:none;flex-direction:column;justify-content:center;align-items:center;width:44px;height:44px;background:none;border:none;cursor:pointer}
+    .nav-toggle span{display:block;width:24px;height:3px;background-color:#71CEEB;margin:4px 0;transition:var(--transition-normal);border-radius:2px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--spacing-xs);padding:0.75rem 1.5rem;font-family:var(--font-primary);font-size:1.05rem;font-weight:600;border:2px solid transparent;border-radius:var(--radius-md);cursor:pointer;transition:var(--transition-normal);text-align:center}
+    .btn-primary{background-color:var(--primary-purple);color:var(--white);border-color:var(--primary-purple)}
+    .btn-outline-light{background-color:transparent;border-color:var(--white);color:var(--white)}
+    .btn-lg{padding:1rem 2rem;font-size:1.1rem}
+    @media(max-width:992px){.nav-toggle{display:flex}.nav-menu{position:fixed;top:0;right:-100%;width:85%;max-width:350px;height:100vh;background-color:#2f0048;flex-direction:column;align-items:flex-start;padding:80px var(--spacing-lg) var(--spacing-xxl);transition:right 0.3s ease;box-shadow:-5px 0 20px rgba(0,0,0,0.3);overflow-y:auto;z-index:1001}.nav-menu.active{right:0}.header-cta{display:none}.navbar-mascot{display:block}}
+    </style>
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../../../styles.css?v=2.4">
+
+    <meta name="description" content="Professional AC compressor replacement in Tampa from On The Way Heating & Air. Expert diagnosis and honest repair vs replace advice. Call 813-922-2209.">
+    <meta name="keywords" content="AC compressor replacement Tampa, compressor repair Tampa, AC compressor Tampa, HVAC compressor replacement, air conditioner compressor Tampa">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="AC Compressor Replacement Tampa, FL | On The Way">
+    <meta property="og:description" content="Professional AC compressor replacement in Tampa. Expert diagnosis and honest repair vs replace advice.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://callontheway.com/pages/services/ac/ac-compressor-replacement.html">
+    <meta property="og:image" content="https://callontheway.com/logo.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="On The Way Heating & Air">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AC Compressor Replacement Tampa, FL | On The Way">
+    <meta name="twitter:description" content="Professional AC compressor replacement in Tampa. Expert diagnosis and honest repair vs replace advice.">
+    <meta name="twitter:image" content="https://callontheway.com/logo.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://callontheway.com/pages/services/ac/ac-compressor-replacement.html">
+    
+    <title>AC Compressor Replacement Tampa, FL | On The Way</title>
+    
+    <!-- Schema.org Structured Data - Service -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "@id": "https://callontheway.com/pages/services/ac/ac-compressor-replacement.html#service",
+        "name": "AC Compressor Replacement",
+        "serviceType": "Air Conditioning Compressor Replacement Service",
+        "description": "Professional AC compressor replacement in Tampa, FL. Expert diagnosis, honest repair vs replace advice, and quality installation.",
+        "provider": {
+            "@type": "HVACBusiness",
+            "@id": "https://callontheway.com/#business",
+            "name": "On The Way Heating & Air",
+            "telephone": "+1-813-922-2209",
+            "url": "https://callontheway.com"
+        },
+        "areaServed": [
+            {"@type": "City", "name": "Tampa", "sameAs": "https://en.wikipedia.org/wiki/Tampa,_Florida"},
+            {"@type": "City", "name": "Lutz"},
+            {"@type": "City", "name": "Wesley Chapel"},
+            {"@type": "City", "name": "Carrollwood"},
+            {"@type": "City", "name": "New Tampa"},
+            {"@type": "City", "name": "Land O' Lakes"}
+        ],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "AC Compressor Services",
+            "itemListElement": [
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Compressor Diagnosis"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Compressor Replacement"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Refrigerant Recovery and Recharge"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "System Flush and Cleanup"}}
+            ]
+        },
+        "image": "https://callontheway.com/images/services/ac/tech-ac-fan-repair.webp",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "127",
+            "bestRating": "5",
+            "worstRating": "1"
+        }
+    }
+    </script>
+    
+    <!-- Schema.org Structured Data - BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://callontheway.com/"},
+            {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://callontheway.com/pages/services/"},
+            {"@type": "ListItem", "position": 3, "name": "Air Conditioning", "item": "https://callontheway.com/pages/services/ac/"},
+            {"@type": "ListItem", "position": 4, "name": "AC Compressor Replacement", "item": "https://callontheway.com/pages/services/ac/ac-compressor-replacement.html"}
+        ]
+    }
+    </script>
+    
+    <!-- Schema.org Structured Data - FAQPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How long does a compressor last?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "10-15 years on average. In Tampa's climate with heavy use, expect closer to 10-12 years. Proper maintenance extends life, neglect shortens it."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I replace just the compressor or do I need a whole new outdoor unit?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sometimes you can replace just the compressor. Sometimes the whole outdoor unit needs replacement (especially if the coil's also failing). We'll assess your specific situation."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What's a matched system and why does it matter?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "A matched system means your indoor coil and outdoor unit are designed to work together—same brand, same efficiency rating, compatible refrigerant. Mismatched systems don't work efficiently."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Will compressor replacement improve my electric bills?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No. New compressor performs the same as your old compressor did when it was new. If you want lower bills, you need a higher-efficiency system, which means full replacement."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do I know if my compressor is under warranty?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Check your original paperwork from when the system was installed. Or give us the model and serial number—we can look up warranty status with the manufacturer."
+                }
+            }
+        ]
+    }
+    </script>
+    
+    <!-- Schema.org Structured Data - HowTo -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "AC Compressor Replacement Process",
+        "description": "Professional compressor replacement involves proper refrigerant recovery, system cleanup, and careful installation.",
+        "totalTime": "PT6H",
+        "estimatedCost": {
+            "@type": "MonetaryAmount",
+            "currency": "USD",
+            "value": "1500-3500"
+        },
+        "step": [
+            {
+                "@type": "HowToStep",
+                "name": "Refrigerant Recovery",
+                "text": "Recover any remaining refrigerant from your system using EPA-approved recovery equipment."
+            },
+            {
+                "@type": "HowToStep",
+                "name": "Compressor Removal and System Cleanup",
+                "text": "Remove old compressor, flush refrigerant lines, and replace filter drier to remove contamination."
+            },
+            {
+                "@type": "HowToStep",
+                "name": "New Compressor Installation",
+                "text": "Install new compressor, braze refrigerant lines with nitrogen flowing, and connect electrical."
+            },
+            {
+                "@type": "HowToStep",
+                "name": "Testing and Charging",
+                "text": "Pressure test, pull deep vacuum, charge with correct refrigerant amount, and verify proper operation."
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-bar">
+            <div class="container">
+                <div class="nav-inner">
+                    <div class="logo-group">
+                        <a href="../../../index.html" class="logo">
+                            <img src="../../../On-The-Way.webp" alt="On The Way Heating & Air Logo" width="180" height="138" loading="eager">
+                        </a>
+                        <img src="../../../mascot-navbar.webp" alt="On The Way Mascot" class="navbar-mascot" width="50" height="55" loading="eager">
+                    </div>
+                    
+                    <button class="nav-toggle" aria-label="Toggle Navigation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    
+                    <ul class="nav-menu">
+                        <li class="nav-item has-dropdown">
+                            <a href="#" class="nav-link">Services ▾</a>
+                            <div class="nav-dropdown nav-dropdown-mega">
+                                <div class="nav-dropdown-section">
+                                    <span class="nav-dropdown-heading">Air Conditioning</span>
+                                    <a href="../../../pages/services/ac/emergency-ac-repair.html">Emergency AC Repair</a>
+                                    <a href="../../../pages/services/ac/air-conditioning-repair.html">AC Repair</a>
+                                    <a href="../../../pages/services/ac/ac-installation.html">AC Installation</a>
+                                    <a href="../../../pages/services/ac/ac-replacement.html">AC Replacement</a>
+                                    <a href="../../../pages/services/ac/ac-tune-up.html">AC Tune-Up</a>
+                                    <a href="../../../pages/services/ac/ac-maintenance.html">AC Maintenance</a>
+                                    <a href="../../../pages/services/ac/central-ac-repair.html">Central AC Repair</a>
+                                    <a href="../../../pages/services/ac/ac-compressor-replacement.html">AC Compressor Replacement</a>
+                                    <a href="../../../pages/services/ac/ac-capacitor-replacement.html">AC Capacitor Replacement</a>
+                                    <a href="../../../pages/services/ac/condensate-drain-cleaning.html">Condensate Drain Cleaning</a>
+                                    <a href="../../../pages/services/ac/evaporator-coil-replacement.html">Evaporator Coil Replacement</a>
+                                    <a href="../../../pages/services/ac/ac-refrigerant-recharge.html">AC Refrigerant Recharge</a>
+                                    <a href="../../../pages/services/ac/ac-blower-motor-replacement.html">AC Blower Motor Replacement</a>
+                                    <a href="../../../pages/services/ac/ac-contactor-replacement.html">AC Contactor Replacement</a>
+                                    <a href="../../../pages/services/ac/condenser-fan-motor-repair.html">Condenser Fan Motor Repair</a>
+                                </div>
+                                <div class="nav-dropdown-section">
+                                    <span class="nav-dropdown-heading">Heating</span>
+                                    <a href="../../../pages/services/heating/emergency-heating-repair.html">Emergency Heating Repair</a>
+                                    <a href="../../../pages/services/heating/heat-pump-repair.html">Heat Pump Repair</a>
+                                    <a href="../../../pages/services/heating/heat-pump-installation.html">Heat Pump Installation</a>
+                                    <a href="../../../pages/services/heating/heat-pump-replacement.html">Heat Pump Replacement</a>
+                                    <a href="../../../pages/services/heating/furnace-repair.html">Furnace Repair</a>
+                                    <a href="../../../pages/services/heating/heating-installation.html">Heating Installation</a>
+                                    <a href="../../../pages/services/heating/heating-replacement.html">Heating Replacement</a>
+                                    <a href="../../../pages/services/heating/heating-tune-up.html">Heating Tune-Up</a>
+                                    <a href="../../../pages/services/heating/heat-pump-tune-up.html">Heat Pump Tune-Up</a>
+                                    <a href="../../../pages/services/heating/thermostat-repair.html">Thermostat Repair</a>
+                                    <a href="../../../pages/services/heating/defrost-board-repair.html">Defrost Board Repair</a>
+                                    <a href="../../../pages/services/heating/heat-pump-capacitor-replacement.html">Heat Pump Capacitor Replacement</a>
+                                    <a href="../../../pages/services/heating/gas-valve-repair.html">Gas Valve Repair</a>
+                                    <a href="../../../pages/services/heating/furnace-ignitor-replacement.html">Furnace Ignitor Replacement</a>
+                                    <a href="../../../pages/services/heating/reversing-valve-repair.html">Reversing Valve Repair</a>
+                                </div>
+                                <div class="nav-dropdown-section">
+                                    <span class="nav-dropdown-heading">Air Quality</span>
+                                    <a href="../../../pages/services/air-quality/air-duct-cleaning.html">Air Duct Cleaning</a>
+                                    <a href="../../../pages/services/air-quality/duct-repair.html">Duct Repair</a>
+                                    <a href="../../../pages/services/air-quality/duct-installation.html">Duct Installation</a>
+                                    <a href="../../../pages/services/air-quality/duct-sealing.html">Duct Sealing</a>
+                                    <a href="../../../pages/services/air-quality/air-purifier-installation.html">Air Purifier Installation</a>
+                                    <a href="../../../pages/services/air-quality/uv-light-installation.html">UV Light Installation</a>
+                                    <a href="../../../pages/services/air-quality/whole-home-dehumidifier-installation.html">Dehumidifier Installation</a>
+                                    <a href="../../../pages/services/air-quality/air-filter-replacement.html">Air Filter Replacement</a>
+                                    <a href="../../../pages/services/air-quality/hepa-filter-installation.html">HEPA Filter Installation</a>
+                                    <a href="../../../pages/services/air-quality/indoor-evaporator-coil-cleaning.html">Evaporator Coil Cleaning</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item has-dropdown">
+                            <a href="../../../pages/locations/index.html" class="nav-link">Locations ▾</a>
+                            <div class="nav-dropdown">
+                                <a href="../../../pages/locations/lutz.html">Lutz</a>
+                                <a href="../../../pages/locations/wesley-chapel.html">Wesley Chapel</a>
+                                <a href="../../../pages/locations/carrollwood.html">Carrollwood</a>
+                                <a href="../../../pages/locations/new-tampa.html">New Tampa</a>
+                                <a href="../../../pages/locations/land-o-lakes.html">Land O' Lakes</a>
+                                <a href="../../../pages/locations/temple-terrace.html">Temple Terrace</a>
+                                <a href="../../../pages/locations/northdale.html">Northdale</a>
+                                <a href="../../../pages/locations/seminole-heights.html">Seminole Heights</a>
+                                <a href="../../../pages/locations/university-area.html">University Area</a>
+                                <a href="../../../pages/locations/east-tampa.html">East Tampa</a>
+                                <a href="../../../pages/locations/index.html">View All →</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../../pricing.html" class="nav-link">Pricing</a>
+                        </li>
+                        <li class="nav-item has-dropdown">
+                            <a href="#" class="nav-link">Resources ▾</a>
+                            <div class="nav-dropdown">
+                                <a href="../../../faq.html">FAQ</a>
+                                <a href="../../../blog.html">Blog</a>
+                                <a href="../../../testimonials.html">Testimonials</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../../pages/contact.html" class="nav-link">Contact</a>
+                        </li>
+                    </ul>
+                    
+                    <a href="tel:8139222209" class="btn btn-primary header-cta">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        (813) 922-2209
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <picture>
+                <source media="(max-width: 768px)" srcset="../../../hero-mobile-bg.webp" width="750" height="1000">
+                <img src="../../../hero-1920.webp" alt="AC Compressor Replacement Tampa" class="hero-bg-img" width="1920" height="450" loading="eager">
+            </picture>
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">AC Compressor Replacement in Tampa, Florida</h1>
+                    <p class="hero-subtitle">When the Heart of Your AC Dies</p>
+                    <div class="hero-buttons">
+                        <a href="tel:8139222209" class="btn btn-primary btn-lg">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                            Call (813) 922-2209
+                        </a>
+                        <a href="#" class="btn btn-outline-light btn-lg" onclick="openQuoteModal(); return false;">Request Service</a>
+                    </div>
+                </div>
+            </div>
+            <img src="../../../mascot.webp" alt="On The Way Mascot" class="hero-mascot" width="300" height="328" loading="eager">
+        </section>
+
+        <!-- Main Content -->
+        <section style="padding: var(--spacing-xxl) 0;">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto;">
+                    
+                    <p>Your compressor is the heart of your air conditioning system. When it fails, the whole system stops working. No cooling. No relief from Tampa's brutal heat. Just warm air blowing through your vents while the temperature inside climbs.</p>
+                    
+                    <p>Compressor failure is one of the most expensive AC repairs out there. It's also one of the most common decisions Tampa homeowners face: do you replace the compressor, or is it time to replace the whole system?</p>
+                    
+                    <p>At On The Way Heating & Air, we've replaced hundreds of compressors across North Tampa—from <a href="../../../pages/locations/carrollwood.html" style="color: #71CEEB;">Carrollwood</a> to <a href="../../../pages/locations/new-tampa.html" style="color: #71CEEB;">New Tampa</a>, from USF to <a href="../../../pages/locations/wesley-chapel.html" style="color: #71CEEB;">Wesley Chapel</a>. We know when compressor replacement makes sense and when you're better off with a new system. We'll give you honest advice, not a sales pitch.</p>
+
+                    <!-- Same Day Guarantee Image -->
+                    <figure style="margin: var(--spacing-xl) 0; text-align: center; display: flex; justify-content: center;">
+                        <img src="../../../images/services/ac/same-day-guarantee.webp" alt="Same Day Or Don't Pay Guarantee - If we can't fix the issue the same day we go out to diagnose it, the service fee is FREE" width="600" height="439" loading="lazy" style="width: 100%; max-width: 500px; height: auto; border-radius: var(--radius-md);">
+                    </figure>
+
+                    <h2 style="color: #d81471;">What Does Your AC Compressor Actually Do?</h2>
+                    <p>Think of your compressor as a pump—specifically, a refrigerant pump. It's what keeps refrigerant circulating through your system, picking up heat from inside your house and dumping it outside.</p>
+                    
+                    <p><strong>Here's how it works:</strong> Your compressor takes low-pressure refrigerant gas from the evaporator coil (the cold part inside your house), squeezes it into high-pressure gas, and sends it to the condenser coil outside. This compression process creates heat—a lot of it. The condenser coil releases that heat outside, the refrigerant cools down and turns back to liquid, then flows back inside to absorb more heat.</p>
+                    
+                    <p>Without a working compressor, refrigerant doesn't move. Heat doesn't get removed. Your AC becomes an expensive fan that just blows room-temperature air.</p>
+                    
+                    <p><strong>Where the compressor lives:</strong> It's inside that big outdoor unit sitting next to your house. It's the heaviest, most expensive part of your entire AC system. When it fails, you'll know.</p>
+
+                    <h2 style="color: #d81471;">Signs Your Compressor Has Failed (or Is Failing)</h2>
+                    
+                    <h3 style="color: #d81471;">Outdoor Unit Hums But Won't Start</h3>
+                    <p>You hear a humming or buzzing sound, but the fan doesn't spin and the compressor doesn't kick on. Usually means the compressor's trying to start but can't. Could be a failed capacitor (cheap fix) or a seized compressor (expensive problem).</p>
+                    
+                    <h3 style="color: #d81471;">No Cooling Despite System Running</h3>
+                    <p>Everything seems to be working—fan's spinning, air's blowing—but it ain't cold. Compressor might be running but not actually compressing refrigerant. Internal failure. Game over.</p>
+                    
+                    <h3 style="color: #d81471;">Circuit Breaker Trips Immediately</h3>
+                    <p>Turn the system on, breaker trips instantly. Compressor's drawing way too much current, usually from internal electrical failure or seized bearings.</p>
+                    
+                    <h3 style="color: #d81471;">Grinding or Rattling Noises</h3>
+                    <p>Healthy compressors make a steady hum when running. Grinding, banging, or rattling means internal parts are failing. Once you hear these noises, compressor replacement is coming soon.</p>
+                    
+                    <h3 style="color: #d81471;">Hard Starting</h3>
+                    <p>Takes multiple attempts to get the compressor running, or it takes a long time to start after the thermostat calls for cooling. Bearings are wearing out. Still works, but it's on borrowed time.</p>
+
+                    <!-- Tech Image -->
+                    <figure style="margin: var(--spacing-xl) 0; text-align: center;">
+                        <img src="../../../images/services/ac/tech-ac-fan-repair.webp" alt="HVAC technician inspecting AC compressor" width="600" height="337" loading="lazy" style="width: 100%; height: auto; border-radius: var(--radius-md);">
+                        <figcaption style="font-size: 0.9rem; color: rgba(255,255,255,0.7); margin-top: var(--spacing-xs);">Expert diagnosis of compressor and AC components</figcaption>
+                    </figure>
+
+                    <h2 style="color: #d81471;">Why AC Compressors Fail in Tampa</h2>
+                    
+                    <h3 style="color: #d81471;">Running Non-Stop for Six Months Straight</h3>
+                    <p>Tampa's cooling season is May through October—six solid months where your AC barely shuts off. Compressors are rated for certain operating hours. Hit those hours faster in Tampa than anywhere else.</p>
+                    
+                    <h3 style="color: #d81471;">Dirty Condenser Coils</h3>
+                    <p>When your outdoor coil gets caked with dirt, pollen, and debris, heat can't escape properly. The compressor has to work harder, runs hotter, and wears out faster. In Tampa's dusty, pollen-heavy environment, this happens quick without regular cleaning.</p>
+                    
+                    <h3 style="color: #d81471;">Low Refrigerant from Leaks</h3>
+                    <p>Running a compressor with low refrigerant is like running your car engine without oil. The compressor overheats, bearings fail, and eventually it seizes. Some compressors fail within hours of developing a refrigerant leak.</p>
+                    
+                    <h3 style="color: #d81471;">Electrical Problems</h3>
+                    <p>Tampa's the lightning capital of North America. Power surges damage capacitors and electrical windings inside compressors. Sometimes the damage is instant, sometimes it's gradual, but eventually the compressor fails.</p>
+                    
+                    <h3 style="color: #d81471;">Lack of Maintenance</h3>
+                    <p>Dirty filters restrict airflow. Clogged drain lines cause freezing. Both make your compressor work harder than it should. Regular maintenance catches these problems before they kill your compressor.</p>
+
+                    <h2 style="color: #d81471;">Deep Dive: Diagnosing Compressor Failure vs Other Problems</h2>
+                    <p>Not every cooling problem is a failed compressor. Before we talk replacement, we need to diagnose what's actually wrong.</p>
+                    
+                    <p><strong>Capacitor Testing:</strong> The capacitor gives your compressor the electrical jolt it needs to start. When capacitors fail (and they do, especially in Tampa), the compressor hums but won't start. Sounds exactly like a failed compressor but costs a fraction to fix. We test the capacitor first. If it's bad, we replace it and your compressor starts right up. Total cost? Couple hundred bucks instead of thousands.</p>
+                    
+                    <p><strong>Electrical Testing:</strong> We check voltage at the compressor, test the windings with a meter, and measure amp draw when it's running (if it'll run). This tells us if the compressor's failed internally or if there's an external electrical problem.</p>
+                    
+                    <p><strong>Refrigerant Pressure Testing:</strong> Low refrigerant can prevent a compressor from running properly. We check pressures when the system's running and when it's off. If pressures are way off, we look for refrigerant leaks before blaming the compressor.</p>
+                    
+                    <p><strong>Contactor and Relay Testing:</strong> The contactor is the switch that sends power to the compressor. Contactors fail from heat and electrical arcing. Bad contactor means no power to the compressor, which looks like compressor failure but isn't.</p>
+                    
+                    <blockquote style="border-left: 4px solid #d81471; padding-left: var(--spacing-md); margin: var(--spacing-lg) 0; font-style: italic;">
+                        <strong>Pro-Tip:</strong> If someone diagnoses a failed compressor in five minutes without testing anything, get a second opinion. Proper diagnosis takes time and testing.
+                    </blockquote>
+
+                    <!-- Tech Image 2 -->
+                    <figure style="margin: var(--spacing-xl) 0; text-align: center;">
+                        <img src="../../../images/services/ac/tech-hvac-system-repair.webp" alt="On The Way technician servicing HVAC system" width="600" height="426" loading="lazy" style="width: 100%; height: auto; border-radius: var(--radius-md);">
+                        <figcaption style="font-size: 0.9rem; color: rgba(255,255,255,0.7); margin-top: var(--spacing-xs);">Complete HVAC system service and repairs</figcaption>
+                    </figure>
+
+                    <h2 style="color: #d81471;">Deep Dive: The Compressor Replacement Process</h2>
+                    <p>If your compressor really is dead, here's what actual replacement involves. It's not simple.</p>
+                    
+                    <p><strong>Refrigerant Recovery:</strong> First, we recover any remaining refrigerant from your system using EPA-approved recovery equipment. It's illegal to vent refrigerant to atmosphere, and it's environmentally terrible. Everything gets captured and recycled.</p>
+                    
+                    <p><strong>Compressor Removal:</strong> We disconnect the electrical connections, cut the refrigerant lines, unbolt the compressor from the condensing unit, and remove it. Compressors are heavy—some weigh 100+ pounds.</p>
+                    
+                    <p><strong>System Cleanup:</strong> If your old compressor failed catastrophically (internal breakdown), metal shavings and debris circulated through your system. We have to flush the refrigerant lines and replace the filter drier to catch any contamination. Skip this step and your new compressor fails too.</p>
+                    
+                    <p><strong>New Compressor Installation:</strong> Install the new compressor, braze the refrigerant lines with nitrogen flowing through them (prevents oxidation inside the lines), install new filter drier, and hook up electrical connections.</p>
+                    
+                    <p><strong>Pressure Testing and Evacuation:</strong> We pressure test the system with nitrogen to make sure there are no leaks. Then we pull a deep vacuum on the system for at least 30 minutes to remove all moisture and air. Moisture in an AC system destroys compressors.</p>
+                    
+                    <p><strong>Refrigerant Charging:</strong> We charge the system with the correct amount and type of refrigerant, measuring pressures and temperatures to verify proper operation. We don't "top it off"—we charge to exact manufacturer specifications.</p>
+                    
+                    <p>Done right, compressor replacement takes 4-6 hours. Shortcuts anywhere in this process lead to premature failure of your new compressor.</p>
+                    
+                    <blockquote style="border-left: 4px solid #d81471; padding-left: var(--spacing-md); margin: var(--spacing-lg) 0; font-style: italic;">
+                        <strong>Pro-Tip:</strong> Ask if they're flushing the lines and installing a new filter drier. If not, they're setting you up for another compressor failure.
+                    </blockquote>
+
+                    <h2 style="color: #d81471;">Deep Dive: Repair vs Replace—The Real Decision</h2>
+                    <p>Compressor failure forces a decision: replace just the compressor, or replace the whole AC system?</p>
+                    
+                    <h3 style="color: #d81471;">When Compressor Replacement Makes Sense</h3>
+                    <p>Your system's less than 8 years old, the compressor's still under warranty (most have 5-10 year warranties), the rest of the system's in good shape, and you're happy with the system's performance. In this case, replace the compressor.</p>
+                    
+                    <h3 style="color: #d81471;">When Full System Replacement Makes Sense</h3>
+                    <p>System's 12+ years old, other components are worn out too, uses R-22 refrigerant that's expensive and scarce, you've had multiple repairs in recent years, or your electric bills are climbing. In this case, replace the whole system.</p>
+                    
+                    <h3 style="color: #d81471;">The R-22 Factor</h3>
+                    <p>If your system uses R-22 refrigerant (phased out in 2020), compressor replacement is risky. R-22's expensive and getting scarcer. If refrigerant leaks develop after compressor replacement, you'll pay through the nose for refrigerant. Plus your system's old enough that other failures are coming. Time to replace.</p>
+                    
+                    <blockquote style="border-left: 4px solid #d81471; padding-left: var(--spacing-md); margin: var(--spacing-lg) 0; font-style: italic;">
+                        <strong>Pro-Tip:</strong> Don't make this decision under pressure. If someone's pushing you to decide immediately, that's a red flag. Take time to think it through.
+                    </blockquote>
+
+                    <h2 style="color: #d81471;">How to Prevent Premature Compressor Failure</h2>
+                    
+                    <p><strong>Change Filters Monthly:</strong> Dirty filters restrict airflow, make the evaporator coil freeze, and force the compressor to work harder. In Tampa's dusty environment, monthly filter changes are essential.</p>
+                    
+                    <p><strong>Get Annual Maintenance:</strong> Coil cleaning, refrigerant checks, electrical testing—all this catches problems before they kill your compressor. Maintenance pays for itself in avoided failures.</p>
+                    
+                    <p><strong>Keep the Outdoor Unit Clean:</strong> Make sure there's clearance around the condenser, no grass clippings piled against it, and the coil isn't caked with dirt. Hose it down gently once a season if it looks dirty.</p>
+                    
+                    <p><strong>Don't Ignore Warning Signs:</strong> Strange noises, weak cooling, hard starting—these are your compressor telling you something's wrong. Fix small problems before they become catastrophic failures.</p>
+                    
+                    <p><strong>Install Surge Protection:</strong> Tampa's lightning is brutal on AC components. A whole-home surge protector or at minimum an AC surge protector can save your compressor from electrical damage.</p>
+
+                    <!-- Related Services -->
+                    <h2 style="margin-top: var(--spacing-xxl); color: #d81471;">Related AC Services</h2>
+                    <p>We offer a full range of air conditioning services to keep your Tampa home comfortable:</p>
+                    <ul style="margin-bottom: var(--spacing-md);">
+                        <li><a href="../../../pages/services/ac/air-conditioning-repair.html" style="color: #71CEEB;">AC Repair</a> – Fast diagnosis and repair of all AC problems.</li>
+                        <li><a href="../../../pages/services/ac/emergency-ac-repair.html" style="color: #71CEEB;">Emergency AC Repair</a> – Same-day service when your AC breaks down unexpectedly.</li>
+                        <li><a href="../../../pages/services/ac/ac-installation.html" style="color: #71CEEB;">AC Installation</a> – Professional installation of new high-efficiency systems.</li>
+                        <li><a href="../../../pages/services/ac/ac-replacement.html" style="color: #71CEEB;">AC Replacement</a> – When it's time for a new system, we help you choose the right one.</li>
+                        <li><a href="../../../pages/services/ac/ac-tune-up.html" style="color: #71CEEB;">AC Tune-Up</a> – Preventive maintenance to keep your system running efficiently.</li>
+                    </ul>
+
+                    <!-- Guarantee Section -->
+                    <h2 style="margin-top: var(--spacing-lg); color: #d81471;">Why Choose On The Way for Compressor Replacement?</h2>
+                    
+                    <div style="display: grid; gap: var(--spacing-md); margin-top: var(--spacing-lg);">
+                        <div style="background: linear-gradient(135deg, #83009D 0%, #2f0048 100%); padding: var(--spacing-lg); border-radius: var(--radius-md);">
+                            <h3 style="color: #71CEEB; margin-top: 0;">Honest Assessments</h3>
+                            <p style="margin-bottom: 0;">We'll tell you straight whether compressor replacement makes sense or if you're better off replacing the whole system. No pressure, just facts.</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #83009D 0%, #2f0048 100%); padding: var(--spacing-lg); border-radius: var(--radius-md);">
+                            <h3 style="color: #71CEEB; margin-top: 0;">Proper Installation</h3>
+                            <p style="margin-bottom: 0;">We do every step right—refrigerant recovery, line flushing, deep vacuum, proper charging. Shortcuts kill compressors. We don't take shortcuts.</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #83009D 0%, #2f0048 100%); padding: var(--spacing-lg); border-radius: var(--radius-md);">
+                            <h3 style="color: #71CEEB; margin-top: 0;">Real Warranties</h3>
+                            <p style="margin-bottom: 0;">Parts and labor warranties that actually mean something. Problems after installation? We fix them.</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #83009D 0%, #2f0048 100%); padding: var(--spacing-lg); border-radius: var(--radius-md);">
+                            <h3 style="color: #71CEEB; margin-top: 0;">Licensed Technicians</h3>
+                            <p style="margin-bottom: 0;">EPA-certified for refrigerant handling, licensed for electrical work, experienced with compressor replacement. This ain't a job for amateurs.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section style="background-color: #3d0059; padding: var(--spacing-xxl) 0;">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <h2 style="text-align: center; color: #d81471;">Frequently Asked Questions</h2>
+                    
+                    <div class="faq-list" style="margin-top: var(--spacing-xl);">
+                        <details class="faq-item" style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); margin-bottom: var(--spacing-sm);">
+                            <summary style="padding: var(--spacing-md); cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
+                                How long does a compressor last?
+                                <span style="font-size: 1.5rem; transition: transform 0.3s;">+</span>
+                            </summary>
+                            <div style="padding: 0 var(--spacing-md) var(--spacing-md);">
+                                <p>10-15 years on average. In Tampa's climate with heavy use, expect closer to 10-12 years. Proper maintenance extends life, neglect shortens it.</p>
+                            </div>
+                        </details>
+                        
+                        <details class="faq-item" style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); margin-bottom: var(--spacing-sm);">
+                            <summary style="padding: var(--spacing-md); cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
+                                Can I replace just the compressor or do I need a whole new outdoor unit?
+                                <span style="font-size: 1.5rem; transition: transform 0.3s;">+</span>
+                            </summary>
+                            <div style="padding: 0 var(--spacing-md) var(--spacing-md);">
+                                <p>Sometimes you can replace just the compressor. Sometimes the whole outdoor unit needs replacement (especially if the coil's also failing). We'll assess your specific situation.</p>
+                            </div>
+                        </details>
+                        
+                        <details class="faq-item" style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); margin-bottom: var(--spacing-sm);">
+                            <summary style="padding: var(--spacing-md); cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
+                                What's a "matched system" and why does it matter?
+                                <span style="font-size: 1.5rem; transition: transform 0.3s;">+</span>
+                            </summary>
+                            <div style="padding: 0 var(--spacing-md) var(--spacing-md);">
+                                <p>A matched system means your indoor coil and outdoor unit are designed to work together—same brand, same efficiency rating, compatible refrigerant. Mismatched systems don't work efficiently. If you're replacing the compressor on an old system, matching's less critical than on new installations.</p>
+                            </div>
+                        </details>
+                        
+                        <details class="faq-item" style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); margin-bottom: var(--spacing-sm);">
+                            <summary style="padding: var(--spacing-md); cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
+                                Will compressor replacement improve my electric bills?
+                                <span style="font-size: 1.5rem; transition: transform 0.3s;">+</span>
+                            </summary>
+                            <div style="padding: 0 var(--spacing-md) var(--spacing-md);">
+                                <p>No. New compressor performs the same as your old compressor did when it was new. If you want lower bills, you need a higher-efficiency system, which means full replacement.</p>
+                            </div>
+                        </details>
+                        
+                        <details class="faq-item" style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); margin-bottom: var(--spacing-sm);">
+                            <summary style="padding: var(--spacing-md); cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
+                                How do I know if my compressor is under warranty?
+                                <span style="font-size: 1.5rem; transition: transform 0.3s;">+</span>
+                            </summary>
+                            <div style="padding: 0 var(--spacing-md) var(--spacing-md);">
+                                <p>Check your original paperwork from when the system was installed. Or give us the model and serial number—we can look up warranty status with the manufacturer.</p>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section with Form -->
+        <section id="contact-form" class="cta-form-section" style="background: linear-gradient(135deg, #83009D 0%, #2f0048 100%); padding: var(--spacing-xxl) 0;">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                    <h2 style="color: #FFEF76;">Ready to Get Your Compressor Replaced?</h2>
+                    <p style="font-size: 1.2rem; margin-bottom: var(--spacing-lg);">Failed compressor doesn't mean suffering through Tampa's heat. One call gets you diagnosed properly and back to cooling.</p>
+                    <p style="font-size: 1.3rem; margin-bottom: var(--spacing-lg);"><strong>Call <a href="tel:8139222209" style="color: #71CEEB;">813-922-2209</a></strong> or fill out the form below.</p>
+                    
+                    <!-- LeadConnector Form - Lazy loaded for performance -->
+                    <div id="form-container" style="margin-top: var(--spacing-lg); overflow: hidden;">
+                        <!-- Form placeholder while loading -->
+                        <div id="form-placeholder" style="width:100%;height:625px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.05);border-radius:3px;">
+                            <div style="text-align:center;color:#71CEEB;">
+                                <div style="font-size:2rem;margin-bottom:10px;">Loading form...</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <script>
+                    setTimeout(function() {
+                        var placeholder = document.getElementById('form-placeholder');
+                        var container = document.getElementById('form-container');
+                        var iframe = document.createElement('iframe');
+                        iframe.src = 'https://go.callontheway.com/widget/form/lyAbCf7HHTdJzkGQz4Iv';
+                        iframe.style.cssText = 'width:100%;min-height:625px;border:none;background:transparent;';
+                        iframe.scrolling = 'no';
+                        iframe.loading = 'lazy';
+                        iframe.title = 'Contact Form';
+                        if (placeholder && container) {
+                            placeholder.style.display = 'none';
+                            container.appendChild(iframe);
+                        }
+                    }, 5000);
+                    </script>
+                    
+                    <p style="margin-top: var(--spacing-lg); font-size: 1rem;">Serving all of North Tampa—<a href="../../../pages/locations/carrollwood.html" style="color: #71CEEB;">Carrollwood</a>, <a href="../../../pages/locations/new-tampa.html" style="color: #71CEEB;">New Tampa</a>, USF, <a href="../../../pages/locations/temple-terrace.html" style="color: #71CEEB;">Temple Terrace</a>, <a href="../../../pages/locations/wesley-chapel.html" style="color: #71CEEB;">Wesley Chapel</a>, and along Bruce B. Downs Boulevard.</p>
+                    
+                    <p style="margin-top: var(--spacing-lg); font-size: 0.9rem; opacity: 0.8;">*Same-day service guarantee: Calls received before 3 PM on regular business days—if we can't make it the same day, your diagnostic/service fee is waived.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Logo & About -->
+                <div class="footer-about">
+                    <img src="../../../footer-logo.webp" alt="On The Way Heating & Air Logo" width="180" height="72" loading="lazy" class="footer-logo">
+                    <p>Serving North Tampa since day one with reliable HVAC solutions.</p>
+                    <p><strong>Licensed & Insured</strong><br>License #CAC1820863</p>
+                </div>
+                
+                <!-- Services -->
+                <div class="footer-links-col">
+                    <div class="footer-title">Services</div>
+                    <a href="../../../pages/services/ac/ac-repair.html">AC Repair</a>
+                    <a href="../../../pages/services/ac/ac-installation.html">AC Installation</a>
+                    <a href="../../../pages/services/heating/furnace-repair.html">Furnace Repair</a>
+                    <a href="../../../pages/services/heating/heat-pump-installation.html">Heat Pump Installation</a>
+                    <a href="../../../pages/services/air-quality/air-duct-cleaning.html">Air Duct Cleaning</a>
+                </div>
+                
+                <!-- Locations -->
+                <div class="footer-links-col">
+                    <div class="footer-title">Service Areas</div>
+                    <a href="../../../pages/locations/lutz.html">Lutz</a>
+                    <a href="../../../pages/locations/wesley-chapel.html">Wesley Chapel</a>
+                    <a href="../../../pages/locations/carrollwood.html">Carrollwood</a>
+                    <a href="../../../pages/locations/new-tampa.html">New Tampa</a>
+                    <a href="../../../pages/locations/land-o-lakes.html">Land O' Lakes</a>
+                </div>
+                
+                <!-- Contact -->
+                <div class="footer-contact">
+                    <div class="footer-title">Contact</div>
+                    <p>
+                        <strong>On The Way Heating & Air</strong><br>
+                        18711 N Dale Mabry Hwy<br>Suite 7<br>
+                        Lutz, Florida 33548
+                    </p>
+                    <p><a href="tel:8139222209">(813) 922-2209</a></p>
+                    <p>Hours: Mon-Sat 7AM-8PM</p>
+                </div>
+            </div>
+            
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>© 2024 On The Way Heating & Air. All Rights Reserved.</p>
+                <div class="footer-legal">
+                    <a href="../../../privacy-policy.html">Privacy Policy</a>
+                    <a href="../../../terms-and-conditions.html">Terms & Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../../../main.js" defer></script>
+    
+    <!-- Chat Widget - Lazy loaded after 3 seconds for performance -->
+    <script>
+        setTimeout(function() {
+            var chatScript = document.createElement('script');
+            chatScript.src = 'https://widgets.leadconnectorhq.com/loader.js';
+            chatScript.setAttribute('data-resources-url', 'https://widgets.leadconnectorhq.com/chat-widget/loader.js');
+            chatScript.setAttribute('data-widget-id', '697d34a60079c39552ddfad9');
+            document.body.appendChild(chatScript);
+        }, 5000);
+    </script>
+
+
+    <!-- Quote Form Modal -->
+    <div id="quote-modal" class="quote-modal" style="display:none;">
+        <div class="quote-modal-overlay" onclick="closeQuoteModal()"></div>
+        <div class="quote-modal-content">
+            <button class="quote-modal-close" onclick="closeQuoteModal()" aria-label="Close modal">&times;</button>
+            <h2 style="color:#FFEF76;margin-bottom:1rem;text-align:center;">Request Service</h2>
+            <p style="color:#fff;margin-bottom:1.5rem;text-align:center;">Fill out the form and we'll contact you within 24 hours</p>
+            <div id="modal-form-placeholder" style="width:100%;height:625px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.05);border-radius:8px;">
+                <div style="text-align:center;color:#71CEEB;">
+                    <div style="font-size:2rem;margin-bottom:10px;">⏳</div>
+                    <div>Loading form...</div>
+                </div>
+            </div>
+            <div id="modal-form-container" style="display:none;"></div>
+        </div>
+    </div>
+    
+    <!-- Quote Modal Styles -->
+    <style>
+    .quote-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .quote-modal-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(4px);
+    }
+    .quote-modal-content {
+        position: relative;
+        background: linear-gradient(135deg, #2f0048 0%, #83009D 100%);
+        border-radius: 16px;
+        padding: 2rem;
+        max-width: 500px;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        animation: modalSlideIn 0.3s ease;
+    }
+    @keyframes modalSlideIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px) scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+    .quote-modal-close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 2rem;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: opacity 0.2s;
+        line-height: 1;
+    }
+    .quote-modal-close:hover {
+        opacity: 1;
+    }
+    @media (max-width: 768px) {
+        .quote-modal-content {
+            padding: 1.5rem;
+            max-height: 85vh;
+        }
+    }
+    </style>
+    
+    <!-- Quote Modal Script -->
+    <script>
+    var modalFormLoaded = false;
+    
+    function openQuoteModal() {
+        document.getElementById('quote-modal').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        
+        // Load form if not already loaded
+        if (!modalFormLoaded) {
+            loadModalForm();
+        }
+    }
+    
+    function closeQuoteModal() {
+        document.getElementById('quote-modal').style.display = 'none';
+        document.body.style.overflow = '';
+    }
+    
+    function loadModalForm() {
+        if (modalFormLoaded) return;
+        modalFormLoaded = true;
+        
+        var placeholder = document.getElementById('modal-form-placeholder');
+        var container = document.getElementById('modal-form-container');
+        
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://go.callontheway.com/widget/form/lyAbCf7HHTdJzkGQz4Iv';
+        iframe.style.cssText = 'width:100%;min-height:625px;border:none;border-radius:8px;background:transparent;';
+        iframe.id = 'modal-inline-lyAbCf7HHTdJzkGQz4Iv';
+        iframe.setAttribute('data-layout', "{'id':'INLINE'}");
+        iframe.setAttribute('data-trigger-type', 'alwaysShow');
+        iframe.setAttribute('data-trigger-value', '');
+        iframe.setAttribute('data-activation-type', 'alwaysActivated');
+        iframe.setAttribute('data-activation-value', '');
+        iframe.setAttribute('data-deactivation-type', 'neverDeactivate');
+        iframe.setAttribute('data-deactivation-value', '');
+        iframe.setAttribute('data-form-name', 'Form 5');
+        iframe.setAttribute('data-height', '625');
+        iframe.setAttribute('data-layout-iframe-id', 'modal-inline-lyAbCf7HHTdJzkGQz4Iv');
+        iframe.setAttribute('data-form-id', 'lyAbCf7HHTdJzkGQz4Iv');
+        iframe.title = 'Get Your Free HVAC Quote Form';
+        iframe.scrolling = 'no';
+        iframe.allow = 'geolocation';
+        
+        // Show container and hide placeholder when iframe loads
+        function showForm() {
+            placeholder.style.display = 'none';
+            container.style.display = 'block';
+        }
+        
+        iframe.onload = showForm;
+        
+        // Fallback: show form after 3 seconds even if onload doesn't fire
+        setTimeout(showForm, 3000);
+        
+        container.appendChild(iframe);
+        
+        // Load form embed script if not already loaded
+        if (!document.querySelector('script[src="https://go.callontheway.com/js/form_embed.js"]')) {
+            var script = document.createElement('script');
+            script.src = 'https://go.callontheway.com/js/form_embed.js';
+            document.body.appendChild(script);
+        }
+    }
+    
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeQuoteModal();
+        }
+    });
+    </script>
+</body>
+</html>

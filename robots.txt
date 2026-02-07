@@ -1,0 +1,8 @@
+# robots.txt for On The Way Heating & Air
+# https://callontheway.com
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://callontheway.com/sitemap.xml
