@@ -33,6 +33,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // Handle mega dropdown section headings on mobile (AC, Heating, Air Quality)
+    const sectionHeadings = document.querySelectorAll('.nav-dropdown-heading');
+    
+    sectionHeadings.forEach(function(heading) {
+        heading.addEventListener('click', function(e) {
+            if (window.innerWidth <= 992) {
+                e.preventDefault();
+                e.stopPropagation();
+                const section = heading.parentElement;
+                section.classList.toggle('section-expanded');
+            }
+        });
+    });
+    
     // Handle dropdown menus on mobile
     const dropdownItems = document.querySelectorAll('.nav-item.has-dropdown');
     
