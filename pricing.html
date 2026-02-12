@@ -50,6 +50,15 @@
             position: relative;
             overflow: hidden;
         }
+        .pricing-hero .hero-mascot {
+            position: absolute;
+            right: 5%;
+            bottom: 0;
+            width: 280px;
+            z-index: 1;
+            opacity: 0.9;
+            aspect-ratio: 300/328;
+        }
         .pricing-hero::before {
             content: '';
             position: absolute;
@@ -580,6 +589,7 @@
         /* ===== RESPONSIVE ===== */
         @media (max-width: 992px) {
             .pricing-hero h1 { font-size: 2.25rem; }
+            .pricing-hero .hero-mascot { width: 200px; right: 2%; }
             .offer-grid { grid-template-columns: 1fr; max-width: 450px; }
             .offer-card.featured { transform: none; }
             .offer-card.featured:hover { transform: translateY(-6px); }
@@ -590,6 +600,7 @@
             .pricing-hero { padding: 4rem 0 3rem; }
             .pricing-hero h1 { font-size: 1.85rem; }
             .pricing-hero .hero-tagline { font-size: 1.05rem; }
+            .pricing-hero .hero-mascot { width: 140px; right: 2%; opacity: 0.7; }
             .pricing-section-new { padding: 3rem 0; }
             .guarantee-banner h2 { font-size: 1.75rem; }
             .guarantee-banner .guarantee-inner { flex-direction: column; text-align: center; }
@@ -725,6 +736,7 @@
                 <span class="hero-badge">Licensed & Insured</span>
             </div>
         </div>
+        <img src="./mascot.webp" alt="On The Way Mascot" class="hero-mascot" width="300" height="328" loading="eager">
     </section>
 
     <!-- Same Day Or Don't Pay Guarantee Banner -->
