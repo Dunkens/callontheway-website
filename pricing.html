@@ -388,18 +388,34 @@
             text-align: center;
         }
         .guarantee-banner .guarantee-inner {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+        .guarantee-banner .guarantee-img {
+            flex: 0 0 340px;
+            max-width: 340px;
+        }
+        .guarantee-banner .guarantee-img img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+        .guarantee-banner .guarantee-text {
+            flex: 1;
+            text-align: left;
         }
         .guarantee-banner h2 {
             font-family: 'Montserrat', -apple-system, sans-serif;
-            font-size: 2.25rem;
+            font-size: 2rem;
             font-weight: 800;
             color: #fff;
             margin-bottom: 0.75rem;
         }
         .guarantee-banner p {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             color: rgba(255,255,255,0.9);
             margin-bottom: 1.5rem;
             line-height: 1.6;
@@ -419,6 +435,81 @@
             background: #45a8c6;
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(91, 192, 222, 0.3);
+        }
+
+        /* ===== HAPPY HOME PROMISE ===== */
+        .happy-home {
+            padding: 4rem 0;
+            background: #f8f4fc;
+            text-align: center;
+        }
+        .happy-home .section-label {
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #d81471;
+            margin-bottom: 0.5rem;
+        }
+        .happy-home .section-title {
+            font-family: 'Montserrat', -apple-system, sans-serif;
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: #4a1a6b;
+            margin-bottom: 0.75rem;
+        }
+        .happy-home .section-desc {
+            font-size: 1.1rem;
+            color: #6c757d;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+        .promise-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .promise-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(74, 26, 107, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid #83009D;
+        }
+        .promise-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(74, 26, 107, 0.18);
+        }
+        .promise-card .promise-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1.25rem;
+            background: linear-gradient(135deg, #83009D, #d81471);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .promise-card .promise-icon svg {
+            width: 30px;
+            height: 30px;
+            fill: #fff;
+        }
+        .promise-card h3 {
+            font-family: 'Montserrat', -apple-system, sans-serif;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #4a1a6b;
+            margin-bottom: 0.75rem;
+        }
+        .promise-card p {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.65;
         }
 
         /* ===== CTA BOTTOM SECTION ===== */
@@ -501,6 +592,11 @@
             .pricing-hero .hero-tagline { font-size: 1.05rem; }
             .pricing-section-new { padding: 3rem 0; }
             .guarantee-banner h2 { font-size: 1.75rem; }
+            .guarantee-banner .guarantee-inner { flex-direction: column; text-align: center; }
+            .guarantee-banner .guarantee-img { flex: 0 0 auto; max-width: 280px; margin: 0 auto; }
+            .guarantee-banner .guarantee-text { text-align: center; }
+            .promise-grid { grid-template-columns: 1fr; max-width: 450px; margin: 0 auto; }
+            .happy-home .section-title { font-size: 1.85rem; }
             .cta-bottom h2 { font-size: 1.75rem; }
         }
     </style>
@@ -635,12 +731,55 @@
     <section class="guarantee-banner">
         <div class="container">
             <div class="guarantee-inner">
-                <h2>Same Day&hellip; Or Don't Pay!</h2>
-                <p>We guarantee same day service. If we can't get to you the same day you call, your diagnostic is <strong>completely free</strong>. That's our promise to you.</p>
-                <a href="tel:8139222209" class="guarantee-cta">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 6px;"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                    Call Now: (813) 922-2209
-                </a>
+                <div class="guarantee-img">
+                    <img src="./images/same-day-or-dont-pay.webp" alt="Same Day Or Don't Pay Guarantee - On The Way Heating & Air" width="600" height="500" loading="lazy">
+                </div>
+                <div class="guarantee-text">
+                    <h2>Same Day&hellip; Or Don't Pay!</h2>
+                    <p>We guarantee same day service. If we can't get to you the same day you call, your diagnostic is <strong>completely free</strong>. That's our promise to you.</p>
+                    <a href="tel:8139222209" class="guarantee-cta">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 6px;"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        Call Now: (813) 922-2209
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Happy Home Promise -->
+    <section class="happy-home">
+        <div class="container">
+            <p class="section-label">Our Commitment To You</p>
+            <h2 class="section-title">The Happy Home Promise</h2>
+            <p class="section-desc">At On The Way Heating &amp; Air, we stand behind every job with our Happy Home Promise &mdash; three commitments that put you first.</p>
+
+            <div class="promise-grid">
+                <!-- Promise 1: Fix First -->
+                <div class="promise-card">
+                    <div class="promise-icon">
+                        <svg viewBox="0 0 24 24"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg>
+                    </div>
+                    <h3>We Fix First</h3>
+                    <p>We always try to fix your system first &mdash; not rush into a replacement. Our certified techs diagnose issues thoroughly and recommend the most practical, cost-effective repair whenever possible, saving you money and extending your HVAC equipment's life.</p>
+                </div>
+
+                <!-- Promise 2: Fair & Transparent -->
+                <div class="promise-card">
+                    <div class="promise-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+                    </div>
+                    <h3>Fair &amp; Transparent Pricing</h3>
+                    <p>We charge fair, transparent rates &mdash; no hidden fees, no inflated prices, just honest value for reliable, quality workmanship. You'll always know the cost upfront before any work begins.</p>
+                </div>
+
+                <!-- Promise 3: Satisfaction Guaranteed -->
+                <div class="promise-card">
+                    <div class="promise-icon">
+                        <svg viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+                    </div>
+                    <h3>100% Satisfaction Guaranteed</h3>
+                    <p>If you're not 100% happy with the job or it doesn't fully solve the problem, you don't pay &mdash; period. It's that simple. Your satisfaction is our top priority.</p>
+                </div>
             </div>
         </div>
     </section>
