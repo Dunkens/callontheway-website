@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Transparent HVAC pricing from On The Way Heating & Air in Tampa, FL. See our rates for AC repair, heating services, and indoor air quality solutions. No hidden fees.">
-    <meta name="keywords" content="HVAC pricing Tampa, AC repair cost, heating service prices, air conditioning installation cost, Tampa HVAC rates">
+    <meta name="description" content="Transparent HVAC pricing from On The Way Heating & Air in Tampa, FL. $29 diagnostic, Same Day Or Don't Pay guarantee, and Comfort Club membership plans.">
+    <meta name="keywords" content="HVAC pricing Tampa, AC repair cost, heating service prices, comfort club membership, same day HVAC service Tampa">
     <meta name="author" content="On The Way Heating & Air">
     <meta name="robots" content="index, follow">
     
     <!-- Open Graph / Social Media -->
     <meta property="og:title" content="HVAC Pricing | On The Way Heating & Air">
-    <meta property="og:description" content="Transparent pricing for AC repair, heating, and air quality services in Tampa. No hidden fees, upfront quotes.">
+    <meta property="og:description" content="$29 diagnostic, Same Day Or Don't Pay guarantee, and Comfort Club plans. Transparent HVAC pricing in Tampa.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://callontheway.com/pricing.html">
     <meta property="og:image" content="./logo.jpg">
@@ -28,10 +28,529 @@
     <link rel="preload" href="./poppins-700.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="./montserrat-800.woff2" as="font" type="font/woff2" crossorigin>
     
+    <!-- Inline Critical Fonts -->
+    <style>
+        @font-face { font-family: 'Poppins'; src: url('./poppins-400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: optional; }
+        @font-face { font-family: 'Poppins'; src: url('./poppins-600.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: optional; }
+        @font-face { font-family: 'Poppins'; src: url('./poppins-700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: optional; }
+        @font-face { font-family: 'Montserrat'; src: url('./montserrat-800.woff2') format('woff2'); font-weight: 800; font-style: normal; font-display: optional; }
+    </style>
+    
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="./styles.css?v=6.0">
     
+    <!-- Page-specific styles -->
+    <style>
+        /* ===== PRICING PAGE HERO ===== */
+        .pricing-hero {
+            background: linear-gradient(135deg, #4a1a6b 0%, #8b1a6b 50%, #d81471 100%);
+            padding: 5rem 0 4rem;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .pricing-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .pricing-hero h1 {
+            font-family: 'Montserrat', -apple-system, sans-serif;
+            font-size: 2.75rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #fff;
+            line-height: 1.15;
+        }
+        .pricing-hero .hero-tagline {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .pricing-hero .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .pricing-hero .hero-badge {
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 50px;
+            padding: 0.5rem 1.25rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #f7e84e;
+            backdrop-filter: blur(4px);
+        }
+
+        /* ===== SECTION STYLING ===== */
+        .pricing-section-new {
+            padding: 4rem 0;
+        }
+        .pricing-section-new.bg-light {
+            background: #f8f4fc;
+        }
+        .pricing-section-new.bg-dark {
+            background: linear-gradient(135deg, #4a1a6b, #6b1a5b);
+            color: #fff;
+        }
+        .pricing-section-new .section-label {
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #d81471;
+            margin-bottom: 0.5rem;
+        }
+        .pricing-section-new.bg-dark .section-label {
+            color: #f7e84e;
+        }
+        .pricing-section-new .section-title {
+            font-family: 'Montserrat', -apple-system, sans-serif;
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            color: #4a1a6b;
+        }
+        .pricing-section-new.bg-dark .section-title {
+            color: #fff;
+        }
+        .pricing-section-new .section-desc {
+            font-size: 1.1rem;
+            color: #6c757d;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+        .pricing-section-new.bg-dark .section-desc {
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* ===== DIAGNOSTIC OFFER CARDS ===== */
+        .offer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .offer-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(74, 26, 107, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+        .offer-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(74, 26, 107, 0.18);
+        }
+        .offer-card.featured {
+            border-color: #d81471;
+            transform: scale(1.03);
+        }
+        .offer-card.featured:hover {
+            transform: scale(1.03) translateY(-6px);
+        }
+        .offer-card .card-badge {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #d81471, #8b1a6b);
+            color: #fff;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 0.4rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .offer-card.featured {
+            padding-top: 3.5rem;
+        }
+        .offer-card .card-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.25rem;
+            background: linear-gradient(135deg, #4a1a6b, #d81471);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .offer-card .card-icon svg {
+            width: 28px;
+            height: 28px;
+            fill: #fff;
+        }
+        .offer-card h3 {
+            font-family: 'Montserrat', -apple-system, sans-serif;
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #4a1a6b;
+            margin-bottom: 0.75rem;
+        }
+        .offer-card .price-display {
+            margin-bottom: 0.5rem;
+        }
+        .offer-card .price-original {
+            font-size: 1.1rem;
+            color: #999;
+            text-decoration: line-through;
+            margin-right: 0.5rem;
+        }
+        .offer-card .price-current {
+            font-size: 2.75rem;
+            font-weight: 800;
+            color: #d81471;
+            line-height: 1;
+        }
+        .offer-card .price-period {
+            font-size: 1rem;
+            color: #6c757d;
+            font-weight: 400;
+        }
+        .offer-card .price-note {
+            font-size: 0.9rem;
+            color: #8b1a6b;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+        }
+        .offer-card .card-desc {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+        .offer-card .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.75rem;
+            text-align: left;
+        }
+        .offer-card .feature-list li {
+            padding: 0.45rem 0;
+            font-size: 0.92rem;
+            color: #444;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        .offer-card .feature-list li::before {
+            content: '✓';
+            color: #d81471;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        .offer-card .card-cta {
+            display: inline-block;
+            width: 100%;
+            padding: 0.9rem 1.5rem;
+            background: linear-gradient(135deg, #d81471, #8b1a6b);
+            color: #fff;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .offer-card .card-cta:hover {
+            background: linear-gradient(135deg, #c01065, #7a1560);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(216, 20, 113, 0.3);
+        }
+        .offer-card .card-cta.cta-outline {
+            background: transparent;
+            color: #d81471;
+            border: 2px solid #d81471;
+        }
+        .offer-card .card-cta.cta-outline:hover {
+            background: #d81471;
+            color: #fff;
+        }
+
+        /* ===== COMFORT CLUB SECTION ===== */
+        .club-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .club-card {
+            background: rgba(255,255,255,0.08);
+            border: 2px solid rgba(255,255,255,0.15);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+        .club-card:hover {
+            border-color: #f7e84e;
+            background: rgba(255,255,255,0.12);
+            transform: translateY(-4px);
+        }
+        .club-card.club-featured {
+            border-color: #f7e84e;
+            background: rgba(247, 232, 78, 0.08);
+            position: relative;
+        }
+        .club-card .club-badge {
+            display: inline-block;
+            background: #f7e84e;
+            color: #4a1a6b;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.25rem;
+        }
+        .club-card h3 {
+            font-family: 'Montserrat', -apple-system, sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+        .club-card .club-price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #f7e84e;
+            line-height: 1;
+            margin-bottom: 0.25rem;
+        }
+        .club-card .club-period {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 1.5rem;
+        }
+        .club-card .club-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 2rem;
+            text-align: left;
+        }
+        .club-card .club-features li {
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.9);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+        }
+        .club-card .club-features li::before {
+            content: '✓';
+            color: #f7e84e;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .club-card .club-cta {
+            display: inline-block;
+            width: 100%;
+            padding: 0.9rem 1.5rem;
+            background: #f7e84e;
+            color: #4a1a6b;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .club-card .club-cta:hover {
+            background: #ffe600;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(247, 232, 78, 0.3);
+        }
+
+        /* ===== GUARANTEE BANNER ===== */
+        .guarantee-banner {
+            background: linear-gradient(135deg, #f7e84e, #ffd700);
+            padding: 3rem 0;
+            text-align: center;
+        }
+        .guarantee-banner .guarantee-inner {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .guarantee-banner h2 {
+            font-family: 'Montserrat', -apple-system, sans-serif;
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: #4a1a6b;
+            margin-bottom: 0.75rem;
+        }
+        .guarantee-banner p {
+            font-size: 1.15rem;
+            color: #4a1a6b;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        .guarantee-banner .guarantee-cta {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #4a1a6b;
+            color: #f7e84e;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .guarantee-banner .guarantee-cta:hover {
+            background: #3a1055;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(74, 26, 107, 0.3);
+        }
+
+        /* ===== CTA BOTTOM SECTION ===== */
+        .cta-bottom {
+            background: linear-gradient(135deg, #4a1a6b, #8b1a6b 50%, #d81471);
+            padding: 4rem 0;
+            text-align: center;
+            color: #fff;
+        }
+        .cta-bottom h2 {
+            font-family: 'Montserrat', -apple-system, sans-serif;
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+        }
+        .cta-bottom p {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-bottom .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .cta-bottom .cta-btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: #f7e84e;
+            color: #4a1a6b;
+            font-weight: 700;
+            font-size: 1.05rem;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .cta-bottom .cta-btn-primary:hover {
+            background: #ffe600;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(247, 232, 78, 0.3);
+        }
+        .cta-bottom .cta-btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: transparent;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.05rem;
+            border-radius: 8px;
+            text-decoration: none;
+            border: 2px solid rgba(255,255,255,0.4);
+            transition: all 0.3s ease;
+        }
+        .cta-bottom .cta-btn-secondary:hover {
+            border-color: #fff;
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .pricing-hero h1 { font-size: 2.25rem; }
+            .offer-grid { grid-template-columns: 1fr; max-width: 450px; }
+            .offer-card.featured { transform: none; }
+            .offer-card.featured:hover { transform: translateY(-6px); }
+            .club-grid { grid-template-columns: 1fr; max-width: 450px; }
+            .pricing-section-new .section-title { font-size: 1.85rem; }
+        }
+        @media (max-width: 768px) {
+            .pricing-hero { padding: 4rem 0 3rem; }
+            .pricing-hero h1 { font-size: 1.85rem; }
+            .pricing-hero .hero-tagline { font-size: 1.05rem; }
+            .pricing-section-new { padding: 3rem 0; }
+            .guarantee-banner h2 { font-size: 1.75rem; }
+            .cta-bottom h2 { font-size: 1.75rem; }
+        }
+    </style>
+    
     <title>HVAC Pricing & Rates | On The Way Heating & Air - Tampa, FL</title>
+
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "On The Way Heating & Air",
+        "url": "https://callontheway.com",
+        "telephone": "(813) 922-2209",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "18711 N Dale Mabry Hwy, Suite 7",
+            "addressLocality": "Lutz",
+            "addressRegion": "FL",
+            "postalCode": "33548"
+        },
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "HVAC Services",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "name": "HVAC Diagnostic",
+                    "price": "29",
+                    "priceCurrency": "USD",
+                    "description": "Complete system diagnostic, discounted from $99"
+                },
+                {
+                    "@type": "Offer",
+                    "name": "Comfort Club Monthly",
+                    "price": "16.50",
+                    "priceCurrency": "USD",
+                    "description": "Monthly membership with 2 tune-ups, $50 off repairs, free replacement estimates"
+                },
+                {
+                    "@type": "Offer",
+                    "name": "Comfort Club Annual",
+                    "price": "198",
+                    "priceCurrency": "USD",
+                    "description": "Annual membership with 2 tune-ups, $50 off repairs, free replacement estimates"
+                }
+            ]
+        }
+    }
+    </script>
 </head>
 <body>
     <!-- Header -->
@@ -51,7 +570,7 @@
                     
                     <ul class="nav-menu">
                         <li class="nav-item has-dropdown">
-                            <a href="#" class="nav-link">Services ▾</a>
+                            <a href="#" class="nav-link">Services &#9662;</a>
                             <div class="nav-dropdown">
                                 <a href="pages/services/ac/air-conditioning.html">Air Conditioning</a>
                                 <a href="pages/services/heating/heating.html">Heating</a>
@@ -59,7 +578,7 @@
                             </div>
                         </li>
                         <li class="nav-item has-dropdown">
-                            <a href="pages/locations/index.html" class="nav-link">Locations ▾</a>
+                            <a href="pages/locations/index.html" class="nav-link">Locations &#9662;</a>
                             <div class="nav-dropdown">
                                 <a href="pages/locations/lutz.html">Lutz</a>
                                 <a href="pages/locations/wesley-chapel.html">Wesley Chapel</a>
@@ -71,14 +590,14 @@
                                 <a href="pages/locations/seminole-heights.html">Seminole Heights</a>
                                 <a href="pages/locations/university-area.html">University Area</a>
                                 <a href="pages/locations/east-tampa.html">East Tampa</a>
-                                <a href="pages/locations/index.html">View All →</a>
+                                <a href="pages/locations/index.html">View All &rarr;</a>
                             </div>
                         </li>
                         <li class="nav-item">
                             <a href="pricing.html" class="nav-link">Pricing</a>
                         </li>
                         <li class="nav-item has-dropdown">
-                            <a href="#" class="nav-link">Resources ▾</a>
+                            <a href="#" class="nav-link">Resources &#9662;</a>
                             <div class="nav-dropdown">
                                 <a href="faq.html">FAQ</a>
                                 <a href="blog.html">Blog</a>
@@ -86,7 +605,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a href="contact.html" class="nav-link">Contact</a>
+                            <a href="pages/contact.html" class="nav-link">Contact</a>
                         </li>
                     </ul>
                     
@@ -100,194 +619,159 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="pricing-hero">
         <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">Transparent HVAC Pricing</h1>
-                <p class="hero-subtitle">No Hidden Fees | Upfront Quotes | Fair & Honest Rates</p>
-                <div class="hero-buttons">
-                    <a href="contact.html" class="btn btn-primary btn-lg">Get Free Quote</a>
-                    <a href="tel:8139222209" class="btn btn-outline-light btn-lg">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                        Call Now
-                    </a>
-                </div>
+            <h1>Transparent HVAC Pricing</h1>
+            <p class="hero-tagline">No hidden fees, no surprises. Choose the service or plan that fits your needs and budget.</p>
+            <div class="hero-badges">
+                <span class="hero-badge">Same Day Service</span>
+                <span class="hero-badge">No Hidden Fees</span>
+                <span class="hero-badge">Licensed & Insured</span>
             </div>
         </div>
     </section>
 
-    <!-- Pricing Intro Section -->
-    <section class="mission-section">
+    <!-- Same Day Or Don't Pay Guarantee Banner -->
+    <section class="guarantee-banner">
         <div class="container">
-            <div class="mission-content">
-                <p class="mission-text">At On The Way Heating & Air, we believe in transparent, upfront pricing. We'll never surprise you with hidden fees or unexpected charges. Below you'll find our standard service rates. For a precise quote tailored to your specific needs, give us a call or request a free estimate.</p>
+            <div class="guarantee-inner">
+                <h2>Same Day&hellip; Or Don't Pay!</h2>
+                <p>We guarantee same day service. If we can't get to you the same day you call, your diagnostic is <strong>completely free</strong>. That's our promise to you.</p>
+                <a href="tel:8139222209" class="guarantee-cta">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 6px;"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                    Call Now: (813) 922-2209
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Air Conditioning Pricing -->
-    <section class="section pricing-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Air Conditioning Services</h2>
-                <p class="section-subtitle">Cooling solutions to keep your home comfortable</p>
-            </div>
+    <!-- Diagnostic & Service Offers -->
+    <section class="pricing-section-new bg-light">
+        <div class="container" style="text-align: center;">
+            <p class="section-label">Special Offers</p>
+            <h2 class="section-title">Diagnostic &amp; Service Pricing</h2>
+            <p class="section-desc">Take advantage of our discounted diagnostic rate and our same day guarantee. We'll find the problem and give you an honest, upfront quote.</p>
             
-            <div class="pricing-grid">
-                <div class="pricing-card pricing-card-1">
-                    <h3>AC Diagnostic</h3>
-                    <div class="price">$89</div>
-                    <p class="price-note">Waived with repair</p>
-                    <ul class="pricing-features">
+            <div class="offer-grid">
+                <!-- Card 1: $29 Diagnostic -->
+                <div class="offer-card featured">
+                    <div class="card-badge">Limited Time Offer</div>
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.49.49 0 0 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z"/></svg>
+                    </div>
+                    <h3>HVAC Diagnostic</h3>
+                    <div class="price-display">
+                        <span class="price-original">$99</span>
+                        <span class="price-current">$29</span>
+                    </div>
+                    <p class="price-note">Save $70 Today</p>
+                    <ul class="feature-list">
                         <li>Complete system inspection</li>
                         <li>Identify all issues</li>
                         <li>Upfront repair quote</li>
-                        <li>Same day service</li>
+                        <li>Same day service guaranteed</li>
+                        <li>All makes & models</li>
                     </ul>
-                    <a href="contact.html" class="btn btn-secondary">Schedule Now</a>
+                    <a href="tel:8139222209" class="card-cta">Schedule Diagnostic</a>
                 </div>
-                
-                <div class="pricing-card pricing-card-2">
-                    <h3>AC Tune-Up</h3>
-                    <div class="price">$99</div>
-                    <p class="price-note">Annual maintenance</p>
-                    <ul class="pricing-features">
-                        <li>21-point inspection</li>
-                        <li>Clean condenser coils</li>
-                        <li>Check refrigerant levels</li>
-                        <li>Test all components</li>
+
+                <!-- Card 2: Free Diagnostic -->
+                <div class="offer-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    </div>
+                    <h3>Free Diagnostic</h3>
+                    <div class="price-display">
+                        <span class="price-current" style="color: #4a1a6b;">FREE</span>
+                    </div>
+                    <p class="price-note">If We Can't Get There Same Day</p>
+                    <ul class="feature-list">
+                        <li>Same diagnostic service</li>
+                        <li>No charge if not same day</li>
+                        <li>Our guarantee to you</li>
+                        <li>Complete system evaluation</li>
+                        <li>Honest repair recommendations</li>
                     </ul>
-                    <a href="contact.html" class="btn btn-secondary">Schedule Now</a>
+                    <a href="tel:8139222209" class="card-cta cta-outline">Call to Book</a>
                 </div>
-                
-                <div class="pricing-card pricing-card-3">
-                    <h3>AC Installation</h3>
-                    <div class="price">Starting at $4,500</div>
-                    <p class="price-note">Includes installation</p>
-                    <ul class="pricing-features">
-                        <li>Free in-home estimate</li>
-                        <li>Top brand equipment</li>
+
+                <!-- Card 3: Free Estimates on Replacements -->
+                <div class="offer-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                    </div>
+                    <h3>Free Estimates</h3>
+                    <div class="price-display">
+                        <span class="price-current" style="color: #4a1a6b;">FREE</span>
+                    </div>
+                    <p class="price-note">On All Replacement Systems</p>
+                    <ul class="feature-list">
+                        <li>No-obligation quote</li>
+                        <li>In-home consultation</li>
+                        <li>Top brand equipment options</li>
+                        <li>Financing options available</li>
                         <li>Professional installation</li>
-                        <li>Warranty included</li>
                     </ul>
-                    <a href="contact.html" class="btn btn-secondary">Get Quote</a>
+                    <a href="tel:8139222209" class="card-cta cta-outline">Get Free Estimate</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Heating Pricing -->
-    <section class="section pricing-section pricing-section-alt">
-        <div class="container">
-            <div class="section-header">
-                <h2>Heating Services</h2>
-                <p class="section-subtitle">Keep your family warm through cool Florida nights</p>
-            </div>
+    <!-- Comfort Club Membership -->
+    <section class="pricing-section-new bg-dark">
+        <div class="container" style="text-align: center;">
+            <p class="section-label">Membership Plans</p>
+            <h2 class="section-title">Comfort Club</h2>
+            <p class="section-desc">Join our Comfort Club and enjoy priority service, exclusive discounts, and year-round peace of mind for your HVAC system.</p>
             
-            <div class="pricing-grid">
-                <div class="pricing-card pricing-card-1">
-                    <h3>Heating Diagnostic</h3>
-                    <div class="price">$89</div>
-                    <p class="price-note">Waived with repair</p>
-                    <ul class="pricing-features">
-                        <li>Full system evaluation</li>
-                        <li>Safety inspection</li>
-                        <li>Detailed repair quote</li>
-                        <li>Same day availability</li>
+            <div class="club-grid">
+                <!-- Monthly Plan -->
+                <div class="club-card">
+                    <span class="club-badge">Flexible</span>
+                    <h3>Monthly Plan</h3>
+                    <div class="club-price">$16<span style="font-size: 1.5rem;">.50</span></div>
+                    <div class="club-period">per month</div>
+                    <ul class="club-features">
+                        <li>2 tune-ups per year (AC &amp; Heating)</li>
+                        <li>$50 off any repair</li>
+                        <li>Free estimates on replacement systems</li>
+                        <li>Priority scheduling</li>
+                        <li>No long-term contract</li>
                     </ul>
-                    <a href="contact.html" class="btn btn-secondary">Schedule Now</a>
+                    <a href="tel:8139222209" class="club-cta">Join Monthly</a>
                 </div>
-                
-                <div class="pricing-card pricing-card-2">
-                    <h3>Furnace Tune-Up</h3>
-                    <div class="price">$99</div>
-                    <p class="price-note">Annual maintenance</p>
-                    <ul class="pricing-features">
-                        <li>Complete inspection</li>
-                        <li>Clean & adjust burners</li>
-                        <li>Test safety controls</li>
-                        <li>Check heat exchanger</li>
+
+                <!-- Annual Plan -->
+                <div class="club-card club-featured">
+                    <span class="club-badge">Best Value</span>
+                    <h3>Annual Plan</h3>
+                    <div class="club-price">$198</div>
+                    <div class="club-period">per year</div>
+                    <ul class="club-features">
+                        <li>2 tune-ups per year (AC &amp; Heating)</li>
+                        <li>$50 off any repair</li>
+                        <li>Free estimates on replacement systems</li>
+                        <li>Priority scheduling</li>
+                        <li>Save $0.50/month vs. monthly plan</li>
                     </ul>
-                    <a href="contact.html" class="btn btn-secondary">Schedule Now</a>
-                </div>
-                
-                <div class="pricing-card pricing-card-3">
-                    <h3>Heating Installation</h3>
-                    <div class="price">Starting at $3,500</div>
-                    <p class="price-note">Includes installation</p>
-                    <ul class="pricing-features">
-                        <li>Free in-home estimate</li>
-                        <li>Energy-efficient options</li>
-                        <li>Expert installation</li>
-                        <li>Manufacturer warranty</li>
-                    </ul>
-                    <a href="contact.html" class="btn btn-secondary">Get Quote</a>
+                    <a href="tel:8139222209" class="club-cta">Join Annually</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Indoor Air Quality Pricing -->
-    <section class="section pricing-section">
+    <!-- Bottom CTA -->
+    <section class="cta-bottom">
         <div class="container">
-            <div class="section-header">
-                <h2>Indoor Air Quality</h2>
-                <p class="section-subtitle">Breathe cleaner, healthier air in your home</p>
-            </div>
-            
-            <div class="pricing-grid">
-                <div class="pricing-card pricing-card-1">
-                    <h3>Air Quality Assessment</h3>
-                    <div class="price">$79</div>
-                    <p class="price-note">Comprehensive evaluation</p>
-                    <ul class="pricing-features">
-                        <li>Indoor air testing</li>
-                        <li>Duct inspection</li>
-                        <li>Humidity assessment</li>
-                        <li>Recommendations provided</li>
-                    </ul>
-                    <a href="contact.html" class="btn btn-secondary">Schedule Now</a>
-                </div>
-                
-                <div class="pricing-card pricing-card-2">
-                    <h3>Duct Cleaning</h3>
-                    <div class="price">Starting at $299</div>
-                    <p class="price-note">Whole home service</p>
-                    <ul class="pricing-features">
-                        <li>Complete duct cleaning</li>
-                        <li>Remove dust & debris</li>
-                        <li>Sanitization available</li>
-                        <li>Improved air flow</li>
-                    </ul>
-                    <a href="contact.html" class="btn btn-secondary">Schedule Now</a>
-                </div>
-                
-                <div class="pricing-card pricing-card-3">
-                    <h3>Air Purifier Installation</h3>
-                    <div class="price">Starting at $599</div>
-                    <p class="price-note">Includes installation</p>
-                    <ul class="pricing-features">
-                        <li>Whole-home purification</li>
-                        <li>UV light systems</li>
-                        <li>HEPA filtration</li>
-                        <li>Warranty included</li>
-                    </ul>
-                    <a href="contact.html" class="btn btn-secondary">Get Quote</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="section cta-form-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Get Your Free Quote Today</h2>
-                <p class="section-subtitle" style="color: #ffffff;">Contact us for a personalized quote tailored to your specific needs</p>
-            </div>
-            <div style="text-align: center;">
-                <a href="contact.html" class="btn btn-secondary btn-lg" style="margin-right: 1rem;">Request Quote</a>
-                <a href="tel:8139222209" class="btn btn-outline-light btn-lg">Call (813) 922-2209</a>
+            <h2>Ready to Get Started?</h2>
+            <p>Call us today to schedule your $29 diagnostic or ask about our Comfort Club membership.</p>
+            <div class="cta-buttons">
+                <a href="tel:8139222209" class="cta-btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                    Call (813) 922-2209
+                </a>
+                <a href="pages/contact.html" class="cta-btn-secondary">Request a Quote</a>
             </div>
         </div>
     </section>
@@ -297,7 +781,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-about">
-                    <img src="./OnTheWayNav.webp" alt="On The Way Heating & Air" class="footer-logo" width="150" height="60">
+                    <img src="./On-The-Way.webp" alt="On The Way Heating & Air" class="footer-logo" width="150" height="60" loading="lazy">
                     <p>Your trusted HVAC experts serving North Tampa and surrounding communities. Same day service, honest pricing, and guaranteed satisfaction.</p>
                     <div class="footer-social">
                         <a href="#" aria-label="Facebook">FB</a>
@@ -330,7 +814,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 On The Way Heating & Air. All rights reserved. | Licensed & Insured | FL License #CAC1234567</p>
+                <p>&copy; 2026 On The Way Heating & Air. All rights reserved. | Licensed &amp; Insured | FL License #CAC1234567</p>
             </div>
         </div>
     </footer>
