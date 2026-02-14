@@ -39,5 +39,3 @@
 /service-areas/ /pages/locations/index.html 301
 /service-areas/* /pages/locations/index.html 301
 
-# Old WordPress search URL
-/?s=* / 301
