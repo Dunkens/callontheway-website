@@ -203,12 +203,19 @@
 
     <main>
         <!-- Hero Section -->
-        <section class="hero" style="background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple-medium) 100%); padding: var(--spacing-xxl) var(--spacing-lg); text-align: center;">
-            <div class="container" style="max-width: 900px; margin: 0 auto;">
+        <style>
+            .locations-hero { position: relative; overflow: hidden; background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple-medium) 100%); padding: var(--spacing-xxl) var(--spacing-lg); text-align: center; }
+            .locations-hero .hero-mascot { position: absolute; bottom: 0; right: 5%; width: 280px; height: auto; z-index: 2; pointer-events: none; aspect-ratio: 300/328; }
+            @media (max-width: 992px) { .locations-hero .hero-mascot { width: 200px; right: 2%; } }
+            @media (max-width: 768px) { .locations-hero .hero-mascot { width: 140px; right: 2%; opacity: 0.85; } }
+        </style>
+        <section class="locations-hero">
+            <div class="container" style="max-width: 900px; margin: 0 auto; position: relative; z-index: 3;">
                 <h1 style="font-size: clamp(2rem, 5vw, 3rem); margin-bottom: var(--spacing-md);">Our Service Locations</h1>
                 <p style="font-size: 1.25rem; color: rgba(255,255,255,0.9); margin-bottom: var(--spacing-lg);">Proudly serving North Tampa and surrounding communities with expert HVAC services.</p>
                 <p style="color: #FFEF76; font-size: 1.1rem;">Same Day... Or Don't Pay*</p>
             </div>
+            <img src="../../mascot.webp" alt="On The Way Mascot" class="hero-mascot" width="300" height="328" loading="eager">
         </section>
 
         <!-- Locations Grid -->
