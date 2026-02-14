@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Page Not Found | On The Way Heating & Air</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="512x512" href="/icon.png">
+    <link rel="apple-touch-icon" href="/icon.png">
+    <link rel="stylesheet" href="/styles.css?v=6.0">
+    <style>
+        @font-face{font-family:'Poppins';src:url('/poppins-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:optional}
+        @font-face{font-family:'Poppins';src:url('/poppins-600.woff2') format('woff2');font-weight:600;font-style:normal;font-display:optional}
+        @font-face{font-family:'Poppins';src:url('/poppins-700.woff2') format('woff2');font-weight:700;font-style:normal;font-display:optional}
+        @font-face{font-family:'Montserrat';src:url('/montserrat-800.woff2') format('woff2');font-weight:800;font-style:normal;font-display:optional}
+        :root{--primary-purple:#4a1a6b;--primary-magenta:#8b1a6b;--white:#ffffff;--off-white:#f8f9fa;--font-primary:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--font-heading:'Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--spacing-sm:1rem;--spacing-md:1.5rem;--spacing-lg:2rem;--spacing-xl:3rem;--spacing-xxl:5rem;--radius-md:8px;--shadow-sm:0 2px 4px rgba(0,0,0,0.08);--transition-fast:0.2s ease;--transition-normal:0.3s ease;--container-max:1200px}
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        html{font-size:16px}
+        body{font-family:var(--font-primary);font-size:1rem;line-height:1.7;color:var(--off-white);background-color:#2f0048;-webkit-font-smoothing:antialiased}
+        a{text-decoration:none;color:inherit;transition:var(--transition-fast)}
+        .container{width:100%;max-width:var(--container-max);margin:0 auto;padding:0 var(--spacing-md)}
+
+        .error-page{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:var(--spacing-xxl) var(--spacing-md);position:relative;overflow:hidden}
+        .error-page::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:radial-gradient(ellipse at center,rgba(131,0,157,0.3) 0%,transparent 70%);pointer-events:none}
+        .error-content{position:relative;z-index:1;max-width:600px}
+        .error-code{font-family:var(--font-heading);font-size:clamp(6rem,15vw,10rem);font-weight:800;color:#FFEF76;line-height:1;margin-bottom:var(--spacing-sm);text-shadow:0 4px 20px rgba(255,239,118,0.3)}
+        .error-title{font-family:var(--font-heading);font-size:clamp(1.5rem,4vw,2.2rem);font-weight:700;color:#fff;margin-bottom:var(--spacing-md)}
+        .error-text{font-size:1.1rem;color:rgba(255,255,255,0.8);margin-bottom:var(--spacing-xl);line-height:1.8}
+        .error-buttons{display:flex;justify-content:center;flex-wrap:wrap;gap:var(--spacing-sm);margin-bottom:var(--spacing-xl)}
+        .btn{display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.85rem 1.8rem;font-family:var(--font-primary);font-size:1rem;font-weight:600;border:2px solid transparent;border-radius:var(--radius-md);cursor:pointer;transition:var(--transition-normal);text-align:center}
+        .btn-primary{background-color:#5bc0de;color:#2f0048;border-color:#5bc0de}
+        .btn-primary:hover{background-color:#4ab0ce;transform:translateY(-2px);box-shadow:0 4px 15px rgba(91,192,222,0.4)}
+        .btn-outline{background-color:transparent;border-color:#fff;color:#fff}
+        .btn-outline:hover{background-color:#fff;color:#2f0048;transform:translateY(-2px)}
+        .error-links{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--spacing-md)}
+        .error-links a{color:#71CEEB;font-weight:500;transition:var(--transition-fast)}
+        .error-links a:hover{color:#FFEF76;text-decoration:underline}
+        .error-mascot{width:180px;margin-bottom:var(--spacing-lg);filter:drop-shadow(0 4px 20px rgba(0,0,0,0.3));animation:float 3s ease-in-out infinite}
+        @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+        @media(max-width:768px){.error-code{font-size:6rem}.error-mascot{width:140px}}
+    </style>
+</head>
+<body>
+    <div class="error-page">
+        <div class="error-content">
+            <img src="/mascot.webp" alt="On The Way Heating & Air Mascot" class="error-mascot" width="180" height="197">
+            <div class="error-code">404</div>
+            <h1 class="error-title">Oops! This Page Got Lost</h1>
+            <p class="error-text">Looks like this page took a wrong turn. Don't worry — we're still here to help with all your HVAC needs. Let's get you back on track!</p>
+            <div class="error-buttons">
+                <a href="/" class="btn btn-primary">Back to Homepage</a>
+                <a href="tel:+18139222209" class="btn btn-outline">📞 Call (813) 922-2209</a>
+            </div>
+            <div class="error-links">
+                <a href="/pages/services/">Our Services</a>
+                <a href="/pages/locations/">Service Areas</a>
+                <a href="/pricing.html">Pricing</a>
+                <a href="/pages/contact.html">Contact Us</a>
+                <a href="/faq.html">FAQ</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
