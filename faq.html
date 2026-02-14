@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ | On The Way Heating & Air - HVAC Questions Answered</title>
+    <meta name="description" content="Frequently asked questions about HVAC services in Tampa. Learn about AC repair costs, our Same Day Or Don't Pay guarantee, Comfort Club, and more from On The Way Heating & Air.">
+    <meta name="keywords" content="HVAC FAQ Tampa, AC repair questions, heating repair FAQ, On The Way Heating Air FAQ, Tampa HVAC">
+    <link rel="canonical" href="https://callontheway.com/faq.html">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./icon.png">
+    <link rel="apple-touch-icon" href="./icon.png">
+
+    <!-- Preload Self-Hosted Fonts -->
+    <link rel="preload" href="./poppins-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./poppins-600.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./poppins-700.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./montserrat-800.woff2" as="font" type="font/woff2" crossorigin>
+
+    <!-- Inline Critical Fonts -->
+    <style>
+        @font-face { font-family: 'Poppins'; src: url('./poppins-400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: optional; }
+        @font-face { font-family: 'Poppins'; src: url('./poppins-600.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: optional; }
+        @font-face { font-family: 'Poppins'; src: url('./poppins-700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: optional; }
+        @font-face { font-family: 'Montserrat'; src: url('./montserrat-800.woff2') format('woff2'); font-weight: 800; font-style: normal; font-display: optional; }
+    </style>
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="./styles.css?v=6.0">
+
+    <!-- Page-specific styles -->
+    <style>
+        /* ===== FAQ PAGE HERO ===== */
+        .faq-hero {
+            background: linear-gradient(135deg, #4a1a6b 0%, #8b1a6b 50%, #d81471 100%);
+            padding: 5rem 0 4rem;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .faq-hero .hero-mascot {
+            position: absolute;
+            right: 5%;
+            bottom: 0;
+            width: 280px;
+            z-index: 1;
+            opacity: 0.9;
+            aspect-ratio: 300/328;
+        }
+        .faq-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .faq-hero h1 {
+            font-family: 'Montserrat', -apple-system, sans-serif;
+            font-size: 2.75rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #fff;
+            line-height: 1.15;
+            position: relative;
+            z-index: 2;
+        }
+        .faq-hero .hero-tagline {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        .faq-hero .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+        .faq-hero .hero-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.9);
+        }
+        .faq-hero .hero-badge svg {
+            width: 20px;
+            height: 20px;
+            fill: #FFEF76;
+        }
+
+        /* ===== FAQ CATEGORIES ===== */
+        .faq-page-section {
+            background: var(--purple-dark, #1a0033);
+            padding: 4rem 1.5rem;
+        }
+        .faq-page-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .faq-category {
+            margin-bottom: 3rem;
+        }
+        .faq-category-title {
+            font-family: 'Montserrat', -apple-system, sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #FFEF76;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid rgba(255,239,118,0.3);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .faq-category-title svg {
+            width: 28px;
+            height: 28px;
+            fill: #FFEF76;
+            flex-shrink: 0;
+        }
+
+        /* ===== FAQ ACCORDION ===== */
+        .faq-page-item {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+            overflow: hidden;
+            transition: border-color 0.3s ease;
+        }
+        .faq-page-item:hover {
+            border-color: rgba(255,255,255,0.2);
+        }
+        .faq-page-item.active {
+            border-color: #5bc0de;
+        }
+        .faq-page-question {
+            width: 100%;
+            background: none;
+            border: none;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            padding: 1.25rem 1.5rem;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            transition: background 0.3s ease;
+        }
+        .faq-page-question:hover {
+            background: rgba(255,255,255,0.05);
+        }
+        .faq-page-toggle {
+            font-size: 1.5rem;
+            color: #5bc0de;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+            line-height: 1;
+        }
+        .faq-page-item.active .faq-page-toggle {
+            transform: rotate(45deg);
+        }
+        .faq-page-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+        }
+        .faq-page-item.active .faq-page-answer {
+            max-height: 500px;
+            padding: 0 1.5rem 1.25rem;
+        }
+        .faq-page-answer p {
+            color: rgba(255,255,255,0.85);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin: 0;
+        }
+        .faq-page-answer p + p {
+            margin-top: 0.75rem;
+        }
+        .faq-page-answer a {
+            color: #5bc0de;
+            text-decoration: underline;
+        }
+        .faq-page-answer a:hover {
+            color: #fff;
+        }
+
+        /* ===== STILL HAVE QUESTIONS CTA ===== */
+        .faq-cta {
+            background: linear-gradient(135deg, #2f0048 0%, #4a1a6b 100%);
+            padding: 4rem 1.5rem;
+            text-align: center;
+        }
+        .faq-cta h2 {
+            font-family: 'Montserrat', -apple-system, sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+        .faq-cta p {
+            color: rgba(255,255,255,0.85);
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        .faq-cta .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .faq-cta .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .faq-cta .btn-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        .faq-cta .btn-call {
+            background: #5bc0de;
+            color: #fff;
+        }
+        .faq-cta .btn-contact {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255,255,255,0.4);
+        }
+        .faq-cta .btn-contact:hover {
+            border-color: #fff;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .faq-hero .hero-mascot { width: 200px; right: 2%; }
+        }
+        @media (max-width: 768px) {
+            .faq-hero { padding: 3rem 0 2.5rem; }
+            .faq-hero h1 { font-size: 2rem; }
+            .faq-hero .hero-mascot { width: 140px; right: 2%; opacity: 0.85; }
+            .faq-hero .hero-badges { gap: 1rem; }
+            .faq-category-title { font-size: 1.3rem; }
+            .faq-page-question { font-size: 0.95rem; padding: 1rem 1.25rem; }
+            .faq-page-item.active .faq-page-answer { padding: 0 1.25rem 1rem; }
+            .faq-cta h2 { font-size: 1.6rem; }
+        }
+    </style>
+
+    <!-- Schema.org FAQPage Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How much does AC repair cost in Tampa?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "AC repair costs in Tampa typically range from $150 to $500 for common repairs, depending on the issue. More complex repairs like compressor replacement can cost $1,000 or more. We provide upfront pricing before any work begins, so you'll know exactly what to expect."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is the Same Day Or Don't Pay guarantee?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "If you call us and we can't get a technician to your home the same day, your diagnostic fee is completely free. We believe in earning your trust by showing up when we say we will."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is the Comfort Club?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The Comfort Club is our maintenance membership that includes 2 tune-ups per year, $50 off any repair, free estimates on replacement systems, and priority scheduling. Plans start at $16.50/month or $198/year."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What areas do you serve?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We serve 56 zip codes across Hillsborough, Pasco, and Pinellas counties including Lutz, Wesley Chapel, Carrollwood, New Tampa, Land O' Lakes, Tampa, Odessa, New Port Richey, Tarpon Springs, Palm Harbor, and more."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is the Happy Home Promise?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Our Happy Home Promise means we always try to fix your system first rather than rushing into a replacement. We charge fair, transparent rates with no hidden fees. And if you're not 100% happy with the job or it doesn't fully solve the problem, you don't pay — period."
+                }
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-bar">
+            <div class="container">
+                <div class="nav-inner">
+                    <a href="index.html" class="logo">
+                        <img src="./On-The-Way.webp" alt="On The Way Heating & Air Logo" width="180" height="72" loading="eager">
+                    </a>
+
+                    <button class="nav-toggle" aria-label="Toggle Navigation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+
+                    <ul class="nav-menu">
+                        <li class="nav-item has-dropdown">
+                            <a href="./pages/services/index.html" class="nav-link">Services &#9662;</a>
+                            <div class="nav-dropdown">
+                                <a href="pages/services/ac/air-conditioning.html">Air Conditioning</a>
+                                <a href="pages/services/heating/heating.html">Heating</a>
+                                <a href="pages/services/air-quality/indoor-air-quality.html">Indoor Air</a>
+                            </div>
+                        </li>
+                        <li class="nav-item has-dropdown">
+                            <a href="pages/locations/index.html" class="nav-link">Locations &#9662;</a>
+                            <div class="nav-dropdown">
+                                <a href="pages/locations/lutz.html">Lutz</a>
+                                <a href="pages/locations/wesley-chapel.html">Wesley Chapel</a>
+                                <a href="pages/locations/carrollwood.html">Carrollwood</a>
+                                <a href="pages/locations/new-tampa.html">New Tampa</a>
+                                <a href="pages/locations/land-o-lakes.html">Land O' Lakes</a>
+                                <a href="pages/locations/temple-terrace.html">Temple Terrace</a>
+                                <a href="pages/locations/northdale.html">Northdale</a>
+                                <a href="pages/locations/seminole-heights.html">Seminole Heights</a>
+                                <a href="pages/locations/university-area.html">University Area</a>
+                                <a href="pages/locations/east-tampa.html">East Tampa</a>
+                                <a href="pages/locations/index.html">View All &rarr;</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pricing.html" class="nav-link">Pricing</a>
+                        </li>
+                        <li class="nav-item has-dropdown">
+                            <a href="#" class="nav-link">Resources &#9662;</a>
+                            <div class="nav-dropdown">
+                                <a href="faq.html">FAQ</a>
+                                <a href="blog.html">Blog</a>
+                                <a href="testimonials.html">Testimonials</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages/contact.html" class="nav-link">Contact</a>
+                        </li>
+                    </ul>
+
+                    <a href="tel:8139222209" class="btn btn-primary header-cta">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        (813) 922-2209
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="faq-hero">
+            <div class="container" style="max-width: 900px; margin: 0 auto; position: relative; z-index: 3;">
+                <h1>Frequently Asked Questions</h1>
+                <p class="hero-tagline">Everything you need to know about our HVAC services, pricing, and guarantees.</p>
+                <div class="hero-badges">
+                    <span class="hero-badge">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                        Same Day Service
+                    </span>
+                    <span class="hero-badge">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                        No Hidden Fees
+                    </span>
+                    <span class="hero-badge">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                        Licensed & Insured
+                    </span>
+                </div>
+            </div>
+            <img src="./mascot.webp" alt="On The Way Mascot" class="hero-mascot" width="300" height="328" loading="eager">
+        </section>
+
+        <!-- FAQ Content -->
+        <section class="faq-page-section">
+            <div class="faq-page-container">
+
+                <!-- General Questions -->
+                <div class="faq-category">
+                    <h2 class="faq-category-title">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg>
+                        General Questions
+                    </h2>
+
+                    <div class="faq-page-item">
+                        <button class="faq-page-question" aria-expanded="false">
+                            What is the Same Day... Or Don't Pay guarantee?
+                            <span class="faq-page-toggle">+</span>
+                        </button>
+                        <div class="faq-page-answer">
+                            <p>If you call us and we can't get a technician to your home the same day, your diagnostic fee is completely free. We believe in earning your trust by showing up when we say we will. No excuses, no fine print — just reliable service you can count on.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-page-item">
+                        <button class="faq-page-question" aria-expanded="false">
+                            What is the Happy Home Promise?
+                            <span class="faq-page-toggle">+</span>
+                        </button>
+                        <div class="faq-page-answer">
+                            <p>Our Happy Home Promise is our commitment to you. We always try to fix your system first — not rush into a replacement. Our certified techs diagnose issues thoroughly and recommend the most practical, cost-effective repair whenever possible, saving you money and extending your HVAC equipment's life.</p>
+                            <p>We charge fair, transparent rates — no hidden fees, no inflated prices, just honest value for reliable, quality workmanship. If you're not 100% happy with the job or it doesn't fully solve the problem, you don't pay — period. It's that simple.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-page-item">
+                        <button class="faq-page-question" aria-expanded="false">
+                            What areas do you serve?
+                            <span class="faq-page-toggle">+</span>
+                        </button>
+                        <div class="faq-page-answer">
+                            <p>We serve 56 zip codes across Hillsborough, Pasco, and Pinellas counties. Our primary service areas include <a href="pages/locations/lutz.html">Lutz</a>, <a href="pages/locations/wesley-chapel.html">Wesley Chapel</a>, <a href="pages/locations/carrollwood.html">Carrollwood</a>, <a href="pages/locations/new-tampa.html">New Tampa</a>, <a href="pages/locations/land-o-lakes.html">Land O' Lakes</a>, <a href="pages/locations/seminole-heights.html">Seminole Heights</a>, <a href="pages/locations/temple-terrace.html">Temple Terrace</a>, <a href="pages/locations/east-tampa.html">East Tampa</a>, <a href="pages/locations/university-area.html">University Area</a>, and <a href="pages/locations/northdale.html">Northdale</a>.</p>
+                            <p>We also serve Tampa, Odessa, New Port Richey, Tarpon Springs, Palm Harbor, Thonotosassa, Oldsmar, Seffner, Holiday, Elfers, Mango, and Safety Harbor. Visit our <a href="pages/locations/index.html">locations page</a> for a full list of zip codes.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-page-item">
+                        <button class="faq-page-question" aria-expanded="false">
+                            Are you licensed and insured?
+                            <span class="faq-page-toggle">+</span>
+                        </button>
+                        <div class="faq-page-answer">
+                            <p>Yes. On The Way Heating & Air is fully licensed and insured in the state of Florida (License #CAC1820863). All of our technicians are certified and undergo background checks for your peace of mind.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-page-item">
+                        <button class="faq-page-question" aria-expanded="false">
+                            What are your hours of operation?
+                            <span class="faq-page-toggle">+</span>
+                        </button>
+                        <div class="faq-page-answer">
+                            <p>We're available Monday through Sunday, 7am to 8pm. For HVAC emergencies, call us at <a href="tel:8139222209">(813) 922-2209</a> and we'll do our best to get a technician to you as quickly as possible.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pricing & Payment -->
+                <div class="faq-category">
+                    <h2 class="faq-category-title">
+                        <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+                        Pricing & Payment
+                    </h2>
+
+                    <div class="faq-page-item">
+                        <button class="faq-page-question" aria-expanded="false">
+                            How much does an HVAC diagnostic cost?
+                            <span class="faq-page-toggle">+</span>
+                        </button>
+                        <div class="faq-page-answer">
+                            <p>Our HVAC diagnostic is just <strong>$29</strong> (regularly $99 — save $70!). This covers a thorough inspection and diagnosis of your system. If we can't get there the same day, the diagnostic is completely free. See our <a href="pricing.html">pricing page</a> for full details.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-page-item">
+                        <button class="faq-page-question" aria-expanded="false">
+                            How much does AC repair cost in Tampa?
+                            <span class="faq-page-toggle">+</span>
+                        </button>
+                        <div class="faq-page-answer">
+                            <p>AC repair costs in Tampa typically range from $150 to $500 for common repairs, depending on the issue. More complex repairs like <a href="pages/services/ac/ac-compressor-replacement.html">compressor replacement</a> can cost $1,000 or more. We provide upfront pricing before any work begins, so you'll know exactly what to expect — no surprises.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-page-item">
+                        <button class="faq-page-question" aria-expanded="false">
+                            Do you offer free estimates?
+                            <span class="faq-page-toggle">+</span>
+                        </button>
+                        <div class="faq-page-answer">
+                            <p>Yes! We offer <strong>free estimates on all replacement systems</strong>. Whether you need a new <a href="pages/services/ac/ac-installation.html">AC installation</a>, <a href="pages/services/heating/heat-pump-installation.html">heat pump</a>, or full system replacement, we'll provide a detailed quote at no cost. <a href="pages/contact.html">Contact us</a> to schedule yours.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-page-item">
+                        <button class="faq-page-question" aria-expanded="false">
+                            What payment methods do you accept?
+                            <span class="faq-page-toggle">+</span>
+                        </button>
+                        <div class="faq-page-answer">
+                            <p>We accept all major credit cards, debit cards, cash, and checks. We also offer financing options for larger installations and replacements to help make your HVAC investment more affordable.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-page-item">
+                        <button class="faq-page-question" aria-expanded="false">
+                            Do you charge extra for weekends or after-hours?
+                            <span class="faq-page-toggle">+</span>
+                        </button>
+                        <div class="faq-page-answer">
+                            <p>No. Our rates are the same whether you call on a Monday morning or a Saturday afternoon. We're open 7 days a week, 7am to 8pm, with no overtime or weekend surcharges.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comfort Club -->
+                <div class="faq-category">
+                    <h2 class="faq-category-title">
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        Comfort Club Membership
+                    </h2>
+
+                    <div class="faq-page-item">
+                        <button class="faq-page-question" aria-expanded="false">
+                            What is the Comfort Club?
+                            <span class="faq-page-toggle">+</span>
+                        </button>
+                        <div class="faq-page-answer">
+                            <p>The Comfort Club is our HVAC maintenance membership designed to keep your system running efficiently year-round. Members enjoy exclusive benefits that save money and prevent costly breakdowns. It's the easiest way to protect your investment and stay comfortable.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-page-item">
+                        <button class="faq-page-question" aria-expanded="false">
+                            How much does the Comfort Club cost?
+                            <span class="faq-page-toggle">+</span>
+                        </button>
+                        <div class="faq-page-answer">
+                            <p>We offer two plans:</p>
+                            <p><strong>Monthly Plan:</strong> $16.50/month — flexible, cancel anytime.<br>
+                            <strong>Annual Plan:</strong> $198/year — best value, save over paying monthly.</p>
+                            <p>Visit our <a href="pricing.html">pricing page</a> for full details.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-page-item">
+                        <button class="faq-page-question" aria-expanded="false">
+                            What's included in the Comfort Club?
+                            <span class="faq-page-toggle">+</span>
+                        </button>
+                        <div class="faq-page-answer">
+                            <p>Every Comfort Club membership includes:</p>
+                            <p><strong>2 tune-ups per year</strong> — one for cooling season, one for heating season.<br>
+                            <strong>$50 off any repair</strong> — savings every time you need service.<br>
+                            <strong>Free estimates on replacement systems</strong> — no cost to explore your options.<br>
+                            <strong>Priority scheduling</strong> — Comfort Club members get moved to the front of the line.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-page-item">
+                        <button class="faq-page-question" aria-expanded="false">
+                            Can I cancel my Comfort Club membership?
+                            <span class="faq-page-toggle">+</span>
+                        </button>
+                        <div class="faq-page-answer">
+                            <p>Yes. The monthly plan can be cancelled at any time with no cancellation fees or penalties. We want you to stay because you love the service, not because you're locked into a contract.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AC Services -->
+                <div class="faq-category">
+                    <h2 class="faq-category-title">
+                        <svg viewBox="0 0 24 24"><path d="M22 11h-4.17l3.24-3.24-1.41-1.42L15 11h-2V9l4.66-4.66-1.42-1.41L13 6.17V2h-2v4.17L7.76 2.93 6.34 4.34 11 9v2H9L4.34 6.34 2.93 7.76 6.17 11H2v2h4.17l-3.24 3.24 1.41 1.42L9 13h2v2l-4.66 4.66 1.42 1.41L11 17.83V22h2v-4.17l3.24 3.24 1.42-1.41L13 15v-2h2l4.66 4.66 1.41-1.42L17.83 13H22z"/></svg>
+                        Air Conditioning
+                    </h2>
+
+                    <div class="faq-page-item">
+                        <button class="faq-page-question" aria-expanded="false">
+                            How quickly can you respond to AC emergencies?
+                            <span class="faq-page-toggle">+</span>
+                        </button>
+                        <div class="faq-page-answer">
+                            <p>We offer same-day service for AC emergencies throughout our service area. In most cases, we can have a technician at your home within a few hours of your call. Remember — if we can't get there the same day, the diagnostic is free. Call us at <a href="tel:8139222209">(813) 922-2209</a> for <a href="pages/services/ac/emergency-ac-repair.html">emergency AC repair</a>.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-page-item">
+                        <button class="faq-page-question" aria-expanded="false">
+                            How often should I have my AC serviced?
+                            <span class="faq-page-toggle">+</span>
+                        </button>
+                        <div class="faq-page-answer">
+                            <p>We recommend having your AC system serviced at least once a year, ideally in the spring before the hot Tampa summer begins. Regular <a href="pages/services/ac/ac-maintenance.html">AC maintenance</a> helps prevent breakdowns, improves efficiency, and extends the life of your system. Our Comfort Club makes this easy with 2 included tune-ups per year.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-page-item">
+                        <button class="faq-page-question" aria-expanded="false">
+                            How do I know if I need AC repair or replacement?
+                            <span class="faq-page-toggle">+</span>
+                        </button>
+                        <div class="faq-page-answer">
+                            <p>As part of our Happy Home Promise, we always try to fix your system first. However, replacement may be the better option if your system is over 15 years old, requires frequent repairs, uses R-22 refrigerant (which is being phased out), or your energy bills are steadily increasing. We'll give you an honest recommendation and a <a href="pages/services/ac/ac-replacement.html">free estimate on replacement</a> if needed.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-page-item">
+                        <button class="faq-page-question" aria-expanded="false">
+                            Why is my AC blowing warm air?
+                            <span class="faq-page-toggle">+</span>
+                        </button>
+                        <div class="faq-page-answer">
+                            <p>Common causes include low refrigerant levels, a dirty air filter, a frozen evaporator coil, a faulty compressor, or thermostat issues. Some of these are simple fixes, while others require professional diagnosis. If your AC is blowing warm air, call us for a <a href="pages/services/ac/air-conditioning-repair.html">$29 diagnostic</a> and we'll identify the issue quickly.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-page-item">
+                        <button class="faq-page-question" aria-expanded="false">
+                            How long does an AC installation take?
+                            <span class="faq-page-toggle">+</span>
+                        </button>
+                        <div class="faq-page-answer">
+                            <p>A standard <a href="pages/services/ac/ac-installation.html">AC installation</a> typically takes 4 to 8 hours, depending on the complexity of the job. If ductwork modifications are needed, it may take a bit longer. We'll provide a clear timeline before we start so you know what to expect.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Heating Services -->
+                <div class="faq-category">
+                    <h2 class="faq-category-title">
+                        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                        Heating Services
+                    </h2>
+
+                    <div class="faq-page-item">
+                        <button class="faq-page-question" aria-expanded="false">
+                            Do I need heating in Tampa?
+                            <span class="faq-page-toggle">+</span>
+                        </button>
+                        <div class="faq-page-answer">
+                            <p>Yes! While Tampa winters are mild compared to the north, temperatures can drop into the 30s and 40s during cold snaps. A properly functioning heating system keeps your family comfortable and protects your home from potential cold-weather damage. We service <a href="pages/services/heating/heat-pump-repair.html">heat pumps</a>, <a href="pages/services/heating/furnace-repair.html">furnaces</a>, and all heating systems.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-page-item">
+                        <button class="faq-page-question" aria-expanded="false">
+                            What's the difference between a heat pump and a furnace?
+                            <span class="faq-page-toggle">+</span>
+                        </button>
+                        <div class="faq-page-answer">
+                            <p>A heat pump transfers heat from the outside air into your home and can also cool your home in summer — making it a two-in-one system. A furnace generates heat by burning gas or using electric resistance. In Tampa's climate, heat pumps are typically the most efficient choice since they handle both heating and cooling. We can help you decide which is right for your home.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-page-item">
+                        <button class="faq-page-question" aria-expanded="false">
+                            How do I know if my heater needs repair?
+                            <span class="faq-page-toggle">+</span>
+                        </button>
+                        <div class="faq-page-answer">
+                            <p>Warning signs include unusual noises (banging, squealing, rattling), uneven heating, a sudden increase in energy bills, the system cycling on and off frequently, or strange smells when the heater runs. If you notice any of these, schedule a <a href="pages/services/heating/emergency-heating-repair.html">heating repair</a> before the problem gets worse.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Air Quality -->
+                <div class="faq-category">
+                    <h2 class="faq-category-title">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                        Indoor Air Quality
+                    </h2>
+
+                    <div class="faq-page-item">
+                        <button class="faq-page-question" aria-expanded="false">
+                            How often should I have my air ducts cleaned?
+                            <span class="faq-page-toggle">+</span>
+                        </button>
+                        <div class="faq-page-answer">
+                            <p>The National Air Duct Cleaners Association recommends <a href="pages/services/air-quality/air-duct-cleaning.html">air duct cleaning</a> every 3 to 5 years. However, you may need it sooner if you have pets, allergies, recent home renovations, or notice visible dust or mold around your vents. Clean ducts improve air quality and help your HVAC system run more efficiently.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-page-item">
+                        <button class="faq-page-question" aria-expanded="false">
+                            How often should I change my air filter?
+                            <span class="faq-page-toggle">+</span>
+                        </button>
+                        <div class="faq-page-answer">
+                            <p>Standard 1-inch filters should be changed every 1 to 3 months. Thicker 4-inch filters can last 6 to 12 months. If you have pets, allergies, or a dusty home, change them more frequently. A dirty filter restricts airflow, makes your system work harder, and increases energy bills. We offer <a href="pages/services/air-quality/air-filter-replacement.html">air filter replacement</a> as part of our tune-up services.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-page-item">
+                        <button class="faq-page-question" aria-expanded="false">
+                            What can I do to improve my indoor air quality?
+                            <span class="faq-page-toggle">+</span>
+                        </button>
+                        <div class="faq-page-answer">
+                            <p>Several options can dramatically improve your indoor air: <a href="pages/services/air-quality/air-purifier-installation.html">air purifier installation</a>, <a href="pages/services/air-quality/uv-light-installation.html">UV light systems</a> that kill bacteria and mold, <a href="pages/services/air-quality/hepa-filter-installation.html">HEPA filter upgrades</a>, <a href="pages/services/air-quality/whole-home-dehumidifier-installation.html">whole-home dehumidifiers</a> (especially important in Tampa's humidity), and regular <a href="pages/services/air-quality/duct-sealing.html">duct sealing</a> to prevent contaminants from entering your system.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Still Have Questions CTA -->
+        <section class="faq-cta">
+            <h2>Still Have Questions?</h2>
+            <p>Our friendly team is here to help. Give us a call or send us a message and we'll get back to you right away.</p>
+            <div class="cta-buttons">
+                <a href="tel:8139222209" class="btn-cta btn-call">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                    Call (813) 922-2209
+                </a>
+                <a href="pages/contact.html" class="btn-cta btn-contact">Contact Us</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="./On-The-Way.webp" alt="On The Way Heating & Air" class="footer-logo" width="150" height="60" loading="lazy">
+                    <p>Your trusted HVAC experts serving North Tampa and surrounding communities. Same day service, honest pricing, and guaranteed satisfaction.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook">FB</a>
+                        <a href="#" aria-label="Instagram">IG</a>
+                        <a href="#" aria-label="Google">G</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="pages/services/ac/air-conditioning.html">Air Conditioning</a></li>
+                        <li><a href="pages/services/heating/heating.html">Heating</a></li>
+                        <li><a href="pages/services/air-quality/indoor-air-quality.html">Indoor Air Quality</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Service Areas</h4>
+                    <ul>
+                        <li><a href="pages/locations/lutz.html">Lutz</a></li>
+                        <li><a href="pages/locations/wesley-chapel.html">Wesley Chapel</a></li>
+                        <li><a href="pages/locations/carrollwood.html">Carrollwood</a></li>
+                        <li><a href="pages/locations/new-tampa.html">New Tampa</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><strong>Phone:</strong> <a href="tel:8139222209">(813) 922-2209</a></p>
+                    <p><strong>Address:</strong><br>18711 N Dale Mabry Hwy<br>Suite 7<br>Lutz, Florida 33548</p>
+                    <p><strong>Hours:</strong><br>Mon-Sun: 7am - 8pm</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 On The Way Heating & Air. All rights reserved. | Licensed &amp; Insured | FL License #CAC1820863</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./main.js"></script>
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-page-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const item = button.parentElement;
+                const isActive = item.classList.contains('active');
+
+                // Close all items in the same category
+                item.closest('.faq-category').querySelectorAll('.faq-page-item').forEach(i => {
+                    i.classList.remove('active');
+                    i.querySelector('.faq-page-question').setAttribute('aria-expanded', 'false');
+                });
+
+                // Toggle clicked item
+                if (!isActive) {
+                    item.classList.add('active');
+                    button.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
