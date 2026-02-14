@@ -34,6 +34,14 @@
     <priority>0.3</priority>
   </url>
 
+  <!-- Services Main Page -->
+  <url>
+    <loc>https://callontheway.com/pages/services/</loc>
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <!-- Service Index Pages -->
   <url>
     <loc>https://callontheway.com/pages/services/ac/index.html</loc>
