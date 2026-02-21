@@ -285,10 +285,56 @@
                     <ul class="nav-menu">
                         <li class="nav-item has-dropdown">
                             <a href="../pages/services/index.html" class="nav-link">Services &#9662;</a>
-                            <div class="nav-dropdown">
-                                <a href="../pages/services/ac/index.html">Air Conditioning</a>
-                                <a href="../pages/services/heating/index.html">Heating</a>
-                                <a href="../pages/services/air-quality/index.html">Indoor Air</a>
+                                                        <div class="nav-dropdown nav-dropdown-mega">
+                                <div class="nav-dropdown-section">
+                                    <span class="nav-dropdown-heading">Air Conditioning</span>
+                                    <a href="../pages/services/ac/emergency-ac-repair.html">Emergency AC Repair</a>
+                                    <a href="../pages/services/ac/air-conditioning-repair.html">AC Repair</a>
+                                    <a href="../pages/services/ac/ac-installation.html">AC Installation</a>
+                                    <a href="../pages/services/ac/ac-replacement.html">AC Replacement</a>
+                                    <a href="../pages/services/ac/ac-tune-up.html">AC Tune-Up</a>
+                                    <a href="../pages/services/ac/ac-maintenance.html">AC Maintenance</a>
+                                    <a href="../pages/services/ac/central-ac-repair.html">Central AC Repair</a>
+                                    <a href="../pages/services/ac/ac-compressor-replacement.html">AC Compressor Replacement</a>
+                                    <a href="../pages/services/ac/ac-capacitor-replacement.html">AC Capacitor Replacement</a>
+                                    <a href="../pages/services/ac/condensate-drain-cleaning.html">Condensate Drain Cleaning</a>
+                                    <a href="../pages/services/ac/evaporator-coil-replacement.html">Evaporator Coil Replacement</a>
+                                    <a href="../pages/services/ac/ac-refrigerant-recharge.html">AC Refrigerant Recharge</a>
+                                    <a href="../pages/services/ac/ac-blower-motor-replacement.html">AC Blower Motor Replacement</a>
+                                    <a href="../pages/services/ac/ac-contactor-replacement.html">AC Contactor Replacement</a>
+                                    <a href="../pages/services/ac/condenser-fan-motor-repair.html">Condenser Fan Motor Repair</a>
+                                </div>
+                                <div class="nav-dropdown-section">
+                                    <span class="nav-dropdown-heading">Heating</span>
+                                    <a href="../pages/services/heating/emergency-heating-repair.html">Emergency Heating Repair</a>
+                                    <a href="../pages/services/heating/heat-pump-repair.html">Heat Pump Repair</a>
+                                    <a href="../pages/services/heating/heat-pump-installation.html">Heat Pump Installation</a>
+                                    <a href="../pages/services/heating/heat-pump-replacement.html">Heat Pump Replacement</a>
+                                    <a href="../pages/services/heating/furnace-repair.html">Furnace Repair</a>
+                                    <a href="../pages/services/heating/heating-installation.html">Heating Installation</a>
+                                    <a href="../pages/services/heating/heating-replacement.html">Heating Replacement</a>
+                                    <a href="../pages/services/heating/heating-tune-up.html">Heating Tune-Up</a>
+                                    <a href="../pages/services/heating/heat-pump-tune-up.html">Heat Pump Tune-Up</a>
+                                    <a href="../pages/services/heating/thermostat-repair.html">Thermostat Repair</a>
+                                    <a href="../pages/services/heating/defrost-board-repair.html">Defrost Board Repair</a>
+                                    <a href="../pages/services/heating/heat-pump-capacitor-replacement.html">Heat Pump Capacitor Replacement</a>
+                                    <a href="../pages/services/heating/gas-valve-repair.html">Gas Valve Repair</a>
+                                    <a href="../pages/services/heating/furnace-ignitor-replacement.html">Furnace Ignitor Replacement</a>
+                                    <a href="../pages/services/heating/reversing-valve-repair.html">Reversing Valve Repair</a>
+                                </div>
+                                <div class="nav-dropdown-section">
+                                    <span class="nav-dropdown-heading">Air Quality</span>
+                                    <a href="../pages/services/air-quality/air-duct-cleaning.html">Air Duct Cleaning</a>
+                                    <a href="../pages/services/air-quality/duct-repair.html">Duct Repair</a>
+                                    <a href="../pages/services/air-quality/duct-installation.html">Duct Installation</a>
+                                    <a href="../pages/services/air-quality/duct-sealing.html">Duct Sealing</a>
+                                    <a href="../pages/services/air-quality/air-purifier-installation.html">Air Purifier Installation</a>
+                                    <a href="../pages/services/air-quality/uv-light-installation.html">UV Light Installation</a>
+                                    <a href="../pages/services/air-quality/whole-home-dehumidifier-installation.html">Dehumidifier Installation</a>
+                                    <a href="../pages/services/air-quality/air-filter-replacement.html">Air Filter Replacement</a>
+                                    <a href="../pages/services/air-quality/hepa-filter-installation.html">HEPA Filter Installation</a>
+                                    <a href="../pages/services/air-quality/indoor-evaporator-coil-cleaning.html">Evaporator Coil Cleaning</a>
+                                </div>
                             </div>
                         </li>
                         <li class="nav-item has-dropdown">
@@ -535,5 +581,15 @@
         </div>
     </footer>
     <script src="../main.js"></script>
+<script>
+    // Mobile mega dropdown section toggles
+    document.querySelectorAll('.nav-dropdown-heading').forEach(heading => {
+        heading.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const section = this.parentElement;
+            section.classList.toggle('section-expanded');
+        });
+    });
+    </script>
 </body>
 </html>
