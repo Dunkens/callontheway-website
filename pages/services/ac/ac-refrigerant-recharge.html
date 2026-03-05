@@ -108,36 +108,48 @@ src="https://www.facebook.com/tr?id=879710768181210&ev=PageView&noscript=1"
     <!-- Schema.org Structured Data - Service -->
     <script type="application/ld+json">
     {
-        "@context": "https://schema.org",
-        "@type": "Service",
-        "@id": "https://callontheway.com/pages/services/ac/ac-refrigerant-recharge.html#service",
-        "name": "AC Refrigerant Recharge",
-        "serviceType": "Air Conditioning Repair Service",
-        "description": "Professional AC refrigerant recharge service in Tampa, FL. Honest leak detection first, proper repair, then exact charging to manufacturer specs.",
-        "provider": {
-            "@type": "HVACBusiness",
-            "@id": "https://callontheway.com/#business",
-            "name": "On The Way Heating & Air",
-            "telephone": "+1-813-922-2209",
-            "url": "https://callontheway.com"
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": "https://callontheway.com/pages/services/ac/ac-refrigerant-recharge.html#service",
+    "name": "AC Refrigerant Recharge",
+    "serviceType": "Air Conditioning Repair Service",
+    "description": "Professional AC refrigerant recharge service in Tampa, FL. Honest leak detection first, proper repair, then exact charging to manufacturer specs.",
+    "provider": {
+        "@type": "HVACBusiness",
+        "@id": "https://callontheway.com/#business",
+        "name": "On The Way Heating & Air",
+        "telephone": "+1-813-922-2209",
+        "url": "https://callontheway.com"
+    },
+    "areaServed": [
+        {
+            "@type": "City",
+            "name": "Tampa",
+            "sameAs": "https://en.wikipedia.org/wiki/Tampa,_Florida"
         },
-        "areaServed": [
-            {"@type": "City", "name": "Tampa", "sameAs": "https://en.wikipedia.org/wiki/Tampa,_Florida"},
-            {"@type": "City", "name": "Lutz"},
-            {"@type": "City", "name": "Wesley Chapel"},
-            {"@type": "City", "name": "Carrollwood"},
-            {"@type": "City", "name": "New Tampa"},
-            {"@type": "City", "name": "Land O' Lakes"}
-        ],
-        "image": "https://callontheway.com/images/services/ac/tech-ac-fan-repair.webp",
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "reviewCount": "127",
-            "bestRating": "5",
-            "worstRating": "1"
+        {
+            "@type": "City",
+            "name": "Lutz"
+        },
+        {
+            "@type": "City",
+            "name": "Wesley Chapel"
+        },
+        {
+            "@type": "City",
+            "name": "Carrollwood"
+        },
+        {
+            "@type": "City",
+            "name": "New Tampa"
+        },
+        {
+            "@type": "City",
+            "name": "Land O' Lakes"
         }
-    }
+    ],
+    "image": "https://callontheway.com/images/services/ac/tech-ac-fan-repair.webp"
+}
     </script>
     
     <!-- Schema.org Structured Data - BreadcrumbList -->
@@ -979,5 +991,48 @@ src="https://www.facebook.com/tr?id=879710768181210&ev=PageView&noscript=1"
         }
     });
     </script>
+
+    <!-- Third-Party Review Widget (Lazy Loaded) -->
+    <div id="reviews-widget" class="reviews-section" style="max-width: 1200px; margin: 2rem auto; padding: 0 1rem;">
+        <noscript>
+            <iframe class="lc_reviews_widget" src="https://reputationhub.site/reputation/widgets/review_widget/iwx4jMb97LGyrO5mAU9B" frameborder="0" scrolling="no" style="min-width: 100%; width: 100%;"></iframe>
+        </noscript>
+    </div>
+    <script>
+    (function() {
+        var loaded = false;
+        function loadReviewWidget() {
+            if (loaded) return;
+            var container = document.getElementById('reviews-widget');
+            if (!container) return;
+            var rect = container.getBoundingClientRect();
+            if (rect.top < window.innerHeight + 500) {
+                loaded = true;
+                // Load the widget script
+                var s = document.createElement('script');
+                s.src = 'https://reputationhub.site/reputation/assets/review-widget.js';
+                s.async = true;
+                document.body.appendChild(s);
+                // Create the iframe
+                var iframe = document.createElement('iframe');
+                iframe.className = 'lc_reviews_widget';
+                iframe.src = 'https://reputationhub.site/reputation/widgets/review_widget/iwx4jMb97LGyrO5mAU9B';
+                iframe.frameBorder = '0';
+                iframe.scrolling = 'no';
+                iframe.style.cssText = 'min-width: 100%; width: 100%;';
+                iframe.loading = 'lazy';
+                // Clear noscript and add iframe
+                container.innerHTML = '';
+                container.appendChild(iframe);
+                // Remove scroll listener
+                window.removeEventListener('scroll', loadReviewWidget);
+            }
+        }
+        // Check on scroll and on initial load (with delay)
+        window.addEventListener('scroll', loadReviewWidget, {passive: true});
+        setTimeout(loadReviewWidget, 3000);
+    })();
+    </script>
+
 </body>
 </html>
