@@ -199,50 +199,6 @@ src="https://www.facebook.com/tr?id=879710768181210&ev=PageView&noscript=1"
     "sameAs": [
         "https://www.facebook.com/callontheway",
         "https://www.google.com/maps/place/On+The+Way+Heating+%26+Air"
-    ],
-    "review": [
-        {
-            "@type": "Review",
-            "author": {
-                "@type": "Person",
-                "name": "Michael R."
-            },
-            "datePublished": "2024-07-15",
-            "reviewBody": "Our AC went out on the hottest day of the year. On The Way had a technician at our house within 2 hours and fixed the problem the same day. True to their word—same day service! Highly recommend.",
-            "reviewRating": {
-                "@type": "Rating",
-                "ratingValue": "5",
-                "bestRating": "5"
-            }
-        },
-        {
-            "@type": "Review",
-            "author": {
-                "@type": "Person",
-                "name": "Jennifer S."
-            },
-            "datePublished": "2024-06-22",
-            "reviewBody": "Professional, punctual, and fairly priced. The technician explained everything clearly and didn't try to upsell unnecessary services. This is how HVAC companies should operate. Will use again!",
-            "reviewRating": {
-                "@type": "Rating",
-                "ratingValue": "5",
-                "bestRating": "5"
-            }
-        },
-        {
-            "@type": "Review",
-            "author": {
-                "@type": "Person",
-                "name": "David & Maria T."
-            },
-            "datePublished": "2024-05-10",
-            "reviewBody": "We've used On The Way for both AC repair and a new furnace installation. Both times the experience was excellent. Their team is knowledgeable, respectful of our home, and the pricing was competitive.",
-            "reviewRating": {
-                "@type": "Rating",
-                "ratingValue": "5",
-                "bestRating": "5"
-            }
-        }
     ]
 }
     </script>
@@ -575,40 +531,48 @@ src="https://www.facebook.com/tr?id=879710768181210&ev=PageView&noscript=1"
         </div>
     </section>
 
-    <!-- Testimonials Section -->
+    <!-- Third-Party Review Widget (Lazy Loaded) -->
     <section class="section testimonials-section">
         <div class="container">
             <div class="section-header">
                 <h2>What Our Customers Say</h2>
                 <p class="section-subtitle">Trusted by thousands of homeowners across North Tampa</p>
             </div>
-            
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"Our AC went out on the hottest day of the year. On The Way had a technician at our house within 2 hours and fixed the problem the same day. True to their word—same day service! Highly recommend."</p>
-                    <div class="testimonial-author">
-                        <strong>Michael R.</strong>
-                        <span>Lutz, FL</span>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"Professional, punctual, and fairly priced. The technician explained everything clearly and didn't try to upsell unnecessary services. This is how HVAC companies should operate. Will use again!"</p>
-                    <div class="testimonial-author">
-                        <strong>Jennifer S.</strong>
-                        <span>Wesley Chapel, FL</span>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"We've used On The Way for both AC repair and a new furnace installation. Both times the experience was excellent. Their team is knowledgeable, respectful of our home, and the pricing was competitive."</p>
-                    <div class="testimonial-author">
-                        <strong>David & Maria T.</strong>
-                        <span>Carrollwood, FL</span>
-                    </div>
-                </div>
+            <div id="reviews-widget" class="reviews-section" style="max-width: 1200px; margin: 0 auto;">
+                <noscript>
+                    <iframe class="lc_reviews_widget" src="https://reputationhub.site/reputation/widgets/review_widget/iwx4jMb97LGyrO5mAU9B" frameborder="0" scrolling="no" style="min-width: 100%; width: 100%;"></iframe>
+                </noscript>
             </div>
+            <script>
+            (function() {
+                var loaded = false;
+                function loadReviewWidget() {
+                    if (loaded) return;
+                    var container = document.getElementById('reviews-widget');
+                    if (!container) return;
+                    var rect = container.getBoundingClientRect();
+                    if (rect.top < window.innerHeight + 500) {
+                        loaded = true;
+                        var s = document.createElement('script');
+                        s.src = 'https://reputationhub.site/reputation/assets/review-widget.js';
+                        s.async = true;
+                        document.body.appendChild(s);
+                        var iframe = document.createElement('iframe');
+                        iframe.className = 'lc_reviews_widget';
+                        iframe.src = 'https://reputationhub.site/reputation/widgets/review_widget/iwx4jMb97LGyrO5mAU9B';
+                        iframe.frameBorder = '0';
+                        iframe.scrolling = 'no';
+                        iframe.style.cssText = 'min-width: 100%; width: 100%;';
+                        iframe.loading = 'lazy';
+                        container.innerHTML = '';
+                        container.appendChild(iframe);
+                        window.removeEventListener('scroll', loadReviewWidget);
+                    }
+                }
+                window.addEventListener('scroll', loadReviewWidget, {passive: true});
+                setTimeout(loadReviewWidget, 5000);
+            })();
+            </script>
         </div>
     </section>
 
@@ -1055,47 +1019,6 @@ src="https://www.facebook.com/tr?id=879710768181210&ev=PageView&noscript=1"
     });
     </script>
 
-    <!-- Third-Party Review Widget (Lazy Loaded) -->
-    <div id="reviews-widget" class="reviews-section" style="max-width: 1200px; margin: 2rem auto; padding: 0 1rem;">
-        <noscript>
-            <iframe class="lc_reviews_widget" src="https://reputationhub.site/reputation/widgets/review_widget/iwx4jMb97LGyrO5mAU9B" frameborder="0" scrolling="no" style="min-width: 100%; width: 100%;"></iframe>
-        </noscript>
-    </div>
-    <script>
-    (function() {
-        var loaded = false;
-        function loadReviewWidget() {
-            if (loaded) return;
-            var container = document.getElementById('reviews-widget');
-            if (!container) return;
-            var rect = container.getBoundingClientRect();
-            if (rect.top < window.innerHeight + 500) {
-                loaded = true;
-                // Load the widget script
-                var s = document.createElement('script');
-                s.src = 'https://reputationhub.site/reputation/assets/review-widget.js';
-                s.async = true;
-                document.body.appendChild(s);
-                // Create the iframe
-                var iframe = document.createElement('iframe');
-                iframe.className = 'lc_reviews_widget';
-                iframe.src = 'https://reputationhub.site/reputation/widgets/review_widget/iwx4jMb97LGyrO5mAU9B';
-                iframe.frameBorder = '0';
-                iframe.scrolling = 'no';
-                iframe.style.cssText = 'min-width: 100%; width: 100%;';
-                iframe.loading = 'lazy';
-                // Clear noscript and add iframe
-                container.innerHTML = '';
-                container.appendChild(iframe);
-                // Remove scroll listener
-                window.removeEventListener('scroll', loadReviewWidget);
-            }
-        }
-        // Check on scroll and on initial load (with delay)
-        window.addEventListener('scroll', loadReviewWidget, {passive: true});
-        setTimeout(loadReviewWidget, 5000);
-    })();
-    </script>
 
 </body>
 </html>
