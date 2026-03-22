@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '879710768181210');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=879710768181210&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="On The Way Heating & Air">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+    <link rel="icon" type="image/png" sizes="512x512" href="../../icon.png">
+    <link rel="apple-touch-icon" href="../../icon.png">
+    
+    <!-- Preload Self-Hosted Fonts -->
+    <link rel="preload" href="../../poppins-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../../poppins-600.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../../poppins-700.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../../montserrat-800.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Critical CSS (inlined for fast LCP) -->
+    <style>
+    @font-face{font-family:'Poppins';src:url('../../poppins-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:optional}
+    @font-face{font-family:'Poppins';src:url('../../poppins-600.woff2') format('woff2');font-weight:600;font-style:normal;font-display:optional}
+    @font-face{font-family:'Poppins';src:url('../../poppins-700.woff2') format('woff2');font-weight:700;font-style:normal;font-display:optional}
+    @font-face{font-family:'Montserrat';src:url('../../montserrat-800.woff2') format('woff2');font-weight:800;font-style:normal;font-display:optional}
+    :root{--primary-purple:#4a1a6b;--primary-magenta:#8b1a6b;--white:#ffffff;--off-white:#f8f9fa;--light-gray:#e9ecef;--font-primary:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--font-heading:'Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--spacing-xs:0.5rem;--spacing-sm:1rem;--spacing-md:1.5rem;--spacing-lg:2rem;--spacing-xl:3rem;--spacing-xxl:5rem;--radius-md:8px;--shadow-sm:0 2px 4px rgba(0,0,0,0.08);--transition-fast:0.2s ease;--transition-normal:0.3s ease;--container-max:1200px}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:var(--font-primary);font-size:1.25rem;line-height:1.7;color:var(--off-white);background-color:#2f0048;-webkit-font-smoothing:antialiased}
+    img{max-width:100%;height:auto;display:block}
+    a{text-decoration:none;color:inherit;transition:var(--transition-fast)}
+    ul,ol{list-style:none}
+    h1,h2,h3,h4,h5,h6{font-family:var(--font-heading);font-weight:700;line-height:1.2;margin-bottom:var(--spacing-sm)}
+    h1{font-size:clamp(2rem,5vw,3rem);color:#fff}
+    h2{font-size:clamp(1.75rem,4vw,2.5rem);color:#FFEF76}
+    h3{font-size:clamp(1.25rem,3vw,1.75rem);color:#71CEEB}
+    .container{width:100%;max-width:var(--container-max);margin:0 auto;padding:0 var(--spacing-md)}
+    .header{position:sticky;top:0;z-index:1000;background-color:#2f0048;box-shadow:var(--shadow-sm)}
+    .nav-bar{padding:var(--spacing-sm) 0}
+    .nav-inner{display:flex;justify-content:space-between;align-items:center;gap:var(--spacing-md)}
+    .logo-group{display:flex;align-items:center;gap:10px}
+    .logo img{height:80px;width:auto}
+    .navbar-mascot{display:none;height:50px;width:auto}
+    .nav-menu{display:flex;align-items:center;gap:var(--spacing-xs)}
+    .nav-item{position:relative}
+    .nav-link{display:block;padding:var(--spacing-sm) var(--spacing-md);font-weight:700;color:#71CEEB;font-size:1.1rem;border-radius:var(--radius-md);transition:var(--transition-fast)}
+    .nav-link:hover{color:#FFEF76;background-color:#3d0059}
+    .nav-dropdown{position:absolute;top:100%;left:0;min-width:200px;background-color:#2f0048;box-shadow:0 8px 24px rgba(0,0,0,0.16);border-radius:var(--radius-md);opacity:0;visibility:hidden;transform:translateY(10px);transition:var(--transition-normal);z-index:100;padding:var(--spacing-xs) 0}
+    .nav-item:hover .nav-dropdown{opacity:1;visibility:visible;transform:translateY(0)}
+    .nav-dropdown a{display:block;padding:var(--spacing-sm) var(--spacing-md);color:#fff;font-size:1.05rem}
+    .nav-dropdown a:hover{background-color:#3d0059;color:#FFEF76}
+    .header-cta{margin-left:var(--spacing-sm);background-color:#71CEEB!important;color:#2f0048!important;border-color:#71CEEB!important}
+    .nav-toggle{display:none;flex-direction:column;justify-content:center;align-items:center;width:44px;height:44px;background:none;border:none;cursor:pointer}
+    .nav-toggle span{display:block;width:24px;height:3px;background-color:#71CEEB;margin:4px 0;transition:var(--transition-normal);border-radius:2px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--spacing-xs);padding:0.75rem 1.5rem;font-family:var(--font-primary);font-size:1.05rem;font-weight:600;border:2px solid transparent;border-radius:var(--radius-md);cursor:pointer;transition:var(--transition-normal);text-align:center}
+    .btn-primary{background-color:var(--primary-purple);color:var(--white);border-color:var(--primary-purple)}
+    .btn-outline-light{background-color:transparent;border-color:var(--white);color:var(--white)}
+    .btn-lg{padding:1rem 2rem;font-size:1.1rem}
+    @media(max-width:992px){.nav-toggle{display:flex}.nav-menu{position:fixed;top:0;right:-100%;width:85%;max-width:350px;height:100vh;background-color:#2f0048;flex-direction:column;align-items:flex-start;padding:80px var(--spacing-lg) var(--spacing-xxl);transition:right 0.3s ease;box-shadow:-5px 0 20px rgba(0,0,0,0.3);overflow-y:auto;z-index:1001}.nav-menu.active{right:0}.header-cta{display:none}.navbar-mascot{display:block}}
+    </style>
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../../styles.css?v=6.0">
+
+    <meta name="description" content="On The Way Heating & Air is your local HVAC contractor in Dade City, Florida, providing straightforward air conditioning and heating repair. We proudly serve our neighbors in San Antonio, Saint Leo, and Zephyrhills with our Same Day… Or Don’t Pay* guarantee. Call us right away at 813-922-2209.">
+    <meta name="keywords" content="HVAC contractor Dade City, AC repair Dade City FL, heating repair Dade City, air conditioning Dade City Florida, HVAC service Dade City">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="HVAC Contractor in Dade City, FL | On The Way Heating & Air">
+    <meta property="og:description" content="On The Way Heating & Air is your local HVAC contractor in Dade City, Florida, providing straightforward air conditioning and heating repair. We proudly serve our neighbors in San Antonio, Saint Leo, and Zephyrhills with our Same Day… Or Don’t Pay* guarantee. Call us right away at 813-922-2209.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://callontheway.com/pages/locations/dade-city.html">
+    <meta property="og:image" content="https://callontheway.com/logo.jpg">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="On The Way Heating & Air">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="HVAC Contractor in Dade City, FL | On The Way Heating & Air">
+    <meta name="twitter:description" content="On The Way Heating & Air is your local HVAC contractor in Dade City, Florida, providing straightforward air conditioning and heating repair. We proudly serve our neighbors in San Antonio, Saint Leo, and Zephyrhills with our Same Day… Or Don’t Pay* guarantee. Call us right away at 813-922-2209.">
+    <meta name="twitter:image" content="https://callontheway.com/logo.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://callontheway.com/pages/locations/dade-city.html">
+    
+    <title>HVAC Contractor in Dade City, FL | On The Way Heating & Air</title>
+
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HVACBusiness",
+      "name": "On The Way Heating & Air",
+      "image": "https://callontheway.com/On-The-Way.webp",
+      "@id": "https://callontheway.com",
+      "url": "https://callontheway.com",
+      "telephone": "813-922-2209",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "17260 N Dale Mabry Hwy",
+        "addressLocality": "Lutz",
+        "addressRegion": "FL",
+        "postalCode": "33548",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 28.1583,
+        "longitude": -82.4667
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "00:00",
+        "closes": "23:59"
+      },
+      "sameAs": [
+        "https://www.facebook.com/OnTheWayHeatingAndAir",
+        "https://www.instagram.com/onthewayheatingandair/",
+        "https://www.youtube.com/@OnTheWayAC"
+      ],
+      "areaServed": {
+        "@type": "City",
+        "name": "Dade City, FL"
+      }
+    }
+    </script>
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://callontheway.com/index.html"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Locations",
+        "item": "https://callontheway.com/pages/locations/index.html"
+      },{
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Dade City",
+        "item": "https://callontheway.com/pages/locations/dade-city.html"
+      }]
+    }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-bar">
+            <div class="container">
+                <div class="nav-inner">
+                    <div class="logo-group">
+                        <a href="../../index.html" class="logo">
+                            <img src="../../On-The-Way.webp" alt="On The Way Heating & Air Logo" width="180" height="138" loading="eager">
+                        </a>
+                        <img src="../../mascot-navbar.webp" alt="On The Way Mascot" class="navbar-mascot" width="50" height="55" loading="eager">
+                    </div>
+                    
+                    <button class="nav-toggle" aria-label="Toggle Navigation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    
+                    <ul class="nav-menu">
+                        <li class="nav-item has-dropdown">
+                            <a href="../../pages/services/index.html" class="nav-link">Services ▾</a>
+                            <div class="nav-dropdown nav-dropdown-mega">
+                                <div class="nav-dropdown-section">
+                                    <span class="nav-dropdown-heading">Air Conditioning</span>
+                                    <a href="../../pages/services/ac/emergency-ac-repair.html">Emergency AC Repair</a>
+                                    <a href="../../pages/services/ac/air-conditioning-repair.html">AC Repair</a>
+                                    <a href="../../pages/services/ac/ac-installation.html">AC Installation</a>
+                                    <a href="../../pages/services/ac/ac-replacement.html">AC Replacement</a>
+                                    <a href="../../pages/services/ac/ac-tune-up.html">AC Tune-Up</a>
+                                    <a href="../../pages/services/ac/ac-maintenance.html">AC Maintenance</a>
+                                    <a href="../../pages/services/ac/central-ac-repair.html">Central AC Repair</a>
+                                    <a href="../../pages/services/ac/ac-compressor-replacement.html">AC Compressor Replacement</a>
+                                    <a href="../../pages/services/ac/ac-capacitor-replacement.html">AC Capacitor Replacement</a>
+                                    <a href="../../pages/services/ac/condensate-drain-cleaning.html">Condensate Drain Cleaning</a>
+                                    <a href="../../pages/services/ac/evaporator-coil-replacement.html">Evaporator Coil Replacement</a>
+                                    <a href="../../pages/services/ac/ac-refrigerant-recharge.html">AC Refrigerant Recharge</a>
+                                    <a href="../../pages/services/ac/ac-blower-motor-replacement.html">AC Blower Motor Replacement</a>
+                                    <a href="../../pages/services/ac/ac-contactor-replacement.html">AC Contactor Replacement</a>
+                                    <a href="../../pages/services/ac/condenser-fan-motor-repair.html">Condenser Fan Motor Repair</a>
+                                </div>
+                                <div class="nav-dropdown-section">
+                                    <span class="nav-dropdown-heading">Heating</span>
+                                    <a href="../../pages/services/heating/heating-repair.html">Heating Repair</a>
+                                    <a href="../../pages/services/heating/furnace-repair.html">Furnace Repair</a>
+                                    <a href="../../pages/services/heating/heating-installation.html">Heating Installation</a>
+                                    <a href="../../pages/services/heating/heat-pump-repair.html">Heat Pump Repair</a>
+                                    <a href="../../pages/services/heating/heat-pump-installation.html">Heat Pump Installation</a>
+                                </div>
+                                <div class="nav-dropdown-section">
+                                    <span class="nav-dropdown-heading">Air Quality</span>
+                                    <a href="../../pages/services/air-quality/air-duct-cleaning.html">Air Duct Cleaning</a>
+                                    <a href="../../pages/services/air-quality/air-purification-systems.html">Air Purification Systems</a>
+                                    <a href="../../pages/services/air-quality/dehumidifiers.html">Dehumidifiers</a>
+                                    <a href="../../pages/services/air-quality/thermostats.html">Thermostats</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item has-dropdown">
+                            <a href="../../pages/locations/index.html" class="nav-link">Locations ▾</a>
+                            <div class="nav-dropdown">
+                                <a href="../../pages/locations/lutz.html">Lutz</a>
+                                <a href="../../pages/locations/wesley-chapel.html">Wesley Chapel</a>
+                                <a href="../../pages/locations/carrollwood.html">Carrollwood</a>
+                                <a href="../../pages/locations/new-tampa.html">New Tampa</a>
+                                <a href="../../pages/locations/land-o-lakes.html">Land O' Lakes</a>
+                                <a href="../../pages/locations/temple-terrace.html">Temple Terrace</a>
+                                <a href="../../pages/locations/northdale.html">Northdale</a>
+                                <a href="../../pages/locations/seminole-heights.html">Seminole Heights</a>
+                                <a href="../../pages/locations/university-area.html">University Area</a>
+                                <a href="../../pages/locations/east-tampa.html">East Tampa</a>
+                                <a href="../../pages/locations/spring-hill.html">Spring Hill</a>
+                                <a href="../../pages/locations/dade-city.html">Dade City</a>
+                                <a href="../../pages/locations/index.html">View All →</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../pricing.html" class="nav-link">Pricing</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../about.html" class="nav-link">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../contact.html" class="nav-link">Contact</a>
+                        </li>
+                        <li class="nav-item header-cta-mobile">
+                            <a onclick="fbq('track', 'Contact');" href="tel:813-922-2209" class="nav-link btn">📞 Call Now</a>
+                        </li>
+                    </ul>
+                    
+                    <a onclick="fbq('track', 'Contact');" href="tel:813-922-2209" class="nav-link btn header-cta">📞 (813) 922-2209</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>HVAC Contractor in Dade City, Florida</h1>
+                    <p class="subtitle">On The Way Heating & Air is your local HVAC contractor in Dade City, Florida, providing straightforward air conditioning and heating repair. We proudly serve our neighbors in San Antonio, Saint Leo, and Zephyrhills with our Same Day… Or Don’t Pay* guarantee. Call us right away at 813-922-2209.</p>
+                    <div class="hero-cta">
+                        <a onclick="fbq('track', 'Contact');" href="tel:813-922-2209" class="btn btn-primary btn-lg">📞 Get Help Now</a>
+                        <a href="../../contact.html" class="btn btn-outline-light btn-lg">Request Service</a>
+                    </div>
+                </div>
+                <div class="hero-image-container">
+                    <img src="../../mascot-hero.webp" alt="On The Way Heating & Air Mascot" class="hero-mascot" width="400" height="440" loading="eager">
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <section class="main-content">
+            <div class="container">
+                <div class="content-grid">
+                    <article class="content-article">
+                        <h2>Common AC Repair Issues We Fix in Dade City</h2>
+                        <p>Folks in Dade City know that living in the hills of Pasco County means dealing with some unique weather. The rolling terrain and mix of historic homes and new developments create all sorts of HVAC challenges. One day you’re driving past the Pasco County Courthouse and the next you’re out near the Pioneer Florida Museum, and the homes in each area have completely different needs. We’ve seen it all, from old units in homes near the Church Street Historic District that have been running since the 80s to brand new systems in communities like Hilltop Point that are already struggling with the Florida humidity.</p>
+                        <p>It’s a mess when your AC gives up on a hot afternoon, especially with our local climate. The higher elevation doesn’t stop the heat, and the mix of agricultural land and new construction means there’s a lot of dust and pollen in the air. That’s why we’re not just parts-swappers; we’re problem solvers. We understand that a unit that’s been sitting in a historic home off Meridian Avenue has different issues than one in a new build off US 301. We get to the root of the problem right away, so you can get back to enjoying your home.</p>
+
+                        <div class="image-container-full">
+                            <img src="../../same-day-guarantee.webp" alt="Same Day Or Don't Pay Guarantee Badge" loading="lazy">
+                        </div>
+
+                        <h2><a href="../../pages/services/ac/ac-capacitor-replacement.html">AC Capacitor Replacement</a></h2>
+                        <p>When a summer thunderstorm rolls through Dade City, the power can flicker, and that’s all it takes to knock out an AC capacitor. It’s one of the most common calls we get. The capacitor is like a battery for your AC’s motors, giving them the jolt they need to start and run. When it fails, your AC unit might hum, but the fan won’t spin, or the compressor won’t kick on. It’s a simple fix, but it can leave your home heating up fast.</p>
+                        <p>We keep our trucks stocked with the right capacitors for all major brands, so we can get your system running again in a single visit. We don’t want you to have to wait. We’ll test the new capacitor to make sure it’s providing the correct voltage and get your air blowing cold before we leave. It’s a straightforward repair that makes a huge difference.</p>
+                        <blockquote class="pro-tip">
+                            <strong>Pro-Tip:</strong> If you hear a clicking or humming sound from your outdoor unit but the fan isn’t moving, turn off your AC at the thermostat immediately to prevent further damage to the compressor. Then give us a call.
+                        </blockquote>
+
+                        <div class="image-container-split">
+                            <img src="../../tech-1.webp" alt="On The Way HVAC technician working on an AC unit" loading="lazy">
+                            <img src="../../tech-2.webp" alt="On The Way technician diagnosing an HVAC system" loading="lazy">
+                        </div>
+
+                        <h2><a href="../../pages/services/ac/ac-contactor-replacement.html">AC Contactor Replacement</a></h2>
+                        <p>The AC contactor is another small part that can cause big problems. It’s an electrical switch that controls the flow of power to your outdoor unit. Here in Pasco County, with all the critters and insects, we often find that ants, geckos, or other small pests have gotten inside the contactor and caused it to fail. When this happens, your outdoor unit might not turn on at all, even if the indoor unit is running.</p>
+                        <p>Replacing a contactor is a quick job for a trained technician, but it’s dangerous for a homeowner because you’re dealing with high voltage. We can get it swapped out safely and have your system back online right away. We’ll also check for any signs of pest intrusion and give you some simple tips to help keep them out in the future.</p>
+                        <blockquote class="pro-tip">
+                            <strong>Pro-Tip:</strong> Keep the area around your outdoor unit clear of debris, tall grass, and bushes. This gives pests fewer places to hide and makes it less likely they’ll find their way into your AC’s electrical components.
+                        </blockquote>
+
+                        <h2><a href="../../pages/services/ac/ac-blower-motor-replacement.html">Blower Motor Replacement</a></h2>
+                        <p>If your AC system is running but you don’t feel much air coming out of the vents, you might have a problem with the blower motor. This is the fan inside your indoor air handler that pushes the cool air through your ductwork and into your home. Over time, these motors can wear out, especially in a climate where they’re running almost constantly. The dust and pollen around Dade City can also put extra strain on them.</p>
+                        <p>When a blower motor fails, it’s not something you can ignore. We can diagnose the problem and, if needed, replace the motor to get your airflow back to where it should be. We’ll make sure the new motor is the right size and speed for your system, ensuring efficient and quiet operation. It’s a fix that you’ll feel the difference from right away.</p>
+                        <blockquote class="pro-tip">
+                            <strong>Pro-Tip:</strong> Change your air filter regularly! A clogged filter makes the blower motor work much harder to pull in air, which can lead to premature failure. It’s the single easiest thing you can do to extend the life of your HVAC system.
+                        </blockquote>
+
+                        <h2><a href="../../pages/services/heating/condenser-fan-motor-repair.html">Condenser Fan Motor Repair</a></h2>
+                        <p>The fan on your outdoor unit—the condenser fan—has a critical job: it pulls heat out of the refrigerant and releases it into the outside air. If that fan stops spinning, the heat has nowhere to go, and your system can quickly overheat and shut down. We see this a lot in older homes around the historic parts of Dade City, where units have been exposed to the elements for years.</p>
+                        <p>Repairing or replacing a condenser fan motor is a common task for us. We’ll check the motor, the fan blades, and the capacitor to find the exact cause of the problem. A new motor can often get an older unit running like new again, saving you from a much more expensive compressor replacement. We’re all about fixin’ what’s broken, not just selling you a new system.</p>
+                        <blockquote class="pro-tip">
+                            <strong>Pro-Tip:</strong> If you look at your outdoor unit and the fan blades are spinning slowly or not at all, but you can hear the compressor running, turn the system off. Running it without the fan can cause serious damage.
+                        </blockquote>
+
+                        <h2><a href="../../pages/services/ac/ac-refrigerant-recharge.html">Refrigerant Leak Repair</a></h2>
+                        <p>If your AC isn’t blowing as cold as it used to, you might be low on refrigerant. And if you’re low on refrigerant, it means you have a leak. Simply adding more refrigerant without fixing the leak is a temporary fix and against the law. We take the time to find the source of the leak, whether it’s in the evaporator coil, the condenser coil, or the lines connecting them.</p>
+                        <p>Finding and fixing refrigerant leaks can be tricky, but it’s the right way to do it. We use electronic leak detectors and other tools to pinpoint the problem. Once we’ve repaired the leak, we’ll recharge the system to the manufacturer’s specifications. This not only gets your home cool again but also protects the environment and saves you money on future service calls.</p>
+                        <blockquote class="pro-tip">
+                            <strong>Pro-Tip:</strong> Look for signs of a refrigerant leak, such as ice forming on the copper lines near your outdoor unit or a hissing sound. These are clear indicators that you should call a professional right away.
+                        </blockquote>
+
+                        <h2><a href="../../pages/services/ac/ac-compressor-replacement.html">Compressor Replacement</a></h2>
+                        <p>The compressor is the heart of your air conditioning system. It’s the pump that circulates refrigerant and does the heavy lifting of cooling your home. When a compressor fails, it’s a major repair. But sometimes, a replacement is a much more cost-effective option than replacing the entire system, especially if the rest of the unit is in good shape.</p>
+                        <p>We’ll give you an honest assessment of your compressor and your overall system. If a replacement makes sense, we have the tools and experience to do the job right. It’s a complex repair that involves recovering the old refrigerant, brazing in the new compressor, and recharging the system. We’ll handle it all and get your AC back to life.</p>
+                        <blockquote class="pro-tip">
+                            <strong>Pro-Tip:</strong> A common cause of compressor failure is running the system with a dirty filter or a refrigerant leak. Regular maintenance and addressing small problems early can help you avoid this expensive repair.
+                        </blockquote>
+
+                        <h2><a href="../../pages/services/ac/condensate-drain-cleaning.html">Drain Line Cleaning</a></h2>
+                        <p>In our humid Florida climate, your AC produces a lot of condensation. This water is supposed to flow out through a drain line. But over time, that line can get clogged with algae, mold, and sludge, causing the water to back up and potentially flood your home. It’s a messy problem that we see all the time, from the newer homes in Vista Walk to the older houses near the downtown area.</p>
+                        <p>We use specialized tools to clear out clogged drain lines and get the water flowing freely again. We can also install a safety switch that will shut off your AC if the drain line backs up, preventing water damage. Regular drain line maintenance is a simple way to protect your home and your HVAC system.</p>
+                        <blockquote class="pro-tip">
+                            <strong>Pro-Tip:</strong> Once a month, pour a cup of distilled vinegar down your AC’s drain line access point. This helps to kill algae and keep the line clear.
+                        </blockquote>
+
+                        <h2>Same Day… Or Don’t Pay*</h2>
+                        <p>We know that when your AC goes out in Dade City, you can’t wait around. That’s why we guarantee same-day service. If we can’t get to you the same day you call, your diagnostic and service fee is waived. It’s that simple. We’re your neighbors, and we believe in treating you right. We’re not a big, faceless company; we’re a local team that takes pride in serving our community.</p>
+                        <p>Our promise is about more than just speed; it’s about respect. We respect your time and your comfort. When you call us, you’re not just another job on a list. You’re a neighbor in need, and we’re going to do everything we can to help you right away. That’s the On The Way promise.</p>
+
+                        <h2>Why Choose On The Way Heating & Air</h2>
+                        <div class="why-choose-grid">
+                            <div class="why-choose-item">
+                                <h3>📍 Local & Trusted</h3>
+                                <p>We’re based right here and know the area, from the rolling hills to the historic downtown.</p>
+                            </div>
+                            <div class="why-choose-item">
+                                <h3>💰 Straightforward Pricing</h3>
+                                <p>No hidden fees or surprises. We tell you the price before we start the work.</p>
+                            </div>
+                            <div class="why-choose-item">
+                                <h3>🤝 Honest Advice</h3>
+                                <p>We’ll always give you an honest opinion, even if it means we don’t make a sale.</p>
+                            </div>
+                            <div class="why-choose-item">
+                                <h3>🚚 Same-Day Service</h3>
+                                <p>We’ll be there today, or your service call is free.</p>
+                            </div>
+                            <div class="why-choose-item">
+                                <h3>⭐ Guaranteed Work</h3>
+                                <p>We stand behind our repairs and installations.</p>
+                            </div>
+                        </div>
+
+                        <h2>Our Services in Dade City</h2>
+                        <ul class="services-list">
+                            <li><a href="../../pages/services/ac/air-conditioning-repair.html">Air Conditioning Repair</a></li>
+                            <li><a href="../../pages/services/heating/heating-repair.html">Heating Repair</a></li>
+                            <li><a href="../../pages/services/ac/ac-installation.html">AC Installation</a></li>
+                            <li><a href="../../pages/services/heating/furnace-repair.html">Furnace Repair</a></li>
+                            <li><a href="../../pages/services/air-quality/air-duct-cleaning.html">Air Duct Cleaning</a></li>
+                            <li><a href="../../pages/services/ac/ac-tune-up.html">AC Tune-Up</a></li>
+                            <li><a href="../../pages/services/heating/heat-pump-repair.html">Heat Pump Repair</a></li>
+                            <li><a href="../../pages/services/air-quality/thermostats.html">Thermostat Services</a></li>
+                        </ul>
+
+                    </article>
+                    <aside class="content-sidebar">
+                        <!-- Review Widget -->
+                        <div class="review-widget-container">
+                            <iframe src="https://cdn.yodle.com/reviews/231x252/0/1/4/2/4/4/01424490.html" width="231" height="252" scrolling="no" frameborder="0" style="border:none;" loading="lazy"></iframe>
+                        </div>
+                        <!-- CTA Form -->
+                        <div class="cta-form-container">
+                            <h3>Request Service</h3>
+                            <p>Fill out the form below and we'll get back to you right away.</p>
+                            <script src="https://widgets.leadconnectorhq.com/v2/form/x2gZ3pA4kI1oB4cI6S2y" defer></script>
+                            <iframe src="https://widgets.leadconnectorhq.com/v2/form/x2gZ3pA4kI1oB4cI6S2y" style="width: 100%; height: 100%; border: none;" scrolling="no" id="x2gZ3pA4kI1oB4cI6S2y" title="Contact Form"></iframe>
+                            <p class="disclaimer">*Same-day service guarantee: Calls received before 3 PM on regular business days—if we can’t make it the same day, your diagnostic/service fee is waived.</p>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+<footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Logo & About -->
+                <div class="footer-col">
+                    <a href="../../index.html">
+                        <img src="../../On-The-Way-light.webp" alt="On The Way Heating & Air Logo" class="footer-logo" loading="lazy">
+                    </a>
+                    <p>On The Way Heating & Air is a family-owned and operated HVAC company serving North Tampa and surrounding communities. We believe in straightforward pricing, honest advice, and getting the job done right the first time. Known locally as On The Way Air and On The Way AC, we're your neighbors, and we're here to help.</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/OnTheWayHeatingAndAir" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/onthewayheatingandair/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.585-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.585-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.07-1.645-.07-4.85s.012-3.585.07-4.85c.148-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.689.073-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.441 1.441 1.441 1.441-.645 1.441-1.441-.645-1.44-1.441-1.44z"/></svg>
+                        </a>
+                        <a href="https://www.youtube.com/@OnTheWayAC" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../about.html">About Us</a></li>
+                        <li><a href="../../pricing.html">Pricing</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                        <li><a href="../../faq.html">FAQ</a></li>
+                        <li><a href="../../privacy-policy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div class="footer-col">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="../../pages/services/ac/air-conditioning-repair.html">AC Repair</a></li>
+                        <li><a href="../../pages/services/heating/heating-repair.html">Heating Repair</a></li>
+                        <li><a href="../../pages/services/ac/ac-installation.html">AC Installation</a></li>
+                        <li><a href="../../pages/services/air-quality/air-duct-cleaning.html">Air Duct Cleaning</a></li>
+                        <li><a href="../../pages/services/ac/ac-tune-up.html">AC Tune-Up</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <p><strong>On The Way Heating & Air</strong></p>
+                    <p>17260 N Dale Mabry Hwy<br>Lutz, FL 33548</p>
+                    <p><strong>Phone:</strong> <a href="tel:813-922-2209">(813) 922-2209</a></p>
+                    <p><strong>License:</strong> #CAC1819405</p>
+                    <p>Open 24/7</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 On The Way Heating & Air (On The Way Air | On The Way AC). All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../scripts.js?v=2.0" defer></script>
+
+</body>
+</html>
