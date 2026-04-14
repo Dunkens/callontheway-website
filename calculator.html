@@ -26,22 +26,17 @@ src="https://www.facebook.com/tr?id=879710768181210&ev=PageView&noscript=1"
     <meta name="author" content="On The Way Heating & Air">
     <meta name="robots" content="index, follow">
 
-    <!-- Open Graph -->
     <meta property="og:title" content="HVAC Price Calculator | On The Way Heating & Air">
     <meta property="og:description" content="Get an instant estimate for a brand new HVAC system. Enter your square footage and see your price.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://callontheway.com/calculator">
     <meta property="og:image" content="./logo.jpg">
 
-    <!-- Canonical URL -->
     <link rel="canonical" href="https://callontheway.com/calculator">
-
-    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
     <link rel="icon" type="image/png" sizes="512x512" href="./icon.png">
     <link rel="apple-touch-icon" href="./icon.png">
 
-    <!-- Preload Self-Hosted Fonts -->
     <link rel="preload" href="./poppins-400.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="./poppins-600.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="./poppins-700.woff2" as="font" type="font/woff2" crossorigin>
@@ -49,886 +44,597 @@ src="https://www.facebook.com/tr?id=879710768181210&ev=PageView&noscript=1"
 
     <title>HVAC Price Calculator | On The Way Heating & Air</title>
 
-    <link rel="stylesheet" href="./styles.css">
-
     <style>
-    /* Calculator Page Styles */
-    .calc-hero {
-        background: linear-gradient(180deg, #2f0048 0%, #83009d 100%);
-        padding: 3rem 0 2rem;
-        text-align: center;
+    @font-face{font-family:'Poppins';src:url('./poppins-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:optional}
+    @font-face{font-family:'Poppins';src:url('./poppins-600.woff2') format('woff2');font-weight:600;font-style:normal;font-display:optional}
+    @font-face{font-family:'Poppins';src:url('./poppins-700.woff2') format('woff2');font-weight:700;font-style:normal;font-display:optional}
+    @font-face{font-family:'Montserrat';src:url('./montserrat-800.woff2') format('woff2');font-weight:800;font-style:normal;font-display:optional}
+
+    :root {
+        --font-primary: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        --font-heading: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
-    .calc-hero h1 {
-        font-family: var(--font-heading);
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+        height: 100%;
+        overflow: hidden;
+    }
+
+    body {
+        font-family: var(--font-primary);
+        background: linear-gradient(180deg, #1a0030 0%, #2f0048 30%, #4a1a6b 100%);
         color: #fff;
-        font-size: clamp(1.8rem, 4vw, 2.8rem);
-        margin-bottom: 0.5rem;
-    }
-    .calc-hero p {
-        color: rgba(255,255,255,0.85);
-        font-size: 1.15rem;
-        max-width: 600px;
-        margin: 0 auto;
+        -webkit-font-smoothing: antialiased;
     }
 
-    .calc-section {
-        padding: 3rem 0;
+    /* Full-screen container */
+    .calc-app {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        position: relative;
     }
 
-    .calc-card {
-        background: linear-gradient(135deg, #3d0059 0%, #5a1a7a 100%);
-        border-radius: 16px;
-        padding: 2.5rem;
-        max-width: 700px;
-        margin: 0 auto;
-        box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    /* Top bar */
+    .calc-topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 1.5rem;
+        z-index: 10;
     }
 
-    .calc-card h2 {
-        color: #ffef76;
-        font-family: var(--font-heading);
-        font-size: 1.5rem;
-        margin-bottom: 1.5rem;
-        text-align: center;
+    .calc-logo img {
+        height: 50px;
+        width: auto;
     }
 
-    .calc-form-group {
-        margin-bottom: 1.5rem;
-    }
-
-    .calc-form-group label {
-        display: block;
-        color: #fff;
+    .calc-topbar-phone {
+        color: #71ceeb;
         font-weight: 600;
-        font-size: 1rem;
-        margin-bottom: 0.5rem;
+        font-size: 0.95rem;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
     }
 
-    .calc-form-group input,
-    .calc-form-group select {
+    .calc-topbar-phone:hover { color: #ffef76; }
+
+    /* Progress bar */
+    .calc-progress {
+        height: 4px;
+        background: rgba(255,255,255,0.1);
+        position: relative;
+    }
+
+    .calc-progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #00e5d4, #71ceeb);
+        transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 0 2px 2px 0;
+    }
+
+    /* Slides container */
+    .calc-slides {
+        flex: 1;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .calc-slide {
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        pointer-events: none;
+    }
+
+    .calc-slide.active {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: all;
+    }
+
+    .calc-slide.exit-up {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+
+    .calc-slide-inner {
+        max-width: 600px;
         width: 100%;
-        padding: 0.85rem 1rem;
-        border: 2px solid rgba(113, 206, 235, 0.3);
-        border-radius: 10px;
-        background: rgba(255,255,255,0.08);
+        text-align: center;
+    }
+
+    /* Step counter */
+    .calc-step-counter {
+        color: #71ceeb;
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+    }
+
+    /* Question text */
+    .calc-question {
+        font-family: var(--font-heading);
+        font-size: clamp(1.5rem, 4vw, 2.2rem);
+        font-weight: 800;
+        line-height: 1.3;
+        margin-bottom: 0.5rem;
+        color: #fff;
+    }
+
+    .calc-subtitle {
+        color: rgba(255,255,255,0.55);
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    /* Input styles */
+    .calc-input-wrapper {
+        position: relative;
+        margin-bottom: 1.5rem;
+    }
+
+    .calc-input {
+        width: 100%;
+        padding: 1.1rem 1.25rem;
+        border: 2px solid rgba(113, 206, 235, 0.25);
+        border-radius: 12px;
+        background: rgba(255,255,255,0.06);
         color: #fff;
         font-family: var(--font-primary);
-        font-size: 1.05rem;
-        transition: border-color 0.2s ease, background 0.2s ease;
-        appearance: none;
-        -webkit-appearance: none;
-    }
-
-    .calc-form-group input::placeholder {
-        color: rgba(255,255,255,0.4);
-    }
-
-    .calc-form-group input:focus,
-    .calc-form-group select:focus {
+        font-size: 1.2rem;
+        text-align: center;
+        transition: border-color 0.2s, background 0.2s;
         outline: none;
+    }
+
+    .calc-input::placeholder {
+        color: rgba(255,255,255,0.3);
+    }
+
+    .calc-input:focus {
         border-color: #71ceeb;
-        background: rgba(255,255,255,0.12);
+        background: rgba(255,255,255,0.1);
     }
 
-    .calc-form-group select {
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%2371ceeb' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
-        background-repeat: no-repeat;
-        background-position: right 1rem center;
-        padding-right: 2.5rem;
+    .calc-input-hint {
+        color: rgba(255,255,255,0.4);
+        font-size: 0.85rem;
+        margin-top: 0.5rem;
+    }
+
+    /* Option cards (for heat type and system type) */
+    .calc-options {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .calc-option {
+        padding: 1rem 1.25rem;
+        border: 2px solid rgba(113, 206, 235, 0.2);
+        border-radius: 12px;
+        background: rgba(255,255,255,0.04);
         cursor: pointer;
+        transition: all 0.25s ease;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        text-align: left;
     }
 
-    .calc-form-group select option {
-        background: #2f0048;
-        color: #fff;
+    .calc-option:hover {
+        border-color: rgba(113, 206, 235, 0.5);
+        background: rgba(255,255,255,0.08);
+        transform: translateY(-2px);
     }
 
-    .calc-btn {
+    .calc-option.selected {
+        border-color: #00e5d4;
+        background: rgba(0, 229, 212, 0.1);
+    }
+
+    .calc-option-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        background: rgba(113, 206, 235, 0.12);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+        flex-shrink: 0;
+    }
+
+    .calc-option-text {
+        font-weight: 600;
+        font-size: 1.05rem;
+    }
+
+    .calc-option-desc {
+        font-size: 0.85rem;
+        color: rgba(255,255,255,0.5);
+        margin-top: 0.15rem;
+    }
+
+    /* Continue button */
+    .calc-continue {
         width: 100%;
         padding: 1rem;
         background: linear-gradient(90deg, #00e5d4, #71ceeb);
         border: none;
-        border-radius: 10px;
-        color: #2f0048;
+        border-radius: 12px;
+        color: #1a0030;
         font-family: var(--font-heading);
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         font-weight: 800;
         cursor: pointer;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
         margin-top: 0.5rem;
+        opacity: 0.4;
+        pointer-events: none;
     }
 
-    .calc-btn:hover {
+    .calc-continue.ready {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .calc-continue.ready:hover {
         transform: translateY(-2px);
         box-shadow: 0 8px 25px rgba(0, 229, 212, 0.3);
     }
 
-    .calc-btn:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-        transform: none;
-    }
-
-    /* Results */
-    .calc-result {
-        display: none;
-        margin-top: 2rem;
-        text-align: center;
-        animation: fadeInUp 0.5s ease;
-    }
-
-    @keyframes fadeInUp {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    .calc-result-box {
-        background: linear-gradient(135deg, #4a1a6b 0%, #83009d 100%);
-        border: 2px solid #ffef76;
-        border-radius: 16px;
-        padding: 2rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .calc-result-label {
-        color: rgba(255,255,255,0.7);
-        font-size: 0.95rem;
-        margin-bottom: 0.25rem;
-    }
-
-    .calc-result-system {
-        color: #71ceeb;
-        font-size: 1.15rem;
-        font-weight: 600;
-        margin-bottom: 0.25rem;
-    }
-
-    .calc-result-tonnage {
-        color: rgba(255,255,255,0.6);
-        font-size: 0.95rem;
-        margin-bottom: 1rem;
-    }
-
-    .calc-result-price {
-        color: #ffef76;
-        font-family: var(--font-heading);
-        font-size: clamp(2.5rem, 6vw, 3.5rem);
-        font-weight: 800;
-        line-height: 1;
-        margin-bottom: 0.5rem;
-    }
-
-    .calc-result-financing {
-        color: rgba(255,255,255,0.7);
-        font-size: 1rem;
-        margin-bottom: 0;
-    }
-
-    .calc-result-financing span {
-        color: #00e5d4;
-        font-weight: 700;
-        font-size: 1.15rem;
-    }
-
-    .calc-result-note {
-        color: rgba(255,255,255,0.5);
-        font-size: 0.85rem;
+    /* Back link */
+    .calc-back {
+        display: inline-block;
         margin-top: 1rem;
-        line-height: 1.5;
-    }
-
-    .calc-cta-buttons {
-        display: flex;
-        gap: 1rem;
-        justify-content: center;
-        flex-wrap: wrap;
-        margin-top: 1.5rem;
-    }
-
-    .calc-cta-buttons .btn {
-        min-width: 200px;
-        font-size: 1.05rem;
-        padding: 0.85rem 1.5rem;
-    }
-
-    .btn-call {
-        background-color: #71ceeb;
-        border-color: #71ceeb;
-        color: #2f0048;
-        font-weight: 700;
-    }
-
-    .btn-call:hover {
-        background-color: #5ab8d8;
-        border-color: #5ab8d8;
-        transform: translateY(-2px);
-    }
-
-    .btn-book {
-        background: linear-gradient(90deg, #d81471, #8b1a6b);
-        border: 2px solid #d81471;
-        color: #fff;
-        font-weight: 700;
-    }
-
-    .btn-book:hover {
-        opacity: 0.9;
-        transform: translateY(-2px);
-    }
-
-    .calc-recalc {
-        background: none;
-        border: none;
-        color: #71ceeb;
-        font-family: var(--font-primary);
-        font-size: 0.95rem;
+        color: rgba(255,255,255,0.4);
+        font-size: 0.9rem;
         cursor: pointer;
-        margin-top: 1rem;
-        text-decoration: underline;
+        border: none;
+        background: none;
+        font-family: var(--font-primary);
+        transition: color 0.2s;
     }
 
-    .calc-recalc:hover {
-        color: #ffef76;
+    .calc-back:hover { color: #71ceeb; }
+
+    /* Enter hint */
+    .calc-enter-hint {
+        color: rgba(255,255,255,0.3);
+        font-size: 0.8rem;
+        margin-top: 0.75rem;
     }
 
-    /* Incentive Banner */
-    .incentive-banner {
-        display: none;
-        background: linear-gradient(90deg, #d81471, #8b1a6b);
-        border-radius: 12px;
-        padding: 1rem 1.5rem;
-        margin-bottom: 1.5rem;
-        text-align: center;
-    }
-
-    .incentive-banner.active {
-        display: block;
-    }
-
-    .incentive-banner h3 {
-        color: #ffef76;
-        font-size: 1.1rem;
-        margin-bottom: 0.25rem;
-    }
-
-    .incentive-banner p {
-        color: #fff;
-        font-size: 0.95rem;
-        margin: 0;
-    }
-
-    /* Trust Section */
-    .calc-trust {
-        display: flex;
-        justify-content: center;
-        gap: 2rem;
-        flex-wrap: wrap;
-        margin-top: 2rem;
-        padding-top: 1.5rem;
-        border-top: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .calc-trust-item {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: rgba(255,255,255,0.7);
-        font-size: 0.95rem;
-    }
-
-    .calc-trust-item span:first-child {
-        font-size: 1.2rem;
-    }
-
-    /* Appointment Section */
-    .appointment-section {
-        background-color: #83009d;
-        padding: 3rem 0;
-    }
-
-    .appointment-grid {
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        gap: 2rem;
-        align-items: center;
-    }
-
-    .appointment-content h2 {
-        color: #ffef76;
-        margin-bottom: 0.5rem;
-    }
-
-    .appointment-content > p {
-        color: #fff;
-        margin-bottom: 1.5rem;
-    }
-
-    .appointment-image {
-        text-align: center;
-    }
-
-    .appointment-image img {
-        max-width: 100%;
-        border-radius: 16px;
-    }
-
-    /* How It Works */
-    .calc-how-section {
-        padding: 3rem 0;
-    }
-
-    .calc-how-section .section-header h2 {
-        color: #ffef76;
-    }
-
-    .calc-steps {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
-        max-width: 900px;
-        margin: 0 auto;
-    }
-
-    .calc-step {
-        text-align: center;
-        padding: 1.5rem;
-    }
-
-    .calc-step-num {
-        width: 50px;
-        height: 50px;
-        background: linear-gradient(135deg, #d81471, #8b1a6b);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #fff;
-        font-family: var(--font-heading);
-        font-size: 1.25rem;
-        font-weight: 800;
-        margin: 0 auto 1rem;
-    }
-
-    .calc-step h4 {
-        color: #ffef76;
-        margin-bottom: 0.5rem;
-    }
-
-    .calc-step p {
-        color: rgba(255,255,255,0.8);
-        font-size: 0.95rem;
-        margin: 0;
+    .calc-enter-hint kbd {
+        background: rgba(255,255,255,0.1);
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        font-family: var(--font-primary);
+        font-size: 0.75rem;
     }
 
     /* Responsive */
-    @media (max-width: 768px) {
-        .calc-card {
-            padding: 1.5rem;
-            margin: 0 1rem;
-        }
-
-        .calc-cta-buttons {
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .calc-cta-buttons .btn {
-            width: 100%;
-        }
-
-        .appointment-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .appointment-image {
-            display: none;
-        }
-
-        .calc-steps {
-            grid-template-columns: 1fr;
-            gap: 1rem;
-        }
-
-        .calc-trust {
-            flex-direction: column;
-            align-items: center;
-            gap: 0.75rem;
-        }
+    @media (max-width: 600px) {
+        .calc-slide { padding: 1.5rem; }
+        .calc-option { padding: 0.85rem 1rem; }
+        .calc-option-icon { width: 38px; height: 38px; font-size: 1.1rem; }
     }
     </style>
 </head>
 <body>
 
-    <!-- Header / Navbar (same as main site) -->
-    <header class="header">
-        <nav class="nav-bar">
-            <div class="container">
-                <div class="nav-inner">
-                    <div class="logo-group">
-                        <a href="./" class="logo" aria-label="On The Way Air Home">
-                            <img src="./On-The-Way.webp" alt="On The Way Heating & Air Logo" width="80" height="80">
-                        </a>
-                        <img src="./mascot-navbar.webp" alt="On The Way Air Mascot" class="navbar-mascot" width="50" height="50" loading="lazy">
-                    </div>
-                    <ul class="nav-menu">
-                        <li class="nav-item">
-                            <a href="./#services" class="nav-link">Services &#9662;</a>
-                            <div class="nav-dropdown">
-                                <a href="./pages/ac-repair.html">AC Repair</a>
-                                <a href="./pages/ac-installation.html">AC Installation</a>
-                                <a href="./pages/furnace-repair.html">Furnace Repair</a>
-                                <a href="./pages/heat-pump.html">Heat Pump</a>
-                                <a href="./pages/air-duct-cleaning.html">Air Duct Cleaning</a>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a href="./#areas" class="nav-link">Locations &#9662;</a>
-                            <div class="nav-dropdown">
-                                <a href="./service-areas/lutz.html">Lutz</a>
-                                <a href="./service-areas/wesley-chapel.html">Wesley Chapel</a>
-                                <a href="./service-areas/carrollwood.html">Carrollwood</a>
-                                <a href="./service-areas/new-tampa.html">New Tampa</a>
-                                <a href="./service-areas/land-o-lakes.html">Land O' Lakes</a>
-                            </div>
-                        </li>
-                        <li class="nav-item"><a href="./pricing.html" class="nav-link">Pricing</a></li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">Resources &#9662;</a>
-                            <div class="nav-dropdown">
-                                <a href="./blog/">Blog</a>
-                                <a href="./faq.html">FAQ</a>
-                            </div>
-                        </li>
-                        <li class="nav-item"><a href="./#contact" class="nav-link">Contact</a></li>
-                    </ul>
-                    <a href="tel:8139222209" class="btn btn-secondary header-cta">&#9742; (813) 922-2209</a>
-                    <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('.nav-menu').classList.toggle('active'); this.classList.toggle('active');">
-                        <span></span><span></span><span></span>
-                    </button>
-                </div>
-            </div>
-        </nav>
-    </header>
+<div class="calc-app">
+    <!-- Top Bar -->
+    <div class="calc-topbar">
+        <a href="./" class="calc-logo">
+            <img src="./On-The-Way.webp" alt="On The Way Heating & Air" width="50" height="50">
+        </a>
+        <a href="tel:8139222209" class="calc-topbar-phone" id="topbar-phone">&#9742; (813) 922-2209</a>
+    </div>
 
-    <main>
-        <!-- Hero -->
-        <section class="calc-hero">
-            <div class="container">
-                <h1>HVAC Price Calculator</h1>
-                <p>Get an instant estimate for a brand new HVAC system for your home. Just answer 3 quick questions.</p>
-            </div>
-        </section>
+    <!-- Progress Bar -->
+    <div class="calc-progress">
+        <div class="calc-progress-fill" id="progress-fill" style="width: 0%"></div>
+    </div>
 
-        <!-- Trust Badges -->
-        <div class="trust-badges">
-            <div class="container">
-                <div class="trust-badges-inner">
-                    <div class="trust-badge">
-                        <span class="badge-text">&#9733;&#9733;&#9733;&#9733;&#9733; 5-Star Rated</span>
-                    </div>
-                    <div class="trust-badge">
-                        <span class="badge-text">&#10003; Licensed &amp; Insured</span>
-                    </div>
-                    <div class="trust-badge">
-                        <span class="badge-text">&#128737; Background Checked</span>
-                    </div>
-                    <div class="trust-badge">
-                        <span class="badge-text">&#9889; Same Day Service</span>
-                    </div>
-                </div>
+    <!-- Slides -->
+    <div class="calc-slides">
+
+        <!-- Step 0: Welcome -->
+        <div class="calc-slide active" id="slide-0">
+            <div class="calc-slide-inner">
+                <div class="calc-step-counter">HVAC Price Calculator</div>
+                <h1 class="calc-question">How much will a new HVAC system cost for your home?</h1>
+                <p class="calc-subtitle">Answer 3 quick questions to get your instant estimate.</p>
+                <button class="calc-continue ready" onclick="goToSlide(1)">Let's Go &#8594;</button>
             </div>
         </div>
 
-        <!-- Calculator Section -->
-        <section class="calc-section">
-            <div class="container">
-                <div class="calc-card">
-                    <h2>Get Your Estimate</h2>
-
-                    <!-- Incentive Banner (controlled by pricing-data.json) -->
-                    <div class="incentive-banner" id="incentive-banner">
-                        <h3 id="incentive-title"></h3>
-                        <p id="incentive-desc"></p>
-                    </div>
-
-                    <!-- Calculator Form -->
-                    <div id="calc-form">
-                        <div class="calc-form-group">
-                            <label for="sqft">Square Footage of Your Home</label>
-                            <input type="number" id="sqft" placeholder="e.g. 1500" min="901" max="3000" required>
-                        </div>
-
-                        <div class="calc-form-group">
-                            <label for="heat-type">How Do You Heat Your Home?</label>
-                            <select id="heat-type" required>
-                                <option value="" disabled selected>Select heat type...</option>
-                                <option value="electric">Electric</option>
-                                <option value="gas">Gas</option>
-                            </select>
-                        </div>
-
-                        <div class="calc-form-group">
-                            <label for="system-type">System Type</label>
-                            <select id="system-type" required disabled>
-                                <option value="" disabled selected>Select system type...</option>
-                            </select>
-                        </div>
-
-                        <button class="calc-btn" id="calc-btn" onclick="calculatePrice()" disabled>Get My Estimate</button>
-                    </div>
-
-                    <!-- Results -->
-                    <div class="calc-result" id="calc-result">
-                        <div class="calc-result-box">
-                            <p class="calc-result-label">Your estimated price for a</p>
-                            <p class="calc-result-system" id="result-system"></p>
-                            <p class="calc-result-tonnage" id="result-tonnage"></p>
-                            <div class="calc-result-price" id="result-price"></div>
-                            <p class="calc-result-financing" id="result-financing"></p>
-                            <p class="calc-result-note">* This is an estimate based on typical installations. Final pricing may vary based on home-specific factors. A free in-home consultation will confirm your exact price.</p>
-                        </div>
-
-                        <div class="calc-cta-buttons">
-                            <a href="tel:8139222209" class="btn btn-call">&#9742; Call (813) 922-2209</a>
-                            <a href="#appointment" class="btn btn-book" onclick="document.getElementById('appointment').scrollIntoView({behavior:'smooth'}); return false;">Book Free Consultation</a>
-                        </div>
-
-                        <button class="calc-recalc" onclick="resetCalculator()">&#8592; Calculate again</button>
-                    </div>
-
-                    <!-- Trust Items -->
-                    <div class="calc-trust">
-                        <div class="calc-trust-item">
-                            <span>&#128176;</span> <span>Upfront Pricing</span>
-                        </div>
-                        <div class="calc-trust-item">
-                            <span>&#10003;</span> <span>Free In-Home Estimate</span>
-                        </div>
-                        <div class="calc-trust-item">
-                            <span>&#128197;</span> <span>Financing Available</span>
-                        </div>
-                    </div>
+        <!-- Step 1: Square Footage -->
+        <div class="calc-slide" id="slide-1">
+            <div class="calc-slide-inner">
+                <div class="calc-step-counter">Step 1 of 3</div>
+                <h2 class="calc-question">What's the square footage of your home?</h2>
+                <p class="calc-subtitle">This helps us determine the right system size.</p>
+                <div class="calc-input-wrapper">
+                    <input type="number" class="calc-input" id="input-sqft" placeholder="e.g. 1500" min="901" max="3000" oninput="validateSqft()">
+                    <p class="calc-input-hint">Between 901 and 3,000 sq ft</p>
                 </div>
-            </div>
-        </section>
-
-        <!-- How It Works -->
-        <section class="calc-how-section" style="background-color:#83009d;">
-            <div class="container">
-                <div class="section-header">
-                    <h2>How It Works</h2>
-                </div>
-                <div class="calc-steps">
-                    <div class="calc-step">
-                        <div class="calc-step-num">1</div>
-                        <h4>Get Your Estimate</h4>
-                        <p>Use the calculator above to see your estimated price based on your home's size and system type.</p>
-                    </div>
-                    <div class="calc-step">
-                        <div class="calc-step-num">2</div>
-                        <h4>Schedule a Consultation</h4>
-                        <p>Book a free in-home consultation. Our expert will confirm the exact price and help you choose the perfect system.</p>
-                    </div>
-                    <div class="calc-step">
-                        <div class="calc-step-num">3</div>
-                        <h4>Enjoy Comfort</h4>
-                        <p>Professional installation, usually completed in one day. Start enjoying your new system right away.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Appointment Section -->
-        <section class="appointment-section" id="appointment">
-            <div class="container">
-                <div class="appointment-grid">
-                    <div class="appointment-content">
-                        <h2>Schedule Your Free Consultation</h2>
-                        <p>Fill out the form and we'll contact you within 24 hours to schedule your free in-home estimate.</p>
-
-                        <!-- Form placeholder while loading -->
-                        <div id="form-placeholder" style="width:100%;height:625px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.05);border-radius:8px;">
-                            <div style="text-align:center;color:#71CEEB;">
-                                <div style="font-size:2rem;margin-bottom:10px;">&#9203;</div>
-                                <div>Loading form...</div>
-                            </div>
-                        </div>
-
-                        <!-- Form container (loaded after delay) -->
-                        <div id="form-container" style="display:none;"></div>
-
-                        <script>
-                        setTimeout(function() {
-                            var placeholder = document.getElementById('form-placeholder');
-                            var container = document.getElementById('form-container');
-                            var iframe = document.createElement('iframe');
-                            iframe.src = 'https://go.callontheway.com/widget/form/lyAbCf7HHTdJzkGQz4Iv';
-                            iframe.style.cssText = 'width:100%;min-height:625px;border:none;background:transparent;';
-                            iframe.scrolling = 'no';
-                            iframe.loading = 'lazy';
-                            iframe.title = 'Schedule Consultation Form';
-                            if (placeholder && container) {
-                                placeholder.style.display = 'none';
-                                container.style.display = 'block';
-                                container.appendChild(iframe);
-                            }
-                        }, 3000);
-                        </script>
-                    </div>
-                    <div class="appointment-image">
-                        <img src="./van.webp" alt="On The Way Air Service Van" width="500" height="233" loading="lazy">
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer (same as main site) -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-about">
-                    <div class="footer-logo">
-                        <img src="./footer-logo.webp" alt="On The Way Heating & Air" width="150" height="150" loading="lazy">
-                    </div>
-                    <p>On The Way Air &mdash; serving North Tampa since day one with reliable HVAC and AC solutions.</p>
-                    <p><strong>Licensed &amp; Insured</strong></p>
-                </div>
-                <div class="footer-links-col">
-                    <h4>Services</h4>
-                    <a href="./pages/ac-repair.html">AC Repair</a>
-                    <a href="./pages/ac-installation.html">AC Installation</a>
-                    <a href="./pages/furnace-repair.html">Furnace Repair</a>
-                    <a href="./pages/heat-pump.html">Heat Pump Installation</a>
-                    <a href="./pages/air-duct-cleaning.html">Air Duct Cleaning</a>
-                </div>
-                <div class="footer-links-col">
-                    <h4>Service Areas</h4>
-                    <a href="./service-areas/lutz.html">Lutz</a>
-                    <a href="./service-areas/wesley-chapel.html">Wesley Chapel</a>
-                    <a href="./service-areas/carrollwood.html">Carrollwood</a>
-                    <a href="./service-areas/new-tampa.html">New Tampa</a>
-                    <a href="./service-areas/land-o-lakes.html">Land O' Lakes</a>
-                </div>
-                <div class="footer-contact">
-                    <h4>Contact</h4>
-                    <p><strong>On The Way Heating &amp; Air</strong></p>
-                    <p>18711 N Dale Mabry Hwy</p>
-                    <p><a href="tel:8139222209">(813) 922-2209</a></p>
-                    <p>Hours: Mon-Sat 8AM-8PM</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 On The Way Heating &amp; Air. All rights reserved.</p>
-                <div class="footer-legal">
-                    <a href="./privacy-policy.html">Privacy Policy</a>
-                    <a href="./terms-and-conditions.html">Terms &amp; Conditions</a>
-                </div>
+                <button class="calc-continue" id="btn-sqft" onclick="goToSlide(2)">Continue &#8594;</button>
+                <p class="calc-enter-hint">Press <kbd>Enter &#8629;</kbd></p>
+                <button class="calc-back" onclick="goToSlide(0)">&#8592; Back</button>
             </div>
         </div>
-    </footer>
 
-    <!-- Chat Widget (same as main site) -->
-    <script>
+        <!-- Step 2: Heat Type -->
+        <div class="calc-slide" id="slide-2">
+            <div class="calc-slide-inner">
+                <div class="calc-step-counter">Step 2 of 3</div>
+                <h2 class="calc-question">How do you heat your home?</h2>
+                <p class="calc-subtitle">This determines which system types are available.</p>
+                <div class="calc-options" id="heat-options">
+                    <div class="calc-option" onclick="selectHeat('electric', this)">
+                        <div class="calc-option-icon">&#9889;</div>
+                        <div>
+                            <div class="calc-option-text">Electric</div>
+                            <div class="calc-option-desc">Heat pump or electric heat strips</div>
+                        </div>
+                    </div>
+                    <div class="calc-option" onclick="selectHeat('gas', this)">
+                        <div class="calc-option-icon">&#128293;</div>
+                        <div>
+                            <div class="calc-option-text">Gas</div>
+                            <div class="calc-option-desc">Natural gas furnace</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="calc-back" onclick="goToSlide(1)" style="margin-top:1.5rem">&#8592; Back</button>
+            </div>
+        </div>
+
+        <!-- Step 3: System Type -->
+        <div class="calc-slide" id="slide-3">
+            <div class="calc-slide-inner">
+                <div class="calc-step-counter">Step 3 of 3</div>
+                <h2 class="calc-question">What type of system?</h2>
+                <p class="calc-subtitle">Choose the system that fits your home.</p>
+                <div class="calc-options" id="system-options">
+                    <!-- Populated dynamically -->
+                </div>
+                <button class="calc-back" onclick="goToSlide(2)" style="margin-top:1.5rem">&#8592; Back</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+var pricingData = null;
+var currentSlide = 0;
+var selectedSqft = null;
+var selectedHeat = null;
+var selectedSystem = null;
+
+var systemsByHeat = {
+    electric: [
+        { key: 'split_heat_pump', label: 'Split Heat Pump', icon: '&#10052;', desc: 'Heats and cools with one outdoor unit' },
+        { key: 'split_ac_electric', label: 'Split AC with Electric Heat', icon: '&#9889;', desc: 'Separate AC and electric heat strips' },
+        { key: 'package_ac_electric', label: 'Package AC with Electric Heat', icon: '&#128230;', desc: 'All-in-one outdoor unit with electric heat' },
+        { key: 'package_ac_heat_pump', label: 'Package AC Heat Pump', icon: '&#127777;', desc: 'All-in-one outdoor heat pump unit' }
+    ],
+    gas: [
+        { key: 'split_ac_gas', label: 'Split AC with Gas Furnace', icon: '&#128293;', desc: 'AC unit paired with gas furnace' }
+    ]
+};
+
+// Load pricing data
+fetch('./pricing-data.json?v=' + Date.now())
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+        pricingData = data;
+        // Update phone
+        if (data.settings && data.settings.phone) {
+            var ph = data.settings.phone;
+            var digits = ph.replace(/\D/g, '');
+            document.getElementById('topbar-phone').href = 'tel:' + digits;
+            document.getElementById('topbar-phone').innerHTML = '&#9742; ' + ph;
+        }
+    });
+
+function goToSlide(n) {
+    if (n === currentSlide) return;
+
+    var prev = document.getElementById('slide-' + currentSlide);
+    var next = document.getElementById('slide-' + n);
+
+    // Exit direction
+    if (n > currentSlide) {
+        prev.classList.remove('active');
+        prev.classList.add('exit-up');
+    } else {
+        prev.classList.remove('active');
+        prev.style.transform = 'translateY(40px)';
+        prev.style.opacity = '0';
+    }
+
+    // Enter
     setTimeout(function() {
-        var chatScript = document.createElement('script');
-        chatScript.src = 'https://widgets.leadconnectorhq.com/loader.js';
-        chatScript.setAttribute('data-resources-url', 'https://widgets.leadconnectorhq.com/chat-widget/loader.js');
-        chatScript.setAttribute('data-widget-id', '697d34a60079c39552ddfad9');
-        document.body.appendChild(chatScript);
-    }, 5000);
-    </script>
+        prev.classList.remove('exit-up');
+        prev.style.transform = '';
+        prev.style.opacity = '';
+        next.classList.add('active');
+    }, 80);
 
-    <!-- Calculator Logic -->
-    <script>
-    var pricingData = null;
+    currentSlide = n;
 
-    // System types filtered by heat type
-    var systemsByHeat = {
-        electric: [
-            { key: 'split_heat_pump', label: 'Split Heat Pump' },
-            { key: 'split_ac_electric', label: 'Split AC with Electric Heat' },
-            { key: 'package_ac_electric', label: 'Package AC with Electric Heat' },
-            { key: 'package_ac_heat_pump', label: 'Package AC Heat Pump' }
-        ],
-        gas: [
-            { key: 'split_ac_gas', label: 'Split AC with Gas Furnace' }
-        ]
-    };
+    // Update progress
+    var totalSteps = 4; // 0=welcome, 1=sqft, 2=heat, 3=system
+    var pct = (n / totalSteps) * 100;
+    document.getElementById('progress-fill').style.width = pct + '%';
 
-    // Load pricing data
-    fetch('./pricing-data.json?v=' + Date.now())
-        .then(function(r) { return r.json(); })
-        .then(function(data) {
-            pricingData = data;
-            initCalculator();
-        })
-        .catch(function(err) {
-            console.error('Failed to load pricing data:', err);
-        });
-
-    function initCalculator() {
-        // Show incentive banner if enabled
-        if (pricingData.incentives && pricingData.incentives.enabled) {
-            var banner = document.getElementById('incentive-banner');
-            document.getElementById('incentive-title').textContent = pricingData.incentives.title || '';
-            document.getElementById('incentive-desc').textContent = pricingData.incentives.description || '';
-            banner.classList.add('active');
-        }
-
-        // Set sqft limits
-        var sqftInput = document.getElementById('sqft');
-        sqftInput.min = pricingData.settings.min_sqft;
-        sqftInput.max = pricingData.settings.max_sqft;
-        sqftInput.placeholder = 'e.g. 1500 (min ' + pricingData.settings.min_sqft + ', max ' + pricingData.settings.max_sqft + ')';
-
-        // Update phone in CTA buttons
-        if (pricingData.settings.phone) {
-            var phoneDigits = pricingData.settings.phone.replace(/\D/g, '');
-            var callBtns = document.querySelectorAll('.btn-call');
-            callBtns.forEach(function(btn) {
-                btn.href = 'tel:' + phoneDigits;
-                btn.innerHTML = '&#9742; Call ' + pricingData.settings.phone;
-            });
-        }
+    // Focus input on sqft slide
+    if (n === 1) {
+        setTimeout(function() {
+            document.getElementById('input-sqft').focus();
+        }, 300);
     }
+}
 
-    // Heat type change -> populate system types
-    document.getElementById('heat-type').addEventListener('change', function() {
-        var heatType = this.value;
-        var systemSelect = document.getElementById('system-type');
-        systemSelect.innerHTML = '<option value="" disabled selected>Select system type...</option>';
+function validateSqft() {
+    var val = parseInt(document.getElementById('input-sqft').value);
+    var btn = document.getElementById('btn-sqft');
+    if (val >= 901 && val <= 3000) {
+        btn.classList.add('ready');
+        selectedSqft = val;
+    } else {
+        btn.classList.remove('ready');
+        selectedSqft = null;
+    }
+}
 
-        var systems = systemsByHeat[heatType] || [];
-        systems.forEach(function(sys) {
-            var opt = document.createElement('option');
-            opt.value = sys.key;
-            opt.textContent = sys.label;
-            systemSelect.appendChild(opt);
-        });
+// Enter key on sqft input
+document.getElementById('input-sqft').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter' && selectedSqft) {
+        goToSlide(2);
+    }
+});
 
-        systemSelect.disabled = false;
-        checkFormValid();
+function selectHeat(type, el) {
+    selectedHeat = type;
+    selectedSystem = null;
+
+    // Highlight selected
+    var opts = document.querySelectorAll('#heat-options .calc-option');
+    opts.forEach(function(o) { o.classList.remove('selected'); });
+    el.classList.add('selected');
+
+    // Populate system options
+    var container = document.getElementById('system-options');
+    container.innerHTML = '';
+    var systems = systemsByHeat[type] || [];
+    systems.forEach(function(sys) {
+        var div = document.createElement('div');
+        div.className = 'calc-option';
+        div.onclick = function() { selectSystem(sys.key, div); };
+        div.innerHTML = '<div class="calc-option-icon">' + sys.icon + '</div>' +
+            '<div><div class="calc-option-text">' + sys.label + '</div>' +
+            '<div class="calc-option-desc">' + sys.desc + '</div></div>';
+        container.appendChild(div);
     });
 
-    // System type change -> enable button
-    document.getElementById('system-type').addEventListener('change', checkFormValid);
-    document.getElementById('sqft').addEventListener('input', checkFormValid);
+    // Auto-advance after short delay
+    setTimeout(function() { goToSlide(3); }, 350);
+}
 
-    function checkFormValid() {
-        var sqft = document.getElementById('sqft').value;
-        var heat = document.getElementById('heat-type').value;
-        var system = document.getElementById('system-type').value;
-        document.getElementById('calc-btn').disabled = !(sqft && heat && system);
+function selectSystem(key, el) {
+    selectedSystem = key;
+
+    // Highlight
+    var opts = document.querySelectorAll('#system-options .calc-option');
+    opts.forEach(function(o) { o.classList.remove('selected'); });
+    el.classList.add('selected');
+
+    // Calculate and redirect to results
+    setTimeout(function() { showResults(); }, 400);
+}
+
+function getTonnage(sqft) {
+    if (!pricingData) return null;
+    for (var i = 0; i < pricingData.sqft_to_tonnage.length; i++) {
+        var range = pricingData.sqft_to_tonnage[i];
+        if (sqft >= range.min && sqft <= range.max) {
+            return range.tons;
+        }
+    }
+    return null;
+}
+
+function showResults() {
+    if (!pricingData || !selectedSqft || !selectedSystem) return;
+
+    var tonnage = getTonnage(selectedSqft);
+    if (!tonnage) {
+        alert('We couldn\'t determine the right system size. Please call us for a personalized quote.');
+        return;
     }
 
-    function getTonnage(sqft) {
-        if (!pricingData) return null;
-        for (var i = 0; i < pricingData.sqft_to_tonnage.length; i++) {
-            var range = pricingData.sqft_to_tonnage[i];
-            if (sqft >= range.min && sqft <= range.max) {
-                return range.tons;
-            }
-        }
-        return null;
+    var system = pricingData.system_types[selectedSystem];
+    if (!system) return;
+
+    // FIX: Use toFixed(1) for the lookup key
+    var tonKey = tonnage.toFixed(1);
+    var price = system.prices[tonKey];
+    if (!price) {
+        alert('Pricing not available for this configuration. Please call us.');
+        return;
     }
 
-    function calculatePrice() {
-        var sqft = parseInt(document.getElementById('sqft').value);
-        var systemKey = document.getElementById('system-type').value;
-
-        if (!pricingData) {
-            alert('Pricing data is still loading. Please try again.');
-            return;
+    // Apply discounts
+    if (pricingData.incentives && pricingData.incentives.enabled) {
+        if (pricingData.incentives.discount_amount > 0) {
+            price = price - pricingData.incentives.discount_amount;
         }
-
-        // Validate sqft
-        if (sqft < pricingData.settings.min_sqft || sqft > pricingData.settings.max_sqft) {
-            alert('Please enter a square footage between ' + pricingData.settings.min_sqft + ' and ' + pricingData.settings.max_sqft + '.');
-            return;
+        if (pricingData.incentives.discount_percent > 0) {
+            price = price * (1 - pricingData.incentives.discount_percent / 100);
         }
+    }
+    price = Math.round(price);
 
-        var tonnage = getTonnage(sqft);
-        if (!tonnage) {
-            alert('We couldn\'t determine the right system size for your home. Please call us for a personalized quote.');
-            return;
-        }
+    // Build query params and redirect to results page
+    var params = new URLSearchParams({
+        sqft: selectedSqft,
+        tons: tonKey,
+        system: selectedSystem,
+        label: system.label,
+        price: price
+    });
 
-        var system = pricingData.system_types[systemKey];
-        if (!system) {
-            alert('Invalid system type selected.');
-            return;
-        }
-
-        var price = system.prices[tonnage.toString()];
-        if (!price) {
-            alert('Pricing not available for this configuration. Please call us for a personalized quote.');
-            return;
-        }
-
-        // Apply discount if any
-        if (pricingData.incentives && pricingData.incentives.enabled) {
-            if (pricingData.incentives.discount_amount > 0) {
-                price = price - pricingData.incentives.discount_amount;
-            }
-            if (pricingData.incentives.discount_percent > 0) {
-                price = price * (1 - pricingData.incentives.discount_percent / 100);
-            }
-        }
-
-        price = Math.round(price);
-
-        // Display results
-        document.getElementById('result-system').textContent = system.label;
-        document.getElementById('result-tonnage').textContent = tonnage + ' Ton system for ' + sqft.toLocaleString() + ' sq ft home';
-        document.getElementById('result-price').textContent = '$' + price.toLocaleString();
-
-        // Calculate financing
-        if (pricingData.financing && pricingData.financing.enabled) {
-            var apr = pricingData.financing.apr / 100;
-            var months = pricingData.financing.term_months;
-            var monthlyRate = apr / 12;
-            var monthly;
-            if (monthlyRate > 0) {
-                monthly = price * (monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
-            } else {
-                monthly = price / months;
-            }
-            document.getElementById('result-financing').innerHTML = pricingData.financing.label + ' <span>$' + Math.round(monthly).toLocaleString() + '/mo</span> with financing';
+    // Add financing info
+    if (pricingData.financing && pricingData.financing.enabled) {
+        var apr = pricingData.financing.apr / 100;
+        var months = pricingData.financing.term_months;
+        var monthlyRate = apr / 12;
+        var monthly;
+        if (monthlyRate > 0) {
+            monthly = price * (monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
         } else {
-            document.getElementById('result-financing').style.display = 'none';
+            monthly = price / months;
         }
-
-        // Show result, hide form
-        document.getElementById('calc-form').style.display = 'none';
-        document.getElementById('calc-result').style.display = 'block';
-
-        // Track event
-        if (typeof fbq !== 'undefined') {
-            fbq('track', 'Lead', { content_name: 'HVAC Calculator', value: price, currency: 'USD' });
-        }
+        params.set('monthly', Math.round(monthly));
+        params.set('fin_label', pricingData.financing.label);
     }
 
-    function resetCalculator() {
-        document.getElementById('calc-form').style.display = 'block';
-        document.getElementById('calc-result').style.display = 'none';
-        document.getElementById('sqft').value = '';
-        document.getElementById('heat-type').value = '';
-        document.getElementById('system-type').innerHTML = '<option value="" disabled selected>Select system type...</option>';
-        document.getElementById('system-type').disabled = true;
-        document.getElementById('calc-btn').disabled = true;
+    // Add incentive info
+    if (pricingData.incentives && pricingData.incentives.enabled) {
+        params.set('promo_title', pricingData.incentives.title);
+        params.set('promo_desc', pricingData.incentives.description);
     }
 
-    // Allow Enter key to submit
-    document.getElementById('sqft').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            if (!document.getElementById('calc-btn').disabled) {
-                calculatePrice();
-            }
-        }
-    });
-    </script>
+    // Add phone
+    params.set('phone', pricingData.settings.phone || '(813) 922-2209');
+
+    // FB Pixel
+    if (typeof fbq !== 'undefined') {
+        fbq('track', 'Lead', { content_name: 'HVAC Calculator', value: price, currency: 'USD' });
+    }
+
+    window.location.href = './calculator-results.html?' + params.toString();
+}
+</script>
 
 </body>
 </html>
