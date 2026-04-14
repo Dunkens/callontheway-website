@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Admin — HVAC Calculator Pricing | On The Way</title>
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        background: #0f0a1e;
+        color: #e0e0e0;
+        min-height: 100vh;
+    }
+
+    /* Login Screen */
+    .login-screen {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 2rem;
+    }
+
+    .login-card {
+        background: linear-gradient(135deg, #1a1030 0%, #2a1545 100%);
+        border: 1px solid rgba(113, 206, 235, 0.2);
+        border-radius: 16px;
+        padding: 2.5rem;
+        max-width: 400px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .login-card img {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 1.5rem;
+        display: block;
+    }
+
+    .login-card h1 {
+        color: #ffef76;
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .login-card p {
+        color: rgba(255,255,255,0.5);
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .login-input {
+        width: 100%;
+        padding: 0.85rem 1rem;
+        border: 2px solid rgba(113, 206, 235, 0.3);
+        border-radius: 10px;
+        background: rgba(255,255,255,0.06);
+        color: #fff;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    .login-input:focus {
+        outline: none;
+        border-color: #71ceeb;
+    }
+
+    .login-btn {
+        width: 100%;
+        padding: 0.85rem;
+        background: linear-gradient(90deg, #00e5d4, #71ceeb);
+        border: none;
+        border-radius: 10px;
+        color: #0f0a1e;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    .login-btn:hover {
+        opacity: 0.9;
+    }
+
+    .login-error {
+        color: #ff6b6b;
+        font-size: 0.85rem;
+        margin-top: 0.75rem;
+        display: none;
+    }
+
+    /* Admin Dashboard */
+    .admin-dashboard {
+        display: none;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem;
+    }
+
+    .admin-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .admin-header h1 {
+        color: #ffef76;
+        font-size: 1.5rem;
+    }
+
+    .admin-header .logout-btn {
+        background: none;
+        border: 1px solid rgba(255,255,255,0.2);
+        color: #71ceeb;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 0.85rem;
+    }
+
+    .admin-header .logout-btn:hover {
+        border-color: #71ceeb;
+    }
+
+    .admin-section {
+        background: linear-gradient(135deg, #1a1030 0%, #2a1545 100%);
+        border: 1px solid rgba(113, 206, 235, 0.15);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .admin-section h2 {
+        color: #71ceeb;
+        font-size: 1.15rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .admin-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .admin-field {
+        margin-bottom: 0.75rem;
+    }
+
+    .admin-field label {
+        display: block;
+        color: rgba(255,255,255,0.6);
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.35rem;
+    }
+
+    .admin-field input,
+    .admin-field select {
+        width: 100%;
+        padding: 0.6rem 0.8rem;
+        border: 1px solid rgba(113, 206, 235, 0.2);
+        border-radius: 8px;
+        background: rgba(255,255,255,0.05);
+        color: #fff;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.95rem;
+    }
+
+    .admin-field input:focus,
+    .admin-field select:focus {
+        outline: none;
+        border-color: #71ceeb;
+    }
+
+    .admin-field input[type="checkbox"] {
+        width: auto;
+        margin-right: 0.5rem;
+    }
+
+    .admin-check {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .admin-check label {
+        color: #fff;
+        font-size: 0.9rem;
+        text-transform: none;
+        letter-spacing: 0;
+        margin: 0;
+    }
+
+    /* Pricing Table */
+    .pricing-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .pricing-table th {
+        background: rgba(113, 206, 235, 0.1);
+        color: #71ceeb;
+        padding: 0.6rem 0.5rem;
+        text-align: center;
+        font-weight: 600;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+    }
+
+    .pricing-table td {
+        padding: 0.4rem 0.3rem;
+        text-align: center;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .pricing-table td:first-child {
+        color: #ffef76;
+        font-weight: 600;
+        text-align: left;
+        padding-left: 0.5rem;
+    }
+
+    .pricing-table input {
+        width: 85px;
+        padding: 0.4rem;
+        border: 1px solid rgba(113, 206, 235, 0.2);
+        border-radius: 6px;
+        background: rgba(255,255,255,0.05);
+        color: #fff;
+        font-size: 0.9rem;
+        text-align: center;
+    }
+
+    .pricing-table input:focus {
+        outline: none;
+        border-color: #71ceeb;
+    }
+
+    /* Sq Ft Table */
+    .sqft-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 0.5rem;
+    }
+
+    .sqft-table th {
+        background: rgba(113, 206, 235, 0.1);
+        color: #71ceeb;
+        padding: 0.5rem;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+    }
+
+    .sqft-table td {
+        padding: 0.4rem;
+        text-align: center;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .sqft-table input {
+        width: 70px;
+        padding: 0.35rem;
+        border: 1px solid rgba(113, 206, 235, 0.2);
+        border-radius: 6px;
+        background: rgba(255,255,255,0.05);
+        color: #fff;
+        font-size: 0.9rem;
+        text-align: center;
+    }
+
+    .sqft-table input:focus {
+        outline: none;
+        border-color: #71ceeb;
+    }
+
+    /* Save Button */
+    .save-bar {
+        position: sticky;
+        bottom: 0;
+        background: #0f0a1e;
+        padding: 1rem 0;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    .save-btn {
+        padding: 0.85rem 2.5rem;
+        background: linear-gradient(90deg, #00e5d4, #71ceeb);
+        border: none;
+        border-radius: 10px;
+        color: #0f0a1e;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    .save-btn:hover {
+        opacity: 0.9;
+    }
+
+    .copy-btn {
+        padding: 0.85rem 2.5rem;
+        background: none;
+        border: 2px solid #71ceeb;
+        border-radius: 10px;
+        color: #71ceeb;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .copy-btn:hover {
+        background: rgba(113, 206, 235, 0.1);
+    }
+
+    .save-status {
+        color: #00e5d4;
+        font-size: 0.9rem;
+        text-align: center;
+        margin-top: 0.5rem;
+        display: none;
+    }
+
+    .admin-info {
+        background: rgba(113, 206, 235, 0.08);
+        border: 1px solid rgba(113, 206, 235, 0.2);
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        font-size: 0.85rem;
+        color: rgba(255,255,255,0.7);
+        line-height: 1.6;
+    }
+
+    .admin-info strong {
+        color: #ffef76;
+    }
+
+    @media (max-width: 768px) {
+        .admin-row {
+            grid-template-columns: 1fr;
+        }
+        .pricing-table {
+            font-size: 0.8rem;
+        }
+        .pricing-table input {
+            width: 65px;
+            font-size: 0.8rem;
+        }
+    }
+    </style>
+</head>
+<body>
+
+    <!-- Login Screen -->
+    <div class="login-screen" id="login-screen">
+        <div class="login-card">
+            <img src="./On-The-Way.webp" alt="On The Way Logo">
+            <h1>Admin Panel</h1>
+            <p>HVAC Calculator Pricing Manager</p>
+            <input type="password" class="login-input" id="login-password" placeholder="Enter admin password" onkeypress="if(event.key==='Enter')attemptLogin()">
+            <button class="login-btn" onclick="attemptLogin()">Log In</button>
+            <p class="login-error" id="login-error">Incorrect password. Please try again.</p>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div class="admin-dashboard" id="admin-dashboard">
+        <div class="admin-header">
+            <h1>HVAC Calculator — Admin</h1>
+            <button class="logout-btn" onclick="logout()">Log Out</button>
+        </div>
+
+        <div class="admin-info">
+            <strong>How to update pricing:</strong> Edit the values below, then click <strong>"Copy JSON"</strong> to copy the updated pricing data. Paste it into the <code>pricing-data.json</code> file in your GitHub repository and commit the change. The calculator page will automatically use the new prices.
+        </div>
+
+        <!-- Settings -->
+        <div class="admin-section">
+            <h2>General Settings</h2>
+            <div class="admin-row">
+                <div class="admin-field">
+                    <label>Phone Number</label>
+                    <input type="text" id="admin-phone" placeholder="(813) 922-2209">
+                </div>
+                <div class="admin-field">
+                    <label>Min Sq Ft</label>
+                    <input type="number" id="admin-min-sqft" placeholder="901">
+                </div>
+            </div>
+            <div class="admin-row">
+                <div class="admin-field">
+                    <label>Max Sq Ft</label>
+                    <input type="number" id="admin-max-sqft" placeholder="3000">
+                </div>
+                <div class="admin-field"></div>
+            </div>
+        </div>
+
+        <!-- Incentives -->
+        <div class="admin-section">
+            <h2>Incentives / Promotions</h2>
+            <div class="admin-check">
+                <input type="checkbox" id="admin-incentive-enabled">
+                <label for="admin-incentive-enabled">Enable promotional banner on calculator</label>
+            </div>
+            <div class="admin-row">
+                <div class="admin-field">
+                    <label>Banner Title</label>
+                    <input type="text" id="admin-incentive-title" placeholder="Limited Time Offer">
+                </div>
+                <div class="admin-field">
+                    <label>Banner Description</label>
+                    <input type="text" id="admin-incentive-desc" placeholder="Spring Special: Up to $2,000 off">
+                </div>
+            </div>
+            <div class="admin-row">
+                <div class="admin-field">
+                    <label>Discount Amount ($)</label>
+                    <input type="number" id="admin-discount-amount" placeholder="0" min="0">
+                </div>
+                <div class="admin-field">
+                    <label>Discount Percent (%)</label>
+                    <input type="number" id="admin-discount-percent" placeholder="0" min="0" max="100">
+                </div>
+            </div>
+            <div class="admin-field">
+                <label>Expiry Text</label>
+                <input type="text" id="admin-expiry-text" placeholder="Call now — offer won't last!">
+            </div>
+        </div>
+
+        <!-- Financing -->
+        <div class="admin-section">
+            <h2>Financing</h2>
+            <div class="admin-check">
+                <input type="checkbox" id="admin-financing-enabled">
+                <label for="admin-financing-enabled">Show financing option on results</label>
+            </div>
+            <div class="admin-row">
+                <div class="admin-field">
+                    <label>Term (months)</label>
+                    <input type="number" id="admin-fin-months" placeholder="120">
+                </div>
+                <div class="admin-field">
+                    <label>APR (%)</label>
+                    <input type="number" id="admin-fin-apr" placeholder="9.99" step="0.01">
+                </div>
+            </div>
+            <div class="admin-field">
+                <label>Label Text</label>
+                <input type="text" id="admin-fin-label" placeholder="as low as">
+            </div>
+        </div>
+
+        <!-- Sq Ft to Tonnage -->
+        <div class="admin-section">
+            <h2>Square Footage to Tonnage Mapping</h2>
+            <table class="sqft-table">
+                <thead>
+                    <tr>
+                        <th>Min Sq Ft</th>
+                        <th>Max Sq Ft</th>
+                        <th>Tonnage</th>
+                    </tr>
+                </thead>
+                <tbody id="sqft-table-body"></tbody>
+            </table>
+        </div>
+
+        <!-- Pricing Tables -->
+        <div class="admin-section">
+            <h2>System Pricing (Customer-Facing Price)</h2>
+            <table class="pricing-table">
+                <thead>
+                    <tr>
+                        <th>Tonnage</th>
+                        <th>Split Heat Pump</th>
+                        <th>Split AC Electric</th>
+                        <th>Split AC Gas</th>
+                        <th>Pkg AC Electric</th>
+                        <th>Pkg AC Heat Pump</th>
+                    </tr>
+                </thead>
+                <tbody id="pricing-table-body"></tbody>
+            </table>
+        </div>
+
+        <!-- Save Bar -->
+        <div class="save-bar">
+            <button class="copy-btn" onclick="copyJSON()">Copy JSON</button>
+            <button class="save-btn" onclick="downloadJSON()">Download JSON</button>
+        </div>
+        <p class="save-status" id="save-status"></p>
+    </div>
+
+    <script>
+    // Simple password protection (client-side — sufficient for a static site admin page)
+    var ADMIN_HASH = 'ef4d28f5f412c8fed3504eb2cd214f1de2fa41f8b457991c6015dd96df894b06';
+
+    function sha256(str) {
+        var buffer = new TextEncoder().encode(str);
+        return crypto.subtle.digest('SHA-256', buffer).then(function(hash) {
+            return Array.from(new Uint8Array(hash)).map(function(b) {
+                return b.toString(16).padStart(2, '0');
+            }).join('');
+        });
+    }
+
+    function attemptLogin() {
+        var pw = document.getElementById('login-password').value;
+        sha256(pw).then(function(hash) {
+            if (hash === ADMIN_HASH) {
+                sessionStorage.setItem('admin_auth', 'true');
+                showDashboard();
+            } else {
+                document.getElementById('login-error').style.display = 'block';
+            }
+        });
+    }
+
+    function showDashboard() {
+        document.getElementById('login-screen').style.display = 'none';
+        document.getElementById('admin-dashboard').style.display = 'block';
+        loadPricingData();
+    }
+
+    function logout() {
+        sessionStorage.removeItem('admin_auth');
+        location.reload();
+    }
+
+    // Check session
+    if (sessionStorage.getItem('admin_auth') === 'true') {
+        showDashboard();
+    }
+
+    var currentData = null;
+    var tonnages = ['2.0', '2.5', '3.0', '3.5', '4.0', '5.0'];
+    var systemKeys = ['split_heat_pump', 'split_ac_electric', 'split_ac_gas', 'package_ac_electric', 'package_ac_heat_pump'];
+
+    function loadPricingData() {
+        fetch('./pricing-data.json?v=' + Date.now())
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                currentData = data;
+                populateForm(data);
+            })
+            .catch(function(err) {
+                alert('Failed to load pricing data. Make sure pricing-data.json exists.');
+            });
+    }
+
+    function populateForm(data) {
+        // Settings
+        document.getElementById('admin-phone').value = data.settings.phone || '';
+        document.getElementById('admin-min-sqft').value = data.settings.min_sqft || 901;
+        document.getElementById('admin-max-sqft').value = data.settings.max_sqft || 3000;
+
+        // Incentives
+        document.getElementById('admin-incentive-enabled').checked = data.incentives.enabled;
+        document.getElementById('admin-incentive-title').value = data.incentives.title || '';
+        document.getElementById('admin-incentive-desc').value = data.incentives.description || '';
+        document.getElementById('admin-discount-amount').value = data.incentives.discount_amount || 0;
+        document.getElementById('admin-discount-percent').value = data.incentives.discount_percent || 0;
+        document.getElementById('admin-expiry-text').value = data.incentives.expiry_text || '';
+
+        // Financing
+        document.getElementById('admin-financing-enabled').checked = data.financing.enabled;
+        document.getElementById('admin-fin-months').value = data.financing.term_months || 120;
+        document.getElementById('admin-fin-apr').value = data.financing.apr || 9.99;
+        document.getElementById('admin-fin-label').value = data.financing.label || 'as low as';
+
+        // Sq Ft table
+        var sqftBody = document.getElementById('sqft-table-body');
+        sqftBody.innerHTML = '';
+        data.sqft_to_tonnage.forEach(function(range, i) {
+            var row = document.createElement('tr');
+            row.innerHTML = '<td><input type="number" id="sqft-min-' + i + '" value="' + range.min + '"></td>' +
+                '<td><input type="number" id="sqft-max-' + i + '" value="' + range.max + '"></td>' +
+                '<td><input type="number" id="sqft-ton-' + i + '" value="' + range.tons + '" step="0.5"></td>';
+            sqftBody.appendChild(row);
+        });
+
+        // Pricing table
+        var priceBody = document.getElementById('pricing-table-body');
+        priceBody.innerHTML = '';
+        tonnages.forEach(function(ton) {
+            var row = document.createElement('tr');
+            var html = '<td>' + ton + ' Ton</td>';
+            systemKeys.forEach(function(key) {
+                var val = data.system_types[key].prices[ton] || '';
+                html += '<td><input type="number" id="price-' + key + '-' + ton + '" value="' + val + '"></td>';
+            });
+            row.innerHTML = html;
+            priceBody.appendChild(row);
+        });
+    }
+
+    function gatherData() {
+        var data = JSON.parse(JSON.stringify(currentData));
+
+        // Settings
+        data.settings.phone = document.getElementById('admin-phone').value;
+        data.settings.min_sqft = parseInt(document.getElementById('admin-min-sqft').value) || 901;
+        data.settings.max_sqft = parseInt(document.getElementById('admin-max-sqft').value) || 3000;
+
+        // Incentives
+        data.incentives.enabled = document.getElementById('admin-incentive-enabled').checked;
+        data.incentives.title = document.getElementById('admin-incentive-title').value;
+        data.incentives.description = document.getElementById('admin-incentive-desc').value;
+        data.incentives.discount_amount = parseFloat(document.getElementById('admin-discount-amount').value) || 0;
+        data.incentives.discount_percent = parseFloat(document.getElementById('admin-discount-percent').value) || 0;
+        data.incentives.expiry_text = document.getElementById('admin-expiry-text').value;
+
+        // Financing
+        data.financing.enabled = document.getElementById('admin-financing-enabled').checked;
+        data.financing.term_months = parseInt(document.getElementById('admin-fin-months').value) || 120;
+        data.financing.apr = parseFloat(document.getElementById('admin-fin-apr').value) || 9.99;
+        data.financing.label = document.getElementById('admin-fin-label').value;
+
+        // Sq Ft mapping
+        data.sqft_to_tonnage = [];
+        for (var i = 0; i < currentData.sqft_to_tonnage.length; i++) {
+            var minEl = document.getElementById('sqft-min-' + i);
+            if (!minEl) break;
+            data.sqft_to_tonnage.push({
+                min: parseInt(minEl.value),
+                max: parseInt(document.getElementById('sqft-max-' + i).value),
+                tons: parseFloat(document.getElementById('sqft-ton-' + i).value)
+            });
+        }
+
+        // Pricing
+        tonnages.forEach(function(ton) {
+            systemKeys.forEach(function(key) {
+                var val = parseInt(document.getElementById('price-' + key + '-' + ton).value);
+                if (!isNaN(val)) {
+                    data.system_types[key].prices[ton] = val;
+                }
+            });
+        });
+
+        return data;
+    }
+
+    function copyJSON() {
+        var data = gatherData();
+        var json = JSON.stringify(data, null, 2);
+        navigator.clipboard.writeText(json).then(function() {
+            showStatus('JSON copied to clipboard! Paste it into pricing-data.json in your GitHub repo.');
+        }).catch(function() {
+            // Fallback
+            var ta = document.createElement('textarea');
+            ta.value = json;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            showStatus('JSON copied to clipboard!');
+        });
+    }
+
+    function downloadJSON() {
+        var data = gatherData();
+        var json = JSON.stringify(data, null, 2);
+        var blob = new Blob([json], { type: 'application/json' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'pricing-data.json';
+        a.click();
+        URL.revokeObjectURL(url);
+        showStatus('pricing-data.json downloaded! Upload it to your GitHub repo to update the calculator.');
+    }
+
+    function showStatus(msg) {
+        var el = document.getElementById('save-status');
+        el.textContent = msg;
+        el.style.display = 'block';
+        setTimeout(function() { el.style.display = 'none'; }, 5000);
+    }
+    </script>
+
+</body>
+</html>

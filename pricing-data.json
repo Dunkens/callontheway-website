@@ -1,0 +1,91 @@
+{
+  "sqft_to_tonnage": [
+    { "min": 901, "max": 1200, "tons": 2.0 },
+    { "min": 1201, "max": 1500, "tons": 2.5 },
+    { "min": 1501, "max": 1800, "tons": 3.0 },
+    { "min": 1801, "max": 2100, "tons": 3.5 },
+    { "min": 2101, "max": 2400, "tons": 4.0 },
+    { "min": 2401, "max": 3000, "tons": 5.0 }
+  ],
+  "system_types": {
+    "split_heat_pump": {
+      "label": "Split Heat Pump",
+      "heat_type": "electric",
+      "prices": {
+        "2.0": 7662,
+        "2.5": 8102,
+        "3.0": 8182,
+        "3.5": 8416,
+        "4.0": 8796,
+        "5.0": 9696
+      }
+    },
+    "split_ac_electric": {
+      "label": "Split AC with Electric Heat",
+      "heat_type": "electric",
+      "prices": {
+        "2.0": 6709,
+        "2.5": 7115,
+        "3.0": 7229,
+        "3.5": 7665,
+        "4.0": 7940,
+        "5.0": 8611
+      }
+    },
+    "split_ac_gas": {
+      "label": "Split AC with Gas Furnace",
+      "heat_type": "gas",
+      "prices": {
+        "2.0": 7647,
+        "2.5": 7931,
+        "3.0": 8240,
+        "3.5": 8678,
+        "4.0": 9062,
+        "5.0": 9509
+      }
+    },
+    "package_ac_electric": {
+      "label": "Package AC with Electric Heat",
+      "heat_type": "electric",
+      "prices": {
+        "2.0": 7722,
+        "2.5": 7815,
+        "3.0": 7853,
+        "3.5": 8582,
+        "4.0": 8889,
+        "5.0": 9876
+      }
+    },
+    "package_ac_heat_pump": {
+      "label": "Package AC Heat Pump",
+      "heat_type": "electric",
+      "prices": {
+        "2.0": 8613,
+        "2.5": 8925,
+        "3.0": 9135,
+        "3.5": 9804,
+        "4.0": 10235,
+        "5.0": 11047
+      }
+    }
+  },
+  "incentives": {
+    "enabled": true,
+    "title": "Limited Time Offer",
+    "description": "Spring Special: Up to $2,000 off",
+    "discount_amount": 0,
+    "discount_percent": 0,
+    "expiry_text": "Call now — offer won't last!"
+  },
+  "financing": {
+    "enabled": true,
+    "term_months": 120,
+    "apr": 9.99,
+    "label": "as low as"
+  },
+  "settings": {
+    "phone": "(813) 922-2209",
+    "min_sqft": 901,
+    "max_sqft": 3000
+  }
+}
