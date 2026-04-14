@@ -12,68 +12,68 @@
       "label": "Split Heat Pump",
       "heat_type": "electric",
       "prices": {
-        "2.0": 7662,
-        "2.5": 8102,
-        "3.0": 8182,
-        "3.5": 8416,
-        "4.0": 8796,
-        "5.0": 9696
+        "2.0": 9662,
+        "2.5": 10102,
+        "3.0": 10182,
+        "3.5": 10416,
+        "4.0": 10796,
+        "5.0": 11696
       }
     },
     "split_ac_electric": {
       "label": "Split AC with Electric Heat",
       "heat_type": "electric",
       "prices": {
-        "2.0": 6709,
-        "2.5": 7115,
-        "3.0": 7229,
-        "3.5": 7665,
-        "4.0": 7940,
-        "5.0": 8611
+        "2.0": 8709,
+        "2.5": 9115,
+        "3.0": 9229,
+        "3.5": 9665,
+        "4.0": 9940,
+        "5.0": 10611
       }
     },
     "split_ac_gas": {
       "label": "Split AC with Gas Furnace",
       "heat_type": "gas",
       "prices": {
-        "2.0": 7647,
-        "2.5": 7931,
-        "3.0": 8240,
-        "3.5": 8678,
-        "4.0": 9062,
-        "5.0": 9509
+        "2.0": 9647,
+        "2.5": 9931,
+        "3.0": 10240,
+        "3.5": 10678,
+        "4.0": 11062,
+        "5.0": 11509
       }
     },
     "package_ac_electric": {
       "label": "Package AC with Electric Heat",
       "heat_type": "electric",
       "prices": {
-        "2.0": 7722,
-        "2.5": 7815,
-        "3.0": 7853,
-        "3.5": 8582,
-        "4.0": 8889,
-        "5.0": 9876
+        "2.0": 9722,
+        "2.5": 9815,
+        "3.0": 9853,
+        "3.5": 10582,
+        "4.0": 10889,
+        "5.0": 11876
       }
     },
     "package_ac_heat_pump": {
       "label": "Package AC Heat Pump",
       "heat_type": "electric",
       "prices": {
-        "2.0": 8613,
-        "2.5": 8925,
-        "3.0": 9135,
-        "3.5": 9804,
-        "4.0": 10235,
-        "5.0": 11047
+        "2.0": 10613,
+        "2.5": 10925,
+        "3.0": 11135,
+        "3.5": 11804,
+        "4.0": 12235,
+        "5.0": 13047
       }
     }
   },
   "incentives": {
     "enabled": true,
-    "title": "Limited Time Offer",
-    "description": "Spring Special: Up to $2,000 off",
-    "discount_amount": 0,
+    "title": "Energy Rebate",
+    "description": "Save $2,000 with our Energy Rebate!",
+    "discount_amount": 2000,
     "discount_percent": 0,
     "expiry_text": "Call now — offer won't last!"
   },
@@ -84,7 +84,7 @@
     "label": "as low as"
   },
   "settings": {
-    "phone": "(813) 922-2209",
+    "phone": "(813) 922-2213",
     "min_sqft": 901,
     "max_sqft": 3000
   }

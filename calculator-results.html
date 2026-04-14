@@ -532,7 +532,7 @@ src="https://www.facebook.com/tr?id=879710768181210&ev=PageView&noscript=1"
         <a href="./" class="topbar-logo">
             <img src="./On-The-Way.webp" alt="On The Way Heating & Air" width="50" height="50">
         </a>
-        <a href="tel:8139222209" class="topbar-phone" id="topbar-phone">&#9742; (813) 922-2209</a>
+        <a href="tel:8139222213" class="topbar-phone" id="topbar-phone">&#9742; (813) 922-2213</a>
     </div>
 
     <!-- Result Hero -->
@@ -547,7 +547,14 @@ src="https://www.facebook.com/tr?id=879710768181210&ev=PageView&noscript=1"
         <!-- Price Card -->
         <div class="price-card fade-in fade-in-delay">
             <div class="price-label">Estimated Total</div>
+            <div id="original-price-row" style="display:none;margin-bottom:0.5rem;">
+                <span style="text-decoration:line-through;color:rgba(255,255,255,0.4);font-size:1.4rem;font-family:var(--font-heading);font-weight:800;">$<span id="original-price">—</span></span>
+            </div>
             <div class="price-amount"><span class="dollar">$</span><span id="result-price">—</span></div>
+
+            <div id="rebate-badge" style="display:none;margin-top:0.75rem;">
+                <div style="display:inline-block;background:linear-gradient(90deg,#00c853,#00e676);color:#1a0030;padding:0.4rem 1rem;border-radius:50px;font-weight:700;font-size:0.9rem;">&#127793; Energy Rebate: -$<span id="rebate-amount">2,000</span></div>
+            </div>
 
             <div class="price-divider"></div>
 
@@ -566,7 +573,7 @@ src="https://www.facebook.com/tr?id=879710768181210&ev=PageView&noscript=1"
         <!-- CTA Buttons -->
         <div class="cta-group fade-in fade-in-delay-2">
             <a href="#appointment" class="cta-primary">&#128197; Book Free Consultation</a>
-            <a href="tel:8139222209" class="cta-call" id="cta-call-btn" onclick="if(typeof fbq!=='undefined')fbq('track','Contact');">&#9742; Call <span id="cta-phone">(813) 922-2209</span></a>
+            <a href="tel:8139222213" class="cta-call" id="cta-call-btn" onclick="if(typeof fbq!=='undefined')fbq('track','Contact');">&#9742; Call <span id="cta-phone">(813) 922-2213</span></a>
             <a href="./calculator.html" class="cta-recalc">&#8592; Recalculate with different options</a>
         </div>
     </div>
@@ -685,7 +692,7 @@ src="https://www.facebook.com/tr?id=879710768181210&ev=PageView&noscript=1"
 
     <!-- Sticky Bottom CTA (mobile) -->
     <div class="sticky-cta">
-        <a href="tel:8139222209" class="sticky-call" id="sticky-call" onclick="if(typeof fbq!=='undefined')fbq('track','Contact');">&#9742; Call Now</a>
+        <a href="tel:8139222213" class="sticky-call" id="sticky-call" onclick="if(typeof fbq!=='undefined')fbq('track','Contact');">&#9742; Call Now</a>
         <a href="#appointment" class="sticky-book">&#128197; Book Now</a>
     </div>
 
@@ -705,7 +712,9 @@ src="https://www.facebook.com/tr?id=879710768181210&ev=PageView&noscript=1"
     var finLabel = params.get('fin_label');
     var promoTitle = params.get('promo_title');
     var promoDesc = params.get('promo_desc');
-    var phone = params.get('phone') || '(813) 922-2209';
+    var phone = params.get('phone') || '(813) 922-2213';
+    var originalPrice = params.get('original_price');
+    var discount = params.get('discount');
 
     // If no params, redirect back to calculator
     if (!sqft || !price || !systemLabel) {
@@ -736,6 +745,14 @@ src="https://www.facebook.com/tr?id=879710768181210&ev=PageView&noscript=1"
             }
         }
         requestAnimationFrame(step);
+    }
+
+    // Show original price and rebate if discount exists
+    if (discount && parseInt(discount) > 0) {
+        document.getElementById('original-price-row').style.display = 'block';
+        document.getElementById('original-price').textContent = parseInt(originalPrice).toLocaleString();
+        document.getElementById('rebate-badge').style.display = 'block';
+        document.getElementById('rebate-amount').textContent = parseInt(discount).toLocaleString();
     }
 
     // Set price with animation

@@ -343,7 +343,7 @@ src="https://www.facebook.com/tr?id=879710768181210&ev=PageView&noscript=1"
         <a href="./" class="calc-logo">
             <img src="./On-The-Way.webp" alt="On The Way Heating & Air" width="50" height="50">
         </a>
-        <a href="tel:8139222209" class="calc-topbar-phone" id="topbar-phone">&#9742; (813) 922-2209</a>
+        <a href="tel:8139222213" class="calc-topbar-phone" id="topbar-phone">&#9742; (813) 922-2213</a>
     </div>
 
     <!-- Progress Bar -->
@@ -583,12 +583,16 @@ function showResults() {
         return;
     }
 
-    // Apply discounts
+    // Calculate discount
+    var originalPrice = price;
+    var discountAmount = 0;
     if (pricingData.incentives && pricingData.incentives.enabled) {
         if (pricingData.incentives.discount_amount > 0) {
-            price = price - pricingData.incentives.discount_amount;
+            discountAmount = pricingData.incentives.discount_amount;
+            price = price - discountAmount;
         }
         if (pricingData.incentives.discount_percent > 0) {
+            discountAmount = Math.round(price * pricingData.incentives.discount_percent / 100);
             price = price * (1 - pricingData.incentives.discount_percent / 100);
         }
     }
@@ -600,7 +604,9 @@ function showResults() {
         tons: tonKey,
         system: selectedSystem,
         label: system.label,
-        price: price
+        price: price,
+        original_price: originalPrice,
+        discount: discountAmount
     });
 
     // Add financing info
@@ -625,7 +631,7 @@ function showResults() {
     }
 
     // Add phone
-    params.set('phone', pricingData.settings.phone || '(813) 922-2209');
+    params.set('phone', pricingData.settings.phone || '(813) 922-2213');
 
     // FB Pixel
     if (typeof fbq !== 'undefined') {
