@@ -71,11 +71,11 @@
   },
   "incentives": {
     "enabled": true,
-    "title": "Energy Rebate",
-    "description": "Save $2,000 with our Energy Rebate!",
+    "title": "Limited Time Offer",
+    "description": "Save $2,000 with our Energy Rebate — Limited Time Only!",
     "discount_amount": 2000,
     "discount_percent": 0,
-    "expiry_text": "Call now — offer won't last!"
+    "expiry_text": "Hurry — this offer expires soon!"
   },
   "financing": {
     "enabled": true,

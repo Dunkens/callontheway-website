@@ -196,12 +196,19 @@ src="https://www.facebook.com/tr?id=879710768181210&ev=PageView&noscript=1"
     }
 
     /* Promo banner */
+    @keyframes urgencyPulse {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(216, 20, 113, 0.4); }
+        50% { box-shadow: 0 0 15px 5px rgba(216, 20, 113, 0.3); }
+    }
+
     .promo-banner {
         background: linear-gradient(90deg, #d81471, #8b1a6b);
         padding: 0.75rem 1.5rem;
         border-radius: 12px;
         margin-top: 1.25rem;
         display: none;
+        border: 1px solid rgba(255,107,107,0.4);
+        animation: urgencyPulse 2s ease-in-out infinite;
     }
 
     .promo-banner.visible { display: block; }
@@ -554,6 +561,7 @@ src="https://www.facebook.com/tr?id=879710768181210&ev=PageView&noscript=1"
 
             <div id="rebate-badge" style="display:none;margin-top:0.75rem;">
                 <div style="display:inline-block;background:linear-gradient(90deg,#00c853,#00e676);color:#1a0030;padding:0.4rem 1rem;border-radius:50px;font-weight:700;font-size:0.9rem;">&#127793; Energy Rebate: -$<span id="rebate-amount">2,000</span></div>
+                <div style="margin-top:0.4rem;font-size:0.8rem;color:#ff6b6b;font-weight:600;letter-spacing:0.5px;">&#9200; LIMITED TIME OFFER</div>
             </div>
 
             <div class="price-divider"></div>
