@@ -815,8 +815,58 @@ src="https://www.facebook.com/tr?id=879710768181210&ev=PageView&noscript=1"
             container.style.display = 'block';
         }
 
-        iframe.onload = showForm;
+        iframe.onload = function() {
+            showForm();
+            // Auto-fill the Details field inside the GHL form iframe
+            setTimeout(function fillDetails() {
+                try {
+                    var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                    var detailsField = iframeDoc.getElementById('eAjyvlo3NHzDWtcJMB9I');
+                    if (detailsField) {
+                        var details = 'HVAC Calculator Estimate\n';
+                        details += '========================\n';
+                        details += 'Square Footage: ' + sqft + ' sq ft\n';
+                        details += 'System Type: ' + systemLabel + '\n';
+                        details += 'System Size: ' + tons + ' Ton\n';
+                        if (originalPrice && discount && parseInt(discount) > 0) {
+                            details += 'Original Price: $' + parseInt(originalPrice).toLocaleString() + '\n';
+                            details += 'Energy Rebate: -$' + parseInt(discount).toLocaleString() + '\n';
+                        }
+                        details += 'Final Price: $' + parseInt(price).toLocaleString() + '\n';
+                        if (monthly) {
+                            details += 'Monthly Payment: $' + parseInt(monthly).toLocaleString() + '/mo\n';
+                        }
+                        // Set value and trigger input event for GHL to detect
+                        var nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype, 'value').set;
+                        nativeInputValueSetter.call(detailsField, details);
+                        detailsField.dispatchEvent(new Event('input', { bubbles: true }));
+                        detailsField.dispatchEvent(new Event('change', { bubbles: true }));
+                    } else {
+                        // Retry if form hasn't fully rendered yet
+                        setTimeout(fillDetails, 500);
+                    }
+                } catch(e) {
+                    // Cross-origin — fall back to URL param approach
+                    console.log('Cannot access iframe directly, using URL params instead');
+                }
+            }, 1500);
+        };
         setTimeout(showForm, 3000);
+
+        // Also try passing data via URL params to the form
+        var formDetails = 'HVAC Calculator Estimate | ';
+        formDetails += 'Sq Ft: ' + sqft + ' | ';
+        formDetails += 'System: ' + systemLabel + ' | ';
+        formDetails += 'Size: ' + tons + ' Ton | ';
+        if (originalPrice && discount && parseInt(discount) > 0) {
+            formDetails += 'Original: $' + parseInt(originalPrice).toLocaleString() + ' | ';
+            formDetails += 'Rebate: -$' + parseInt(discount).toLocaleString() + ' | ';
+        }
+        formDetails += 'Price: $' + parseInt(price).toLocaleString();
+        if (monthly) {
+            formDetails += ' | Monthly: $' + parseInt(monthly).toLocaleString() + '/mo';
+        }
+        iframe.src = iframe.src + '?eAjyvlo3NHzDWtcJMB9I=' + encodeURIComponent(formDetails);
 
         container.appendChild(iframe);
 
