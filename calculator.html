@@ -583,19 +583,21 @@ function showResults() {
         return;
     }
 
-    // Calculate discount
+    // Calculate discounts
     var originalPrice = price;
-    var discountAmount = 0;
+    var rebateAmount = 0;
+    var weeklyAmount = 0;
     if (pricingData.incentives && pricingData.incentives.enabled) {
-        if (pricingData.incentives.discount_amount > 0) {
-            discountAmount = pricingData.incentives.discount_amount;
-            price = price - discountAmount;
+        if (pricingData.incentives.energy_rebate && pricingData.incentives.energy_rebate.enabled) {
+            rebateAmount = pricingData.incentives.energy_rebate.amount;
+            price = price - rebateAmount;
         }
-        if (pricingData.incentives.discount_percent > 0) {
-            discountAmount = Math.round(price * pricingData.incentives.discount_percent / 100);
-            price = price * (1 - pricingData.incentives.discount_percent / 100);
+        if (pricingData.incentives.weekly_discount && pricingData.incentives.weekly_discount.enabled) {
+            weeklyAmount = pricingData.incentives.weekly_discount.amount;
+            price = price - weeklyAmount;
         }
     }
+    var totalDiscount = rebateAmount + weeklyAmount;
     price = Math.round(price);
 
     // Build query params and redirect to results page
@@ -606,7 +608,9 @@ function showResults() {
         label: system.label,
         price: price,
         original_price: originalPrice,
-        discount: discountAmount
+        discount: totalDiscount,
+        rebate: rebateAmount,
+        weekly: weeklyAmount
     });
 
     // Add financing info

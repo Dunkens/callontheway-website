@@ -71,10 +71,19 @@
   },
   "incentives": {
     "enabled": true,
+    "energy_rebate": {
+      "enabled": true,
+      "label": "Energy Rebate",
+      "amount": 1500
+    },
+    "weekly_discount": {
+      "enabled": true,
+      "label": "This Week Only",
+      "amount": 500
+    },
     "title": "Limited Time Offer",
-    "description": "Save $2,000 with our Energy Rebate — Limited Time Only!",
-    "discount_amount": 2000,
-    "discount_percent": 0,
+    "description": "Save $2,000 — $1,500 Energy Rebate + $500 This Week Only Discount!",
+    "total_discount": 2000,
     "expiry_text": "Hurry — this offer expires soon!"
   },
   "financing": {

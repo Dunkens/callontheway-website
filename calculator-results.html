@@ -560,8 +560,13 @@ src="https://www.facebook.com/tr?id=879710768181210&ev=PageView&noscript=1"
             <div class="price-amount"><span class="dollar">$</span><span id="result-price">—</span></div>
 
             <div id="rebate-badge" style="display:none;margin-top:0.75rem;">
-                <div style="display:inline-block;background:linear-gradient(90deg,#00c853,#00e676);color:#1a0030;padding:0.4rem 1rem;border-radius:50px;font-weight:700;font-size:0.9rem;">&#127793; Energy Rebate: -$<span id="rebate-amount">2,000</span></div>
-                <div style="margin-top:0.4rem;font-size:0.8rem;color:#ff6b6b;font-weight:600;letter-spacing:0.5px;">&#9200; LIMITED TIME OFFER</div>
+                <div id="energy-rebate-line" style="display:none;margin-bottom:0.35rem;">
+                    <div style="display:inline-block;background:linear-gradient(90deg,#00c853,#00e676);color:#1a0030;padding:0.4rem 1rem;border-radius:50px;font-weight:700;font-size:0.9rem;">&#127793; Energy Rebate: -$<span id="rebate-amount">1,500</span></div>
+                    <div style="margin-top:0.3rem;font-size:0.75rem;color:#ff6b6b;font-weight:600;letter-spacing:0.5px;">&#9200; LIMITED TIME OFFER</div>
+                </div>
+                <div id="weekly-discount-line" style="display:none;">
+                    <div style="display:inline-block;background:linear-gradient(90deg,#ff6b6b,#ee5a24);color:#fff;padding:0.4rem 1rem;border-radius:50px;font-weight:700;font-size:0.9rem;">&#128293; This Week Only: -$<span id="weekly-amount">500</span></div>
+                </div>
             </div>
 
             <div class="price-divider"></div>
@@ -755,12 +760,23 @@ src="https://www.facebook.com/tr?id=879710768181210&ev=PageView&noscript=1"
         requestAnimationFrame(step);
     }
 
-    // Show original price and rebate if discount exists
+    // Show original price and discounts if they exist
+    var rebate = params.get('rebate');
+    var weekly = params.get('weekly');
     if (discount && parseInt(discount) > 0) {
         document.getElementById('original-price-row').style.display = 'block';
         document.getElementById('original-price').textContent = parseInt(originalPrice).toLocaleString();
         document.getElementById('rebate-badge').style.display = 'block';
-        document.getElementById('rebate-amount').textContent = parseInt(discount).toLocaleString();
+        // Show energy rebate line
+        if (rebate && parseInt(rebate) > 0) {
+            document.getElementById('energy-rebate-line').style.display = 'block';
+            document.getElementById('rebate-amount').textContent = parseInt(rebate).toLocaleString();
+        }
+        // Show weekly discount line
+        if (weekly && parseInt(weekly) > 0) {
+            document.getElementById('weekly-discount-line').style.display = 'block';
+            document.getElementById('weekly-amount').textContent = parseInt(weekly).toLocaleString();
+        }
     }
 
     // Set price with animation
