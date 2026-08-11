@@ -4,8 +4,6 @@
 # 301 = permanent redirect (tells Google to update index)
 # =====================================================
 
-# --- Landing Pages ---
-/landing/tune-up  https://otwdash-mxyxhkze.manus.space/tune-up  302
 
 # --- Old WordPress/Legacy URLs → New Pages ---
 
