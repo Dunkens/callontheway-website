@@ -430,8 +430,14 @@
 
   <!-- Landing Pages -->
   <url>
-    <loc>https://callontheway.com/tune-up</loc>
-    <lastmod>2026-04-07</lastmod>
+    <loc>https://callontheway.com/landing/tune-up</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://callontheway.com/landing/replacement</loc>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
