@@ -16,6 +16,15 @@
     </style>
 </head>
 <body>
-    <iframe src="https://otwdash-mxyxhkze.manus.space/tune-up?v=bd1d4076" title="$89 Premium AC Tune-Up booking form" allowfullscreen></iframe>
+    <iframe id="tune-up-frame" title="$89 Premium AC Tune-Up booking form" allowfullscreen></iframe>
+    <script>
+        const frame = document.getElementById('tune-up-frame');
+        const landingPage = new URL('https://otwdash-mxyxhkze.manus.space/tune-up');
+        landingPage.searchParams.set('v', 'bd1d4076');
+        new URLSearchParams(window.location.search).forEach((value, key) => {
+            landingPage.searchParams.set(key, value);
+        });
+        frame.src = landingPage.toString();
+    </script>
 </body>
 </html>
