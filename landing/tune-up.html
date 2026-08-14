@@ -20,10 +20,59 @@
     <script>
         const frame = document.getElementById('tune-up-frame');
         const landingPage = new URL('https://otwdash-mxyxhkze.manus.space/tune-up');
-        landingPage.searchParams.set('v', 'd1ca5361');
+        landingPage.searchParams.set('v', '67882cf6');
         new URLSearchParams(window.location.search).forEach((value, key) => {
             landingPage.searchParams.set(key, value);
         });
+
+        function getCookie(name) {
+            const match = document.cookie.match(new RegExp(`(?:^|; )${name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}=([^;]*)`));
+            return match ? decodeURIComponent(match[1]) : undefined;
+        }
+
+        function setCookie(name, value) {
+            document.cookie = `${name}=${encodeURIComponent(value)}; Max-Age=7776000; Path=/; Domain=.callontheway.com; SameSite=Lax`;
+        }
+
+        function getOrCreateBrowserId() {
+            const existing = getCookie('_fbp');
+            if (existing) return existing;
+
+            const browserId = `fb.1.${Date.now()}.${Math.floor(Math.random() * 10000000000)}`;
+            setCookie('_fbp', browserId);
+            return browserId;
+        }
+
+        function getClickIdentifier() {
+            const existing = getCookie('_fbc');
+            if (existing) return existing;
+
+            const fbclid = new URLSearchParams(window.location.search).get('fbclid');
+            if (!fbclid) return undefined;
+
+            const clickId = `fb.1.${Date.now()}.${fbclid}`;
+            setCookie('_fbc', clickId);
+            return clickId;
+        }
+
+        const browserId = getOrCreateBrowserId();
+        const clickId = getClickIdentifier();
+
+        window.fbq = window.fbq || function () { (window.fbq.queue = window.fbq.queue || []).push(arguments); };
+        window.fbq('init', '879710768181210');
+        window.fbq('track', 'PageView');
+        const pixelScript = document.createElement('script');
+        pixelScript.async = true;
+        pixelScript.src = 'https://connect.facebook.net/en_US/fbevents.js';
+        document.head.appendChild(pixelScript);
+
+        frame.addEventListener('load', () => {
+            frame.contentWindow?.postMessage({
+                type: 'otw-meta-attribution',
+                browserId,
+                clickId,
+            }, 'https://otwdash-mxyxhkze.manus.space');
+        }, { once: true });
         frame.src = landingPage.toString();
     </script>
 </body>
