@@ -20,7 +20,7 @@
     <script>
         const frame = document.getElementById('tune-up-frame');
         const landingPage = new URL('https://otwdash-mxyxhkze.manus.space/tune-up');
-        landingPage.searchParams.set('v', '67882cf6');
+        landingPage.searchParams.set('v', '939c2802');
         new URLSearchParams(window.location.search).forEach((value, key) => {
             landingPage.searchParams.set(key, value);
         });
@@ -55,8 +55,10 @@
             return clickId;
         }
 
+        const hadIncomingFbclid = new URLSearchParams(window.location.search).has('fbclid');
         const browserId = getOrCreateBrowserId();
         const clickId = getClickIdentifier();
+        const hasFirstPartyFbc = Boolean(getCookie('_fbc'));
 
         window.fbq = window.fbq || function () { (window.fbq.queue = window.fbq.queue || []).push(arguments); };
         window.fbq('init', '879710768181210');
@@ -71,6 +73,8 @@
                 type: 'otw-meta-attribution',
                 browserId,
                 clickId,
+                hadIncomingFbclid,
+                hasFirstPartyFbc,
             }, 'https://otwdash-mxyxhkze.manus.space');
         }, { once: true });
         frame.src = landingPage.toString();
