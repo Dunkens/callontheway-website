@@ -11,7 +11,7 @@
   <!-- Learning Center -->
   <url>
     <loc>https://callontheway.com/pages/learning-center/index.html</loc>
-    <lastmod>2026-08-16</lastmod>
+    <lastmod>2026-09-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -24,7 +24,13 @@
 
   <url>
     <loc>https://callontheway.com/pages/learning-center/heat-pump-vs-central-ac-florida.html</loc>
-    <lastmod>2026-08-16</lastmod>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://callontheway.com/pages/learning-center/ac-replacement-quote-tampa-checklist.html</loc>
+    <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
