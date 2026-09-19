@@ -11,7 +11,7 @@
   <!-- Learning Center -->
   <url>
     <loc>https://callontheway.com/pages/learning-center/index.html</loc>
-    <lastmod>2026-09-14</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -37,6 +37,12 @@
   <url>
     <loc>https://callontheway.com/pages/learning-center/ac-replacement-permit-tampa-2026.html</loc>
     <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://callontheway.com/pages/learning-center/ac-size-tampa-manual-j.html</loc>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
