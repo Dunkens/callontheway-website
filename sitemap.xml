@@ -438,9 +438,15 @@
   <!-- Blog -->
   <url>
     <loc>https://callontheway.com/blog/</loc>
-    <lastmod>2026-02-14</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://callontheway.com/blog/ac-running-not-cooling-tampa.html</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://callontheway.com/blog/5-signs-your-ac-is-dying.html</loc>
