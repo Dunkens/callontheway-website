@@ -450,9 +450,15 @@
   <!-- Blog -->
   <url>
     <loc>https://callontheway.com/blog/</loc>
-    <lastmod>2026-10-01</lastmod>
+    <lastmod>2026-10-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://callontheway.com/blog/closing-ac-vents-unused-rooms-tampa.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://callontheway.com/blog/ac-repair-quote-questions-tampa.html</loc>
