@@ -456,9 +456,15 @@
   <!-- Blog -->
   <url>
     <loc>https://callontheway.com/blog/</loc>
-    <lastmod>2026-10-05</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://callontheway.com/blog/whistling-ac-return-vent-tampa.html</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://callontheway.com/blog/blank-thermostat-ac-not-starting-tampa.html</loc>
