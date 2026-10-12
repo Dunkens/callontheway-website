@@ -11,8 +11,14 @@
   <!-- Learning Center -->
   <url>
     <loc>https://callontheway.com/pages/learning-center/index.html</loc>
-    <lastmod>2026-10-05</lastmod>
+    <lastmod>2026-10-12</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://callontheway.com/pages/learning-center/choose-ac-filter-tampa.html</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
@@ -456,9 +462,15 @@
   <!-- Blog -->
   <url>
     <loc>https://callontheway.com/blog/</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-10-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://callontheway.com/blog/ac-breaker-keeps-tripping-tampa.html</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://callontheway.com/blog/lower-thermostat-cool-faster-tampa.html</loc>
