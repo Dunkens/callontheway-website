@@ -462,9 +462,15 @@
   <!-- Blog -->
   <url>
     <loc>https://callontheway.com/blog/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://callontheway.com/blog/central-ac-bring-fresh-air-tampa.html</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://callontheway.com/blog/ac-recharge-include-leak-repair-tampa.html</loc>
