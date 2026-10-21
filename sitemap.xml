@@ -467,6 +467,12 @@
 
   <!-- Blog -->
   <url>
+    <loc>https://callontheway.com/blog/bedroom-warmer-door-closed-tampa.html</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://callontheway.com/blog/what-ac-contactor-does-tampa.html</loc>
     <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
@@ -480,7 +486,7 @@
   </url>
   <url>
     <loc>https://callontheway.com/blog/</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
