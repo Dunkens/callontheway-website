@@ -1,83 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>$89 Premium AC Tune-Up | On The Way Air</title>
-    <style>
-        * { margin: 0; padding: 0; }
-        html, body { height: 100%; overflow: hidden; }
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
-        }
-    </style>
-</head>
-<body>
-    <iframe id="tune-up-frame" title="$89 Premium AC Tune-Up booking form" allowfullscreen></iframe>
-    <script>
-        const frame = document.getElementById('tune-up-frame');
-        const landingPage = new URL('https://otwdash-mxyxhkze.manus.space/tune-up');
-        landingPage.searchParams.set('v', '939c2802');
-        new URLSearchParams(window.location.search).forEach((value, key) => {
-            landingPage.searchParams.set(key, value);
-        });
-
-        function getCookie(name) {
-            const match = document.cookie.match(new RegExp(`(?:^|; )${name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}=([^;]*)`));
-            return match ? decodeURIComponent(match[1]) : undefined;
-        }
-
-        function setCookie(name, value) {
-            document.cookie = `${name}=${encodeURIComponent(value)}; Max-Age=7776000; Path=/; Domain=.callontheway.com; SameSite=Lax`;
-        }
-
-        function getOrCreateBrowserId() {
-            const existing = getCookie('_fbp');
-            if (existing) return existing;
-
-            const browserId = `fb.1.${Date.now()}.${Math.floor(Math.random() * 10000000000)}`;
-            setCookie('_fbp', browserId);
-            return browserId;
-        }
-
-        function getClickIdentifier() {
-            const existing = getCookie('_fbc');
-            if (existing) return existing;
-
-            const fbclid = new URLSearchParams(window.location.search).get('fbclid');
-            if (!fbclid) return undefined;
-
-            const clickId = `fb.1.${Date.now()}.${fbclid}`;
-            setCookie('_fbc', clickId);
-            return clickId;
-        }
-
-        const hadIncomingFbclid = new URLSearchParams(window.location.search).has('fbclid');
-        const browserId = getOrCreateBrowserId();
-        const clickId = getClickIdentifier();
-        const hasFirstPartyFbc = Boolean(getCookie('_fbc'));
-
-        window.fbq = window.fbq || function () { (window.fbq.queue = window.fbq.queue || []).push(arguments); };
-        window.fbq('init', '879710768181210');
-        window.fbq('track', 'PageView');
-        const pixelScript = document.createElement('script');
-        pixelScript.async = true;
-        pixelScript.src = 'https://connect.facebook.net/en_US/fbevents.js';
-        document.head.appendChild(pixelScript);
-
-        frame.addEventListener('load', () => {
-            frame.contentWindow?.postMessage({
-                type: 'otw-meta-attribution',
-                browserId,
-                clickId,
-                hadIncomingFbclid,
-                hasFirstPartyFbc,
-            }, 'https://otwdash-mxyxhkze.manus.space');
-        }, { once: true });
-        frame.src = landingPage.toString();
-    </script>
-</body>
-</html>
+<!doctype html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>$89 Premium AC Tune-Up in North Tampa | On The Way</title>
+<meta name="description" content="Request On The Way’s $89 Premium AC Tune-Up: foam coil cleaning, drain-line flush, and up to 1 lb of R-410A if needed. R-410A systems only.">
+<link rel="canonical" href="https://callontheway.com/landing/tune-up">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website"><meta property="og:title" content="$89 Premium AC Tune-Up | On The Way Heating &amp; Air">
+<meta property="og:description" content="Foam coil cleaning, drain-line flush, and up to 1 lb of R-410A if needed. R-410A systems only. Request your $89 Tune-Up.">
+<meta property="og:url" content="https://callontheway.com/landing/tune-up">
+<meta property="og:image" content="https://d2xsxph8kpxj0f.cloudfront.net/310519663301865743/mxyxHkZEJSFxMRgZL2LpBu/otw_logo_c16be4ff.webp">
+</head><body>
+<div id="root"></div><script type="module" crossorigin src="/landing/tune-up-assets/index-Dryx-t1O.js"></script>
+<link rel="stylesheet" href="/landing/tune-up-assets/index-BjggPfNp.css">
+</body></html>
