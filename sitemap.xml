@@ -473,6 +473,14 @@
 
   <!-- Blog -->
   <url>
+    <loc>https://callontheway.com/blog/ceiling-fan-empty-room-tampa.html</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+
+  <url>
     <loc>https://callontheway.com/blog/new-ac-refrigerant-line-set-tampa.html</loc>
     <lastmod>2026-10-29</lastmod>
     <changefreq>monthly</changefreq>
@@ -528,7 +536,7 @@
   </url>
   <url>
     <loc>https://callontheway.com/blog/</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
