@@ -480,6 +480,13 @@
 
   <!-- Blog -->
   <url>
+    <loc>https://callontheway.com/blog/ac-capacitor-looks-normal-tampa.html</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
     <loc>https://callontheway.com/blog/ac-wont-shut-off-thermostat-tampa.html</loc>
     <lastmod>2026-11-02</lastmod>
     <changefreq>monthly</changefreq>
@@ -551,7 +558,7 @@
   </url>
   <url>
     <loc>https://callontheway.com/blog/</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
