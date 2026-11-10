@@ -486,6 +486,12 @@
 
   <!-- Blog -->
   <url>
+    <loc>https://callontheway.com/blog/heat-pump-outdoor-fan-stops-heating-tampa.html</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://callontheway.com/blog/water-ac-drain-pan-tampa.html</loc>
     <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
@@ -588,7 +594,7 @@
   </url>
   <url>
     <loc>https://callontheway.com/blog/</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
