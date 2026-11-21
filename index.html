@@ -1,8 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preload" as="script" href="https://www.googletagmanager.com/gtm.js?id=GTM-M8X4XNZK" media="(min-width: 769px)" fetchpriority="low">
 <!-- Google Tag Manager -->
-<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-M8X4XNZK"></script>
+<script>
+// Mobile homepage tracking starts after hero paint, or a 3-second fallback.
+// Desktop tracking starts immediately as before.
+(function(){
+ var pending=[],started=false,observer;
+ function start(){
+  if(started)return;
+  started=true;
+  if(observer)observer.disconnect();
+  pending.splice(0).forEach(function(fn){fn();});
+ }
+ window.otwAfterHeroPaint=function(fn){if(started)fn();else pending.push(fn);};
+ window.otwAfterHeroPaint(function(){
+  var s=document.createElement('script');
+  s.async=true;
+  s.src='https://www.googletagmanager.com/gtm.js?id=GTM-M8X4XNZK';
+  document.head.appendChild(s);
+ });
+ if(!window.matchMedia||!window.matchMedia('(max-width:768px)').matches){start();return;}
+ try{
+  if(window.PerformanceObserver&&Array.isArray(PerformanceObserver.supportedEntryTypes)&&PerformanceObserver.supportedEntryTypes.indexOf('largest-contentful-paint')!==-1){
+   observer=new PerformanceObserver(function(list){
+    if(list.getEntries().some(function(e){return e.element&&e.element.classList&&e.element.classList.contains('hero-bg-img');}))start();
+   });
+   observer.observe({type:'largest-contentful-paint',buffered:true});
+  }
+ }catch(e){observer=null;}
+ if(!observer){
+  document.addEventListener('DOMContentLoaded',function(){
+   var img=document.querySelector('.hero-bg-img');
+   var ready=img&&img.decode?img.decode():Promise.resolve();
+   ready.catch(function(){}).then(function(){requestAnimationFrame(function(){requestAnimationFrame(start);});});
+  },{once:true});
+ }
+ setTimeout(start,3000);
+
+})();
+</script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -18,7 +57,7 @@ n.callMethod.apply(n,arguments):n.queue.push(arguments)};
 if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
 n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
+window.otwAfterHeroPaint(function(){s.parentNode.insertBefore(t,s);})}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '879710768181210');
 fbq('track', 'PageView');
@@ -29,7 +68,7 @@ src="https://www.facebook.com/tr?id=879710768181210&ev=PageView&noscript=1"
 <!-- End Meta Pixel Code -->
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <meta name="description" content="Need AC repair in Tampa? On The Way Air provides fast, same-day air conditioning repair backed by our Same Day or Don't Pay guarantee. Licensed experts serving North Tampa, Lutz & Spring Hill. Call (813) 922-2209.">
     <meta name="keywords" content="On The Way Air, On The Way AC, HVAC Tampa, AC repair Tampa, heating Tampa, air conditioning Tampa, On The Way Heating and Air, furnace repair, heat pump, air quality, Lutz, Wesley Chapel, Carrollwood">
     <meta name="author" content="On The Way Heating & Air">
